@@ -14,7 +14,7 @@ class CreateEquipoTable extends Migration
     public function up()
     {
         Schema::create('equipo', function (Blueprint $table) {
-            $table->char('CIF',9);
+            $table->char('cif',9);
             $table->string('nombre');
         });
     }
