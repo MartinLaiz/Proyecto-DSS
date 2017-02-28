@@ -17,10 +17,10 @@ class EntrenadorTableSeeder extends Seeder
         // Añadimos una entrada a esta tabla
         DB::table('entrenador')->insert([
         'dni' => '14526784T' ,
-        'nombre' => 'name@domain.com' ,
-        'apellidos' => 'strongpassword' ,
-        'edad' => 'name@domain.com' ,
-        'numero' => 'name@domain.com' ,
-        'equipo' => 'name@domain.com' ]);
+        'nombre' => 'Adrian' ,
+        'apellidos' => 'Montoya Ras' ,
+        'edad' => '25' ,
+        'numero' => '2' ,
+        'equipo' => 'A27417476' ]);
     }
 }
