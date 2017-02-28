@@ -14,14 +14,14 @@ class CreateJugadorTable extends Migration
     public function up()
     {
         Schema::create('jugador', function (Blueprint $table) {
-            $table->char('DNI',9);
+            $table->char('dni',9);
             $table->string('nombre');
             $table->string('apellidos');
             $table->Integer('edad');
             $table->string('posicion');
-            $table->Integer('cargo');
-            $table->Integer('equipo')->unsigned();
-            $table->foreign('equipo')->references('id')->on('equipo');
+            $table->integer('cargo');
+            $table->string('equipo');
+            $table->foreign('equipo')->references('cif')->on('equipo');
             $table->primary('DNI');
         });
     }
