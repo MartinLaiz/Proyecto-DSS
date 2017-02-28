@@ -19,6 +19,8 @@ class CreateEntrenadorTable extends Migration
             $table->string('apellidos');
             $table->integer('edad');
             $table->integer('numero');
+            $table->string('equipo');
+            $table->foreign('equipo')->references('cif')->on('equipo');
         });
     }
 
