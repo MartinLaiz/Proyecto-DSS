@@ -12,7 +12,7 @@ class EquipoTableSeeder extends Seeder
     public function run()
     {
         //Borrar datos
-        DB::('equipo')->delete();
+        DB::table('equipo')->delete();
 
         //Insertar
         DB::table('equipo')->insert([
