@@ -14,13 +14,14 @@ class CreateEntrenadorTable extends Migration
     public function up()
     {
         Schema::create('entrenador', function (Blueprint $table) {
-            $table->char('dni',9)->primary();
+            $table->increments('id');
+            $table->char('dni',9)->unique();
             $table->string('nombre');
             $table->string('apellidos');
             $table->integer('edad');
             $table->integer('numero');
             $table->string('equipo');
-            $table->foreign('equipo')->references('cif')->on('equipo');
+            $table->foreign('equipo')->references('id')->on('equipo');
         });
     }
 
