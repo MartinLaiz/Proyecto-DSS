@@ -15,9 +15,14 @@ class CreateJugadorTable extends Migration
     {
         Schema::create('jugador', function (Blueprint $table) {
             $table->char('DNI',9);
+            $table->string('nombre');
+            $table->string('apellidos');
             $table->Integer('edad');
             $table->string('posicion');
             $table->Integer('cargo');
+            $table->Integer('equipo')->unsigned();
+            $table->foreign('equipo')->references('id')->on('equipo');
+
         });
     }
 
