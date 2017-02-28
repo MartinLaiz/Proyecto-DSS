@@ -14,8 +14,10 @@ class CreateJugadorTable extends Migration
     public function up()
     {
         Schema::create('jugador', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->char('DNI',9);
+            $table->Integer('edad');
+            $table->string('posicion');
+            $table->Integer('cargo');
         });
     }
 
