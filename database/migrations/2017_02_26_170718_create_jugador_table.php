@@ -22,7 +22,7 @@ class CreateJugadorTable extends Migration
             $table->Integer('cargo');
             $table->Integer('equipo')->unsigned();
             $table->foreign('equipo')->references('id')->on('equipo');
-
+            $table->primary('DNI');
         });
     }
 

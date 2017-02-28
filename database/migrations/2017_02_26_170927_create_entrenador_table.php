@@ -14,8 +14,10 @@ class CreateEntrenadorTable extends Migration
     public function up()
     {
         Schema::create('entrenador', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->char('DNI',9);
+            $table->string('nombre');
+            $table->string('apellidos');
+            $table->Integer('edad');
         });
     }
 
