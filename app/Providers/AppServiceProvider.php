@@ -15,8 +15,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //Integridad referencial
         if(config('database.default') == 'sqlite'){
-            $db->connection()->getPdo()->exec("PRAGMA foreign_keys = ON");
             $db = app()->make('db');
+            $db->connection()->getPdo()->exec("PRAGMA foreign_keys = ON"); 
         }
     }
 
