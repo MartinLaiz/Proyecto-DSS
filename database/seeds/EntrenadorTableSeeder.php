@@ -17,10 +17,39 @@ class EntrenadorTableSeeder extends Seeder
         // Añadimos una entrada a esta tabla
         DB::table('entrenador')->insert([
         'dni' => '14526784T' ,
-        'nombre' => 'Adrian' ,
-        'apellidos' => 'Montoya Ras' ,
+        'nombre' => 'Oliver' ,
+        'apellidos' => 'Atom' ,
         'edad' => '25' ,
-        'numero' => '2' ,
-        'equipo' => $equipos->id ]);
+        'numero' => 1 ,
+        'equipo' => 1 ]);
+
+         DB::table('entrenador')->insert([
+        'dni' => '14526785T' ,
+        'nombre' => 'Benji' ,
+        'apellidos' => 'Price' ,
+        'edad' => '25' ,
+        'numero' => 2 ,
+        'equipo' => 1 ]);
+
+        //Entrenadores Real Madrid
+
+        DB::table('entrenador')->insert([
+        'dni' => '14226784T' ,
+        'nombre' => 'Zinedine' ,
+        'apellidos' => 'Zidane' ,
+        'edad' => '25' ,
+        'numero' => 1 ,
+        'equipo' => 1 ]);
+
+         DB::table('entrenador')->insert([
+        'dni' => '14326785T' ,
+        'nombre' => 'David' ,
+        'apellidos' => 'Bettoni' ,
+        'edad' => '25' ,
+        'numero' => 2 ,
+        'equipo' => 1 ]);
+     
+        
+
     }
 }

@@ -19,5 +19,18 @@ class EquipoTableSeeder extends Seeder
             'cif'=>'A27417476',
             'nombre'=>'UA Football Club'
         ]);
+
+        DB::table('equipo')->insert([
+            'cif'=> 'G28034718',
+            'nombre' => 'Real Madrid Club de Fubool'
+        ]);
+
+           $equipos = DB::table('equipo')->get(); // select * from equipo
+        foreach($equipos as $equipo)
+        {
+            var_dump($equipo->id);
+            var_dump($equipo->nombre);
+
+        }
     }
 }
