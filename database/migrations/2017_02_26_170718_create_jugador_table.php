@@ -21,7 +21,7 @@ class CreateJugadorTable extends Migration
             $table->integer('edad');
             $table->string('posicion');
             $table->integer('cargo');
-            $table->string('equipo');
+            $table->integer('equipo')->unsigned();
             $table->foreign('equipo')->references('id')->on('equipo');
             $table->timestamps();
             

@@ -13,7 +13,6 @@ class EntrenadorTableSeeder extends Seeder
     {
         // Borramos los datos de la tabla
         DB::table('entrenador')->delete();
-
         // Añadimos una entrada a esta tabla
         DB::table('entrenador')->insert([
         'dni' => '14526784T' ,
@@ -21,6 +20,6 @@ class EntrenadorTableSeeder extends Seeder
         'apellidos' => 'Montoya Ras' ,
         'edad' => '25' ,
         'numero' => '2' ,
-        'equipo' => 'A27417476' ]);
+        'equipo' => '1' ]);
     }
 }
