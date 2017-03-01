@@ -22,6 +22,7 @@ class CreateEntrenadorTable extends Migration
             $table->integer('numero');
             $table->string('equipo');
             $table->foreign('equipo')->references('id')->on('equipo');
+            $table->timestamps();
         });
     }
 
