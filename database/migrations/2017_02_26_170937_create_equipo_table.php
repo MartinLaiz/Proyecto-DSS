@@ -17,6 +17,7 @@ class CreateEquipoTable extends Migration
             $table->increments('id');
             $table->char('cif',9)->unique();
             $table->string('nombre');
+            $table->timestamps();
         });
     }
 
