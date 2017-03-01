@@ -12,7 +12,8 @@ class JugadorTableSeeder extends Seeder
     public function run()
     {
          DB::table('jugador')->delete();
-         $equipos = DB::table('equipos')->first();
+         
+         $equipos = DB::table('equipo')->first();
          DB::table('jugador')->insert([
              'dni'=> '00000000A',
              'nombre' => 'Rafael',

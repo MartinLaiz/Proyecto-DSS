@@ -13,7 +13,7 @@ class EntrenadorTableSeeder extends Seeder
     {
         // Borramos los datos de la tabla
         DB::table('entrenador')->delete();
-        $equipos = DB::table('equipos')->first();
+        $equipos = DB::table('equipo')->first();
         // Añadimos una entrada a esta tabla
         DB::table('entrenador')->insert([
         'dni' => '14526784T' ,
