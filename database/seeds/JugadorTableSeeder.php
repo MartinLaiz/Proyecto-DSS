@@ -13,7 +13,7 @@ class JugadorTableSeeder extends Seeder
     {
          DB::table('jugador')->delete();
          
-         $equipos = DB::table('equipo')->first();
+         $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
          DB::table('jugador')->insert([
              'dni'=> '00000000A',
              'nombre' => 'Rafael',
@@ -21,7 +21,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 18,
              'posicion' => 'Delantero',
              'cargo' => 1,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000001A',
@@ -30,16 +30,16 @@ class JugadorTableSeeder extends Seeder
              'edad' => 18,
              'posicion' => 'Portero',
              'cargo' => 2,
-             'equipo' => 2
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000002A',
              'nombre' => 'Martin',
-             'apellidos' => 'Lapiz Goma',
+             'apellidos' => 'Laiz Gomez',
              'edad' => 23,
              'posicion' => 'Medio',
              'cargo' => 3,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000003A',
@@ -48,16 +48,16 @@ class JugadorTableSeeder extends Seeder
              'edad' => 32,
              'posicion' => 'Defensa',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000004A',
              'nombre' => 'Adrian',
-             'apellidos' => 'Montoya Ras',
+             'apellidos' => 'Montoya Ros',
              'edad' => 18,
              'posicion' => 'Defensa',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000005A',
@@ -66,7 +66,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 23,
              'posicion' => 'Defensa',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000006A',
@@ -75,7 +75,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 31,
              'posicion' => 'Defensa',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000007A',
@@ -84,7 +84,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 20,
              'posicion' => 'Medio',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000008A',
@@ -93,7 +93,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 20,
              'posicion' => 'Medio',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000009A',
@@ -102,7 +102,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 20,
              'posicion' => 'Medio',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '00000019A',
@@ -111,7 +111,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 20,
              'posicion' => 'Delantero',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
 
        ]);
        DB::table('jugador')->insert([
@@ -121,7 +121,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 20,
              'posicion' => 'Delantero',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
              'dni'=> '000000011A',
@@ -130,10 +130,12 @@ class JugadorTableSeeder extends Seeder
              'edad' => 20,
              'posicion' => 'Delantero',
              'cargo' => 0,
-             'equipo' => 1
+             'equipo' => $equipo->id
 
         ]);
-        //JUGADORES DEL REAL MADRID, ID = 2
+        //JUGADORES DEL REAL MADRID
+        
+        $equipo = DB::table('equipo')->where('nombre','like','%Real Madrid%')->first();
         DB::table('jugador')->insert([
              'dni'=> '000000013A',
              'nombre' => 'Keylor',
@@ -141,7 +143,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 30,
              'posicion' => 'Portero',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
 
         ]);
 
@@ -152,7 +154,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 30,
              'posicion' => 'Portero',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
         DB::table('jugador')->insert([
@@ -162,7 +164,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 25,
              'posicion' => 'Defensa',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
          DB::table('jugador')->insert([
@@ -172,7 +174,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 34,
              'posicion' => 'Defensa',
              'cargo' => 3,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
          DB::table('jugador')->insert([
@@ -182,7 +184,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 30,
              'posicion' => 'Defensa',
              'cargo' => 1,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
 
@@ -193,7 +195,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 24,
              'posicion' => 'Defensa',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
 
@@ -204,7 +206,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 27,
              'posicion' => 'Defensa',
              'cargo' => 10,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
          DB::table('jugador')->insert([
@@ -214,7 +216,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 28,
              'posicion' => 'Defensa',
              'cargo' => 3,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
         
 
@@ -225,7 +227,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 27,
              'posicion' => 'Medio',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
         DB::table('jugador')->insert([
@@ -235,7 +237,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 25,
              'posicion' => 'Medio',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
         DB::table('jugador')->insert([
@@ -245,7 +247,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 25,
              'posicion' => 'Medio',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
         DB::table('jugador')->insert([
@@ -255,7 +257,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 22,
              'posicion' => 'Medio',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
 
@@ -266,7 +268,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 31,
              'posicion' => 'Medio',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
 
@@ -277,7 +279,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 32,
              'posicion' => 'Delantero',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
         DB::table('jugador')->insert([
@@ -287,7 +289,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 29,
              'posicion' => 'Delantero',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
         DB::table('jugador')->insert([
@@ -297,7 +299,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 27,
              'posicion' => 'Delantero',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
 
@@ -308,7 +310,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 25,
              'posicion' => 'Delantero',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
          DB::table('jugador')->insert([
@@ -318,7 +320,7 @@ class JugadorTableSeeder extends Seeder
              'edad' => 24,
              'posicion' => 'Delantero',
              'cargo' => 0,
-             'equipo' => 2
+             'equipo' => $equipo->id
         ]);
 
         //Jugadores F.C Barcelona id= 3

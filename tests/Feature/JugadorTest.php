@@ -16,6 +16,9 @@ class JugadorTest extends TestCase
      */
     public function testExample()
     {
-        $this->assertTrue(true);
+        echo "Jugadores del equipo %UA%";
+        $result = DB::table('jugador as j')->join('equipo as e','j.equipo','=','e.id')->select('e.nombre as equipo','j.nombre','j.apellidos')->where('e.nombre','like','%UA%')->get();
+        
+
     }
 }
