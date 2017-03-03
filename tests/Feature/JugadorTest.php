@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Equipo;
+use App\Jugador;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -18,7 +20,7 @@ class JugadorTest extends TestCase
     {
         $jugador = Jugador::where('apellidos','Ramos')->where('nombre','Sergio')->first();
         $equipo = Equipo::where('cif','like','%G28034718%')->first();
-        $this->assertEquals($equipo->id,$entrenador->equipo);
+        $this->assertEquals($equipo->id,$jugador->equipo);
     }
     public function testJugador2()
     {
