@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class JugadorTest extends TestCase
+class EntrenadorTest extends TestCase
 {
     /**
      * A basic test example.
