@@ -17,11 +17,17 @@ class EquipoTest extends TestCase
      */
     public function testEquipo1()//Prueba de inserción
     {
-        $equipoNuevo = new Equipo([//Creamos equipo nuevo
+        /*$equipoNuevo = new Equipo([//Creamos equipo nuevo
             'cif'=>'A00000000',
             'nombre'=>'Test Football Club'
         ]);
-        $equipoNuevo->save();//Lo almacenamos en la BD
+        $equipoNuevo->save();//Lo almacenamos en la BD*/
+
+        $equipoNuevo = new Equipo();
+        $equipoNuevo->cif = 'A00000000';
+        $equipoNuevo->nombre = 'Test Football Club';
+        $equipoNuevo->save();
+
 
         $equipo = Equipo::where('cif','like','%A00000000%')->first();//Lo recuperamos
         //Comprobamos que esté insertado correctamente
@@ -29,11 +35,10 @@ class EquipoTest extends TestCase
     }
     public function testEquipo2()//Prueba de borrado
     {
-        $equipoNuevo = new Equipo([//Creamos equipo nuevo
-            'cif'=>'A00000001',
-            'nombre'=>'Test2 Football Club'
-        ]);
-        $equipoNuevo->save();//Lo almacenamos en la BD
+        $equipoNuevo = new Equipo();
+        $equipoNuevo->cif = 'A00000001';
+        $equipoNuevo->nombre = 'Test2 Football Club';
+        $equipoNuevo->save();
 
         $equipo = Equipo::where('cif','like','%A00000001')->first();
         $equipo->delete();
