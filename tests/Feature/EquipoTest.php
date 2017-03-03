@@ -17,11 +17,6 @@ class EquipoTest extends TestCase
      */
     public function testEquipo1()//Prueba de inserción
     {
-        /*$equipoNuevo = new Equipo([//Creamos equipo nuevo
-            'cif'=>'A00000000',
-            'nombre'=>'Test Football Club'
-        ]);
-        $equipoNuevo->save();//Lo almacenamos en la BD*/
 
         $equipoNuevo = new Equipo();
         $equipoNuevo->cif = 'A00000000';
