@@ -16,10 +16,16 @@ class EntrenadorTest extends TestCase
      *
      * @return void
      */
-    public function testEntrenador()
+    public function testEntrenador1()
     {
         $entrenador = Entrenador::where('nombre','Oliver')->where('apellidos','Atom')->first();
         $equipo = Equipo::where('nombre','like','%UA%')->first();
+        $this->assertEquals($equipo->id,$entrenador->equipo);
+    }
+    public function testEntrenador2()
+    {
+        $entrenador = Entrenador::where('nombre','Zinedine')->where('apellidos','Zidane')->first();
+        $equipo = Equipo::where('nombre','like','%Real Madrid%')->first();
         $this->assertEquals($equipo->id,$entrenador->equipo);
     }
 }

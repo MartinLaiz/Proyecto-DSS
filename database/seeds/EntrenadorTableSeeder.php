@@ -47,7 +47,7 @@ class EntrenadorTableSeeder extends Seeder
         'apellidos' => 'Bettoni' ,
         'edad' => '25' ,
         'numero' => 2 ,
-        'equipo' => $equipo->idss ]);
+        'equipo' => $equipo->id ]);
      
         
 
