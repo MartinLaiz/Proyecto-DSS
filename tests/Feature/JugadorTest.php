@@ -14,8 +14,16 @@ class JugadorTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testJugador1()
     {
-        $this->assertTrue(true);
+        $jugador = Jugador::where('apellidos','Ramos')->where('nombre','Sergio')->first();
+        $equipo = Equipo::where('cif','like','%G28034718%')->first();
+        $this->assertEquals($equipo->id,$entrenador->equipo);
+    }
+    public function testJugador2()
+    {
+        $entrenador = Jugador::where('cargo',1)->where('apellidos','Ramos')->first();
+        $equipo = Equipo::where('nombre','like','%Real Madrid%')->first();
+        $this->assertEquals($equipo->id,$entrenador->equipo);
     }
 }

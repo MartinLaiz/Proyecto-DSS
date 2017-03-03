@@ -11,4 +11,5 @@ class Jugador extends Model
     public function equipo(){
         return $this->belongsTo('App\Equipo');
     }
+
 }
