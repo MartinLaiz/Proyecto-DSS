@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Entrenador;
+use App\Equipo;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -14,8 +16,10 @@ class EntrenadorTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testEntrenador()
     {
-        $this->assertTrue(true);
+        $entrenador = Entrenador::where('nombre','Oliver')->where('apellidos','Atom')->first();
+        $equipo = Equipo::where('nombre','like','%UA%')->first();
+        $this->assertEquals($equipo->id,$entrenador->equipo);
     }
 }
