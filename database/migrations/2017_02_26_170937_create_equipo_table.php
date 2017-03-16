@@ -28,6 +28,10 @@ class CreateEquipoTable extends Migration
      */
     public function down()
     {
+        //Previo: Eliminación de jugadores, entrenadores y partidos
+        Schema::dropIfExists('jugador');
+        Schema::dropIfExists('entrenador');
+        Schema::dropIfExists('partido');
         Schema::dropIfExists('equipo');
     }
 }
