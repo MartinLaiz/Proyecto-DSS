@@ -9,3 +9,4 @@ Homestead.yaml
 .env
 phpunit.phar
 .vscode
+phpunit-5.7.phar
