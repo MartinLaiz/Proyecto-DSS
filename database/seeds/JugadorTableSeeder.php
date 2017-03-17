@@ -12,6 +12,7 @@ class JugadorTableSeeder extends Seeder
     public function run()
     {
          DB::table('jugador')->delete();
+         DB::table('VerNifEntrenador');
          
          $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
          DB::table('jugador')->insert([

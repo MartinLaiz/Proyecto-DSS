@@ -11,6 +11,7 @@ class EntrenadorTableSeeder extends Seeder
      */
     public function run()
     {
+        
         // Borramos los datos de la tabla
         DB::table('entrenador')->delete();
         $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
