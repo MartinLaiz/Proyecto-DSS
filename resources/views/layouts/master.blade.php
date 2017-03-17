@@ -1,11 +1,11 @@
 <html>
       <head>
-            <title>@yield('title')</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/master.css') }}">
+            <title>@yield('title') - FootballManager</title>
       </head>
       <body>
-            @section('menu')
-            Contenido del menu
-            @show
             <div class=”container”>
                   @yield('content')
             </div>

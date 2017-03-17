@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Título de la página')
+@section('title', 'Inicio')
 @section('menu')
       @parent
       <p>Este contenido es añadido al menú principal.</p>

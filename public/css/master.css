@@ -1,13 +1,34 @@
-
 .center {
       margin: auto;
-      margin-top: 20%;
+      margin-top: 10%;
       width: 50%;
 }
 
-.image-home{
+.imageHome{
       width:100%;
-      height:100%;
+      height:28%;
+      margin-bottom: 2%;
+}
+
+.split{
+      width: 50%;
+}
+
+.floatLeft{
+      float: left;
+}
+
+.floatRight{
+      float: right;
+}
+
+.login{
+      width: 80%;
+      float: left;
+}
+
+.paddDer{
+      padding-right: 15px;
 }
 
 body{
