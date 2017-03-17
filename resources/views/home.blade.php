@@ -1,10 +1,12 @@
 @extends('layouts.master')
 @section('title', 'Inicio')
-@section('menu')
-      @parent
-      <p>Este contenido es añadido al menú principal.</p>
-@endsection
 @section('content')
-      <p>Este apartado aparecerá en la sección
-      "content".</p>
+      <div class="margen10 rojo">
+            <div class="cabecera azul">
+                  Hola
+            </div>
+            <div class="amarillo">
+                  Adios
+            </div>
+      </div>
 @endsection

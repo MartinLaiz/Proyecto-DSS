@@ -5,7 +5,7 @@
             <div class="imageHome">
                   <img src="/images/Logo.png" alt="Logo FootballManager">
             </div>
-            <div class="container-fluid">
+            <div>
                   <div class="col-md-9" style="padding: 0 0 0 0">
                         <div class="col-md-6" style="padding-left: 0">
                               <input type="text" class="form-control" placeholder="Usuario">
