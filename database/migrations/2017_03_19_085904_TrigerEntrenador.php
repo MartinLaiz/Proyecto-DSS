@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TrigerJugador extends Migration
+class TrigerEntrenador extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class TrigerJugador extends Migration
      */
     public function up()
     {
+    
         DB::unprepared('create trigger
-                        VerNifEntrenador after
-                        insert on Jugador
+                        VerNifJugador after
+                        insert on Entrenador
                         begin
                             select case when (
-                            select dni from entrenador
-                            where entrenador.dni = new.dni)
-                            
-                            then raise(abort,"Error al insertar el jugador,
-                            existe un dni igual a un entrenador.")
+                            select dni from jugador
+                            where jugador.dni = new.dni)
+
+                            then raise(abort,"Error al insertar el entrenador,
+                            ya existe un dni igual a un jugador.")
                             end;
                         end');
     }
@@ -34,6 +35,6 @@ class TrigerJugador extends Migration
      */
     public function down()
     {
-        DB::unprepared('drop trigger  VerNifEntrenador');
+         DB::unprepared('drop trigger  VerNifJugador');
     }
 }

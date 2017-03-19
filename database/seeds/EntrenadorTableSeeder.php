@@ -14,10 +14,12 @@ class EntrenadorTableSeeder extends Seeder
         
         // Borramos los datos de la tabla
         DB::table('entrenador')->delete();
+        DB::table('VerNifJugador');
+
         $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
         // Añadimos una entrada a esta tabla
         DB::table('entrenador')->insert([
-        'dni' => '14526784T' ,
+        'dni' => '145267853T' ,
         'nombre' => 'Oliver' ,
         'apellidos' => 'Atom' ,
         'edad' => '25' ,
@@ -25,7 +27,7 @@ class EntrenadorTableSeeder extends Seeder
         'equipo' => $equipo->id ]);
 
          DB::table('entrenador')->insert([
-        'dni' => '14526785T' ,
+        'dni' => '145267854T' ,
         'nombre' => 'Benji' ,
         'apellidos' => 'Price' ,
         'edad' => '25' ,

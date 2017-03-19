@@ -15,8 +15,9 @@ class JugadorTableSeeder extends Seeder
          DB::table('VerNifEntrenador');
          
          $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
+
          DB::table('jugador')->insert([
-             'dni'=> '00000000A',
+             'dni'=> '12345678A',
              'nombre' => 'Rafael',
              'apellidos' => 'Soria Diez',
              'edad' => 18,
@@ -24,6 +25,7 @@ class JugadorTableSeeder extends Seeder
              'cargo' => 1,
              'equipo' => $equipo->id
        ]);
+       
        DB::table('jugador')->insert([
              'dni'=> '00000001A',
              'nombre' => 'Pablo',
