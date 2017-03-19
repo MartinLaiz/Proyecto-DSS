@@ -22,7 +22,7 @@ class EntrenadorTableSeeder extends Seeder
         'dni' => '145267853T' ,
         'nombre' => 'Oliver' ,
         'apellidos' => 'Atom' ,
-        'edad' => '25' ,
+        'fNac' => 1994/01/01 ,
         'numero' => 1 ,
         'equipo' => $equipo->id ]);
 
@@ -30,7 +30,7 @@ class EntrenadorTableSeeder extends Seeder
         'dni' => '145267854T' ,
         'nombre' => 'Benji' ,
         'apellidos' => 'Price' ,
-        'edad' => '25' ,
+        'fNac' => 1994/01/01 ,
         'numero' => 2 ,
         'equipo' => $equipo->id ]);
 
@@ -40,7 +40,7 @@ class EntrenadorTableSeeder extends Seeder
         'dni' => '14226784T' ,
         'nombre' => 'Zinedine' ,
         'apellidos' => 'Zidane' ,
-        'edad' => '25' ,
+        'fNac' => 1994/01/01 ,
         'numero' => 1 ,
         'equipo' => $equipo->id ]);
 
@@ -48,7 +48,7 @@ class EntrenadorTableSeeder extends Seeder
         'dni' => '14326785T' ,
         'nombre' => 'David' ,
         'apellidos' => 'Bettoni' ,
-        'edad' => '25' ,
+        'fNac' => 1994/01/01 ,
         'numero' => 2 ,
         'equipo' => $equipo->id ]);
      
