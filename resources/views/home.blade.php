@@ -1,7 +1,13 @@
 @extends('layouts.master')
 @section('title', 'Inicio')
 @section('content')
-      <div class="margen">
+<div class="rojo">
+      Cabecera
+      <div class="azul">
+            Contenido
+      </div>
+</div>
+      <!--<div class="margen">
             <div class="container-fluid cabecera azul">
                   <div class="col-md-2">
                         <img src="" alt="Logo Equipo">
@@ -25,5 +31,5 @@
             <div style="height:100%"class="amarillo">
                   Adios
             </div>
-      </div>
+      </div>-->
 @endsection

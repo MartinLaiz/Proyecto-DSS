@@ -1,60 +1,14 @@
-.center {
-      margin: auto;
-      margin-top: 10%;
-      width: 50%;
-}
-
-.imageHome{
-      width:100%;
-      height:28%;
-      margin-bottom: 2%;
-}
-
-.split{
-      width: 50%;
-}
-
-.floatLeft{
-      float: left;
-}
-
-.floatRight{
-      float: right;
-}
-
-.margen{
-      margin: auto 10% 0 10%;
-}
-
-.cabecera{
-      padding: 2% 2% 2% 2%;
-}
-
-.imagenCabecera{
-      width: 12%;
-      height: 12%;
-}
-
-.fill{
-      width: 100%;
-      height: 100%;
-}
-
-.login{
-      width: 80%;
-      float: left;
-}
-
-.paddDer{
-      padding-right: 15px;
-}
-
 body{
       background: url("/images/fondo.png");
       background-color: lightgrey;
       background-repeat: no-repeat;
       background-size: cover;
 }
+
+
+
+
+
 
 
 .rojo{

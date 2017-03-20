@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @section('title', 'Login')
 @section('content')
-      <div class="center">
+      <div class="col-md-8 col-md-offset-2">
             <div>
                   <img class="thumbnail img-responsive center-block" src="/images/Logo.png" alt="Logo FootballManager">
             </div>
             <div>
                   <form action="./home">
-                        <div class="col-md-9">
+                        <div class="row col-md-9">
                               <div class="col-md-6">
                                     <input type="text" class="form-control" placeholder="Usuario">
                               </div>
