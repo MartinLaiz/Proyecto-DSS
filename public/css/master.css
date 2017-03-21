@@ -5,11 +5,22 @@ body{
       background-size: cover;
 }
 
+hr{
+      color: #454545;
+      background-color: #454545;
+      height: 1px;
+}
 
 
+.fondo{
+      background-color: #F5F5F5;
+}
 
-
-
+.flex-center {
+   align-items: center;
+   display: flex;
+   justify-content: center;
+}
 
 .rojo{
       background-color: red;

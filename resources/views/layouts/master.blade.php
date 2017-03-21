@@ -8,7 +8,7 @@
       </head>
       <body>
             <div>
-                  <div class="col-md-10 col-md-offset-1">
+                  <div class="col-md-10 col-md-offset-1 container-fluid">
                         @yield('content')
                   </div>
             </div>
