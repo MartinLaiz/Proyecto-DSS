@@ -18,8 +18,7 @@ class CreateEstadioTable extends Migration
             $table->string('nombre');
             $table->integer('capacidad');
             $table->integer('equipo')->unsigned()->nullable();
-            //¿Estadio pertenece a equipo?
-            $table->foreign('equipo')->references('id')->on('equipo')->onDelete('set null');
+            $table->foreign('equipo')->references('id')->on('equipo')->onDelete('cascade');
             $table->timestamps();
         });
     }

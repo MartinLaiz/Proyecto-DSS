@@ -20,7 +20,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '12345678A',
              'nombre' => 'Rafael',
              'apellidos' => 'Soria Diez',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Delantero',
              'cargo' => 1,
              'equipo' => $equipo->id
@@ -30,7 +30,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000001A',
              'nombre' => 'Pablo',
              'apellidos' => 'Garcia Villalba',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Portero',
              'cargo' => 2,
              'equipo' => $equipo->id
@@ -39,7 +39,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000002A',
              'nombre' => 'Martin',
              'apellidos' => 'Laiz Gomez',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Medio',
              'cargo' => 3,
              'equipo' => $equipo->id
@@ -48,7 +48,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000003A',
              'nombre' => 'Adrian',
              'apellidos' => 'Montoya Ras',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Defensa',
              'cargo' => 0,
              'equipo' => $equipo->id
@@ -57,7 +57,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000004A',
              'nombre' => 'Adrian',
              'apellidos' => 'Montoya Ros',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Defensa',
              'cargo' => 0,
              'equipo' => $equipo->id
@@ -66,7 +66,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000005A',
              'nombre' => 'Manuel',
              'apellidos' => 'Alberora Melonar',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Defensa',
              'cargo' => 0,
              'equipo' => $equipo->id
@@ -75,7 +75,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000006A',
              'nombre' => 'Manolo',
              'apellidos' => 'Garcia Garcia',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Defensa',
              'cargo' => 0,
              'equipo' => $equipo->id
@@ -84,7 +84,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000007A',
              'nombre' => 'Higinio',
              'apellidos' => 'Garcia Garcia',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Medio',
              'cargo' => 0,
              'equipo' => $equipo->id
@@ -93,7 +93,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000008A',
              'nombre' => 'Oscar',
              'apellidos' => 'Garcia Garcia',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Medio',
              'cargo' => 0,
              'equipo' => $equipo->id
@@ -102,7 +102,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000009A',
              'nombre' => 'Gandalf',
              'apellidos' => 'El Gris',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Medio',
              'cargo' => 0,
              'equipo' => $equipo->id
@@ -111,7 +111,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '00000019A',
              'nombre' => 'Harry',
              'apellidos' => 'Potter',
-             'fNac' => 01/01/19940,
+             'fNac' => 1994/01/010,
              'posicion' => 'Delantero',
              'cargo' => 0,
              'equipo' => $equipo->id
@@ -121,7 +121,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '000000010A',
              'nombre' => 'Anakin',
              'apellidos' => 'Skywalker',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Delantero',
              'cargo' => 0,
              'equipo' => $equipo->id
@@ -130,7 +130,7 @@ class JugadorTableSeeder extends Seeder
              'dni'=> '000000011A',
              'nombre' => 'Amador',
              'apellidos' => 'Rivas',
-             'fNac' => 01/01/1994,
+             'fNac' => 1994/01/01,
              'posicion' => 'Delantero',
              'cargo' => 0,
              'equipo' => $equipo->id

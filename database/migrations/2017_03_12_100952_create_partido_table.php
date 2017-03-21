@@ -14,12 +14,14 @@ class CreatePartidoTable extends Migration
     public function up()
     {
         Schema::create('partido', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('equipoLocal')->unsigned()->nullable();
-            $table->foreign('equipoLocal')->references('id')->on('equipo')->onDelete('set null');
             $table->integer('equipoVisitante')->unsigned()->nullable();
-            $table->foreign('equipoVisitante')->references('id')->on('equipo')->onDelete('set null');
-            $table->string('resultado');
+            $table->integer('golesLocal');
+            $table->integer('golesVisitante');
+            $table->integer('estadio');
+            $table->foreign('estadio')->references('id')->on('estadio')->onDelete('set null');
+            $table->primary(['equipoLocal', 'equipoVisitante']);
+           
             $table->timestamps();
         });
     }
@@ -31,6 +33,7 @@ class CreatePartidoTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('estadio');
         Schema::dropIfExists('partido');
     }
 }
