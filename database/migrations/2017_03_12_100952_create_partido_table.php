@@ -18,10 +18,11 @@ class CreatePartidoTable extends Migration
             $table->integer('equipoVisitante')->unsigned()->nullable();
             $table->integer('golesLocal');
             $table->integer('golesVisitante');
+            $table->date('fecha');
             $table->integer('estadio');
             $table->foreign('estadio')->references('id')->on('estadio')->onDelete('set null');
             $table->primary(['equipoLocal', 'equipoVisitante']);
-           
+
             $table->timestamps();
         });
     }
