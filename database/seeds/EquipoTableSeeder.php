@@ -13,16 +13,18 @@ class EquipoTableSeeder extends Seeder
     {
         //Borrar datos
         DB::table('equipo')->delete();
-
+        $estadio = DB::table('estadio')->where('nombre','like','%UA%')->first();
         //Insertar
         DB::table('equipo')->insert([
             'cif'=>'A27417476',
-            'nombre'=>'UA Football Club'
+            'nombre'=>'UA Football Club',
+            'estadio' => $estadio->id
         ]);
-
+        $estadio = DB::table('estadio')->where('nombre','like','%Bernabéu%')->first();
         DB::table('equipo')->insert([
             'cif'=> 'G28034718',
-            'nombre' => 'Real Madrid Club de Futbol'
+            'nombre' => 'Real Madrid Club de Futbol',
+            'estadio' => $estadio->id
         ]);
 
            /*$equipos = DB::table('equipo')->get(); // select * from equipo

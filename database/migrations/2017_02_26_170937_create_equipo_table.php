@@ -18,7 +18,7 @@ class CreateEquipoTable extends Migration
             $table->char('cif',9)->unique();
             $table->string('nombre');
             $table->integer('presupuesto');
-            $table->integer('estadio');
+            $table->integer('estadio')->unique();
             $table->foreign('estadio')->references('id')->on('estadio')->onDelete('cascade');
             $table->timestamps();
         });

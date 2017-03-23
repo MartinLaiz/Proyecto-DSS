@@ -17,8 +17,6 @@ class CreateEstadioTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->integer('capacidad');
-            $table->integer('equipo')->unsigned()->nullable();
-            $table->foreign('equipo')->references('id')->on('equipo')->onDelete('cascade');
             $table->timestamps();
         });
     }
