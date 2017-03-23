@@ -22,7 +22,7 @@ class PartidosTableSeeder extends Seeder
                         DB::table('partido')->insert([
                               'equipoLocal'=> $equipoLocal->id,
                               'equipoVisitante' => $equipoVisitante->id,
-                              'fecha' => date($formato, $fecha)
+                              'fecha' => date($formato, $fecha),
                               'golesLocal' => 2,
                               'golesVisitante' => 0,
                               'estadio' => $estadio->id

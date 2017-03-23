@@ -23,6 +23,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Delantero',
              'cargo' => 1,
+             'dorsal' =>1,
              'equipo' => $equipo->id
        ]);
 
@@ -33,6 +34,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Portero',
              'cargo' => 2,
+             'dorsal' =>2,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -42,6 +44,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Medio',
              'cargo' => 3,
+             'dorsal' =>3,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -51,6 +54,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Defensa',
              'cargo' => 0,
+             'dorsal' =>4,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -60,6 +64,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Defensa',
              'cargo' => 0,
+             'dorsal' =>5,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -69,6 +74,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Defensa',
              'cargo' => 0,
+             'dorsal' =>6,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -78,6 +84,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Defensa',
              'cargo' => 0,
+             'dorsal' =>7,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -87,6 +94,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Medio',
              'cargo' => 0,
+             'dorsal' =>8,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -96,6 +104,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Medio',
              'cargo' => 0,
+             'dorsal' =>9,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -105,6 +114,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Medio',
              'cargo' => 0,
+             'dorsal' =>10,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -114,6 +124,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/010,
              'posicion' => 'Delantero',
              'cargo' => 0,
+             'dorsal' =>11,
              'equipo' => $equipo->id
 
        ]);
@@ -124,6 +135,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Delantero',
              'cargo' => 0,
+             'dorsal' =>13,
              'equipo' => $equipo->id
        ]);
        DB::table('jugador')->insert([
@@ -133,6 +145,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/01/01,
              'posicion' => 'Delantero',
              'cargo' => 0,
+             'dorsal' =>14,
              'equipo' => $equipo->id
 
         ]);
@@ -146,6 +159,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1986/10/02,
              'posicion' => 'Portero',
              'cargo' => 0,
+             'dorsal' =>1,
              'equipo' => $equipo->id
 
         ]);
@@ -157,6 +171,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1986/12/15,
              'posicion' => 'Portero',
              'cargo' => 0,
+             'dorsal' =>2,
              'equipo' => $equipo->id
         ]);
 
@@ -167,6 +182,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1992/01/11,
              'posicion' => 'Defensa',
              'cargo' => 0,
+             'dorsal' =>3,
              'equipo' => $equipo->id
         ]);
 
@@ -177,6 +193,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1983/02/26,
              'posicion' => 'Defensa',
              'cargo' => 3,
+             'dorsal' =>4,
              'equipo' => $equipo->id
         ]);
 
@@ -187,6 +204,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1986/03/30,
              'posicion' => 'Defensa',
              'cargo' => 1,
+             'dorsal' =>5,
              'equipo' => $equipo->id
         ]);
 
@@ -198,6 +216,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1993/04/25,
              'posicion' => 'Defensa',
              'cargo' => 0,
+             'dorsal' =>6,
              'equipo' => $equipo->id
         ]);
 
@@ -209,6 +228,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1990/01/18,
              'posicion' => 'Defensa',
              'cargo' => 10,
+             'dorsal' =>7,
              'equipo' => $equipo->id
         ]);
 
@@ -219,6 +239,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1988/05/12,
              'posicion' => 'Defensa',
              'cargo' => 3,
+             'dorsal' =>8,
              'equipo' => $equipo->id
         ]);
         
@@ -230,6 +251,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1990/01/04,
              'posicion' => 'Medio',
              'cargo' => 0,
+             'dorsal' =>9,
              'equipo' => $equipo->id
         ]);
 
@@ -240,6 +262,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1991/07/12,
              'posicion' => 'Medio',
              'cargo' => 0,
+             'dorsal' =>10,
              'equipo' => $equipo->id
         ]);
 
@@ -250,6 +273,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1992/02/23,
              'posicion' => 'Medio',
              'cargo' => 0,
+             'dorsal' =>11,
              'equipo' => $equipo->id
         ]);
 
@@ -260,6 +284,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/05/26,
              'posicion' => 'Medio',
              'cargo' => 0,
+             'dorsal' =>12,
              'equipo' => $equipo->id
         ]);
 
@@ -271,6 +296,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1985/9/9,
              'posicion' => 'Medio',
              'cargo' => 0,
+             'dorsal' =>13,
              'equipo' => $equipo->id
         ]);
 
@@ -282,6 +308,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1994/05/26,
              'posicion' => 'Delantero',
              'cargo' => 0,
+             'dorsal' =>14,
              'equipo' => $equipo->id
         ]);
 
@@ -292,6 +319,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1980/01/01,
              'posicion' => 'Delantero',
              'cargo' => 0,
+             'dorsal' =>15,
              'equipo' => $equipo->id
         ]);
 
@@ -302,6 +330,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1980/01/01,
              'posicion' => 'Delantero',
              'cargo' => 0,
+             'dorsal' =>16,
              'equipo' => $equipo->id
         ]);
 
@@ -313,6 +342,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 25,
              'posicion' => 'Delantero',
              'cargo' => 1980/01/01,
+             'dorsal' =>17,
              'equipo' => $equipo->id
         ]);
 
@@ -323,6 +353,7 @@ class JugadorTableSeeder extends Seeder
              'fNac' => 1980/01/01,
              'posicion' => 'Delantero',
              'cargo' => 0,
+             'dorsal' =>19,
              'equipo' => $equipo->id
         ]);
 

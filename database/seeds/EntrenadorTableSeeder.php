@@ -15,7 +15,7 @@ class EntrenadorTableSeeder extends Seeder
         // Borramos los datos de la tabla
         DB::table('entrenador')->delete();
         DB::table('VerNifJugador');
-
+        
         $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
         // Añadimos una entrada a esta tabla
         DB::table('entrenador')->insert([

@@ -18,12 +18,14 @@ class EquipoTableSeeder extends Seeder
         DB::table('equipo')->insert([
             'cif'=>'A27417476',
             'nombre'=>'UA Football Club',
+            'presupuesto' =>0,
             'estadio' => $estadio->id
         ]);
         $estadio = DB::table('estadio')->where('nombre','like','%Bernabéu%')->first();
         DB::table('equipo')->insert([
             'cif'=> 'G28034718',
             'nombre' => 'Real Madrid Club de Futbol',
+            'presupuesto' =>0,
             'estadio' => $estadio->id
         ]);
 
