@@ -19,6 +19,7 @@ class PartidoTableSeeder extends Seeder
                               $fecha = mt_rand(1470052800, 1527854400);
                               $golesLocal = mt_rand(0, 5);
                               $golesVisitante = mt_rand(0, 5);
+                              
                               DB::table('partido')->insert([
                                     'equipoLocal'=> $equipoLocal->id,
                                     'equipoVisitante' => $equipoVisitante->id,
