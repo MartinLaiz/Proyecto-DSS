@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/jugador/{id}', 'JugadorController@perfil');
