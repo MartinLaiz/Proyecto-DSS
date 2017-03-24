@@ -22,7 +22,7 @@ class EstadioTableSeeder extends Seeder
             'capacidad' => 64000
         ]);
         
-        //Añadimos el Santiago Bernabéu
+        //Añadimos el Santiagos Bernabéu
         DB::table('estadio')->insert([
             'nombre' => 'Santiago Bernabéu',
             'capacidad' => 81.044
@@ -32,6 +32,11 @@ class EstadioTableSeeder extends Seeder
         DB::table('estadio')->insert([
             'nombre' => 'Estadio de Mendizorroza ',
             'capacidad' => 19840
+        ]);
+
+        DB::table('estadio')->insert([
+            'nombre' => 'San Mamés ',
+            'capacidad' => 53289
         ]);
     }
 }

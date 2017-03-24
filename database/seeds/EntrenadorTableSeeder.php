@@ -26,14 +26,6 @@ class EntrenadorTableSeeder extends Seeder
         'numero' => 1 ,
         'equipo' => $equipo->id ]);
 
-         DB::table('entrenador')->insert([
-        'dni' => '145267854T' ,
-        'nombre' => 'Benji' ,
-        'apellidos' => 'Price' ,
-        'fNac' => 1994/01/01 ,
-        'numero' => 2 ,
-        'equipo' => $equipo->id ]);
-
         //Entrenadores Real Madrid
         $equipo = DB::table('equipo')->where('nombre','like','%Real Madrid%')->first();
         DB::table('entrenador')->insert([
@@ -44,13 +36,6 @@ class EntrenadorTableSeeder extends Seeder
         'numero' => 1 ,
         'equipo' => $equipo->id ]);
 
-         DB::table('entrenador')->insert([
-        'dni' => '14326785T' ,
-        'nombre' => 'David' ,
-        'apellidos' => 'Bettoni' ,
-        'fNac' => 1994/01/01 ,
-        'numero' => 2 ,
-        'equipo' => $equipo->id ]);
      
 
      //Entrenadores Alaves
@@ -60,6 +45,17 @@ class EntrenadorTableSeeder extends Seeder
         'dni' => '14224534T' ,
         'nombre' => 'Mauricio ' ,
         'apellidos' => 'Pellegrino' ,
+        'fNac' => 1994/01/01 ,
+        'numero' => 1 ,
+        'equipo' => $equipo->id ]);
+
+
+        $equipo = DB::table('equipo')->where('nombre','like','%Athletic Club de Bilbao%')->first();
+
+        DB::table('entrenador')->insert([
+        'dni' => '14224535T' ,
+        'nombre' => 'Ernesto ' ,
+        'apellidos' => 'Valverde' ,
         'fNac' => 1994/01/01 ,
         'numero' => 1 ,
         'equipo' => $equipo->id ]);
