@@ -13,7 +13,6 @@ class TrigerEntrenador extends Migration
      */
     public function up()
     {
-    
         DB::unprepared('create trigger
                         VerNifJugador after
                         insert on Entrenador

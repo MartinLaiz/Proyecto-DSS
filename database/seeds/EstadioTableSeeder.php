@@ -13,8 +13,7 @@ class EstadioTableSeeder extends Seeder
     {
         // Borramos los datos de la tabla
         DB::table('estadio')->delete();
-        /*$equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
-        $realMadrid = DB::table('equipo')->where('nombre','like','%Real Madrid%')->first();*/
+
 
         // Añadimos un estadio para la UA
         DB::table('estadio')->insert([
@@ -25,7 +24,7 @@ class EstadioTableSeeder extends Seeder
         //Añadimos el Santiagos Bernabéu
         DB::table('estadio')->insert([
             'nombre' => 'Santiago Bernabéu',
-            'capacidad' => 81.044
+            'capacidad' => 81044
         ]);
 
 
