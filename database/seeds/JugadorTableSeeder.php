@@ -357,6 +357,214 @@ class JugadorTableSeeder extends Seeder
              'equipo' => $equipo->id
         ]);
 
-        //Jugadores F.C Barcelona id= 3
+        //Jugadores Alaves
+        $equipo = DB::table('equipo')->where('nombre','like','%Deportivo Alavés%')->first();
+
+
+        DB::table('jugador')->insert([
+             'dni'=> '00100030A',
+             'nombre' => 'Fernando',
+             'apellidos' => 'Pacheco',
+             'fNac' => 1992/05/18,
+             'posicion' => 'Portero',
+             'cargo' => 0,
+             'dorsal' =>1,
+             'equipo' => $equipo->id
+
+        ]);
+
+         DB::table('jugador')->insert([
+             'dni'=> '000000031A',
+             'nombre' => 'Rodrigo',
+             'apellidos' => 'Ely',
+             'fNac' =>  1993/05/18,
+             'posicion' => 'Defensa',
+             'cargo' => 0,
+             'dorsal' =>2,
+             'equipo' => $equipo->id
+        ]);
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000032A',
+             'nombre' => 'Raúl',
+             'apellidos' => 'Sanchez',
+             'fNac' => 1985/01/01,
+             'posicion' => 'Defensa',
+             'cargo' => 0,
+             'dorsal' =>3,
+             'equipo' => $equipo->id
+        ]);
+
+         DB::table('jugador')->insert([
+             'dni'=> '000000033A',
+             'nombre' => 'Alexis',
+             'apellidos' => 'Romero',
+             'fNac' => 1985/01/01,
+             'posicion' => 'Defensa',
+             'cargo' => 3,
+             'dorsal' =>4,
+             'equipo' => $equipo->id
+        ]);
+
+         DB::table('jugador')->insert([
+             'dni'=> '000000034A',
+             'nombre' => 'Víctor',
+             'apellidos' => 'Laguardia',
+             'fNac' => 1986/03/30,
+             'posicion' => 'Defensa',
+             'cargo' => 1,
+             'dorsal' =>5,
+             'equipo' => $equipo->id
+        ]);
+
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000035A',
+             'nombre' => 'Marcos',
+             'apellidos' => 'Llorente',
+             'fNac' => 1994/04/25,
+             'posicion' => 'Defensa',
+             'cargo' => 0,
+             'dorsal' =>6,
+             'equipo' => $equipo->id
+        ]);
+
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000036A',
+             'nombre' => 'Rubén',
+             'apellidos' => 'Sobrino',
+             'fNac' => 1990/01/18,
+             'posicion' => 'Defensa',
+             'cargo' => 10,
+             'dorsal' =>7,
+             'equipo' => $equipo->id
+        ]);
+
+         DB::table('jugador')->insert([
+             'dni'=> '000000037A',
+             'nombre' => 'Víctor',
+             'apellidos' => 'Camarasa',
+             'fNac' => 1988/05/12,
+             'posicion' => 'Defensa',
+             'cargo' => 3,
+             'dorsal' =>8,
+             'equipo' => $equipo->id
+        ]);
+        
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000038A',
+             'nombre' => 'Christian',
+             'apellidos' => 'Santos',
+             'fNac' => 1990/01/04,
+             'posicion' => 'Medio',
+             'cargo' => 0,
+             'dorsal' =>9,
+             'equipo' => $equipo->id
+        ]);
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000039A',
+             'nombre' => 'Óscar',
+             'apellidos' => 'Romero',
+             'fNac' => 1991/07/12,
+             'posicion' => 'Medio',
+             'cargo' => 0,
+             'dorsal' =>10,
+             'equipo' => $equipo->id
+        ]);
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000040A',
+             'nombre' => 'Ibai',
+             'apellidos' => 'CasGómezemiro',
+             'fNac' => 1992/02/23,
+             'posicion' => 'Medio',
+             'cargo' => 0,
+             'dorsal' =>11,
+             'equipo' => $equipo->id
+        ]);
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000041A',
+             'nombre' => 'Mateo',
+             'apellidos' => 'Adrián',
+             'fNac' => 1994/05/26,
+             'posicion' => 'Ortolà',
+             'cargo' => 0,
+             'dorsal' =>12,
+             'equipo' => $equipo->id
+        ]);
+
+
+         DB::table('jugador')->insert([
+             'dni'=> '000000042A',
+             'nombre' => 'Théo',
+             'apellidos' => 'Hernández',
+             'fNac' => 1985/9/9,
+             'posicion' => 'Medio',
+             'cargo' => 0,
+             'dorsal' =>13,
+             'equipo' => $equipo->id
+        ]);
+
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000043A',
+             'nombre' => 'Daniel',
+             'apellidos' => 'Torres',
+             'fNac' => 1994/05/26,
+             'posicion' => 'Delantero',
+             'cargo' => 0,
+             'dorsal' =>14,
+             'equipo' => $equipo->id
+        ]);
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000044A',
+             'nombre' => 'Edgar',
+             'apellidos' => 'Montes',
+             'fNac' => 1980/01/01,
+             'posicion' => 'Delantero',
+             'cargo' => 0,
+             'dorsal' =>15,
+             'equipo' => $equipo->id
+        ]);
+
+        DB::table('jugador')->insert([
+             'dni'=> '000000045A',
+             'nombre' => 'Gaizka',
+             'apellidos' => 'Toquero',
+             'fNac' => 1980/01/01,
+             'posicion' => 'Delantero',
+             'cargo' => 0,
+             'dorsal' =>16,
+             'equipo' => $equipo->id
+        ]);
+
+
+         DB::table('jugador')->insert([
+             'dni'=> '000000046A',
+             'nombre' => 'Manu',
+             'apellidos' => 'García',
+             'fNac' => 25,
+             'posicion' => 'Delantero',
+             'cargo' => 1980/01/01,
+             'dorsal' =>17,
+             'equipo' => $equipo->id
+        ]);
+
+         DB::table('jugador')->insert([
+             'dni'=> '000000047A',
+             'nombre' => 'Deyverson',
+             'apellidos' => 'Deyverson',
+             'fNac' => 1980/01/01,
+             'posicion' => 'Delantero',
+             'cargo' => 0,
+             'dorsal' =>19,
+             'equipo' => $equipo->id
+        ]);
+        
     }
 }

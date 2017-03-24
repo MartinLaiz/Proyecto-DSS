@@ -52,6 +52,18 @@ class EntrenadorTableSeeder extends Seeder
         'numero' => 2 ,
         'equipo' => $equipo->id ]);
      
+
+     //Entrenadores Alaves
+        $equipo = DB::table('equipo')->where('nombre','like','%Deportivo Alavés%')->first();
+
+        DB::table('entrenador')->insert([
+        'dni' => '14224534T' ,
+        'nombre' => 'Mauricio ' ,
+        'apellidos' => 'Pellegrino' ,
+        'fNac' => 1994/01/01 ,
+        'numero' => 1 ,
+        'equipo' => $equipo->id ]);
+        
         
 
     }

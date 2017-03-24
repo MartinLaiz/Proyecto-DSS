@@ -27,5 +27,11 @@ class EstadioTableSeeder extends Seeder
             'nombre' => 'Santiago Bernabéu',
             'capacidad' => 81.044
         ]);
+
+
+        DB::table('estadio')->insert([
+            'nombre' => 'Estadio de Mendizorroza ',
+            'capacidad' => 19840
+        ]);
     }
 }
