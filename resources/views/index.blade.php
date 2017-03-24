@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('title', 'Login')
 @section('content')
-      <div class="col-md-8 col-md-offset-2">
+<div class="flex-center position-ref full-height">
+      <div class="col-md-8">
             <div>
                   <img class="thumbnail img-responsive center-block" src="/images/Logo.png" alt="Logo FootballManager">
             </div>
@@ -21,4 +22,6 @@
                   </form>
             </div>
       </div>
+</div>
+      <!---->
 @endsection

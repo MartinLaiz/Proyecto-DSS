@@ -2,6 +2,5 @@
 @section('title', 'Inicio')
 @section('content')
 @include('cabecera',array('section'=>'Inicio'))
-<hr>
-Contenido
+<!-- Aqui va el contenido-->
 @endsection

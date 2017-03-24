@@ -4,31 +4,31 @@ use Illuminate\Database\Seeder;
 
 class JugadorTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-         $formato = 'Y/m/d';
-         DB::table('jugador')->delete();
-         DB::table('VerNifEntrenador');
+      /**
+      * Run the database seeds.
+      *
+      * @return void
+      */
+      public function run()
+      {
+            $formato = 'Y/m/d';
+            DB::table('jugador')->delete();
+            DB::table('VerNifEntrenador');
 
-         $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
-         $fMin = 315532800;
-         $fMax = 913420800;
-         $fecha = mt_rand($fMin, $fMax);
-         DB::table('jugador')->insert([
-             'dni'=> '12345678A',
-             'nombre' => 'Rafael',
-             'apellidos' => 'Soria Diez',
-             'fNac' => date($formato,$fecha),
-             'posicion' => 'Delantero',
-             'cargo' => 1,
-             'dorsal' =>1,
-             'equipo' => $equipo->id
-      ]);
+            $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
+            $fMin = 315532800;
+            $fMax = 913420800;
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '12345678A',
+                  'nombre' => 'Rafael',
+                  'apellidos' => 'Soria Diez',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Delantero',
+                  'cargo' => 1,
+                  'dorsal' =>1,
+                  'equipo' => $equipo->id
+            ]);
       $fecha = mt_rand($fMin, $fMax);
       DB::table('jugador')->insert([
              'dni'=> '00000001A',
