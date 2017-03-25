@@ -12,7 +12,7 @@ class EstadioTableSeeder extends Seeder
     public function run()
     {
         // Borramos los datos de la tabla
-        DB::table('estadio')->delete();
+        //DB::table('estadio')->delete();
 
 
         // Añadimos un estadio para la UA

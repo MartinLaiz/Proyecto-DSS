@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JugadorTableSeeder::class);
         $this->call(EntrenadorTableSeeder::class);
         $this->call(PartidoTableSeeder::class);
+        $this->call(ParticiparTableSeeder::class);
                     
     }
 }
