@@ -23,28 +23,34 @@ hr{
 .position-ref {
       position: relative;
 }
-
-.navbar-brand {
-  padding: 0px;
-}
-.navbar-brand>img {
-  height: 100%;
-  padding: 10px;
-  width: auto;
-}
-
-.barraNav .navbar-brand {
-  height: 80px;
-}
-
-.barraNav .nav >li >a {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-.barraNav .navbar-toggle {
-  padding: 10px;
-  margin: 25px 15px 25px 0;
-}
+/**
+      Navbar
+*/
+      .navbar-brand {
+        padding: 0px;
+      }
+      .navbar-brand>img {
+        height: 100%;
+        padding: 10px;
+        width: auto;
+      }
+      .barraNav .navbar-brand {
+        height: 100px;
+      }
+      .barraNav .nav >li >a {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        font-size: 20px;
+      }
+      .barraNav .navbar-toggle {
+        padding: 10px;
+        margin: 30px 15px 25px 0;
+      }
+      .contenedor{
+            margin-top: 100px;
+            background-color: #F0F0F0;
+            min-height: 80%;
+      }
 
 .fondo{
       background-color: #F5F5F5;

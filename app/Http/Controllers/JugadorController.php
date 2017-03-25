@@ -10,4 +10,8 @@ class JugadorController extends Controller
           Jugador::find($id);
           return view('perfil')
    }
+
+   public function getJugadores(){
+         return Jugador::get();
+   }
 }
