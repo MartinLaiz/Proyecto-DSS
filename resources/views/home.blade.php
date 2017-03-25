@@ -2,19 +2,13 @@
 @section('title', 'Inicio')
 @section('content')
 
-   <!-- SI quitas esto se va el error <div class="contenedor">
-      {{$lista = action('JugadorController@getJugadores')}}
-      @include('tabla',array('values' => array('nombre'=>'Nombre','apellidos'=>'Apellidos','fNac'=>'Fecha de Nacimiento','posicion'=>'Posición','dorsal'=>'Dorsal'),'lista' => $lista))
-        </div>-->
-
-
- <div class="container">
+ <div class="contenedor">
     <div class="row">
         <div class="col-md-9">
             @include('cabecera',array('section'=>'Inicio'))
     <div class="row">
 
-        
+
     <div class="col-md-6" style='padding-top:120px  ' ;>
         <table class="table   ">
             <caption><p class="text-muted">Último partido</p></caption>
@@ -24,7 +18,7 @@
                     <th><a href="#" class="text-primary">Equipo Visitante</a></th>
                 </tr>
             </thead>
-                    
+
             <tbody>
                 <tr class="bg-warning">
                      <td>Alineación</td>
@@ -61,6 +55,3 @@
 
 
 @endsection
-
-
-    
