@@ -20,3 +20,4 @@ Route::get('/home', function () {
 });
 
 Route::get('/jugador/{id}', 'JugadorController@perfil');
+Route::get('/jugadores', 'JugadorController@getJugadores');
