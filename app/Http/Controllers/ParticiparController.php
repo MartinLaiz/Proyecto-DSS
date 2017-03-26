@@ -39,17 +39,17 @@ class ParticiparController extends Controller
       $jugadores = DB::table('participar')
                             ->join('jugador','jugador.id','=','participar.id')
                             ->where('equipoLocal','=',$partidoFecha->equipoLocal)                         
-                            ->where('equipoVisitante','=',$partidoFecha->equipoVisitante)->get();
+                            ->where('equipoVisitante','=',$partidoFecha->equipoVisitante)
+                            ->where('jugador.id', '=' , $partidoFecha->equipoLocal)-get();
 
     
 
-                                                        
+                        
          return view('jugadoresUltimoPartido', array(
 
                                         'values' => array(
                                                     'nombre'=>'Nombre',
                                                     'apellidos'=>'Apellidos',
-                                                    'fNac'=>'Fecha de Nacimiento',
                                                     'posicion'=>'Posición',
                                                     'dorsal'=>'Dorsal'),
                                         'lista' => Jugador::get()->toArray()
