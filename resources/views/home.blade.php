@@ -5,7 +5,7 @@
 <div class="contenedor">
 @include('cabecera',array('section'=>'Inicio'))
       <div class="row">
-            <div class="col-md-6" style="padding-top:120px" >
+            <div class="col-md-5" style="padding-top:120px" > <!-- Tabla ultimo partido -->
                   <div class="col-md-6">
                         <table class="table table-striped">
                               <caption><p class="text-muted">Último partido</p></caption>
@@ -34,7 +34,7 @@
                         </table>
                   </div>
                   <div class="col-md-6">
-                        <table class="table table-striped">
+                        <table class="table table-striped text-right">
                               <caption><p class="text-muted">Último partido</p></caption>
                               <thead>
                                     <tr class="">
@@ -62,10 +62,10 @@
                   </div>
             </div>
 
-            <div class='col-sm-6' style='padding-top:120px  ' >
+            <div class='col-sm-7' style='padding-top:120px  ' > <!-- Resto de la pagina -->
                   <caption><p class="text-muted">Partido recientes en Liga</p></caption>
             </div>
       </div>
-
+</div>
 
 @endsection
