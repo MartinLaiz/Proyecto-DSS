@@ -19,8 +19,9 @@ class CreateParticiparTable extends Migration
             $table->integer('equipoVisitante');
             $table->integer('tipo')->nullable(); //1 si es titular, dos si esta en el banquillo.
             $table->primary(['jugador','equipoVisitante','equipoLocal']);
-            $table->foreign(['equipoLocal','equipoVisitante'])->references(['equipoLocal','equipoVisitante'])->on('partido')->onDelete('set null');;
-            $table->foreign('jugador')->references('id')->on('jugador')->onDelete('set null');;
+            $table->foreign(array('equipoLocal','equipoVisitante'))
+            ->references(array('equipoLocal','equipoVisitante'))->on('partido')->onDelete('set null');
+            $table->foreign('jugador')->references('id')->on('jugador')->onDelete('set null');
           
             $table->timestamps();
         });

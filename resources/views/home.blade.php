@@ -9,7 +9,7 @@
     <div class="row">
 
 
-    <div class="col-md-6" style='padding-top:120px  ' ;>
+    <div class="col-md-6" style='padding-top:10px  ' ;>
         <table class="table   ">
             <caption><p class="text-muted">Último partido</p></caption>
             <thead>
