@@ -1,5 +1,5 @@
 <!-- Muestra nuestros jugadores de la base de datos -->
-<table class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
+<table class="table table-striped table-responsive" cellspacing="0" width="100%">
       <thead>
             <tr>
                   @foreach($values as $key => $v)

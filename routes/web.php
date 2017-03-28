@@ -23,5 +23,5 @@ Route::get('/jugador/{id}', 'JugadorController@perfil');
 Route::get('/jugadores', 'JugadorController@getJugadores');
 
 //Rutas de entrenador
-Route::get('/entrenador/{$id}', 'EntrenadorController@perfil');
+Route::get('/entrenador', 'EntrenadorController@perfil');
 Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
