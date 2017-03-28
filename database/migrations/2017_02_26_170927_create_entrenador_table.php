@@ -19,7 +19,6 @@ class CreateEntrenadorTable extends Migration
             $table->string('nombre');
             $table->string('apellidos');
             $table->date('fNac');
-            $table->integer('numero');
             $table->integer('equipo')->unsigned()->nullable();
             $table->foreign('equipo')->references('id')->on('equipo')->onDelete('set null');
             $table->timestamps();
