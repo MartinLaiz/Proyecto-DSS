@@ -19,8 +19,8 @@ class EntrenadorController extends Controller
                   );
    }
 
-   public function perfil(){
-         return view('entrenador',array('user'=> Entrenador::first()));
+   public function perfil($id){
+         return view('entrenador',array('user'=> Entrenador::find($id)));
    }
 
 }

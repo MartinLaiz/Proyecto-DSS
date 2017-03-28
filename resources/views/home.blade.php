@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="contenedor row">
-      @include('cabecera',array('section'=>'Inicio'))
+      @include('cabecera',array('section'=>'inicio'))
       <div class="col-md-5"> <!-- Tabla ultimo partido -->
             <h3>Último partido</h3>
             <div class="col-md-6"><!-- Equipo Local -->
