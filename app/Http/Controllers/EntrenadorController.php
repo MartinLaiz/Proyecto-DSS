@@ -17,10 +17,22 @@ class EntrenadorController extends Controller
                                  'values' => array(
                                              'nombre'=>'Nombre',
                                              'apellidos'=>'Apellidos',
+                                             'fNac'=>'Fecha de Nacimiento'),
+                                 'lista' => Entrenador::simplePaginate(10)
+                                 )
+                  );
+   }
+
+   public function getEntrenador($id){
+         return view('entrenador',array(
+                                 'values' => array(
+                                             'nombre'=>'Nombre',
+                                             'apellidos'=>'Apellidos',
                                              'fNac'=>'Fecha de Nacimiento',
                                              'numero'=>'Número'),
                                  'lista' => Entrenador::all()
-                                 )
-                    );
+                           )
+                     );
    }
+
 }

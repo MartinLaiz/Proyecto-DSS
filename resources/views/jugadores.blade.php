@@ -3,6 +3,11 @@
 @section('content')
 @include('cabecera',array('section'=>'Inicio'))
 <div class="contenedor">
-      @include('tabla',array('values' => $values, 'lista' => $lista))
+      <div class="col-md-6 col-md-offset-1">
+            @include('tabla',array('values' => $values, 'lista' => $lista))
+      </div>
+      <div class="col-md-5">
+
+      </div>
 </div>
 @endsection
