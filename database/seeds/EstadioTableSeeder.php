@@ -12,7 +12,7 @@ class EstadioTableSeeder extends Seeder
     public function run()
     {
         // Borramos los datos de la tabla
-        //DB::table('estadio')->delete();
+        DB::table('estadio')->delete();
 
 
         // Añadimos un estadio para la UA
@@ -36,6 +36,16 @@ class EstadioTableSeeder extends Seeder
         DB::table('estadio')->insert([
             'nombre' => 'San Mamés ',
             'capacidad' => 53289
+        ]);
+        
+        DB::table('estadio')->insert([
+            'nombre' => 'Nuevo Estadio de Los Cármenes ',
+            'capacidad' => 22369
+        ]);
+        
+         DB::table('estadio')->insert([
+            'nombre' => 'Estadio Benito Villamarín ',
+            'capacidad' => 51700
         ]);
     }
 }
