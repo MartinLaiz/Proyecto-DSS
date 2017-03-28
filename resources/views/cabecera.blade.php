@@ -7,15 +7,26 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand pull-left"><img src="images/Escudo.png" alt=""></a>
+            <a href="{{action('EquipoController@getHome')}}" class="navbar-brand pull-left"><img src="images/Escudo.png" alt="Imagen del escudo"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                         <li class="divider" role="separator"></li>
-                        <li class="active"><a href="#">Inicio</a></li>
-                        <li><a href="#">Partidos</a></li>
-                        <li><a href="#">Plantilla</a></li>
-                        <li><a href="#">Inicio</a></li>
+                        @if($section == "inicio")
+                               <li class="active"><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
+                        @else
+                              <li><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
+                        @endif
+                        @if($section == "perfil")
+                               <li class="active"><a href="#">Partidos</a></li>
+                        @else
+                              <li><a href="#">Partidos</a></li>
+                        @endif
+                        @if($section == "plantilla")
+                               <li class="active"><a href="{{action('JugadorController@getJugadores')}}">Plantilla</a></li>
+                        @else
+                              <li><a href="{{action('JugadorController@getJugadores')}}">Plantilla</a></li>
+                        @endif
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
