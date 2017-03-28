@@ -128,7 +128,7 @@ class ParticiparTableSeeder extends Seeder
             $contador1= 0;
 
             //introducir delanteros de equipo local
-              $jugadores = DB::table('jugador')->where('equipo', '=', $partido->equipoLocal)
+            $jugadores = DB::table('jugador')->where('equipo', '=', $partido->equipoLocal)
                                             ->where('posicion', '=', 'Delantero')->get();
 
                 
@@ -168,6 +168,5 @@ class ParticiparTableSeeder extends Seeder
             } 
             
         }
-        
     }
 }

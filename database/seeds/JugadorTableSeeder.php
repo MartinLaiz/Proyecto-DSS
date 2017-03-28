@@ -260,6 +260,7 @@ class JugadorTableSeeder extends Seeder
         //JUGADORES DEL REAL MADRID
 
             $equipo = DB::table('equipo')->where('nombre','like','%Real Madrid%')->first();
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000013A',
                   'nombre' => 'Keylor',
@@ -271,7 +272,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
 
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000014A',
                   'nombre' => 'Kiko',
@@ -282,7 +283,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>2,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000015A',
                   'nombre' => 'Daniel',
@@ -293,7 +294,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>3,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000016A',
                   'nombre' => 'Pepe',
@@ -304,7 +305,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>4,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000030A',
                   'nombre' => 'Sergio',
@@ -316,7 +317,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000017A',
                   'nombre' => 'Raphaël',
@@ -328,7 +329,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000018A',
                   'nombre' => 'Nacho',
@@ -339,7 +340,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>7,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000019A',
                   'nombre' => 'Marcelo',
@@ -351,7 +352,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000020A',
                   'nombre' => 'Toni',
@@ -362,7 +363,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>9,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000021A',
                   'nombre' => 'James',
@@ -373,7 +374,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>10,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000022A',
                   'nombre' => 'Carlos Henrique',
@@ -384,7 +385,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>11,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000023A',
                   'nombre' => 'Mateo',
@@ -396,7 +397,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000024A',
                   'nombre' => 'Luka',
@@ -408,7 +409,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
              DB::table('jugador')->insert([
                   'dni'=> '100000024A',
                   'nombre' => 'Isco',
@@ -421,7 +422,7 @@ class JugadorTableSeeder extends Seeder
             ]);
 
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000025A',
                   'nombre' => 'Cristiano',
@@ -432,7 +433,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>14,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000026A',
                   'nombre' => 'Karim',
@@ -443,7 +444,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>15,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000027A',
                   'nombre' => 'Gareth',
@@ -455,7 +456,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000029A',
                   'nombre' => 'Lucas',
@@ -466,7 +467,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>17,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000028A',
                   'nombre' => 'Álvaro',
@@ -481,7 +482,7 @@ class JugadorTableSeeder extends Seeder
             //Jugadores Alaves
             $equipo = DB::table('equipo')->where('nombre','like','%Deportivo Alavés%')->first();
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00100030A',
                   'nombre' => 'Fernando',
@@ -493,7 +494,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
 
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000031A',
                   'nombre' => 'Rodrigo',
@@ -504,7 +505,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>2,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000032A',
                   'nombre' => 'Raúl',
@@ -515,7 +516,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>3,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000033A',
                   'nombre' => 'Alexis',
@@ -526,7 +527,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>4,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000034A',
                   'nombre' => 'Víctor',
@@ -538,7 +539,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000035A',
                   'nombre' => 'Marcos',
@@ -550,7 +551,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000036A',
                   'nombre' => 'Rubén',
@@ -561,7 +562,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>7,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000037A',
                   'nombre' => 'Víctor',
@@ -573,7 +574,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000038A',
                   'nombre' => 'Christian',
@@ -584,7 +585,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>9,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000039A',
                   'nombre' => 'Óscar',
@@ -595,7 +596,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>10,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000040A',
                   'nombre' => 'Ibai',
@@ -606,7 +607,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>11,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000041A',
                   'nombre' => 'Mateo',
@@ -618,7 +619,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000042A',
                   'nombre' => 'Théo',
@@ -630,7 +631,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000043A',
                   'nombre' => 'Daniel',
@@ -641,7 +642,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>14,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000044A',
                   'nombre' => 'Edgar',
@@ -652,7 +653,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>15,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000045A',
                   'nombre' => 'Gaizka',
@@ -664,7 +665,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000046A',
                   'nombre' => 'Manu',
@@ -675,7 +676,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>17,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000047A',
                   'nombre' => 'Deyverson',
@@ -691,7 +692,7 @@ class JugadorTableSeeder extends Seeder
             //jugadores de bilbao
             $equipo = DB::table('equipo')->where('nombre','like','%Athletic Club de Bilbao%')->first();
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000000B',
                   'nombre' => 'Gorka',
@@ -703,7 +704,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
 
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000001B',
                   'nombre' => 'Eneko',
@@ -714,7 +715,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>2,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000002B',
                   'nombre' => 'Gorka',
@@ -725,7 +726,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>3,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000003B',
                   'nombre' => 'Aymeric',
@@ -736,7 +737,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>4,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000004B',
                   'nombre' => 'Javier',
@@ -748,7 +749,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000005B',
                   'nombre' => 'Mikel',
@@ -760,7 +761,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000006B',
                   'nombre' => 'Beñat',
@@ -771,7 +772,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>7,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000007B',
                   'nombre' => 'Ander',
@@ -783,7 +784,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000008B',
                   'nombre' => 'Iker',
@@ -794,7 +795,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>9,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000009B',
                   'nombre' => 'Iñaki',
@@ -805,7 +806,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>10,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000010B',
                   'nombre' => 'Markel',
@@ -816,7 +817,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>11,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000011B',
                   'nombre' => 'Íñigo',
@@ -828,7 +829,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000012B',
                   'nombre' => 'Xabier',
@@ -840,7 +841,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000013B',
                   'nombre' => 'Mikel',
@@ -851,7 +852,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>14,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000015B',
                   'nombre' => 'Aritz',
@@ -862,7 +863,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>15,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000016B',
                   'nombre' => 'Raúl',
@@ -874,7 +875,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000017B',
                   'nombre' => 'Mikel',
@@ -885,7 +886,7 @@ class JugadorTableSeeder extends Seeder
                   'dorsal' =>17,
                   'equipo' => $equipo->id
             ]);
-
+            $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '00000018B',
                   'nombre' => 'Enric',
@@ -895,7 +896,431 @@ class JugadorTableSeeder extends Seeder
                   'cargo' => 0,
                   'dorsal' =>19,
                   'equipo' => $equipo->id
-        ]);
+            ]);
+
+        //JUGADORES DEL GRANADA
+
+
+
+            $equipo = DB::table('equipo')->where('nombre','like','%Granada%')->first();
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000020B',
+                  'nombre' => 'Raul',
+                  'apellidos' => 'Silva',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Portero',
+                  'cargo' => 0,
+                  'dorsal' =>1,
+                  'equipo' => $equipo->id
+
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000021B',
+                  'nombre' => 'Gastón',
+                  'apellidos' => 'Silva',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Portero',
+                  'cargo' => 0,
+                  'dorsal' =>2,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000022B',
+                  'nombre' => 'Sergi',
+                  'apellidos' => 'Samper',
+                  'fNac' =>  date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 0,
+                  'dorsal' =>3,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000023B',
+                  'nombre' => 'Uche',
+                  'apellidos' => 'Agbo',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 3,
+                  'dorsal' =>4,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000024B',
+                  'nombre' => 'David',
+                  'apellidos' => 'Lombán',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 1,
+                  'dorsal' =>5,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000025B',
+                  'nombre' => 'Adrián',
+                  'apellidos' => 'Ramos',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 0,
+                  'dorsal' =>6,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000026B',
+                  'nombre' => 'Wakaso',
+                  'apellidos' => 'Mubarak',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 0,
+                  'dorsal' =>7,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000027B',
+                  'nombre' => 'Ezequiel',
+                  'apellidos' => 'Ponce',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 3,
+                  'dorsal' =>8,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000028B',
+                  'nombre' => 'Jeremie',
+                  'apellidos' => 'Boga',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>9,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000029B',
+                  'nombre' => 'Panagiotis',
+                  'apellidos' => 'Kone',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>10,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000030B',
+                  'nombre' => 'Guillermo',
+                  'apellidos' => 'Ochoa',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>11,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000031B',
+                  'nombre' => 'Franck',
+                  'apellidos' => 'Tabanou',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>12,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000032B',
+                  'nombre' => 'Omer',
+                  'apellidos' => 'Atzili',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>13,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+             DB::table('jugador')->insert([
+                  'dni'=> '000000033B',
+                  'nombre' => 'Rúben',
+                  'apellidos' => 'Vezo',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>23,
+                  'equipo' => $equipo->id
+            ]);
+
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000034B',
+                  'nombre' => 'Andreas',
+                  'apellidos' => 'Pereira',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Delantero',
+                  'cargo' => 0,
+                  'dorsal' =>14,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000035B',
+                  'nombre' => 'Isaac',
+                  'apellidos' => 'Cuenca',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Delantero',
+                  'cargo' => 0,
+                  'dorsal' =>15,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000036B',
+                  'nombre' => 'Matthieu',
+                  'apellidos' => 'Saunier',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Delantero',
+                  'cargo' => 0,
+                  'dorsal' =>16,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000037B',
+                  'nombre' => 'Rene',
+                  'apellidos' => 'Krhin',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Delantero',
+                  'cargo' => 0,
+                  'dorsal' =>17,
+                  'equipo' => $equipo->id
+            ]);
+
+            //jugadores del betis
+
+             $equipo = DB::table('equipo')->where('nombre','like','%Betis%')->first();
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000020C',
+                  'nombre' => 'Dani',
+                  'apellidos' => 'Giménez',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Portero',
+                  'cargo' => 0,
+                  'dorsal' =>1,
+                  'equipo' => $equipo->id
+
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000021C',
+                  'nombre' => 'Rafa',
+                  'apellidos' => 'Navarro',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Portero',
+                  'cargo' => 0,
+                  'dorsal' =>2,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000022C',
+                  'nombre' => 'Álex',
+                  'apellidos' => 'Martínez',
+                  'fNac' =>  date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 0,
+                  'dorsal' =>3,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000023C',
+                  'nombre' => 'Felipe',
+                  'apellidos' => 'Gutiérrez',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 3,
+                  'dorsal' =>4,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000024C',
+                  'nombre' => 'Rubén',
+                  'apellidos' => 'Pardo',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 1,
+                  'dorsal' =>5,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000025C',
+                  'nombre' => 'Jonas',
+                  'apellidos' => 'Martin',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 0,
+                  'dorsal' =>6,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000026C',
+                  'nombre' => 'Antonio',
+                  'apellidos' => 'Sanabria',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 0,
+                  'dorsal' =>7,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000027C',
+                  'nombre' => 'Dani',
+                  'apellidos' => 'Ceballos',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Defensa',
+                  'cargo' => 3,
+                  'dorsal' =>8,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000028C',
+                  'nombre' => 'Nahuel',
+                  'apellidos' => 'Leiva',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>9,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000029C',
+                  'nombre' => 'Cristiano',
+                  'apellidos' => 'Piccini',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>10,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000030C',
+                  'nombre' => 'Antonio',
+                  'apellidos' => 'Adán',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>11,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000031C',
+                  'nombre' => 'Riza',
+                  'apellidos' => 'Durmisi',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>12,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000032C',
+                  'nombre' => 'Ryan',
+                  'apellidos' => 'Donk',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>13,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+             DB::table('jugador')->insert([
+                  'dni'=> '000000033C',
+                  'nombre' => 'Álvaro',
+                  'apellidos' => 'Cejudo',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Medio',
+                  'cargo' => 0,
+                  'dorsal' =>23,
+                  'equipo' => $equipo->id
+            ]);
+
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000034C',
+                  'nombre' => 'Roman',
+                  'apellidos' => 'Zozulya',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Delantero',
+                  'cargo' => 0,
+                  'dorsal' =>14,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000035C',
+                  'nombre' => 'Álex',
+                  'apellidos' => 'Alegría',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Delantero',
+                  'cargo' => 0,
+                  'dorsal' =>15,
+                  'equipo' => $equipo->id
+            ]);
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000036C',
+                  'nombre' => 'Germán',
+                  'apellidos' => 'Pezzella',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Delantero',
+                  'cargo' => 0,
+                  'dorsal' =>16,
+                  'equipo' => $equipo->id
+            ]);
+
+            $fecha = mt_rand($fMin, $fMax);
+            DB::table('jugador')->insert([
+                  'dni'=> '000000037C',
+                  'nombre' => 'Alin',
+                  'apellidos' => 'Toşca',
+                  'fNac' => date($formato,$fecha),
+                  'posicion' => 'Delantero',
+                  'cargo' => 0,
+                  'dorsal' =>17,
+                  'equipo' => $equipo->id
+            ]);
 
     }
 }

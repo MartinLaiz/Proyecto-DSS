@@ -46,6 +46,22 @@ class EquipoTableSeeder extends Seeder
             'estadio' => $estadio->id
         ]);
 
+        $estadio = DB::table('estadio')->where('nombre','like','%Cármenes%')->first();
+        DB::table('equipo')->insert([
+            'cif'=> 'G28034721',
+            'nombre' => 'Granada Club de Fútbol',
+            'presupuesto' =>0,
+            'estadio' => $estadio->id
+        ]);
+
+        $estadio = DB::table('estadio')->where('nombre','like','%Villamarín%')->first();
+        DB::table('equipo')->insert([
+            'cif'=> 'G28034722',
+            'nombre' => 'Real Betis Balompié',
+            'presupuesto' =>0,
+            'estadio' => $estadio->id
+        ]);
+
            /*$equipos = DB::table('equipo')->get(); // select * from equipo
         foreach($equipos as $equipo)
         {
