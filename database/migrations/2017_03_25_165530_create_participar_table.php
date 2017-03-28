@@ -24,7 +24,7 @@ class CreateParticiparTable extends Migration
             $table->foreign(array('equipoLocal','equipoVisitante'))
             ->references(array('equipoLocal','equipoVisitante'))->on('partido')->onDelete('set null');
             $table->foreign('jugador')->references('id')->on('jugador')->onDelete('set null');
-          
+
             $table->timestamps();
         });
     }

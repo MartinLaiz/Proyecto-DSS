@@ -20,7 +20,7 @@ class JugadorController extends Controller
                                              'fNac'=>'Fecha de Nacimiento',
                                              'posicion'=>'Posición',
                                              'dorsal'=>'Dorsal'),
-                                 'lista' => Jugador::simplePaginate(10)
+                                 'lista' => Jugador::simplePaginate(20)
                                  )
                     );
    }

@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/home', function(){ return view('home');});
+
+//Route::get('/home', 'EquipoController@getHome');
 
 Route::get('/jugador/{id}', 'JugadorController@perfil');
 Route::get('/jugadores', 'JugadorController@getJugadores');

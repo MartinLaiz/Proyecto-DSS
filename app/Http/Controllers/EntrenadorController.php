@@ -18,7 +18,7 @@ class EntrenadorController extends Controller
                                              'nombre'=>'Nombre',
                                              'apellidos'=>'Apellidos',
                                              'fNac'=>'Fecha de Nacimiento'),
-                                 'lista' => Entrenador::simplePaginate(10)
+                                 'lista' => Entrenador::simplePaginate(20)
                                  )
                   );
    }
