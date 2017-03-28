@@ -20,8 +20,13 @@ class JugadorController extends Controller
                                              'fNac'=>'Fecha de Nacimiento',
                                              'posicion'=>'Posición',
                                              'dorsal'=>'Dorsal'),
-                                 'lista' => Jugador::get()->toArray()
+                                 'lista' => Jugador::simplePaginate(10)
                                  )
                     );
    }
+
+   public function getPlantilla($id){
+         return Jugador::where('equipo','=',$id)->get()->toArray();
+   }
+
 }
