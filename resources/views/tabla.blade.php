@@ -1,4 +1,5 @@
 <!-- Muestra nuestros jugadores de la base de datos -->
+{{ $lista->links() }}
 <table class="table table-striped table-responsive" cellspacing="0" width="100%">
       <thead>
             <tr>
@@ -17,4 +18,3 @@
             @endforeach
       </tbody>
 </table>
-{{ $lista->links() }}

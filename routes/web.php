@@ -15,10 +15,13 @@ Route::get('/', function () {
     return view('index');
 });
 
+//Rutas Equipo
 Route::get('/home', 'EquipoController@getHome');
 
+//Rutas Jugador
 Route::get('/jugador/{id}', 'JugadorController@perfil');
 Route::get('/jugadores', 'JugadorController@getJugadores');
+Route::get('/jugadores/{id}', 'JugadorController@getJugadoresEquipo');
 
 //Rutas de entrenador
 Route::get('/entrenador/{id}', 'EntrenadorController@perfil');

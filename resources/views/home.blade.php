@@ -6,7 +6,7 @@
       @include('cabecera',array('section'=>'inicio'))
       <div class="col-md-5"> <!-- Tabla ultimo partido -->
             <h3>Último partido</h3>
-            <div class="col-md-6"><!-- Equipo Local -->
+            <div class="col-md-6 col-sm-6"><!-- Equipo Local -->
                   <table class="table table-striped">
                         <thead>
                               <tr class="">
@@ -32,7 +32,7 @@
                         </tbody>
                   </table>
             </div>
-            <div class="col-md-6"><!-- Equipo Visitante -->
+            <div class="col-md-6 col-sm-6"><!-- Equipo Visitante -->
                   <table class="table table-striped text-right">
                         <thead>
                               <tr class="">
