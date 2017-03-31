@@ -15,17 +15,22 @@ class JugadorController extends Controller
       }
 
       public function getJugadores(){
-            return view('jugadores', array(
-                                 'values' => array(
-                                             'nombre'=>'Nombre',
+
+            $teams = Jugador::join('equipo','jugador.equipo','=','equipo.id')->get();
+            $jugadores = Jugador::all();
+            
+
+            return view('jugadores',[ 
+                                 'values' => [
+                                             'nombre' =>'Nombre',
                                              'apellidos'=>'Apellidos',
                                              'fNac'=>'Fecha de Nacimiento',
                                              'posicion'=>'Posición',
                                              'dorsal'=>'Dorsal',
-                                             'equipo'=>'Equipo'),
-                                 'lista' => Jugador::orderBy('equipo')->paginate(20),
+                                             'nombreEquipo' => 'Equipo'],
+                                 'lista' => Jugador::join('equipo','jugador.equipo','=','equipo.id')->orderby('equipo')->paginate(20),
                                  'equipo' => 'Todos'
-                                 )
+                                 ]
                     );
    }
 

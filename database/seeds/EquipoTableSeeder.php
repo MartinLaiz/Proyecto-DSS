@@ -17,14 +17,14 @@ class EquipoTableSeeder extends Seeder
         //Insertar
         DB::table('equipo')->insert([
             'cif'=>'A27417476',
-            'nombre'=>'UA Football Club',
+            'nombreEquipo'=>'UA Football Club',
             'presupuesto' =>0,
             'estadio' => $estadio->id
         ]);
         $estadio = DB::table('estadio')->where('nombre','like','%Bernabéu%')->first();
         DB::table('equipo')->insert([
             'cif'=> 'G28034718',
-            'nombre' => 'Real Madrid Club de Futbol',
+            'nombreEquipo' => 'Real Madrid Club de Futbol',
             'presupuesto' =>0,
             'estadio' => $estadio->id
         ]);
@@ -32,7 +32,7 @@ class EquipoTableSeeder extends Seeder
 
         DB::table('equipo')->insert([
             'cif'=> 'G28034719',
-            'nombre' => 'Deportivo Alavés',
+            'nombreEquipo' => 'Deportivo Alavés',
             'presupuesto' =>0,
             'estadio' => $estadio->id
         ]);
@@ -41,7 +41,7 @@ class EquipoTableSeeder extends Seeder
 
          DB::table('equipo')->insert([
             'cif'=> 'G28034720',
-            'nombre' => 'Athletic Club de Bilbao',
+            'nombreEquipo' => 'Athletic Club de Bilbao',
             'presupuesto' =>0,
             'estadio' => $estadio->id
         ]);
@@ -49,7 +49,7 @@ class EquipoTableSeeder extends Seeder
         $estadio = DB::table('estadio')->where('nombre','like','%Cármenes%')->first();
         DB::table('equipo')->insert([
             'cif'=> 'G28034721',
-            'nombre' => 'Granada Club de Fútbol',
+            'nombreEquipo' => 'Granada Club de Fútbol',
             'presupuesto' =>0,
             'estadio' => $estadio->id
         ]);
@@ -57,7 +57,7 @@ class EquipoTableSeeder extends Seeder
         $estadio = DB::table('estadio')->where('nombre','like','%Villamarín%')->first();
         DB::table('equipo')->insert([
             'cif'=> 'G28034722',
-            'nombre' => 'Real Betis Balompié',
+            'nombreEquipo' => 'Real Betis Balompié',
             'presupuesto' =>0,
             'estadio' => $estadio->id
         ]);
@@ -66,7 +66,7 @@ class EquipoTableSeeder extends Seeder
         foreach($equipos as $equipo)
         {
             var_dump($equipo->id);
-            var_dump($equipo->nombre);
+            var_dump($equipo->nombreEquipo);
 
         }*/
     }

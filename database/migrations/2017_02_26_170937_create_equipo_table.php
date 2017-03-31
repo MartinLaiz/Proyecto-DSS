@@ -16,7 +16,7 @@ class CreateEquipoTable extends Migration
         Schema::create('equipo', function (Blueprint $table) {
             $table->increments('id');
             $table->char('cif',9)->unique();
-            $table->string('nombre');
+            $table->string('nombreEquipo');
             $table->integer('presupuesto');
             $table->integer('estadio')->unique()->nullable();
             $table->foreign('estadio')->references('id')->on('estadio')->onDelete('set null');

@@ -15,7 +15,7 @@ class JugadorTableSeeder extends Seeder
             DB::table('jugador')->delete();
             DB::table('VerNifEntrenador');
 
-            $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
+            $equipo = DB::table('equipo')->where('nombreEquipo','like','%UA%')->first();
             $fMin = 315532800;
             $fMax = 913420800;
             
@@ -259,7 +259,7 @@ class JugadorTableSeeder extends Seeder
             ]);
         //JUGADORES DEL REAL MADRID
 
-            $equipo = DB::table('equipo')->where('nombre','like','%Real Madrid%')->first();
+            $equipo = DB::table('equipo')->where('nombreEquipo','like','%Real Madrid%')->first();
             $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000013A',
@@ -480,7 +480,7 @@ class JugadorTableSeeder extends Seeder
             ]);
 
             //Jugadores Alaves
-            $equipo = DB::table('equipo')->where('nombre','like','%Deportivo Alavés%')->first();
+            $equipo = DB::table('equipo')->where('nombreEquipo','like','%Deportivo Alavés%')->first();
 
             $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
@@ -690,7 +690,7 @@ class JugadorTableSeeder extends Seeder
 
 
             //jugadores de bilbao
-            $equipo = DB::table('equipo')->where('nombre','like','%Athletic Club de Bilbao%')->first();
+            $equipo = DB::table('equipo')->where('nombreEquipo','like','%Athletic Club de Bilbao%')->first();
 
             $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
@@ -902,7 +902,7 @@ class JugadorTableSeeder extends Seeder
 
 
 
-            $equipo = DB::table('equipo')->where('nombre','like','%Granada%')->first();
+            $equipo = DB::table('equipo')->where('nombreEquipo','like','%Granada%')->first();
             $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000020B',
@@ -1113,7 +1113,7 @@ class JugadorTableSeeder extends Seeder
 
             //jugadores del betis
 
-             $equipo = DB::table('equipo')->where('nombre','like','%Betis%')->first();
+             $equipo = DB::table('equipo')->where('nombreEquipo','like','%Betis%')->first();
             $fecha = mt_rand($fMin, $fMax);
             DB::table('jugador')->insert([
                   'dni'=> '000000020C',

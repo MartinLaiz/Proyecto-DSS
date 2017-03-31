@@ -23,6 +23,8 @@ class CreatePartidoTable extends Migration
             $table->unique(['equipoLocal', 'equipoVisitante']);
             $table->integer('estadio')->nullable();
             $table->foreign('estadio')->references('id')->on('estadio')->onDelete('set null');
+            $table->foreign('equipoVisitante')->references('id')->on('equipo')->onDelete('set null');
+            $table->foreign('equipoLocal')->references('id')->on('equipo')->onDelete('set null');
 
             $table->timestamps();
         });

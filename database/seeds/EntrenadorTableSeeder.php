@@ -16,7 +16,7 @@ class EntrenadorTableSeeder extends Seeder
         DB::table('entrenador')->delete();
         DB::table('VerNifJugador');
 
-        $equipo = DB::table('equipo')->where('nombre','like','%UA%')->first();
+        $equipo = DB::table('equipo')->where('nombreEquipo','like','%UA%')->first();
         // Añadimos una entrada a esta tabla
         DB::table('entrenador')->insert([
         'dni' => '145267853T' ,
@@ -26,7 +26,7 @@ class EntrenadorTableSeeder extends Seeder
         'equipo' => $equipo->id ]);
 
         //Entrenadores Real Madrid
-        $equipo = DB::table('equipo')->where('nombre','like','%Real Madrid%')->first();
+        $equipo = DB::table('equipo')->where('nombreEquipo','like','%Real Madrid%')->first();
         DB::table('entrenador')->insert([
         'dni' => '14226784T' ,
         'nombre' => 'Zinedine' ,
@@ -37,7 +37,7 @@ class EntrenadorTableSeeder extends Seeder
 
 
      //Entrenadores Alaves
-        $equipo = DB::table('equipo')->where('nombre','like','%Deportivo Alavés%')->first();
+        $equipo = DB::table('equipo')->where('nombreEquipo','like','%Deportivo Alavés%')->first();
 
         DB::table('entrenador')->insert([
         'dni' => '14224534T' ,
@@ -47,7 +47,7 @@ class EntrenadorTableSeeder extends Seeder
         'equipo' => $equipo->id ]);
 
 
-        $equipo = DB::table('equipo')->where('nombre','like','%Athletic Club de Bilbao%')->first();
+        $equipo = DB::table('equipo')->where('nombreEquipo','like','%Athletic Club de Bilbao%')->first();
 
         DB::table('entrenador')->insert([
         'dni' => '14224535T' ,
