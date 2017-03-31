@@ -8,13 +8,14 @@ use App\Equipo;
 
 class JugadorController extends Controller
 {
-    public function perfil($id){
-          Jugador::find($id);
-          return view('perfil');
-   }
 
-   public function getJugadores(){
-         return view('jugadores', array(
+      public function perfil($id){
+            Jugador::findOrFail($id);
+            return view('perfil');
+      }
+
+      public function getJugadores(){
+            return view('jugadores', array(
                                  'values' => array(
                                              'nombre'=>'Nombre',
                                              'apellidos'=>'Apellidos',
@@ -28,9 +29,10 @@ class JugadorController extends Controller
                     );
    }
 
-   public function getPlantilla($id){
-         return Jugador::where('equipo','=',$id)->get()->toArray();
-   }
+      //Devuelve la plantilla del equipo al que pertenece el jugador
+      public function getPlantilla($id){
+            return Jugador::where('equipo','=',$id)->get()->toArray();
+      }
 
    public function getJugadoresEquipo($id){
          $team = Equipo::find($id);
