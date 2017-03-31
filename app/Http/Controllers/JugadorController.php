@@ -34,6 +34,11 @@ class JugadorController extends Controller
             return Jugador::where('equipo','=',$id)->get()->toArray();
       }
 
+      //Devuelve el formulario de creación del getJugador
+      public function formulario(){
+            return view('crearJugador');
+      }
+
    public function getJugadoresEquipo($id){
          $team = Equipo::find($id);
          return view('jugadores',  array(
