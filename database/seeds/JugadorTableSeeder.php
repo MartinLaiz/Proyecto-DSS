@@ -1322,5 +1322,7 @@ class JugadorTableSeeder extends Seeder
                   'equipo' => $equipo->id
             ]);
 
+            
+
     }
 }
