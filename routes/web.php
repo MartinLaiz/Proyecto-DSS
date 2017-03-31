@@ -26,3 +26,9 @@ Route::get('/jugadores/{id}', 'JugadorController@getJugadoresEquipo');
 //Rutas de entrenador
 Route::get('/entrenador/{id}', 'EntrenadorController@perfil');
 Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
+
+//Rutas de partido
+Route::get('/partidos', 'PartidoController@getPartidos');
+Route::get('/partido/{equipoLocal,equipoVisitante}', 'PartidoController@getPartidos');
+
+
