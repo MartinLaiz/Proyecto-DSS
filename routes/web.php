@@ -23,6 +23,7 @@ Route::get('/jugador/{id}', 'JugadorController@perfil');
 Route::get('/jugadores', 'JugadorController@getJugadores');
 Route::get('/jugadores/{id}', 'JugadorController@getJugadoresEquipo');
 Route::get('/crearJugador','JugadorController@formulario');
+Route::put('/crearJugador','JugadorController@crearJugador');
 
 //Rutas de entrenador
 Route::get('/entrenador/{id}', 'EntrenadorController@perfil');

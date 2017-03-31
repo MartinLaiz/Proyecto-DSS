@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Jugador;
 use App\Equipo;
 
@@ -41,7 +42,28 @@ class JugadorController extends Controller
 
       //Devuelve el formulario de creación del getJugador
       public function formulario(){
-            return view('crearJugador');
+            return view('crearJugador', array(
+                              'listaEquipos' => Equipo::orderBy('nombre')
+                              )
+                  );
+      }
+
+      public function crearJugador(Request $request){
+            $jugador = new Jugador();
+
+            $jugador->dni = $request->dni;
+            $jugador->nombre = $request->nombre;
+            $jugador->apellidos = $request->apellidos;
+            $jugador->fNac = $request->date;
+            $jugador->posicion = $request->posicion;
+            $jugador->cargo = $request->cargo;
+            $jugador->dorsal = $request->dorsal;
+            //$jugador->nombreEquipo = $request->equipo;
+            $jugador->equipo = 1;
+
+            $jugador->save(); 
+            return Redirect::to('jugadores');
+                    
       }
 
    public function getJugadoresEquipo($id){

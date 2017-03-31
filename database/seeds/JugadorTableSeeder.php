@@ -356,7 +356,7 @@ class JugadorTableSeeder extends Seeder
             DB::table('jugador')->insert([
                   'dni'=> '000000020A',
                   'nombre' => 'Toni',
-                  'apellidos' => 'Kross',
+                  'apellidos' => 'Kroos',
                   'fNac' => date($formato,$fecha),
                   'posicion' => 'Medio',
                   'cargo' => 0,
