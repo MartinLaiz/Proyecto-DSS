@@ -59,25 +59,37 @@ class JugadorController extends Controller
             $jugador->cargo = $request->cargo;
             $jugador->dorsal = $request->dorsal;
             //$jugador->nombreEquipo = $request->equipo;
-            $jugador->equipo = 1;
+            //SETENCIA SELECT PARA EL EQUIPO LA UA
+   
+            $idUa = Equipo::where('nombreEquipo','like','%UA%')->first();
+            $jugador->equipo = $idUa->id;
 
             $jugador->save(); 
             return Redirect::to('jugadores');
                     
       }
 
-   public function getJugadoresEquipo($id){
-         $team = Equipo::find($id);
-         return view('jugadores',  array(
-                                 'values' => array(
-                                             'nombre'=>'Nombre',
-                                             'apellidos'=>'Apellidos',
-                                             'fNac'=>'Fecha de Nacimiento',
-                                             'posicion'=>'Posición',
-                                             'dorsal'=>'Dorsal'),
-                                 'lista' => $team->jugadores()->orderBy('apellidos')->simplePaginate(15),
-                                 'equipo' => $team->nombre
-                           ));
-   }
+      public function buscarJugador(Request $request,$idEquipo,$posicion,$nombre,$apellido){
+            $jugador = Jugador::all();
+
+            
+
+
+      }
+
+
+      public function getJugadoresEquipo($id){
+            $team = Equipo::find($id);
+            return view('jugadores',  array(
+                                    'values' => array(
+                                                'nombre'=>'Nombre',
+                                                'apellidos'=>'Apellidos',
+                                                'fNac'=>'Fecha de Nacimiento',
+                                                'posicion'=>'Posición',
+                                                'dorsal'=>'Dorsal'),
+                                    'lista' => $team->jugadores()->orderBy('apellidos')->simplePaginate(15),
+                                    'equipo' => $team->nombre
+                              ));
+      }
 
 }

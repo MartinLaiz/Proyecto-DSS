@@ -26,55 +26,55 @@
 <div class="contenedor row">
 
     <form action="{{action('JugadorController@crearJugador')}}" method="POST">
-    {{ csrf_field() }}
-    {{ method_field('PUT') }}
-    {{--Campos: nombre, apellidos, fNac, posicion, dorsal --}}
-    
-    {{--DNI--}}
-    <input class="form-control" placeholder="DNI" type="text"      name="dni"   id="dni" required>
-    {{--Nombre--}}
-    <input class="form-control" placeholder="Nombre"    type="text"      name="nombre"      id="nombre" required>
-    {{--Apellidos--}}
-    <input class="form-control" placeholder="Apellidos" type="text"      name="apellidos"   id="apellidos" required>
-    
-{{--<input class="form-control" placeholder="Contraseña"type="password"  name="contraseña"  id="contrasena">--}}
-    
-    {{--Fecha de nacimiento--}}
-    <input class="form-control" id="fNac" name="date" placeholder="Nacido el" type="text" required/>
+        {{ csrf_field() }}
+        {{ method_field('PUT') }}
+        {{--Campos: nombre, apellidos, fNac, posicion, dorsal --}}
+        
+        {{--DNI--}}
+        <input class="form-control" placeholder="DNI" type="text"      name="dni"   id="dni" required>
+        {{--Nombre--}}
+        <input class="form-control" placeholder="Nombre"    type="text"      name="nombre"      id="nombre" required>
+        {{--Apellidos--}}
+        <input class="form-control" placeholder="Apellidos" type="text"      name="apellidos"   id="apellidos" required>
+        
+        {{--<input class="form-control" placeholder="Contraseña"type="password"  name="contraseña"  id="contrasena">--}}
+        
+        {{--Fecha de nacimiento--}}
+        <input class="form-control" id="fNac" name="date" placeholder="Nacido el" type="text" required/>
 
-    {{--Posición--}}
-    <style>select:invalid { color: gray; }</style>
-    <select class="form-control" id="posicion" placeholder="Posición" name="posicion" required>
-        <option value="Posición" disabled selected hidden>Posición</option>
-        <option value="Delantero">Delantero</option>
-        <option value="Mediocentro">Medio-centro</option>
-        <option value="Defensa">Defensa</option>
-        <option value="Portero">Portero</option>
-    </select>
+        {{--Posición--}}
+        <style>select:invalid { color: gray; }</style>
+            <select class="form-control" id="posicion" placeholder="Posición" name="posicion" required>
+                <option value="Posición" disabled selected hidden>Posición</option>
+                <option value="Delantero">Delantero</option>
+                <option value="Mediocentro">Medio</option>
+                <option value="Defensa">Defensa</option>
+                <option value="Portero">Portero</option>
+            </select>
 
-    {{--Cargo--}}
-    <input class="form-control" placeholder="Cargo"    type="number"    name="cargo"      id="cargo" required>
+        {{--Cargo--}}
+        <input class="form-control" placeholder="Cargo"    type="number"    name="cargo"      id="cargo" required>
 
-    {{--Dorsal--}}
-    <input class="form-control" placeholder="Dorsal"    type="number"    name="dorsal"      id="dorsal" required>
+        {{--Dorsal--}}
+        <input class="form-control" placeholder="Dorsal"    type="number"    name="dorsal"      id="dorsal" required>
 
-    {{--Equipo--}}
-    <style>select:invalid { color: gray; }</style>
-    <select class="form-control" id="equipo" placeholder="Equipo" name="Equipo" required>
-        <option value="Equipo" disabled selected hidden>Equipo</option>
-        <option value="1">UA CF</option>
-        @foreach($listaEquipos as $equipo)
-            <option value={{$equipo->id}}>{{$equipo->nombre}}</option>
-        @endforeach
-    </select>
+        {{--Equipo--}}
+        <style>select:invalid { color: gray; }</style>
+            <select class="form-control" id="equipo" placeholder="Equipo" name="Equipo" required>
+                <option value="Equipo" disabled selected hidden>Equipo</option>
+                <option value="1">UA CF</option>
+                @foreach($listaEquipos as $equipo)
+                    <option value={{$equipo->id}}>{{$equipo->nombre}}</option>
+                @endforeach
+            </select>
 
-    {{--Términos y condiciones--}}
-    <div class="checkbox">
-        <label for="terms"></label>
-        <input type="checkbox" name="terms" id="terms" value="1" required><strong>¿Esclavizarlo?</strong></input>
-    </div>
-    
-    <button type="submit">Crear jugador</button>
+        {{--Términos y condiciones--}}
+        <div class="checkbox">
+            <label for="terms"></label>
+            <input type="checkbox" name="terms" id="terms" value="1" required><strong>¿Esclavizarlo?</strong></input>
+        </div>
+        
+        <button type="submit">Crear jugador</button>
     </form>
 
 </div>

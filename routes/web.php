@@ -31,6 +31,5 @@ Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
 
 //Rutas de partido
 Route::get('/partidos', 'PartidoController@getPartidos');
-Route::get('/partido/{equipoLocal,equipoVisitante}', 'PartidoController@getPartidos');
 
 

@@ -13,9 +13,12 @@ class PartidoTableSeeder extends Seeder
       {
             $formato = 'Y/m/d';
             $equipos = DB::table('equipo')->get();
+            $libre = DB::table('equipo')->where('nombreEquipo','like','%Libre%')->first();
             foreach ($equipos as $equipoLocal) {
                   foreach ($equipos as $equipoVisitante) {
-                        if($equipoLocal->id != $equipoVisitante->id){
+                        if($equipoLocal->id != $equipoVisitante->id
+                        and $equipoLocal->id!= $libre->id 
+                        and $equipoVisitante->id!= $libre->id){
                               $fecha = mt_rand(1470052800, 1527854400);
                               $golesLocal = mt_rand(0, 5);
                               $golesVisitante = mt_rand(0, 5);
