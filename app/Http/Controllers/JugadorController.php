@@ -23,10 +23,10 @@ class JugadorController extends Controller
                                              'fNac'=>'Fecha de Nacimiento',
                                              'posicion'=>'Posición',
                                              'dorsal'=>'Dorsal',
-                                             'equipo' => 'Equipo'],
-                                 'lista' => Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombre as equipo')->orderby('equipo')->orderBy('dorsal')->paginate(20),
+                                             'nombreEquipo' => 'Equipo'],
+                                 'lista' => Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombreEquipo')->orderby('equipo')->orderBy('dorsal')->paginate(20),
                                  'equipo' => 'Todos',
-                                 'equipos' => Equipo::get()->toArray()
+                                 'equipos' => Equipo::get()
                                  ]
                     );
    }
@@ -82,7 +82,8 @@ class JugadorController extends Controller
                                                 'posicion'=>'Posición',
                                                 'dorsal'=>'Dorsal'),
                                     'lista' => $team->jugadores()->orderBy('apellidos')->simplePaginate(15),
-                                    'equipo' => $team->nombre
+                                    'equipo' => $team->nombre,
+                                    'equipos' => Equipo::get()
                               ));
       }
 
