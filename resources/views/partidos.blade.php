@@ -3,7 +3,6 @@
 @section('content')
 @include('cabecera',array('section'=>'Inicio'))
 <div class="contenedor row">
-
-            @include('tablaAccion',array('values' => $values, 'lista' => $lista))
+      @include('tablaAccion',array('values' => $values, 'lista' => $lista))
 </div>
 @endsection

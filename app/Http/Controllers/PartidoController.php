@@ -9,7 +9,8 @@ class PartidoController extends Controller
 {
     public function getPartidos(){
 
-        $teams = Partido::select('team1.nombreEquipo as nameTeam1','team2.nombreEquipo as nameTeam2'
+        $teams = Partido::select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
+                                   ,'team1.nombreEquipo as nameTeam1','team2.nombreEquipo as nameTeam2'
                                     ,'partido.golesLocal','partido.golesVisitante','partido.fecha')
                                     ->join('equipo as team1','partido.equipoLocal','=','team1.id')
                                     ->join('equipo as team2','partido.equipoVisitante','=','team2.id')->paginate(5);
@@ -30,8 +31,10 @@ class PartidoController extends Controller
 
 
    public function EliminarPartido($team1,$team2){
-
+        $team = Partido::find($team1,$team2);
+        $team->delete();
    }
+       
 
 
   

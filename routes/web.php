@@ -33,6 +33,7 @@ Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
 
 //Rutas de partido
 Route::get('/partidos', 'PartidoController@getPartidos');
+Route::delete('/partidos/{team1,team2}','PartidoController@EliminarPartido');
 
 /*
 Route::get('/prueba', function(){

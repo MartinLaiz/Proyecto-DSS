@@ -19,7 +19,11 @@
                   <td>{!!$elemento[$key]!!}</td>
 
                   @endforeach
-                  <td> <button type="button" class="btn btn-danger">Borrar</button></td>
+
+                <form action="{{ action('PartidoController@EliminarPartido',
+                [$elemento->idlocal,$elemento->idVisitante,]) }}">     
+                        <td> <button type="submit" class="btn btn-danger">Borrar</button></td>
+                </form>     
             </tr>
             @endforeach
       </tbody>
