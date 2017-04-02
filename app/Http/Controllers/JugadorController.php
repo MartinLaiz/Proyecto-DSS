@@ -17,7 +17,7 @@ class JugadorController extends Controller
 
       public function getJugadores(){
 
-            $teams = Jugador::join('equipo','jugador.equipo','=','equipo.id')->get();
+            $teams = Jugador::join('equipo','jugador.equipo','=','equipo.id')->paginate(20);
             $jugadores = Jugador::all();
             
 
@@ -69,12 +69,10 @@ class JugadorController extends Controller
                     
       }
 
-      public function buscarJugador(Request $request,$idEquipo,$posicion,$nombre,$apellido){
-            $jugador = Jugador::all();
-
-            
-
-
+      public function buscarJugador(Request $request){
+            echo $request->path();
+            echo "<br>";
+            echo $request->url();
       }
 
 

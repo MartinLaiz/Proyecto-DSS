@@ -8,13 +8,11 @@ use App\Partido;
 class PartidoController extends Controller
 {
     public function getPartidos(){
-        
 
-        
-        /*Select  team1.nombreEquipo as 'equipo 1',team2.nombreEquipo as 'equipo 2'
-        From partido 
-        inner join equipo team1  on partido.equipoVisitante = team1.id
-        inner join equipo team2  on partido.equipoLocal = team2.id;*/
+        $teams = Partido::select('team1.nombreEquipo as nameTeam1','team2.nombreEquipo as nameTeam2'
+                                    ,'partido.golesLocal','partido.golesVisitante','partido.fecha')
+                                    ->join('equipo as team1','partido.equipoLocal','=','team1.id')
+                                    ->join('equipo as team2','partido.equipoVisitante','=','team2.id')->paginate(5);
 
 
         return view('partidos', [
@@ -24,13 +22,15 @@ class PartidoController extends Controller
                                              'golesLocal'=>'Goles Local',
                                              'golesVisitante'=>'Goles Visitante',
                                              'fecha'=>'Fecha'],
-                                 'lista' => Partido::select('team1.nombreEquipo as nameTeam1','team2.nombreEquipo as nameTeam2'
-                                    ,'partido.golesLocal','partido.golesVisitante','partido.fecha')
-                                    ->join('equipo as team1','partido.equipoLocal','=','team1.id')
-                                    ->join('equipo as team2','partido.equipoVisitante','=','team2.id')->paginate(5),
+                                 'lista' =>  $teams,
                                  ]
                     );
     
+   }
+
+
+   public function EliminarPartido($team1,$team2){
+
    }
 
 
