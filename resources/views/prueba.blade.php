@@ -1,3 +1,1 @@
-@foreach($variable as $elemento)
-      {{ $elemento }}
-@endforeach
+{{dd($prueba)}}

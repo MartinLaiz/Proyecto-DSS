@@ -16,21 +16,17 @@ class JugadorController extends Controller
       }
 
       public function getJugadores(){
-
-            $teams = Jugador::join('equipo','jugador.equipo','=','equipo.id')->paginate(20);
-            $jugadores = Jugador::all();
-            
-
-            return view('jugadores',[ 
+            return view('jugadores',[
                                  'values' => [
                                              'nombre' =>'Nombre',
                                              'apellidos'=>'Apellidos',
                                              'fNac'=>'Fecha de Nacimiento',
                                              'posicion'=>'Posición',
                                              'dorsal'=>'Dorsal',
-                                             'nombreEquipo' => 'Equipo'],
-                                 'lista' => Jugador::join('equipo','jugador.equipo','=','equipo.id')->orderby('equipo')->paginate(20),
-                                 'equipo' => 'Todos'
+                                             'equipo' => 'Equipo'],
+                                 'lista' => Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombre as equipo')->orderby('equipo')->orderBy('dorsal')->paginate(20),
+                                 'equipo' => 'Todos',
+                                 'equipos' => Equipo::get()->toArray()
                                  ]
                     );
    }
@@ -60,13 +56,13 @@ class JugadorController extends Controller
             $jugador->dorsal = $request->dorsal;
             //$jugador->nombreEquipo = $request->equipo;
             //SETENCIA SELECT PARA EL EQUIPO LA UA
-   
+
             $idUa = Equipo::where('nombreEquipo','like','%UA%')->first();
             $jugador->equipo = $idUa->id;
 
-            $jugador->save(); 
+            $jugador->save();
             return Redirect::to('jugadores');
-                    
+
       }
 
       public function buscarJugador(Request $request){

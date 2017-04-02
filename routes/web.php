@@ -11,6 +11,8 @@
 |
 */
 
+use App\Jugador;
+
 Route::get('/', function () {
     return view('index');
 });
@@ -32,4 +34,9 @@ Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
 //Rutas de partido
 Route::get('/partidos', 'PartidoController@getPartidos');
 
-
+/*
+Route::get('/prueba', function(){
+      return view('prueba',array('prueba' =>
+                                          Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombre as equipo')->get()->toArray()
+                  ));
+});*/
