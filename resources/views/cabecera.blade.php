@@ -33,7 +33,7 @@
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi perfil <span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                     <li><a href="#">Mi perfil</a></li>
-                                    <li><a href="#">Cerrar sesión</a></li>
+                                    <li><a href="/">Cerrar sesión</a></li>
                               </ul>
                         </li>
                         <li class="divider" role="separator"></li>

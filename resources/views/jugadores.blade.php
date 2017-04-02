@@ -10,7 +10,7 @@
             <h2>Jugadores del {{ $equipo }}</h2>
             @endif
             <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Seleccionar equipo<span class="caret"></span></button>
+                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Seleccionar equipo <span class="caret"></span></button>
                   <ul class="dropdown-menu">
                         @foreach($equipos as $equipo)
                               <li><a href="{{ action('JugadorController@getJugadoresEquipo',[$equipo->id]) }}">{{ $equipo->nombreEquipo }}</a></li>

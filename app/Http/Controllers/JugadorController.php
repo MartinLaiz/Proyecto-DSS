@@ -39,7 +39,7 @@ class JugadorController extends Controller
       //Devuelve el formulario de creación del getJugador
       public function formulario(){
             return view('crearJugador', array(
-                              'listaEquipos' => Equipo::orderBy('nombre')
+                              'listaEquipos' => Equipo::orderBy('nombreEquipo')->get()
                               )
                   );
       }
