@@ -29,7 +29,8 @@ class PartidoTableSeeder extends Seeder
                                     'fecha' => date($formato, $fecha),
                                     'golesLocal' => 2,
                                     'golesVisitante' => 0,
-                                    'estadio' => $equipoLocal->estadio
+                                    'estadio' => $equipoLocal->estadio,
+                                    'tipo' => "Liga"
                               ]);
                         }
                   }
