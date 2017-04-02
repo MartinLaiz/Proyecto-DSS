@@ -16,7 +16,7 @@
             <tr>
 
                   @foreach($values as $key => $v)
-                  <td>{{!!$elemento[$key]!!}}</td>
+                  <td>{!!$elemento[$key]!!}</td>
 
                   @endforeach
             </tr>
