@@ -4,20 +4,20 @@
       <thead>
             <tr>
                   @foreach($values as $key => $v)
-                  
+
                   <th>{{ $v }}</th>
                   @endforeach
                   <th>Acción</th>
             </tr>
       </thead>
       <tbody>
-      
+
             @foreach($lista as $elemento)
             <tr>
-            
+
                   @foreach($values as $key => $v)
-                  <td>{{$elemento[$key]}}</td>
-                      
+                  <td>{{!!$elemento[$key]!!}}</td>
+
                   @endforeach
                   <td> <button type="button" class="btn btn-danger">Borrar</button></td>
             </tr>
