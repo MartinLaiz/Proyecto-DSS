@@ -3,30 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ParticiparController;
+use App\Equipo;
+use App\Partido;
 
 class EquipoController extends Controller
 {
       public function getHome(){
-            return view('home');
-             /*//ultimo partido de la ua
-             $equipoUa = DB::table('equipo')->where('nombre','like','%UA%')->first();
-             //consigo el ultimo partido de la ua
+            $uaId = Equipo::where('nombreEquipo','like','%UA%')->first()->id;
+            $partidosUA = Partido::where('equipoLocal','=', Equipo::where('nombreEquipo','like','%UA%')->first()->id )->
+                  join('equipo as equiposLocales','partido.equipoLocal','=','equiposLocales.id')->
+                  join('equipo as equiposVisitantes','partido.equipoVisitante','=','equiposVisitantes.id')->
+                  join('estadio as estadioJuego','partido.estadio','=','estadioJuego.id')->
+                  select('partido.*', 'equiposLocales.nombreEquipo as equipoLocal', 'equiposVisitantes.nombreEquipo as equipoVisitante', 'estadioJuego.nombre as estadio')->
+                  orWhere('equipoVisitante','=',$uaId);
+            $today = date('Y/m/d',time());
 
-
-             $partidoFecha= DB::table('partido')->orWhere(function ($query) {
-                                                                  $query->where('equipoVisitante', '=', $equipoUa->id)
-                                                                          ->where('equipoLocal', '=', $equipoUa->id);
-
-            })->orderBy('fecha', 'desc')->first();
-
-            $result = DB::table('participar')
-                                  ->join('jugador','jugador.id','=','participar.id')
-                                  ->where('equipoLocal','=',$partidoFecha->equipoLocal)
-                                  ->where('equipoVisitante','=',$partidoFecha->equipoVisitante)
-                                  ->where('jugador.id', '=' , $partidoFecha->equipoLocal)->get();
-
-
-            return view('home', array('ultPartido' => $result));*/
+            return view('home',[
+                  'ultPartidos' => $partidosUA->whereDate('fecha','>',date('Y/m/d'))->get(),
+                  'proxPartidos' => $partidosUA->whereDate('fecha','<',date('Y/m/d'))->get()
+            ]);
       }
 }

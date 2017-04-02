@@ -61,10 +61,20 @@
       </div>
       <div class="col-md-7">
             <div>
-                  <h3>Partidos recientes en Liga</h3>
+                  <h3>Últimos partidos</h3>
+                  <ul class="list-group">
+                        @foreach($ultPartidos as $partidoAnt)
+                        <li class="list-group-item">{{ $partidoAnt->equipoLocal }}  {{ $partidoAnt->golesLocal }}  -   {{ $partidoAnt->golesVisitante }} {{ $partidoAnt->equipoVisitante }}</li>
+                        @endforeach
+                  </ul>
             </div>
             <div>
-                  <h3>Partido recientes en Liga</h3>
+                  <h3>Próximos partidos</h3>
+                  <ul class="list-group">
+                        @foreach($proxPartidos as $partidoProx)
+                        <li class="list-group-item">{{ $partidoProx->equipoLocal }}  {{ $partidoProx->golesLocal }}  -   {{ $partidoProx->golesVisitante }}  {{ $partidoProx->equipoVisitante }}</li>
+                        @endforeach
+                  </ul>
             </div>
       </div>
 

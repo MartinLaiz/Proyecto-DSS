@@ -7,7 +7,6 @@
 
                   <th>{{ $v }}</th>
                   @endforeach
-s
             </tr>
       </thead>
       <tbody>
