@@ -6,7 +6,7 @@
                   @foreach($values as $key => $v)
                   <th>{{ $v }}</th>
                   @endforeach
-                  <th>Acción</th>
+                  <th>Acciones</th>
             </tr>
       </thead>
       <tbody>
@@ -15,10 +15,20 @@
                   @foreach($values as $key => $v)
                   <td>{!!$elemento[$key]!!}</td>
                   @endforeach
+            
                   <form action="{{ action('PartidoController@EliminarPartido', $elemento->id) }}">
                         {{ csrf_field() }}
-                        <td> <button type="submit" class="btn btn-danger">Borrar</button></td>
-                  </form>
+                        <td>  <button type="submit" class="btn btn-danger">Borrar</button>
+
+                   </form>
+                        <form action="/formularioPartido">
+                              <button type="submit" class="btn btn-warning">Modificar</button>
+
+                        </form>
+                        
+                        
+                        </td>
+                 
             </tr>
             @endforeach
       </tbody>

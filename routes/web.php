@@ -34,6 +34,7 @@ Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
 //Rutas de partido
 Route::get('/partidos', 'PartidoController@getPartidos');
 Route::get('/eliminar/partido/{id}','PartidoController@EliminarPartido');
+Route::get('/formularioPartido','PartidoController@getModificarPartido');
 
 //Rutas editar
 Route::get('/editar/jugador/{id}','JugadorController@editar');

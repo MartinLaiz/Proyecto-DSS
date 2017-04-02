@@ -35,6 +35,20 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
    public function EliminarPartido($id){
         $partido = Partido::find($id);
         $partido->delete();
+        return back();
+   }
+
+
+   public function getModificarPartido(Request $request){
+        return view ('formularioPartido');
+       /*$partido = Partido::find($request->id);
+       $partido->equipoLocal = $request->equipoLocal;
+       $partido->equipoVisitante = $request->equipoVisitante;
+       $partido->golesLocal = $request->golesLocal;
+       $partido->golesVisitante = $request->golesVisitante;
+       $partido->fecha = $request->fecha;
+       $partido->save();*/
+       
    }
 
 
