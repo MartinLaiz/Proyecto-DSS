@@ -34,6 +34,7 @@ class PartidoTableSeeder extends Seeder
                                     'golesLocal' => $golesLocal,
                                     'golesVisitante' => $golesVisitante,
                                     'estadio' => $equipoLocal->estadio
+                                    'tipo' => "Liga"
                               ]);
                         }
                   }
