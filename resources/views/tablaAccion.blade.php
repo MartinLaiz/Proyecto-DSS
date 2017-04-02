@@ -4,26 +4,21 @@
       <thead>
             <tr>
                   @foreach($values as $key => $v)
-
                   <th>{{ $v }}</th>
                   @endforeach
                   <th>Acción</th>
             </tr>
       </thead>
       <tbody>
-
             @foreach($lista as $elemento)
             <tr>
-
                   @foreach($values as $key => $v)
                   <td>{!!$elemento[$key]!!}</td>
-
                   @endforeach
-
-                <form action="{{ action('PartidoController@EliminarPartido',
-                [$elemento->idlocal,$elemento->idVisitante,]) }}">     
+                  <form action="{{ action('PartidoController@EliminarPartido', $elemento->id) }}">
+                        {{ csrf_field() }}
                         <td> <button type="submit" class="btn btn-danger">Borrar</button></td>
-                </form>     
+                  </form>
             </tr>
             @endforeach
       </tbody>

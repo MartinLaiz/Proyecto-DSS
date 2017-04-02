@@ -8,34 +8,36 @@ use App\Partido;
 class PartidoController extends Controller
 {
     public function getPartidos(){
-
-        $teams = Partido::select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
-                                   ,'team1.nombreEquipo as nameTeam1','team2.nombreEquipo as nameTeam2'
-                                    ,'partido.golesLocal','partido.golesVisitante','partido.fecha')
-                                    ->join('equipo as team1','partido.equipoLocal','=','team1.id')
-                                    ->join('equipo as team2','partido.equipoVisitante','=','team2.id')->paginate(5);
-
+/*
+select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
+                           ,'team1.nombreEquipo as nameTeam1','team2.nombreEquipo as nameTeam2'
+                            ,'partido.golesLocal','partido.golesVisitante','partido.fecha')
+                            ->
+*/
+        $teams = Partido::join('equipo as team1','partido.equipoLocal','=','team1.id')->
+                              join('equipo as team2','partido.equipoVisitante','=','team2.id')->
+                              select('partido.*','team1.nombreEquipo as equipoLocal','team2.nombreEquipo as equipoVisitante')->paginate(5);
 
         return view('partidos', [
                                  'values' => [
-                                             'nameTeam1'=> 'Equipo Local',
-                                             'nameTeam2'=> 'Equipo Visitante',
+                                             'equipoLocal'=> 'Equipo Local',
+                                             'equipoVisitante'=> 'Equipo Visitante',
                                              'golesLocal'=>'Goles Local',
                                              'golesVisitante'=>'Goles Visitante',
                                              'fecha'=>'Fecha'],
                                  'lista' =>  $teams,
                                  ]
                     );
-    
+
    }
 
 
-   public function EliminarPartido($team1,$team2){
-        $team = Partido::find($team1,$team2);
-        $team->delete();
+   public function EliminarPartido($id){
+        $partido = Partido::find($id);
+        $partido->delete();
    }
-       
 
 
-  
+
+
 }

@@ -33,11 +33,8 @@ Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
 
 //Rutas de partido
 Route::get('/partidos', 'PartidoController@getPartidos');
-Route::delete('/partidos/{team1,team2}','PartidoController@EliminarPartido');
+Route::get('/eliminar/partido/{id}','PartidoController@EliminarPartido');
 
-/*
-Route::get('/prueba', function(){
-      return view('prueba',array('prueba' =>
-                                          Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombre as equipo')->get()->toArray()
-                  ));
-});*/
+//Rutas editar
+Route::get('/editar/jugador/{id}','JugadorController@editar');
+Route::get('/editar/equipo/{id}','EquipoController@editar');

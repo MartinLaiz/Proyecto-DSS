@@ -82,7 +82,7 @@ class JugadorController extends Controller
                                                 'posicion'=>'Posición',
                                                 'dorsal'=>'Dorsal'),
                                     'lista' => $team->jugadores()->orderBy('apellidos')->simplePaginate(15),
-                                    'equipo' => $team->nombre,
+                                    'equipo' => $team->nombreEquipo,
                                     'equipos' => Equipo::get()
                               ));
       }

@@ -2,28 +2,28 @@
       <div class="container">
             <div class="navbar-header">
                   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"  aria-expanded="false" aria-controls="navbar">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-            </button>
-            <a href="{{action('EquipoController@getHome')}}" class="navbar-brand pull-left"><img src="images/Escudo.png" alt="Imagen del escudo"></a>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                  </button>
+                  <a href="{{action('EquipoController@getHome')}}" class="navbar-brand pull-left"><img src="images/Escudo.png" alt="Imagen del escudo"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                         <li class="divider" role="separator"></li>
                         @if($section == "inicio")
-                               <li class="active"><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
+                              <li class="active"><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
                         @else
                               <li><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
                         @endif
                         @if($section == "perfil")
-                               <li class="active"><a href="#">Partidos</a></li>
+                              <li class="active"><a href="#">Partidos</a></li>
                         @else
-                              <li><a href="#">Partidos</a></li>
+                              <li><a href="{{ action('PartidoController@getPartidos') }}">Partidos</a></li>
                         @endif
                         @if($section == "plantilla")
-                               <li class="active"><a href="{{action('JugadorController@getJugadores')}}">Plantilla</a></li>
+                              <li class="active"><a href="{{action('JugadorController@getJugadores')}}">Plantilla</a></li>
                         @else
                               <li><a href="{{action('JugadorController@getJugadores')}}">Plantilla</a></li>
                         @endif
