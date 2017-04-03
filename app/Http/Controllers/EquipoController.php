@@ -19,8 +19,8 @@ class EquipoController extends Controller
             $today = date('Y/m/d',time());
 
             return view('home',[
-                  'ultPartidos' => $partidosUA->whereDate('fecha','>',date('Y/m/d'))->get(),
-                  'proxPartidos' => $partidosUA->whereDate('fecha','<',date('Y/m/d'))->get()
+                  'ultPartidos' => $partidosUA->whereDate('fecha','>',date('Y/m/d'))->take(5)->get(),
+                  'proxPartidos' => $partidosUA->whereDate('fecha','<',date('Y/m/d'))->take(5)->get()
             ]);
       }
 

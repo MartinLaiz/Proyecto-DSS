@@ -17,7 +17,7 @@
                         @else
                               <li><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
                         @endif
-                        @if($section == "perfil")
+                        @if($section == "partidos")
                               <li class="active"><a href="#">Partidos</a></li>
                         @else
                               <li><a href="{{ action('PartidoController@getPartidos') }}">Partidos</a></li>
@@ -29,7 +29,11 @@
                         @endif
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
+                        @if($section == 'configuracion')
+                        <li class="dropdown active">
+                        @else
                         <li class="dropdown">
+                        @endif
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi perfil <span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                     <li><a href="/config">Configuración</a></li>
