@@ -48,7 +48,7 @@ class JugadorController extends Controller
 
       public function crearJugador(Request $request){
             $jugador = new Jugador();
-
+            dd($request->id);
             $jugador->dni = $request->dni;
             $jugador->nombre = $request->nombre;
             $jugador->apellidos = $request->apellidos;
@@ -56,15 +56,10 @@ class JugadorController extends Controller
             $jugador->posicion = $request->posicion;
             $jugador->cargo = $request->cargo;
             $jugador->dorsal = $request->dorsal;
-            //$jugador->nombreEquipo = $request->equipo;
-            //SETENCIA SELECT PARA EL EQUIPO LA UA
-
-            $idUa = Equipo::where('nombreEquipo','like','%UA%')->first();
-            $jugador->equipo = $idUa->id;
-
+            $jugador->equipo = $request->equipo;
             $jugador->save();
-            return Redirect::to('jugadores');
 
+            return Redirect::to('jugadores');
       }
 
       public function buscarJugador(Request $request){
