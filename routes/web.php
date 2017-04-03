@@ -39,6 +39,8 @@ Route::get('/formularioPartido','PartidoController@ModificarPartido');
 Route::get('/config','EquipoController@configuracion');
 Route::get('/config/crearJugador','JugadorController@formulario');
 Route::put('/config/crearJugador','JugadorController@crearJugador');
+Route::get('/config/crearEntrenador','EntrenadorController@formulario');
+Route::put('/config/crearEntrenador','EntrenadorController@crearEntrenador');
 Route::get('/config/editar/jugador/{id}','JugadorController@editar');
 Route::get('/config/editar/equipo/{id}','EquipoController@editar');
 Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');

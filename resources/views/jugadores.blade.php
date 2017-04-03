@@ -22,8 +22,6 @@
             <div class="">
                   @if($equipo == 'Todos')
                   <h2>Todos los jugadores</h2>
-                  @else
-                  <h2>Jugadores del {{ $equipo }}</h2>
                   @endif
             </div>
             @include('tabla',array('values' => $values, 'lista' => $lista))
