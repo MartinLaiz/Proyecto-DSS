@@ -31,10 +31,8 @@ Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
 
 //Rutas de partido
 Route::get('/partidos', 'PartidoController@getPartidos');
-Route::post('/formularioPartido/{id}','PartidoController@ModificarPartido');
-Route::get('/formularioPartido/{id}','PartidoController@formulario');
-Route::get('/formularioPartido/{id}','PartidoController@listarEquipos');
-
+Route::put('/formularioPartido/{id}','PartidoController@modificarPartido');
+Route::post('/formularioPartido/{id}','PartidoController@formularioModificar');
 //Rutas configuracion
 Route::get('/config','EquipoController@configuracion');
 
@@ -58,3 +56,8 @@ Route::get('/config/editar/equipo/{id}','EquipoController@editar');
 
 Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');
 Route::get('/config/eliminar/jugador/{id}','JugadorController@eliminar');
+
+Route::get('config/partidos', 'PartidoController@getPartidos');
+Route::put('/formularioPartido/{id}','PartidoController@modificarPartido');
+Route::get('config/crear/partido','PartidoController@formularioInsertar');
+Route::put('config/crear/partido','PartidoController@crearPartido');
