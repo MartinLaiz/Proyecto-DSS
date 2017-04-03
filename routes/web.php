@@ -30,13 +30,6 @@ Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
 
 //Rutas de partido
 Route::get('/partidos', 'PartidoController@getPartidos');
-<<<<<<< Updated upstream
-Route::get('/eliminar/partido/{id}','PartidoController@EliminarPartido');
-Route::get('/formularioPartido/{id}','PartidoController@formulario');
-Route::get('/formularioPartido/{id}','PartidoController@listarEquipos');
-Route::post('/formularioPartido/{id}','PartidoController@ModificarPartido');
-Route::get('/formularioPartido/{id}','PartidoController@ModificarPartido');
-=======
 Route::get('/formularioPartido','PartidoController@getModificarPartido');
 Route::get('/formularioPartido','PartidoController@listarEquipos');
 Route::post('/formularioPartido','PartidoController@ModificarPartido');
