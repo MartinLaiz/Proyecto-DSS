@@ -48,7 +48,6 @@ class JugadorController extends Controller
 
       public function crearJugador(Request $request){
             $jugador = new Jugador();
-            dd($request->id);
             $jugador->dni = $request->dni;
             $jugador->nombre = $request->nombre;
             $jugador->apellidos = $request->apellidos;
@@ -80,10 +79,9 @@ class JugadorController extends Controller
                                                 'dorsal'=>'Dorsal'),
                                     'lista' => $team->jugadores()->orderBy('apellidos')->simplePaginate(15),
                                     'equipo' => $team->nombreEquipo,
-                                    'equipos' => Equipo::get(),
+                                    'equipos' => Equipo::where('nombreEquipo','<>','Libre')->orderBy('nombreEquipo')->get(),
                                     'entrenadorNombre' => $team->entrenador->nombre,
                                     'entrenadorApellidos' => $team->entrenador->apellidos
                               ));
       }
-
 }

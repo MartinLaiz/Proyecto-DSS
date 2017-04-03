@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 //Rutas Equipo
 Route::get('/home', 'EquipoController@getHome');
+Route::get('/equipo/{id}','EquipoController@getEquipo');
 
 //Rutas Jugador
 Route::get('/jugadores', 'JugadorController@getJugadores');
@@ -36,12 +37,21 @@ Route::get('/formularioPartido/{id}','PartidoController@listarEquipos');
 
 //Rutas configuracion
 Route::get('/config','EquipoController@configuracion');
+
 Route::get('/config/crear/jugador','JugadorController@formulario');
 Route::put('/config/crear/jugador','JugadorController@crearJugador');
+
 Route::get('/config/crear/entrenador','EntrenadorController@formulario');
 Route::put('/config/crear/entrenador','EntrenadorController@crearEntrenador');
+
+Route::get('/config/crear/equipo','EquipoController@formulario');
+Route::post('/config/crear/equipo','EquipoController@crearEquipo');
+
+
 Route::get('/config/editar/jugadores','JugadorController@editar');
 Route::get('/config/editar/jugador/{id}','JugadorController@editar');
+
 Route::get('/config/editar/equipos','EquipoController@editar');
 Route::get('/config/editar/equipo/{id}','EquipoController@editar');
+
 Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');
