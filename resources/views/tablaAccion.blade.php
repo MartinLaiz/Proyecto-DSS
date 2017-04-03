@@ -28,16 +28,15 @@
                   @endif
                   @endforeach
                   <td>
-                        <div class="row">
-                                    <button href="{{ action('PartidoController@EliminarPartido', $elemento->id) }}" type="submit" class="btn btn-danger">Borrar</button>
-                              <div class="col-md-6">
-                              </div>
-                                    <button type="submit" class="btn btn-warning btn-block">Modificar</button>
-                              <div class="col-md-6">
-                        </div>
-                              </div>
-
-                  </td>
+                        <form action="{{ action('PartidoController@EliminarPartido', $elemento->id) }}"> 
+                              {{ csrf_field() }} 
+                              <button type="submit" class="btn btn-danger">Borrar</button> 
+                        </form> 
+                        <form action="{{ action('PartidoController@formulario', $elemento->id) }}"> 
+                              <button type="submit" class="btn btn-warning">Modificar</button> 
+                        </form> 
+                  </td> 
+                  
             </tr>
             @endforeach
       </tbody>
