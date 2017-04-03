@@ -26,9 +26,9 @@ $(document).ready(function(){
 
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
-            <form action="{{action('PartidoController@ModificarPartido')}}" method="POST">
+           <form action="{{action('PartidoController@ModificarPartido,$id')}}" method="POST">
                   {{ csrf_field() }}
-                  {{ method_field('PUT') }}
+                  {{ method_field('PUT') }}    --}}
                   <div class="row form-group">
                         <div class="col-md-4">
                              <style>select:invalid { color: gray; }</style>
@@ -48,7 +48,7 @@ $(document).ready(function(){
                                     @endforeach
                               </select>
                         </div>
-                  </div>
+                  </div> 
 
                   <div class="row form-group">
                         <div class="col-md-2">
@@ -79,6 +79,6 @@ $(document).ready(function(){
                               <button class="btn btn-success btn-warning" type="submit">Modificar</button>
                         </div>
                    </div>
-            </form>
+            </form>  
       </div>
 </div>

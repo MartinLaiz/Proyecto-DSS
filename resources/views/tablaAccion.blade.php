@@ -29,15 +29,15 @@
                   @endforeach
                   <td>
                         <div class="row">
-                              <div class="col-md-6">
                                     <button href="{{ action('PartidoController@EliminarPartido', $elemento->id) }}" type="submit" class="btn btn-danger">Borrar</button>
-                              </div>
                               <div class="col-md-6">
-                                    <button type="submit" class="btn btn-warning btn-block">Modificar</button>
                               </div>
+                                    <button type="submit" class="btn btn-warning btn-block">Modificar</button>
+                              <div class="col-md-6">
                         </div>
-                  </td>
+                              </div>
 
+                  </td>
             </tr>
             @endforeach
       </tbody>
