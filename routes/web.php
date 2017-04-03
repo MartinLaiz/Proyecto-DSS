@@ -21,25 +21,32 @@ Route::get('/', function () {
 Route::get('/home', 'EquipoController@getHome');
 
 //Rutas Jugador
-Route::get('/jugador/{id}', 'JugadorController@perfil');
 Route::get('/jugadores', 'JugadorController@getJugadores');
 Route::get('/jugadores/{id}', 'JugadorController@getJugadoresEquipo');
-Route::get('/crearJugador','JugadorController@formulario');
-Route::put('/crearJugador','JugadorController@crearJugador');
 Route::post('/buscarJugador','JugadorController@buscarJugador');
+
 //Rutas de entrenador
-Route::get('/entrenador/{id}', 'EntrenadorController@perfil');
 Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
 
 //Rutas de partido
 Route::get('/partidos', 'PartidoController@getPartidos');
+<<<<<<< Updated upstream
 Route::get('/eliminar/partido/{id}','PartidoController@EliminarPartido');
 Route::get('/formularioPartido/{id}','PartidoController@formulario');
 Route::get('/formularioPartido/{id}','PartidoController@listarEquipos');
 Route::post('/formularioPartido/{id}','PartidoController@ModificarPartido');
 Route::get('/formularioPartido/{id}','PartidoController@ModificarPartido');
+=======
+Route::get('/formularioPartido','PartidoController@getModificarPartido');
+Route::get('/formularioPartido','PartidoController@listarEquipos');
+Route::post('/formularioPartido','PartidoController@ModificarPartido');
+Route::get('/formularioPartido','PartidoController@ModificarPartido');
+>>>>>>> Stashed changes
 
-//Rutas editar
+//Rutas configuracion
 Route::get('/config','EquipoController@configuracion');
-Route::get('/editar/jugador/{id}','JugadorController@editar');
-Route::get('/editar/equipo/{id}','EquipoController@editar');
+Route::get('/config/crearJugador','JugadorController@formulario');
+Route::put('/config/crearJugador','JugadorController@crearJugador');
+Route::get('/config/editar/jugador/{id}','JugadorController@editar');
+Route::get('/config/editar/equipo/{id}','EquipoController@editar');
+Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');

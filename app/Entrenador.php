@@ -9,7 +9,7 @@ class Entrenador extends Model
     protected $table = 'entrenador';
 
     public function equipo(){
-        return $this->belongsTo('App\Equipo');
+        return $this->belongsTo('App\Equipo','equipo');
     }
 
 }

@@ -9,7 +9,7 @@ class Equipo extends Model
     protected $table = 'equipo';
 
     public function entrenador(){
-        return $this->hasMany('App\Entrenador');
+        return $this->hasOne('App\Entrenador','equipo');
     }
     public function jugadores(){
         return $this->hasMany('App\Jugador','equipo');

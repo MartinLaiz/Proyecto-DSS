@@ -26,7 +26,9 @@ class JugadorController extends Controller
                                              'nombreEquipo' => 'Equipo'],
                                  'lista' => Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombreEquipo')->orderby('equipo')->orderBy('dorsal')->paginate(20),
                                  'equipo' => 'Todos',
-                                 'equipos' => Equipo::get()
+                                 'equipos' => Equipo::get(),
+                                 'entrenadorNombre' => 'Ninguno',
+                                 'entrenadorApellidos' => 'Ninguno'
                                  ]
                     );
    }
@@ -83,7 +85,9 @@ class JugadorController extends Controller
                                                 'dorsal'=>'Dorsal'),
                                     'lista' => $team->jugadores()->orderBy('apellidos')->simplePaginate(15),
                                     'equipo' => $team->nombreEquipo,
-                                    'equipos' => Equipo::get()
+                                    'equipos' => Equipo::get(),
+                                    'entrenadorNombre' => $team->entrenador->nombre,
+                                    'entrenadorApellidos' => $team->entrenador->apellidos
                               ));
       }
 
