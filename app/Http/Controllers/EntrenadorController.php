@@ -10,13 +10,33 @@ use App\Entrenador;
 class EntrenadorController extends Controller
 {
 
-   public function getEntrenadores(){
+   public function getEntrenadores(Request $request){
+         $sort = $request->input('sort');
+         $type = $request->input('type');
+         $correctSort = false;
+
+         $values = array(
+                        'nombre'=>'Nombre',
+                        'apellidos'=>'Apellidos',
+                        'fNac'=>'fNac');
+
+         foreach($values as $value) if($sort == strtolower($value)) $correctSort = true;
+         //Caso especial: fNac
+         if($sort == 'fnac') $sort = 'fNac';
+      
+         if($correctSort == false && $request->has('sort')){
+                  return redirect('entrenadores');
+         }
+
+
          return view('entrenadores', array(
-                                 'values' => array(
-                                             'nombre'=>'Nombre',
-                                             'apellidos'=>'Apellidos',
-                                             'fNac'=>'Fecha de Nacimiento'),
-                                 'lista' => Entrenador::simplePaginate(20)
+                                 'values' => $values,
+                                 'lista' => Entrenador::orderBy($sort,$type)->simplePaginate(20),
+                                 'controller' => array(
+                                              'name' =>  'EntrenadorController@getEntrenadores',
+                                              'type' => $type,
+                                              'sort' => $sort
+                                          )
                                  )
                   );
    }
