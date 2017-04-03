@@ -28,12 +28,14 @@
                   @endif
                   @endforeach
                   <td>
-                        <form action="{{ action('PartidoController@EliminarPartido', $elemento->id) }}"> 
+                        <form action="{{ action('PartidoController@EliminarPartido', [$elemento->id]) }}"> 
                               {{ csrf_field() }} 
                               <button type="submit" class="btn btn-danger">Borrar</button> 
                         </form> 
-                        <form action="{{ action('PartidoController@formulario', $elemento->id) }}"> 
-                              <button type="submit" class="btn btn-warning">Modificar</button> 
+
+                        <form action="{{ action('PartidoController@formulario', [$elemento->id]) }}" method="POST"> 
+                              {{ csrf_field() }} 
+                              <button  type="submit" class="btn btn-warning">Modificar</button> 
                         </form> 
                   </td> 
                   

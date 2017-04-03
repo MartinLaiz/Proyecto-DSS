@@ -26,7 +26,8 @@ $(document).ready(function(){
 
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
-          <form action="{{action('PartidoController@ModificarPartido,$idmodificar')}}" method="POST">
+  
+          <form action="{{action('PartidoController@modificarPartido',[$idmodificar])}}" method="POST">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}    
                   <div class="row form-group">
@@ -60,7 +61,7 @@ $(document).ready(function(){
                         </div>
 
                         <div class="col-md-2">
-                              <input class="form-control" id="Fecha" name="date" placeholder="Fecha" type="text" required/>
+                              <input class="form-control" id="fecha" name="fecha" placeholder="Fecha" type="date" required/>
                         </div>
 
 

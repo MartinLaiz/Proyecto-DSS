@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Equipo;
 use App\Partido;
 class PartidoController extends Controller
@@ -41,29 +43,16 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
    }
 
 
-   public function getModificarPartido(){
-        return view ('formularioPartido');
-       /*$partido = Partido::find($request->id);
-       $partido->equipoLocal = $request->equipoLocal;
-       $partido->equipoVisitante = $request->equipoVisitante;
-       $partido->golesLocal = $request->golesLocal;
-       $partido->golesVisitante = $request->golesVisitante;
-       $partido->fecha = $request->fecha;
-       $partido->save();*/
-}
    public function formulario($id){
-        return view ('formularioPartido')->with($id);
+       
+        return view ('formularioPartido',[
+                                            'idmodificar' => $id],[
+                                            'listaEquipos' => Equipo::orderBy('nombreEquipo')->get()
+                                            ]);
    }
 
-   public function listarEquipos(){
-        return view('formularioPartido', array(
-                              'listaEquipos' => Equipo::orderBy('nombreEquipo')->get()
-                              )
-                  );
 
-   }
-
-   public function ModificarPartido(Request $request,$id){
+   public function modificarPartido(Request $request,$id){
        $partido = Partido::find($id);
        $partido->equipoLocal = $request->equipoLocal;
        $partido->equipoVisitante = $request->equipoVisitante;

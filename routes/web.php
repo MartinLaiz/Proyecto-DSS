@@ -31,10 +31,8 @@ Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
 
 //Rutas de partido
 Route::get('/partidos', 'PartidoController@getPartidos');
-Route::post('/formularioPartido/{id}','PartidoController@ModificarPartido');
-Route::get('/formularioPartido/{id}','PartidoController@formulario');
-Route::get('/formularioPartido/{id}','PartidoController@listarEquipos');
-
+Route::put('/formularioPartido/{id}','PartidoController@modificarPartido');
+Route::post('/formularioPartido/{id}','PartidoController@formulario');
 //Rutas configuracion
 Route::get('/config','EquipoController@configuracion');
 
