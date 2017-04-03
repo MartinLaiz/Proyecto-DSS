@@ -9,7 +9,7 @@
                   <div class="col-md-3 text-center">
                         <h3>Jugadores</h3>
                         <a class="btn btn-primary btn-block" href="{{ action('JugadorController@formulario') }}" role="button">Insertar jugador</a><br>
-                        <a class="btn btn-primary btn-block" href="{{ action('JugadorController@formulario') }}" role="button">Modificar/Borrar jugador</a>
+                        <a class="btn btn-primary btn-block" href="{{ action('JugadorController@editar') }}" role="button">Modificar/Borrar jugador</a>
                         <br>
                   </div>
                   <div class="col-md-3 text-center">

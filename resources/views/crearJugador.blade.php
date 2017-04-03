@@ -27,7 +27,7 @@
       <div class="col-md-10 col-md-offset-1">
             <form action="{{action('JugadorController@crearJugador')}}" method="POST">
                   {{ csrf_field() }}
-                  {{ method_field('PUT') }}
+                  {{ method_field('POST') }}
                   {{--Campos: nombre, apellidos, fNac, posicion, dorsal --}}
                   <br><br>
                   <div class="row form-group">

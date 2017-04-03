@@ -49,9 +49,12 @@ Route::post('/config/crear/equipo','EquipoController@crearEquipo');
 
 
 Route::get('/config/editar/jugadores','JugadorController@editar');
-Route::get('/config/editar/jugador/{id}','JugadorController@editar');
+Route::get('/config/editar/jugadores/{id}','JugadorController@editarJugadoresEquipo');
+Route::get('/config/editar/jugador/{id}','JugadorController@editarJugador');
+Route::post('/config/editar/jugador/{id}','JugadorController@editarJugadorPost');
 
 Route::get('/config/editar/equipos','EquipoController@editar');
 Route::get('/config/editar/equipo/{id}','EquipoController@editar');
 
 Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');
+Route::get('/config/eliminar/jugador/{id}','JugadorController@eliminar');
