@@ -41,7 +41,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
    }
 
 
-<<<<<<< Updated upstream
+
    public function getModificarPartido(){
         return view ('formularioPartido');
        /*$partido = Partido::find($request->id);
@@ -51,11 +51,11 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
        $partido->golesVisitante = $request->golesVisitante;
        $partido->fecha = $request->fecha;
        $partido->save();*/
+   }
 
-=======
    public function formulario($id){
-        return view ('formularioPartido')->with($id);       
->>>>>>> Stashed changes
+        return view ('formularioPartido',array('idmodificar' => $id));       
+
    }
 
    public function listarEquipos(){
