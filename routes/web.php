@@ -34,7 +34,6 @@ Route::get('/formularioPartido','PartidoController@getModificarPartido');
 Route::get('/formularioPartido','PartidoController@listarEquipos');
 Route::post('/formularioPartido','PartidoController@ModificarPartido');
 Route::get('/formularioPartido','PartidoController@ModificarPartido');
->>>>>>> Stashed changes
 
 //Rutas configuracion
 Route::get('/config','EquipoController@configuracion');
