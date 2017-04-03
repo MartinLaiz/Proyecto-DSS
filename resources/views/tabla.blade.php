@@ -4,22 +4,13 @@
       <thead>
             <tr>
                   @foreach($values as $key => $v)
-                  <th><!-- Controller tiene 2 atributos: name, type -->
-                  <a href=
-                  @if($controller['type'] == 'asc' && $controller['sort'] == strtolower($v))
-                        {{action($controller['name'],['sort' => strtolower($v), 'type' => 'desc'])}}
-                  @else
-                        {{action($controller['name'],['sort' => strtolower($v), 'type' => 'asc'])}}
-                  @endif
-                  >
-                  @if($v == 'fNac') Fecha de nacimiento
-                  @else {{ $v }}
-                  @endif
-                  </a></th>
+
+                  <th>{{ $v }}</th>
                   @endforeach
             </tr>
       </thead>
       <tbody>
+
             @foreach($lista as $elemento)
             <tr>
 

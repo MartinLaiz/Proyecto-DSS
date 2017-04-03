@@ -26,8 +26,10 @@
                   </div>
                   <div class="col-md-3 text-center">
                         <h3>Partido</h3>
-                        <a class="btn btn-primary btn-block" href="{{ action('JugadorController@formulario') }}" role="button">Insertar partido</a><br>
-                        <a class="btn btn-primary btn-block" href="{{ action('JugadorController@formulario') }}" role="button">Modificar/Borrar partido</a>
+
+                        <a class="btn btn-primary btn-block" href="{{ action('PartidoController@formularioInsertar') }}" role="button">Insertar partido</a><br>
+
+                        <a class="btn btn-primary btn-block" href="{{ action('PartidoController@getPartidos') }}" role="button">Modificar/Borrar partido</a>
                         <br>
                   </div>
             </div>

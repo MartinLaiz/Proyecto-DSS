@@ -33,7 +33,7 @@
                               <button type="submit" class="btn btn-danger">Borrar</button> 
                         </form> 
 
-                        <form action="{{ action('PartidoController@formulario', [$elemento->id]) }}" method="POST"> 
+                        <form action="{{ action('PartidoController@formularioModificar', [$elemento->id]) }}" method="POST"> 
                               {{ csrf_field() }} 
                               <button  type="submit" class="btn btn-warning">Modificar</button> 
                         </form> 
