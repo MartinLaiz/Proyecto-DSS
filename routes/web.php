@@ -40,5 +40,6 @@ Route::post('/formularioPartido','PartidoController@ModificarPartido');
 Route::get('/formularioPartido','PartidoController@ModificarPartido');
 
 //Rutas editar
+Route::get('/config','EquipoController@configuracion');
 Route::get('/editar/jugador/{id}','JugadorController@editar');
 Route::get('/editar/equipo/{id}','EquipoController@editar');

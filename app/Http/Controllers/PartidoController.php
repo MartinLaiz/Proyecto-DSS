@@ -17,14 +17,14 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
         $teams = Partido::join('equipo as team1','partido.equipoLocal','=','team1.id')->
                               join('equipo as team2','partido.equipoVisitante','=','team2.id')->
                               select('partido.*','team1.nombreEquipo as equipoLocal','team2.nombreEquipo as equipoVisitante')->paginate(5);
-        
+
 
         return view('partidos', [
                                  'values' => [
                                              'equipoLocal'=> 'Equipo Local',
-                                             'equipoVisitante'=> 'Equipo Visitante',
                                              'golesLocal'=>'Goles Local',
                                              'golesVisitante'=>'Goles Visitante',
+                                             'equipoVisitante'=> 'Equipo Visitante',
                                              'fecha'=>'Fecha',
                                              'tipo' => 'Tipo'],
                                  'lista' =>  $teams,
@@ -50,7 +50,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
        $partido->golesVisitante = $request->golesVisitante;
        $partido->fecha = $request->fecha;
        $partido->save();*/
-       
+
    }
 
    public function listarEquipos(){
@@ -58,7 +58,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
                               'listaEquipos' => Equipo::orderBy('nombreEquipo')->get()
                               )
                   );
-       
+
    }
 
    public function ModificarPartido(Request $request){

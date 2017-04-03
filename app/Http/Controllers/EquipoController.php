@@ -23,4 +23,8 @@ class EquipoController extends Controller
                   'proxPartidos' => $partidosUA->whereDate('fecha','<',date('Y/m/d'))->get()
             ]);
       }
+
+      public function configuracion(){
+            return view('configuracion');
+      }
 }
