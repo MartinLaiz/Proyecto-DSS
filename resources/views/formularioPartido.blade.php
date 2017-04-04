@@ -1,7 +1,4 @@
-@extends('layouts.master')
-@section('title', 'Crear jugador')
-@section('content')
-@include('cabecera',array('section'=>'Inicio'))
+
 
 {{-----------Código para la fecha------------------}}
 <!--  jQuery -->
@@ -74,6 +71,6 @@ $(document).ready(function(){
       <div class="row form-group">
             <div class="col-md-2">
             <button class="btn btn-success btn-success" type="submit">Aceptar</button>
-            </div>
+      </div>
 </div>
 
