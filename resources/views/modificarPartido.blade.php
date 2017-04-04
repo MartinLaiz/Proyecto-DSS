@@ -29,7 +29,9 @@ $(document).ready(function(){
             @if (count($errors) > 0)
                   <ul>
                   @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        <div class="alert alert-danger">
+                              <a href="#" class="alert-link">{{ $error }}</a>
+                        </div>
                   @endforeach
                   </ul>
             @endif
