@@ -64,13 +64,9 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
 
 
    public function formularioModificar($id){
-
         $equipos = Equipo::orderBy('nombreEquipo')->where('nombreEquipo',' <>','Libre')->get();
-       
-        return view ('modificarPartido',[
-                                            'idmodificar' => $id],[
-                                            'listaEquipos' =>  $equipos 
-                                            ]);
+        return view ('modificarPartido',['idmodificar' => $id],['listaEquipos' =>  $equipos   ]);
+                                                        
    }
 
    public function formularioInsertar(){
