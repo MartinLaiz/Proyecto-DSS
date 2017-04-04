@@ -24,7 +24,7 @@
                                     @endforeach
                                     <td>
                                           <div class="btn-group">
-                                                <a href="{{ action('EntrenadorController@borrarEntrenador', $elemento->id) }}" 
+                                                <a href="{{ action('EntrenadorController@formularioModificar', $elemento->id) }}" 
                                                       class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
                                                       role="button" title="Modificar">
                                                 </a>

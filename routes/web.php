@@ -55,6 +55,9 @@ Route::get('/config/editar/equipos','EquipoController@editar');
 Route::get('/config/editar/equipo/{id}','EquipoController@modificarEquipo');
 Route::post('/config/editar/equipo/{id}','EquipoController@modificarEquipoPost');
 
+Route::get('/config/editar/entrenador/{id}','EntrenadorController@formularioModificar');
+Route::put('/config/editar/entrenador/{id}','EntrenadorController@modificarEntrenador');
+
 Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');
 Route::get('/config/eliminar/jugador/{id}','JugadorController@eliminar');
 Route::get('/config/eliminar/jugador/{id}','EquipoController@eliminar');

@@ -15,10 +15,17 @@ class EntrenadorController extends Controller
          $type = $request->input('type');
          $correctSort = false;
 
+
+         $entrenadores = Entrenador::join('equipo','equipo.id', '=','entrenador.equipo')
+         ->orderBy($sort,$type)->simplePaginate(5);
+
          $values = array(
+                        'dni' => 'DNI',
                         'nombre'=>'Nombre',
                         'apellidos'=>'Apellidos',
-                        'fNac'=>'fNac');
+                        'fNac'=>'Fecha de Nacimiento',
+                        'nombreEquipo' => 'Equipo');
+
 
          foreach($values as $value) if($sort == strtolower($value)) $correctSort = true;
          //Caso especial: fNac
@@ -31,7 +38,7 @@ class EntrenadorController extends Controller
 
          return view('editarEntrenador', array(
                                     'values' => $values,
-                                    'lista' => Entrenador::orderBy($sort,$type)->simplePaginate(20),
+                                    'lista' => $entrenadores,
                                     'controller' => array(
                                                 'name' =>  'EntrenadorController@getEntrenadores',
                                                 'type' => $type,
@@ -53,6 +60,22 @@ class EntrenadorController extends Controller
                   );
       }
 
+
+
+      public function formularioModificar($id){
+
+            $entrenador = Entrenador::find($id);
+            
+            return view('modificarEntrenador', [
+                              'listaEquipos' => Equipo::orderBy('nombreEquipo')->get(),
+                              'idmodificar' => $id,
+                              'listaEntrenador' => $entrenador]
+                              
+                  );
+      }
+
+
+      
       public function crearEntrenador(Request $request){
             $entrenador = new Entrenador();
 
@@ -76,6 +99,22 @@ class EntrenadorController extends Controller
             $entrenador = Entrenador::find($id);
             $entrenador->delete();
             return back();
+      }
+
+
+      public function modificarEntrenador (Request $request,$id){
+            $entrenador = Entrenador::find($id);
+
+            $entrenador->dni = $request->dni;//Importante
+            $entrenador->nombre = $request->nombre;
+            $entrenador->apellidos = $request->apellidos;
+            $entrenador->fNac = $request->date;
+
+
+
+            $entrenador->save();
+            return Redirect::to('entrenadores');
+
       }
 
 }

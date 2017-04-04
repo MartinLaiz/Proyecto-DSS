@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Database\QueryException;
+use Validator;
 use App\Jugador;
 use App\Equipo;
 
@@ -55,6 +58,13 @@ class JugadorController extends Controller
       }
 
       public function crearJugador(Request $request){
+            //Control de errores
+            $errors = false;
+            $validator = Validator::make($request->all(), [
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+            ]);
+            //Rellenar jugador
             $jugador = new Jugador();
             $jugador->dni = $request->dni;
             $jugador->nombre = $request->nombre;
@@ -64,7 +74,24 @@ class JugadorController extends Controller
             $jugador->cargo = $request->cargo;
             $jugador->dorsal = $request->dorsal;
             $jugador->equipo = $request->equipo;
-            $jugador->save();
+            
+            //Gestión del dorsal
+            $jugadores = Jugador::where('equipo','like',$jugador->equipo);
+            foreach($jugadores as $jug){
+                  if($jugador->dorsal == $jug->dorsal){
+                        $errorDorsal = 'El jugador '.$jug->nombre.' ya tiene esa dorsal';
+                        $validator->getMessageBag()->add('dorsal', $errorDorsal);
+                        $errors = true;
+                  }
+            }
+            //Intentamos insertar el jugador
+            try{
+                  $jugador->save();
+            } catch(QueryException $e){
+                  $validator->getMessageBag()->add('dni','Ese DNI ya existe');
+                  $errors = true;
+            }
+            if($errors) return Redirect::back()->withErrors($validator)->withInput();
 
             return Redirect::to('jugadores');
       }
