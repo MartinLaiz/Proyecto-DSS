@@ -110,6 +110,8 @@ class EntrenadorController extends Controller
             $entrenador->apellidos = $request->apellidos;
             $entrenador->fNac = $request->date;
 
+
+
             $entrenador->save();
             return Redirect::to('entrenadores');
 

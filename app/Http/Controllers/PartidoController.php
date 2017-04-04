@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Controller;
+use Validator;
 use App\Equipo;
 use App\Partido;
 class PartidoController extends Controller
@@ -64,7 +66,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
 
 
    public function formularioModificar($id){
-        $equipos = Equipo::orderBy('nombreEquipo')->where('nombreEquipo',' <>','Libre')->get();
+        $equipos = Equipo::orderBy('nombreEquipo')->get();
         return view ('modificarPartido',['idmodificar' => $id],['listaEquipos' =>  $equipos   ]);
                                                         
    }
@@ -84,9 +86,24 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
        $partido->golesVisitante = $request->golesVisitante;
        $partido->fecha = $request->fecha;
        $partido->tipo = $request->tipo;
-       $partido->save();
+       //comprobamos si existe el equipo
+       $partidosRepetido =Partido::where('equipoLocal','=',$request->equipoLocal)
+       ->where('equpoVisitante','=',$request->equipoVisitante)
+       ->where('tipo','=',$request->tipo);
 
-       return Redirect::to('/config/partidos');
+       try{
+           $partido->save();
+           return Redirect::to('/config/partidos');
+       }
+       catch(\Illuminate\Database\QueryException $e){
+            $validator = Validator::make($request->all(), [
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ]);
+           $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
+           return back()->withErrors($validator)->withInput();
+       }
+       
    }
 
 
@@ -102,6 +119,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
 
          
 
+         
        return Redirect::to('/config/partidos');
    }
 
