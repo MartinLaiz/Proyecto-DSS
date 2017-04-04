@@ -33,15 +33,17 @@
                               @endif
                               @endforeach
                               <td>
-                                    <form action="{{ action('PartidoController@EliminarPartido', [$elemento->id]) }}"> 
-                                          {{ csrf_field() }} 
-                                          <button type="submit" class="btn btn-danger">Borrar</button> 
-                                    </form> 
-
-                                    <form action="{{ action('PartidoController@formularioModificar', [$elemento->id]) }}" method="POST"> 
-                                          {{ csrf_field() }} 
-                                          <button  type="submit" class="btn btn-warning">Modificar</button> 
-                                    </form> 
+                                    <div class="btn-group ">
+                                          <a href="{{ action('PartidoController@EliminarPartido', [$elemento->id])}}" 
+                                                class="btn btn-danger btn-block btn-sm  glyphicon glyphicon-trash" 
+                                                role="button" title="Borrar" >
+                                          </a>
+                              
+                                          <a href="{{ action('PartidoController@formularioModificar', [$elemento->id]) }}" 
+                                                class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
+                                                role="button" title="Modificar" method="POST">
+                                          </a>
+                                    </div>
                               </td> 
                               
                         </tr>

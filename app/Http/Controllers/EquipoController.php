@@ -62,7 +62,7 @@ class EquipoController extends Controller
                         'presupuesto'=>'Presupuesto',
                         'nombre'=>'Estadio',
                         'capacidad' => 'Capacidad'],
-                        'lista' => Equipo::where('nombreEquipo','<>','Libre')->join('estadio','estadio.id','=','equipo.id')->paginate(5)
+                        'lista' => Equipo::where('nombreEquipo','<>','Libre')->join('estadio','estadio.id','=','equipo.estadio')->paginate(5)
                   ]
             );
 

@@ -29,13 +29,13 @@ class EntrenadorController extends Controller
          }
 
 
-         return view('entrenadores', array(
-                                 'values' => $values,
-                                 'lista' => Entrenador::orderBy($sort,$type)->simplePaginate(20),
-                                 'controller' => array(
-                                              'name' =>  'EntrenadorController@getEntrenadores',
-                                              'type' => $type,
-                                              'sort' => $sort
+         return view('editarEntrenador', array(
+                                    'values' => $values,
+                                    'lista' => Entrenador::orderBy($sort,$type)->simplePaginate(20),
+                                    'controller' => array(
+                                                'name' =>  'EntrenadorController@getEntrenadores',
+                                                'type' => $type,
+                                                'sort' => $sort
                                           )
                                  )
                   );
@@ -69,6 +69,13 @@ class EntrenadorController extends Controller
             $entrenador->save();
             return Redirect::to('entrenadores');
 
+      }
+
+
+      public function borrarEntrenador ($id){
+            $entrenador = Entrenador::find($id);
+            $entrenador->delete();
+            return back();
       }
 
 }

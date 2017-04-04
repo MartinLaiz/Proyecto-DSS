@@ -41,7 +41,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
                               join('equipo as team2','partido.equipoVisitante','=','team2.id')->
                               select('partido.*','team1.nombreEquipo as equipoLocal','team2.nombreEquipo as equipoVisitante')->paginate(5);
 
-        return view('configurarPartidos', [
+        return view('editarPartidos', [
                                  'values' => [
                                              'equipoLocal'=> 'Equipo Local',
                                              'golesLocal'=>'Goles Local',
@@ -64,10 +64,12 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
 
 
    public function formularioModificar($id){
+
+        $equipos = Equipo::orderBy('nombreEquipo')->where('nombreEquipo',' <>','Libre')->get();
        
         return view ('modificarPartido',[
                                             'idmodificar' => $id],[
-                                            'listaEquipos' => Equipo::orderBy('nombreEquipo')->get()
+                                            'listaEquipos' =>  $equipos 
                                             ]);
    }
 

@@ -36,8 +36,16 @@
                                     <td>{!!$elemento[$key]!!}</td>
                                     @endforeach
                                     <td>
-                                          <a href="{{ action('JugadorController@editarJugador', $elemento->id) }}" class="btn btn-warning btn-block" role="button">Modificar</a>
-                                          <a href="{{ action('JugadorController@eliminar', $elemento->id) }}" class="btn btn-danger btn-block" role="button">Borrar</a>
+                                          <div class="btn-group ">
+                                                <a href="{{ action('JugadorController@editarJugador', $elemento->id) }}" 
+                                                      class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
+                                                      role="button" title="Modificar">
+                                                </a>
+                                                <a href="{{ action('JugadorController@eliminar', $elemento->id) }}" 
+                                                      class="btn btn-danger btn-block glyphicon glyphicon-trash" 
+                                                      role="button" title="Borrar">
+                                                </a>
+                                          </div>
                                     </td>
 
                               </tr>

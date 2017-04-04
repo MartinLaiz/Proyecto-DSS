@@ -4,7 +4,7 @@
 @include('cabecera',array('section'=>'plantilla'))
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
-            <h2>Todos los equipos</h2>
+            <h2>Todos los entrenadores</h2>
             <div class="">
                   {{ $lista->links() }}
                   <table class="table table-striped table-responsive" cellspacing="0" width="100%">
@@ -13,7 +13,7 @@
                                     @foreach($values as $key => $v)
                                     <th>{{ $v }}</th>
                                     @endforeach
-                                    <th class="text-center">Acciones</th>
+                                    <th> Acciones </th>
                               </tr>
                         </thead>
                         <tbody>
@@ -23,12 +23,12 @@
                                     <td>{!!$elemento[$key]!!}</td>
                                     @endforeach
                                     <td>
-                                          <div class="btn-group ">
-                                                <a href="{{ action('EquipoController@modificarEquipo', $elemento->id) }}" 
+                                          <div class="btn-group">
+                                                <a href="{{ action('EntrenadorController@borrarEntrenador', $elemento->id) }}" 
                                                       class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
                                                       role="button" title="Modificar">
                                                 </a>
-                                                <a href="{{ action('EquipoController@eliminar', $elemento->id) }}" 
+                                                <a href="{{ action('EntrenadorController@borrarEntrenador', [$elemento->id]) }}" 
                                                       class="btn btn-danger btn-block glyphicon glyphicon-trash" 
                                                       role="button" title="Borrar">
                                                 </a>
