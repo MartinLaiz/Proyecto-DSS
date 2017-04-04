@@ -79,7 +79,7 @@
                         <div class="col-md-5">
                               {{--Equipo--}}
                               <style>select:invalid { color: gray; }</style>
-                              <select class="form-control" id="equipo" placeholder="Equipo" name="Equipo" required>
+                              <select class="form-control" id="equipo" placeholder="Equipo" name="equipo" required>
                                     <option value="Equipo" disabled selected hidden>Equipo</option>
                                     @foreach($listaEquipos as $equipo)
                                           <option value="{{ $equipo->id }}"> {{ $equipo->nombreEquipo }}</option>

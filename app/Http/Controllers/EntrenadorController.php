@@ -23,7 +23,7 @@ class EntrenadorController extends Controller
                         'dni' => 'DNI',
                         'nombre'=>'Nombre',
                         'apellidos'=>'Apellidos',
-                        'fNac'=>'Fecha de Entrenador',
+                        'fNac'=>'Fecha de Nacimiento',
                         'nombreEquipo' => 'Equipo');
 
 

@@ -44,7 +44,7 @@ $(document).ready(function(){
                   <div class="row form-group">
                         <div class="col-md-2">
                               {{--Fecha de nacimiento--}}
-                              <input class="form-control" id="fNac" name="date" placeholder="Nacido el" type="text" required/>
+                              <input class="form-control" id="fNac" name="date" placeholder="Nacido el" type="date" required/>
                         </div>
                         <!--<div class="col-md-4">
                               <input class="form-control" placeholder="Contraseña"type="password" name="contraseña" id="contrasena">
@@ -61,13 +61,13 @@ $(document).ready(function(){
                                     @endforeach
                               </select>
                         </div>
-                        <div class="col-md-3">
+                        <!--<div class="col-md-3">
                               {{--Términos y condiciones--}}
                               <div class="checkbox">
                                     <label for="terms"></label>
-                                    <input type="checkbox" name="terms" id="terms" value="1" required><strong>¿Esclavizarlo?</strong></input>
+                                    <input type="checkbox" name="terms" id="terms" value="1" required><strong>Confirma</strong></input>
                               </div>
-                        </div>
+                        </div>-->
 
                         <div class="col-md-4">
                               <button class="btn btn-success btn-block" type="submit">Crear entrenador</button>

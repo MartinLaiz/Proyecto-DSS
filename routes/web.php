@@ -36,7 +36,7 @@ Route::get('/partidos', 'PartidoController@getPartidos');
 Route::get('/config','EquipoController@configuracion');
 
 Route::get('/config/crear/jugador','JugadorController@formulario');
-Route::put('/config/crear/jugador','JugadorController@crearJugador');
+Route::post('/config/crear/jugador','JugadorController@crearJugador');
 
 Route::get('/config/crear/entrenador','EntrenadorController@formulario');
 Route::put('/config/crear/entrenador','EntrenadorController@crearEntrenador');
