@@ -100,4 +100,7 @@ class EquipoController extends Controller
             return back();
       }
 
+
+      
+
 }

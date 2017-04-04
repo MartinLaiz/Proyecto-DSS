@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
-
+            {{-- Muestra errores --}}
             @if (count($errors) > 0)
                   <ul>
                   @foreach ($errors->all() as $error)

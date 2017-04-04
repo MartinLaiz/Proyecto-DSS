@@ -67,7 +67,8 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
 
    public function formularioModificar($id){
 
-        $equipos = Equipo::orderBy('nombreEquipo')->where('nombreEquipo',' <>','Libre')->get();
+        $equipos = Equipo::orderBy('nombreEquipo')->where('nombreEquipo','<>','Libre')->get();
+       
 
         return view ('modificarPartido',[
                                             'idmodificar' => $id],[
@@ -95,6 +96,8 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
        ->where('equpoVisitante','=',$request->equipoVisitante)
        ->where('tipo','=',$request->tipo);
 
+
+       //errores
        if($partido->equipoLocal ==  $partido->equipoVisitante){
             $validator = Validator::make($request->all(), [
             'title' => '2',
@@ -134,13 +137,33 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
          $partido->golesVisitante = $request->golesVisitante;
          $partido->fecha = $request->fecha;
          $partido->tipo = $request->tipo;
-         $partido->save();
 
 
-       return Redirect::to('/config/partidos');
-   }
+         //Error de partido que existe
+        if($partido->equipoLocal ==  $partido->equipoVisitante){
+            $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+        ]);
+           $validator->getMessageBag()->add('unique','Error, no se puede crear un partido con el mismo equipo.');
+           return back()->withErrors($validator)->withInput();
 
+       }else{
+       
+            try{
+                $partido->save();
+                return Redirect::to('/config/partidos');
+            }
+            catch(\Illuminate\Database\QueryException $e){
+                    $validator = Validator::make($request->all(), [
+                    'title' => '2',
+                    'body' => '2',
+                ]);
+                $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
+                return back()->withErrors($validator)->withInput();
+            }
+       }
+     }
 
-
-
+     
 }
