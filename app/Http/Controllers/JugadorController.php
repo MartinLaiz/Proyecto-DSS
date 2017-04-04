@@ -15,21 +15,29 @@ class JugadorController extends Controller
             return view('perfil');
       }
 
+      public function getJugador($id){
+            return view('jugador',['jugador' => Jugador::find($id)]);
+      }
+
       public function getJugadores(){
             return view('jugadores',[
-                  'values' => [
-                        'nombre' =>'Nombre',
-                        'apellidos'=>'Apellidos',
-                        'fNac'=>'Fecha de Nacimiento',
-                        'posicion'=>'Posición',
-                        'dorsal'=>'Dorsal',
-                        'nombreEquipo' => 'Equipo'],
-                        'lista' => Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombreEquipo')->orderby('equipo')->orderBy('dorsal')->paginate(20),
+                        'jugadores' => Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombreEquipo')->orderby('equipo')->orderBy('dorsal')->paginate(20),
                         'equipo' => 'Todos',
                         'equipos' => Equipo::get(),
                         'entrenadorNombre' => 'Ninguno',
                         'entrenadorApellidos' => 'Ninguno'
-                  ]
+            ]);
+      }
+
+      public function getJugadoresEquipo($id){
+            $team = Equipo::find($id);
+            return view('jugadores',  array(
+                                    'jugadores' => $team->jugadores()->orderBy('apellidos')->simplePaginate(15),
+                                    'equipo' => $team->nombreEquipo,
+                                    'equipos' => Equipo::get(),
+                                    'entrenadorNombre' => 'Ninguno',
+                                    'entrenadorApellidos' => 'Ninguno'
+                                    )
             );
       }
 
@@ -59,31 +67,6 @@ class JugadorController extends Controller
             $jugador->save();
 
             return Redirect::to('jugadores');
-      }
-
-      public function buscarJugador(Request $request){
-            echo $request->path();
-            echo "<br>";
-            echo $request->url();
-      }
-
-
-      public function getJugadoresEquipo($id){
-            $team = Equipo::find($id);
-            return view('jugadores',  array(
-                                    'values' => array(
-                                                'nombre'=>'Nombre',
-                                                'apellidos'=>'Apellidos',
-                                                'fNac'=>'Fecha de Nacimiento',
-                                                'posicion'=>'Posición',
-                                                'dorsal'=>'Dorsal'),
-                                    'lista' => $team->jugadores()->orderBy('apellidos')->simplePaginate(15),
-                                    'equipo' => $team->nombreEquipo,
-                                    'equipos' => Equipo::get(),
-                                    'entrenadorNombre' => 'Ninguno',
-                                    'entrenadorApellidos' => 'Ninguno'
-                                    )
-            );
       }
 
       public function editar(){

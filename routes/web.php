@@ -24,6 +24,7 @@ Route::get('/equipo/{id}','EquipoController@getEquipo');
 //Rutas Jugador
 Route::get('/jugadores', 'JugadorController@getJugadores');
 Route::get('/jugadores/{id}', 'JugadorController@getJugadoresEquipo');
+Route::get('/jugador/{id}', 'JugadorController@getJugador');
 Route::post('/buscarJugador','JugadorController@buscarJugador');
 
 //Rutas de entrenador
@@ -36,7 +37,7 @@ Route::get('/partidos', 'PartidoController@getPartidos');
 Route::get('/config','EquipoController@configuracion');
 
 Route::get('/config/crear/jugador','JugadorController@formulario');
-Route::put('/config/crear/jugador','JugadorController@crearJugador');
+Route::post('/config/crear/jugador','JugadorController@crearJugador');
 
 Route::get('/config/crear/entrenador','EntrenadorController@formulario');
 Route::put('/config/crear/entrenador','EntrenadorController@crearEntrenador');

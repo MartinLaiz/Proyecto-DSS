@@ -66,18 +66,18 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
    public function formularioModificar($id){
 
         $equipos = Equipo::orderBy('nombreEquipo')->where('nombreEquipo',' <>','Libre')->get();
-       
+
         return view ('modificarPartido',[
                                             'idmodificar' => $id],[
-                                            'listaEquipos' =>  $equipos 
+                                            'listaEquipos' =>  $equipos
                                             ]);
    }
 
    public function formularioInsertar(){
-       
+
         return view ('crearPartido',['listaEquipos' => Equipo::orderBy('nombreEquipo')->get()]);
    }
-                                            
+
 
 
    public function modificarPartido(Request $request,$id){
@@ -104,7 +104,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
          $partido->tipo = $request->tipo;
          $partido->save();
 
-         
+
 
        return Redirect::to('/config/partidos');
    }

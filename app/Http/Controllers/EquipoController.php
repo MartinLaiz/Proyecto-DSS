@@ -50,7 +50,10 @@ class EquipoController extends Controller
       }
 
       public function getEquipo($id){
-            return view('prueba',['prueba' => $id]);
+            $team = Equipo::find($id);
+            return view('equipo',[  'equipo' => $team,
+                                    'estadio'=> $team->estadio()->first(),
+                                    'jugadores'=>$team->jugadores()->get()]);
       }
 
 
