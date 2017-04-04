@@ -14,8 +14,6 @@ class EstadioTableSeeder extends Seeder
         // Borramos los datos de la tabla
         DB::table('estadio')->delete();
 
-        
-
         // Añadimos un estadio para la UA
         DB::table('estadio')->insert([
             'nombre' => 'UATeam Stadium' ,

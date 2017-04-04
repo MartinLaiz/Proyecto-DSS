@@ -25,6 +25,18 @@ $(document).ready(function(){
 {{------------------------------------------------}}
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
+
+
+            {{-- Muestra errores --}}
+            @if (count($errors) > 0)
+                  <ul>
+                  @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">
+                              <a href="#" class="alert-link">{{ $error }}</a>
+                        </div>
+                  @endforeach
+                  </ul>
+            @endif
             <form action="{{action('EntrenadorController@crearEntrenador')}}" method="POST">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
@@ -51,23 +63,15 @@ $(document).ready(function(){
                         </div>-->
                   </div>
                   <div class="row">
-                        <div class="col-md-5">
-                              {{--Equipo--}}
+                         <div class="col-md-4">
                               <style>select:invalid { color: gray; }</style>
-                              <select class="form-control" id="equipo" placeholder="Equipo" name="Equipo" required>
-                                    <option value="Equipo" disabled selected hidden>Equipo</option>
+                              <select class="form-control" id="equipo" placeholder="equipoVisitante" name="equipo" required>
+                                    <option value="Equipo" disabled selected hidden>Equipo </option>
                                     @foreach($listaEquipos as $equipo)
                                           <option value="{{ $equipo->id }}"> {{ $equipo->nombreEquipo }}</option>
                                     @endforeach
                               </select>
-                        </div>
-                        <!--<div class="col-md-3">
-                              {{--Términos y condiciones--}}
-                              <div class="checkbox">
-                                    <label for="terms"></label>
-                                    <input type="checkbox" name="terms" id="terms" value="1" required><strong>Confirma</strong></input>
-                              </div>
-                        </div>-->
+                        </div> 
 
                         <div class="col-md-4">
                               <button class="btn btn-success btn-block" type="submit">Crear entrenador</button>

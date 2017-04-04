@@ -24,13 +24,13 @@
                         @foreach($lista as $elemento)
                         <tr>
                               @foreach($values as $key => $v)
-                              @if($v=='Goles Local' or $v=='Goles Visitante' or $v=='Fecha')
-                              <td class="text-center">{!!$elemento[$key]!!}</td>
-                              @elseif($v == 'Equipo Visitante')
-                              <td class="text-right">{!!$elemento[$key]!!}</th>
-                              @else
-                              <td>{!!$elemento[$key]!!}</td>
-                              @endif
+                                    @if($v=='Goles Local' or $v=='Goles Visitante' or $v=='Fecha')
+                                          <td class="text-center">{!!$elemento[$key]!!}</td>
+                                    @elseif($v == 'Equipo Visitante')
+                                          <td class="text-right">{!!$elemento[$key]!!}</th>
+                                    @else
+                                          <td>{!!$elemento[$key]!!}</td>
+                                    @endif
                               @endforeach
                               <td>
                                     <div class="btn-group ">

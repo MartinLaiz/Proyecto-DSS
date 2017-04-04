@@ -162,7 +162,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
                 $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
                 return back()->withErrors($validator)->withInput();
             }
-       }
+         }
      }
 
      
