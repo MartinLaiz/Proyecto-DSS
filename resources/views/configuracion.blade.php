@@ -29,7 +29,7 @@
 
                         <a class="btn btn-primary btn-block" href="{{ action('PartidoController@formularioInsertar') }}" role="button">Insertar partido</a><br>
 
-                        <a class="btn btn-primary btn-block" href="{{ action('PartidoController@getPartidos') }}" role="button">Modificar/Borrar partido</a>
+                        <a class="btn btn-primary btn-block" href="{{ action('PartidoController@getPartidosConfig') }}" role="button">Modificar/Borrar partido</a>
                         <br>
                   </div>
             </div>

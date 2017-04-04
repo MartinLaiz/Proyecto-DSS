@@ -57,7 +57,8 @@ Route::get('/config/editar/equipo/{id}','EquipoController@editar');
 Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');
 Route::get('/config/eliminar/jugador/{id}','JugadorController@eliminar');
 
-Route::get('config/partidos', 'PartidoController@getPartidos');
+Route::get('config/partidos', 'PartidoController@getPartidosConfig');
 Route::put('/formularioPartido/{id}','PartidoController@modificarPartido');
 Route::get('config/crear/partido','PartidoController@formularioInsertar');
 Route::put('config/crear/partido','PartidoController@crearPartido');
+
