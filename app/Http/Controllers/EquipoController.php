@@ -45,12 +45,56 @@ class EquipoController extends Controller
             $equipo->presupuesto = $request->input('presupuesto');
 
             $estadio->equipo()->save($equipo);
-
-            return redirect()->action('EquipoController@getEquipo', $equipo->id);
+            dd($equipo);
+            return redirect()->action('EquipoController@configuracion', $equipo->id);
       }
 
       public function getEquipo($id){
             return view('prueba',['prueba' => $id]);
+      }
+
+
+      public function editar(){
+            return view('editarEquipos',[
+                  'values' => [
+                        'cif' =>'CIF',
+                        'nombreEquipo'=>'Nombre del equipo',
+                        'presupuesto'=>'Presupuesto',
+                        'nombre'=>'Estadio',
+                        'capacidad' => 'Capacidad'],
+                        'lista' => Equipo::where('nombreEquipo','<>','Libre')->join('estadio','estadio.id','=','equipo.id')->paginate(5)
+                  ]
+            );
+
+      }
+
+      public function modificarEquipo($id){
+            $equipo = Equipo::find($id);
+            return view('modificarEquipo',[
+                  'equipo' => $equipo,
+                  'estadio' => $equipo->estadio()->first()]);
+      }
+
+      public function modificarEquipoPost(Request $request, $id){
+            $equipo = Equipo::find($id);
+            $equipo->cif = $request->cif;
+            $equipo->nombreEquipo = $request->nombreEquipo;
+            $equipo->presupuesto = $request->presupuesto;
+            $equipo->save();
+
+            $estadio = Estadio::find($equipo->estadio);
+            $estadio->nombre = $request->nombre;
+            $estadio->capacidad = $request->capacidad;
+            $estadio->save();
+
+            return redirect()->action('EquipoController@editar');
+      }
+
+      public function eliminar($id){
+            $equipo = Equipo::find($id);
+            $estadio = Estadio::find($equipo->estadio);
+            $equipo->delete();
+            return back();
       }
 
 }

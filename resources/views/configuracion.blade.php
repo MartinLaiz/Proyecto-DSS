@@ -15,13 +15,13 @@
                   <div class="col-md-3 text-center">
                         <h3>Entrenador</h3>
                         <a class="btn btn-primary btn-block" href="{{ action('EntrenadorController@formulario') }}" role="button">Insertar entrenador</a><br>
-                        <a class="btn btn-primary btn-block" href="{{ action('JugadorController@formulario') }}" role="button">Modificar/Borrar entrenador</a>
+                        <a class="btn btn-primary btn-block" href="{{ action('JugadorController@editar') }}" role="button">Modificar/Borrar entrenador</a>
                         <br>
                   </div>
                   <div class="col-md-3 text-center">
                         <h3>Equipo</h3>
                         <a class="btn btn-primary btn-block" href="{{ action('EquipoController@formulario') }}" role="button">Insertar equipo</a><br>
-                        <a class="btn btn-primary btn-block" href="{{ action('EquipoController@formulario') }}" role="button">Modificar/Borrar equipo</a>
+                        <a class="btn btn-primary btn-block" href="{{ action('EquipoController@editar') }}" role="button">Modificar/Borrar equipo</a>
                         <br>
                   </div>
                   <div class="col-md-3 text-center">

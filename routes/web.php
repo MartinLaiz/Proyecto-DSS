@@ -52,13 +52,14 @@ Route::get('/config/editar/jugador/{id}','JugadorController@editarJugador');
 Route::post('/config/editar/jugador/{id}','JugadorController@editarJugadorPost');
 
 Route::get('/config/editar/equipos','EquipoController@editar');
-Route::get('/config/editar/equipo/{id}','EquipoController@editar');
+Route::get('/config/editar/equipo/{id}','EquipoController@modificarEquipo');
+Route::post('/config/editar/equipo/{id}','EquipoController@modificarEquipoPost');
 
 Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');
 Route::get('/config/eliminar/jugador/{id}','JugadorController@eliminar');
+Route::get('/config/eliminar/jugador/{id}','EquipoController@eliminar');
 
 Route::get('config/partidos', 'PartidoController@getPartidosConfig');
 Route::put('/formularioPartido/{id}','PartidoController@modificarPartido');
 Route::get('config/crear/partido','PartidoController@formularioInsertar');
 Route::put('config/crear/partido','PartidoController@crearPartido');
-

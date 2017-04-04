@@ -7,7 +7,7 @@
       <div class="col-md-10 col-md-offset-1">
             <form action="{{ action('EquipoController@crearEquipo') }}" method="POST">
                   {{ csrf_field() }}
-                  {{ method_field('PUT') }}
+                  {{ method_field('POST') }}
                   <br><br>
                   <div class="row form-group">
                         <h3>Equipo</h3>
