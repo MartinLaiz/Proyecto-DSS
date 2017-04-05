@@ -29,31 +29,30 @@
                         @endforeach
                   </ul>
             </div>
-
-                  <div>
-                        <h3>Próximos partidos</h3>
-                        <ul class="list-group">
-                              @foreach($proxPartidos as $partido)
-                              <li class="list-group-item row">
-                                    <div class="col-md-2">
-                                          {{ date("d/m/Y",strtotime($partido->fecha)) }}
-                                    </div>
-                                    <div class="col-md-3 text-center">
-                                          {{ $equipos->find($partido->equipoLocal)->nombreEquipo }}
-                                    </div>
-                                    <div class="col-md-1 text-center">
-                                          -
-                                    </div>
-                                    <div class="col-md-3 text-center">
-                                          {{ $equipos->find($partido->equipoVisitante)->nombreEquipo }}
-                                    </div>
-                                    <div class="col-md-3 text-center">
-                                          {{ $estadios->find($partido->estadio)->nombre }}
-                                    </div>
-                              </li>
-                              @endforeach
-                        </ul>
-                  </div>
+            <div>
+                  <h3>Próximos partidos</h3>
+                  <ul class="list-group">
+                        @foreach($proxPartidos as $partido)
+                        <li class="list-group-item row">
+                              <div class="col-md-2">
+                                    {{ date("d/m/Y",strtotime($partido->fecha)) }}
+                              </div>
+                              <div class="col-md-3 text-center">
+                                    {{ $equipos->find($partido->equipoLocal)->nombreEquipo }}
+                              </div>
+                              <div class="col-md-1 text-center">
+                                    -
+                              </div>
+                              <div class="col-md-3 text-center">
+                                    {{ $equipos->find($partido->equipoVisitante)->nombreEquipo }}
+                              </div>
+                              <div class="col-md-3 text-center">
+                                    {{ $estadios->find($partido->estadio)->nombre }}
+                              </div>
+                        </li>
+                        @endforeach
+                  </ul>
+            </div>
       </div>
 </div>
 

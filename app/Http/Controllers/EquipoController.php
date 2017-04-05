@@ -36,14 +36,13 @@ class EquipoController extends Controller
             $estadio->capacidad = $request->input('aforo');
             $estadio->save();
 
-            $equipo = new Equipo();
+            $equipo = new Equipo(); //Si falla el crear equipo el Estadio sigue creado
             $equipo->cif = $request->input('cif');
             $equipo->nombreEquipo = $request->input('equipoNombre');
             $equipo->presupuesto = $request->input('presupuesto');
 
             $estadio->equipo()->save($equipo);
-            dd($equipo);
-            return redirect()->action('EquipoController@configuracion', $equipo->id);
+            return redirect()->action('EquipoController@editar');
       }
 
       public function getEquipo($id){
@@ -108,7 +107,8 @@ class EquipoController extends Controller
 
       public function eliminar($id){
             $equipo = Equipo::find($id);
-            $estadio = Estadio::find($equipo->estadio);
+            $estadio = $equipo->estadio()->first();
+            $estadio->delete();
             $equipo->delete();
             return back();
       }
