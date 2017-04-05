@@ -6,22 +6,19 @@ use Illuminate\Http\Request;
 use App\Equipo;
 use App\Partido;
 use App\Estadio;
+use Carbon\Carbon;
 
 class EquipoController extends Controller
 {
       public function getHome(){
-            $uaId = Equipo::where('nombreEquipo','like','%UA%')->first()->id;
-            $partidosUA = Partido::where('equipoLocal','=', Equipo::where('nombreEquipo','like','%UA%')->first()->id )->
-                  join('equipo as equiposLocales','partido.equipoLocal','=','equiposLocales.id')->
-                  join('equipo as equiposVisitantes','partido.equipoVisitante','=','equiposVisitantes.id')->
-                  join('estadio as estadioJuego','partido.estadio','=','estadioJuego.id')->
-                  select('partido.*', 'equiposLocales.nombreEquipo as equipoLocal', 'equiposVisitantes.nombreEquipo as equipoVisitante', 'estadioJuego.nombre as estadio')->
-                  orWhere('equipoVisitante','=',$uaId);
-            $today = date('Y/m/d',time());
-
+            $idUA = Equipo::where('nombreEquipo','like','%UA%')->first()->id;
+            $ultPartidos = Partido::where('fecha','<',Carbon::now())->orderBy('fecha','desc')->take(5)->get();
+            //dd($ultPartidos);
+            $proxPartidos = Partido::where('fecha','>',Carbon::now())->orderBy('fecha','asc')->take(5)->get();
             return view('home',[
-                  'ultPartidos' => $partidosUA->whereDate('fecha','>',date('Y/m/d'))->take(5)->get(),
-                  'proxPartidos' => $partidosUA->whereDate('fecha','<',date('Y/m/d'))->take(5)->get()
+                  'equipos' => Equipo::get(),
+                  'ultPartidos' => $ultPartidos,
+                  'proxPartidos' => $proxPartidos
             ]);
       }
 
@@ -103,7 +100,7 @@ class EquipoController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-           
+
       }
 
       public function eliminar($id){
@@ -114,6 +111,6 @@ class EquipoController extends Controller
       }
 
 
-      
+
 
 }

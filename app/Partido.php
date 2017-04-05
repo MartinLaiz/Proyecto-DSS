@@ -8,6 +8,8 @@ class Partido extends Model
 {
     protected $table = 'partido';
 
+    protected $dates = ['fecha'];
+
     public function partido(){
         return $this->belongsToMany('App\Equipo', 'partido', 'equipoLocal', 'equipoVisitante');
     }
@@ -18,5 +20,5 @@ class Partido extends Model
     public function equipoVisitante(){
         return $this->belongsTo('App\Equipo');
     }*/
- 
+
 }

@@ -11,7 +11,7 @@ class PartidoTableSeeder extends Seeder
       */
       public function run()
       {
-            $formato = 'Y/m/d';
+            $formato = 'Y-m-d H:i:s';
             $equipos = DB::table('equipo')->get();
             $libre = DB::table('equipo')->where('nombreEquipo','like','%Libre%')->first();
             $today = time();
