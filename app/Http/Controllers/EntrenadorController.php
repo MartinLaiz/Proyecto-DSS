@@ -83,39 +83,23 @@ class EntrenadorController extends Controller
             $entrenador->dni = $request->dni;//Importante
             $entrenador->nombre = $request->nombre;
             $entrenador->apellidos = $request->apellidos;
-            $entrenador->fNac = $request->date;      
-      
+            $entrenador->fNac = $request->date;
+
             $idLibre = Equipo::where('nombreEquipo','like','%Libre%')->first();
+
             //miro si existe ya un entrenador con un equipo
             $cantidadEquipo = Entrenador::where('equipo','=', $request->equipo)->count();
             //miro si el equipo es libre
             $entrenadorEquipo = Entrenador::where('equipo','=', $request->equipo)->first();
-
-            //si ya existe un entrandor en el equipo
+           
+            //si no hay entrenador en el equipo
+            //si el equipo es libre puede haber mas de uno
+            // y si se cambia al mismo equipo perteneciente 
             if($cantidadEquipo > 0 && $request->equipo != $idLibre->id){
-                  $validator = Validator::make($request->all(), [
-                        'title' => '2',
-                        'body' => '2',
-                  ]);
-                  $validator->getMessageBag()->add('unique','Error, solo puede haber un entrenador por equipo.');
-                  return back()->withErrors($validator)->withInput();
-                  
-            }else{
-
-                  try{
-                        $entrenador->equipo = $request->equipo;
-                        $entrenador->save();
-                        return Redirect::to('entrenadores');
-                  }
-                  catch(\Illuminate\Database\QueryException $e){
-                        $validator = Validator::make($request->all(), [
-                        'title' => '2',
-                        'body' => '2',
-                  ]);
-                        $validator->getMessageBag()->add('unique','Error, el DNI introducido ya existe.');
-                        return back()->withErrors($validator)->withInput();
-                  }
-            }
+                  $ok = true;
+            }else $ok = false;
+      
+            return $this->captarErrores($request,$entrenador,$ok);
       }
 
 
@@ -132,7 +116,8 @@ class EntrenadorController extends Controller
             $entrenador->dni = $request->dni;
             $entrenador->nombre = $request->nombre;
             $entrenador->apellidos = $request->apellidos;
-            $entrenador->fNac = $request->date;         
+            $entrenador->fNac = $request->date;
+            $aux = $request->equipo;
             
             $idLibre = Equipo::where('nombreEquipo','like','%Libre%')->first();
 
@@ -140,19 +125,28 @@ class EntrenadorController extends Controller
             $cantidadEquipo = Entrenador::where('equipo','=', $request->equipo)->count();
             //miro si el equipo es libre
             $entrenadorEquipo = Entrenador::where('equipo','=', $request->equipo)->first();
-
+           
             //si no hay entrenador en el equipo
             //si el equipo es libre puede haber mas de uno
             // y si se cambia al mismo equipo perteneciente 
             if($cantidadEquipo > 0 && $request->equipo != $idLibre->id
             && $request->equipo != $entrenador->equipo){
-            
+                  $ok = true;
+            }else $ok = false;
+            return $this->captarErrores($request,$entrenador,$ok);
+           
+      }
+
+
+      public function captarErrores($request, $entrenador,$ok){
+
+            if($ok){
                   $validator = Validator::make($request->all(), [
                         'title' => '2',
                         'body' => '2',
                   ]);
                   $validator->getMessageBag()->add('unique','Error, solo puede haber un entrenador por equipo.');
-                  return back()->withErrors($validator)->withInput();
+                  return  back()->withErrors($validator)->withInput();
                   
             }else{
 
@@ -171,6 +165,9 @@ class EntrenadorController extends Controller
                         return back()->withErrors($validator)->withInput();
                   }
             }
+
+
+
       }
 
 }
