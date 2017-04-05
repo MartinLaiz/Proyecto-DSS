@@ -91,41 +91,8 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
        $partido->golesVisitante = $request->golesVisitante;
        $partido->fecha = $request->fecha;
        $partido->tipo = $request->tipo;
-       //comprobamos si existe el equipo
-       $partidosRepetido =Partido::where('equipoLocal','=',$request->equipoLocal)
-       ->where('equpoVisitante','=',$request->equipoVisitante)
-       ->where('tipo','=',$request->tipo);
-
-
-       //errores
-       if($partido->equipoLocal ==  $partido->equipoVisitante){
-            $validator = Validator::make($request->all(), [
-            'title' => '2',
-            'body' => '2',
-        ]);
-           $validator->getMessageBag()->add('unique','Error, no puede haber partido con el mismo equipo.');
-           return back()->withErrors($validator)->withInput();
-
-       }else{
-       //Error de partido que existe
-            try{
-                $partido->save();
-                return Redirect::to('/config/partidos');
-            }
-            catch(\Illuminate\Database\QueryException $e){
-                    $validator = Validator::make($request->all(), [
-                    'title' => '2',
-                    'body' => '2',
-                ]);
-                $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
-                return back()->withErrors($validator)->withInput();
-            }
-
-            //error del mismo equipo
-       }
-
        
-       
+       return $this->verErrores($partido,$request);
    }
 
 
@@ -139,31 +106,35 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
          $partido->tipo = $request->tipo;
 
 
-         //Error de partido que existe
+         return $this->verErrores($partido,$request);
+       
+     }
+
+     public function verErrores($partido,$request){
+
         if($partido->equipoLocal ==  $partido->equipoVisitante){
             $validator = Validator::make($request->all(), [
             'title' => '2',
             'body' => '2',
-        ]);
-           $validator->getMessageBag()->add('unique','Error, no se puede crear un partido con el mismo equipo.');
-           return back()->withErrors($validator)->withInput();
+            ]);
+            $validator->getMessageBag()->add('unique','Error, no se puede crear un partido con el mismo equipo.');
+            return back()->withErrors($validator)->withInput();
 
-       }else{
-       
+        }else{
+
             try{
                 $partido->save();
                 return Redirect::to('/config/partidos');
             }
             catch(\Illuminate\Database\QueryException $e){
-                    $validator = Validator::make($request->all(), [
-                    'title' => '2',
-                    'body' => '2',
+                $validator = Validator::make($request->all(), [
+                'title' => '2',
+                'body' => '2',
                 ]);
                 $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
                 return back()->withErrors($validator)->withInput();
             }
-         }
-     }
+        }
 
-     
+    }
 }

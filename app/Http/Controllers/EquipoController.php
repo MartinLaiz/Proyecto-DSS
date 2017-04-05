@@ -90,7 +90,20 @@ class EquipoController extends Controller
             $estadio->capacidad = $request->capacidad;
             $estadio->save();
 
-            return redirect()->action('EquipoController@editar');
+             try{
+                $partido->save();
+                return redirect()->action('EquipoController@editar');
+            }
+            catch(\Illuminate\Database\QueryException $e){
+                $validator = Validator::make($request->all(), [
+                'title' => '2',
+                'body' => '2',
+                ]);
+                $validator->getMessageBag()->add('unique','Error, el CIF introducido ya existe');
+                return back()->withErrors($validator)->withInput();
+            }
+
+           
       }
 
       public function eliminar($id){

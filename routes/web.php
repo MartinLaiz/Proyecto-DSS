@@ -60,7 +60,7 @@ Route::put('/config/editar/entrenador/{id}','EntrenadorController@modificarEntre
 
 Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');
 Route::get('/config/eliminar/jugador/{id}','JugadorController@eliminar');
-Route::get('/config/eliminar/jugador/{id}','EquipoController@eliminar');
+Route::get('/config/eliminar/equipo/{id}','EquipoController@eliminar');
 Route::get('/config/eliminar/entrenador/{id}','EntrenadorController@borrarEntrenador');
 
 //configuracion partidos
