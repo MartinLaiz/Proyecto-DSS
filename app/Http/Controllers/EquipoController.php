@@ -13,10 +13,10 @@ class EquipoController extends Controller
       public function getHome(){
             $idUA = Equipo::where('nombreEquipo','like','%UA%')->first()->id;
             $ultPartidos = Partido::where('fecha','<',Carbon::now())->orderBy('fecha','desc')->take(5)->get();
-            //dd($ultPartidos);
             $proxPartidos = Partido::where('fecha','>',Carbon::now())->orderBy('fecha','asc')->take(5)->get();
             return view('home',[
                   'equipos' => Equipo::get(),
+                  'estadios' => Estadio::get(),
                   'ultPartidos' => $ultPartidos,
                   'proxPartidos' => $proxPartidos
             ]);
@@ -49,8 +49,8 @@ class EquipoController extends Controller
       public function getEquipo($id){
             $team = Equipo::find($id);
             return view('equipo',[  'equipo' => $team,
-                                    'estadio'=> $team->estadio()->first(),
-                                    'jugadores'=>$team->jugadores()->get()]);
+            'estadio'=> $team->estadio()->first(),
+            'jugadores'=>$team->jugadores()->get()]);
       }
 
 
@@ -70,9 +70,12 @@ class EquipoController extends Controller
 
       public function modificarEquipo($id){
             $equipo = Equipo::find($id);
-            return view('modificarEquipo',[
-                  'equipo' => $equipo,
-                  'estadio' => $equipo->estadio()->first()]);
+            return view(
+                  'modificarEquipo',[
+                        'equipo' => $equipo,
+                        'estadio' => $equipo->estadio()->first()
+                  ]
+            );
       }
 
       public function modificarEquipoPost(Request $request, $id){
@@ -87,20 +90,20 @@ class EquipoController extends Controller
             $estadio->capacidad = $request->capacidad;
             $estadio->save();
 
-             try{
-                $partido->save();
-                return redirect()->action('EquipoController@editar');
+            try{
+                  $partido->save();
+                  return redirect()->action('EquipoController@editar');
             }
             catch(\Illuminate\Database\QueryException $e){
-                $validator = Validator::make($request->all(), [
-                'title' => '2',
-                'body' => '2',
-                ]);
-                $validator->getMessageBag()->add('unique','Error, el CIF introducido ya existe');
-                return back()->withErrors($validator)->withInput();
+                  $validator = Validator::make(
+                        $request->all(), [
+                              'title' => '2',
+                              'body' => '2',
+                        ]
+                  );
+                  $validator->getMessageBag()->add('unique','Error, el CIF introducido ya existe');
+                  return back()->withErrors($validator)->withInput();
             }
-
-
       }
 
       public function eliminar($id){
@@ -109,8 +112,4 @@ class EquipoController extends Controller
             $equipo->delete();
             return back();
       }
-
-
-
-
 }

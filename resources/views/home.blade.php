@@ -4,80 +4,57 @@
 
 <div class="contenedor row">
       @include('cabecera',array('section'=>'inicio'))
-      <div class="col-md-5"> <!-- Tabla ultimo partido -->
-            <h3>Último partido</h3>
-            <div class="col-md-6 col-sm-6"><!-- Equipo Local -->
-                  <table class="table table-striped">
-                        <thead>
-                              <tr class="">
-                                    <th><a href="#" class="text-primary">Equipo Local</a></th>
-                              </tr>
-                        </thead>
-                        <tbody>
-                              <tr class="">
-                                    <td>Alineación</td>
-                              </tr>
-                              <tr class="">
-                                    <td>Banquillo</td>
-                              </tr>
-                              <tr class="">
-                                    <td>Cambios</td>
-                              </tr>
-                              <tr class="">
-                                    <td>Goles</td>
-                              </tr>
-                              <tr class="">
-                                    <td>Observaciones</td>
-                              </tr>
-                        </tbody>
-                  </table>
-            </div>
-            <div class="col-md-6 col-sm-6"><!-- Equipo Visitante -->
-                  <table class="table table-striped text-right">
-                        <thead>
-                              <tr class="">
-                                    <th><a href="#" class="text-primary">Equipo Visitante</a></th>
-                              </tr>
-                        </thead>
-                        <tbody>
-                              <tr class="">
-                                    <td>Alineación</td>
-                              </tr>
-                              <tr class="">
-                                    <td>Banquillo</td>
-                              </tr>
-                              <tr class="">
-                                    <td>Cambios</td>
-                              </tr>
-                              <tr class="">
-                                    <td>Goles</td>
-                              </tr>
-                              <tr class="">
-                                    <td>Observaciones</td>
-                              </tr>
-                        </tbody>
-                  </table>
-            </div>
-      </div>
-      <div class="col-md-7">
+      <div class="col-md-10 col-md-offset-1">
             <div>
                   <h3>Últimos partidos</h3>
                   <ul class="list-group">
-                        @foreach($ultPartidos as $partidoAnt)
-                        <li class="list-group-item">{{ $equipos->find($partidoAnt->equipoLocal)->nombreEquipo }}      {{ $partidoAnt->golesLocal }}   -   {{ $partidoAnt->golesVisitante }}      {{ $equipos->find($partidoAnt->equipoVisitante)->nombreEquipo }}</li>
+                        @foreach($ultPartidos as $partido)
+                        <li class="list-group-item row">
+                              <div class="col-md-2">
+                                    {{ date("d/m/Y",strtotime($partido->fecha)) }}
+                              </div>
+                              <div class="col-md-3 text-center">
+                                    {{ $equipos->find($partido->equipoLocal)->nombreEquipo }}
+                              </div>
+                              <div class="col-md-1 text-center">
+                                    {{ $partido->golesLocal }} - {{ $partido->golesVisitante }}
+                              </div>
+                              <div class="col-md-3 text-center">
+                                    {{ $equipos->find($partido->equipoVisitante)->nombreEquipo }}
+                              </div>
+                              <div class="col-md-3 text-center">
+                                    {{ $estadios->find($partido->estadio)->nombre }}
+                              </div>
+                        </li>
                         @endforeach
                   </ul>
             </div>
-            <div>
-                  <h3>Próximos partidos</h3>
-                  <ul class="list-group">
-                        @foreach($proxPartidos as $partidoProx)
-                        <li class="list-group-item">{{ $equipos->find($partidoProx->equipoLocal)->nombreEquipo }}       -       {{ $equipos->find($partidoProx->equipoVisitante)->nombreEquipo }}</li>
-                        @endforeach
-                  </ul>
-            </div>
-      </div>
 
+                  <div>
+                        <h3>Próximos partidos</h3>
+                        <ul class="list-group">
+                              @foreach($proxPartidos as $partido)
+                              <li class="list-group-item row">
+                                    <div class="col-md-2">
+                                          {{ date("d/m/Y",strtotime($partido->fecha)) }}
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                          {{ $equipos->find($partido->equipoLocal)->nombreEquipo }}
+                                    </div>
+                                    <div class="col-md-1 text-center">
+                                          -
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                          {{ $equipos->find($partido->equipoVisitante)->nombreEquipo }}
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                          {{ $estadios->find($partido->estadio)->nombre }}
+                                    </div>
+                              </li>
+                              @endforeach
+                        </ul>
+                  </div>
+      </div>
 </div>
 
 @endsection
