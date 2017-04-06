@@ -1,11 +1,11 @@
 @extends('layouts.master')
-@section('title', 'Crear jugador')
+@section('title', 'Crear equipo')
 @section('content')
 @include('cabecera',array('section'=>'Inicio'))
 {{------------------------------------------------}}
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
-
+            <h2>Crear un equipo</h2>
            {{-- Muestra errores --}}
             @if (count($errors) > 0)
                   <ul>

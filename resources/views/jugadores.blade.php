@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Inicio')
+@section('title', 'Plantilla')
 @section('content')
 @include('cabecera',array('section'=>'plantilla'))
 <div class="contenedor row">
@@ -7,7 +7,11 @@
             @if($equipo == 'Todos')
             <h2>Todos los jugadores</h2>
             @else
-            <h2>Jugadores del {{ $equipo }}</h2>
+                  @if($equipo == 'Libre')
+                  <h2>Jugadores libres</h2>
+                  @else
+                  <h2>Jugadores del {{ $equipo }}</h2>
+                  @endif
             @endif
             <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Seleccionar equipo <span class="caret"></span></button>
@@ -19,6 +23,7 @@
                   <a href="{{ action('JugadorController@getJugadores') }}" class="btn btn-info" role="button">Mostrar todos los jugadores</a>
             </div>
             {{ $jugadores->links() }}
+            @if(count($jugadores) > 0)
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
@@ -56,6 +61,21 @@
                         @endforeach
                   </tbody>
             </table>
+            @else
+            <br>
+            <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>    @if($equipo == 'Todos')
+                                    No hay jugadores en la base de datos
+                              @elseif($equipo == 'Libre')
+                                    No conocemos jugadores libres
+                              @else
+                                    No conocemos jugadores de éste equipo
+                              @endif
+                  </strong>
+                  <br>
+            </div>
+            @endif
       </div>
 </div>
 @endsection

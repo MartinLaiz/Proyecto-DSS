@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Inicio')
+@section('title', 'Partidos')
 @section('content')
 @include('cabecera',array('section'=>'partidos'))
 <div class="contenedor row">

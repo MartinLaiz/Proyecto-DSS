@@ -14,7 +14,7 @@
             var date_input=$('input[name="date"]'); //our date input has the name "date"
             var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
             var options={
-                  format: 'yyyy/mm/dd',
+                  format: 'mm/dd/yyyy',
                   container: container,
                   todayHighlight: true,
                   autoclose: true
@@ -25,6 +25,7 @@
 {{------------------------------------------------}}
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
+      <h2>Crear un jugador</h2>
             <!-- Errores -->
             @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -40,7 +41,7 @@
                   {{ csrf_field() }}
                   {{ method_field('POST') }}
                   {{--Campos: nombre, apellidos, fNac, posicion, dorsal --}}
-                  <br><br>
+                  
                   <div class="row form-group">
                         <div class="col-md-3">
                               <input class="form-control" placeholder="DNI" type="text" name="dni" value="{{ old('dni') }}" id="dni" required>

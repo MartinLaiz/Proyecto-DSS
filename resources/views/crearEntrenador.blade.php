@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Crear jugador')
+@section('title', 'Crear entrenador')
 @section('content')
 @include('cabecera',array('section'=>'Inicio'))
 
@@ -25,7 +25,7 @@ $(document).ready(function(){
 {{------------------------------------------------}}
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
-
+            <h2>Crear entrenador</h2>
 
             {{-- Muestra errores --}}
             @if (count($errors) > 0)
@@ -41,7 +41,7 @@ $(document).ready(function(){
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   {{--Campos: nombre, apellidos, fNac --}}
-                  <br><br>
+                  
                   <div class="row form-group">
                         <div class="col-md-3">
                               <input class="form-control" placeholder="DNI" type="text" name="dni" id="dni" required>
