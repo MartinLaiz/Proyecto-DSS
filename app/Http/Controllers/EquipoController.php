@@ -7,6 +7,8 @@ use App\Equipo;
 use App\Partido;
 use App\Estadio;
 use Carbon\Carbon;
+use App\Http\Controllers\Controller;
+use Validator;
 
 class EquipoController extends Controller
 {
@@ -34,15 +36,14 @@ class EquipoController extends Controller
             $estadio = new Estadio();
             $estadio->nombre = $request->input('estadioNombre');
             $estadio->capacidad = $request->input('aforo');
-            $estadio->save();
 
             $equipo = new Equipo(); //Si falla el crear equipo el Estadio sigue creado
             $equipo->cif = $request->input('cif');
             $equipo->nombreEquipo = $request->input('equipoNombre');
             $equipo->presupuesto = $request->input('presupuesto');
 
-            $estadio->equipo()->save($equipo);
-            return redirect()->action('EquipoController@editar');
+            return $this->captarErrores($estadio,$equipo,$request);
+          
       }
 
       public function getEquipo($id){
@@ -82,25 +83,30 @@ class EquipoController extends Controller
             $equipo->cif = $request->cif;
             $equipo->nombreEquipo = $request->nombreEquipo;
             $equipo->presupuesto = $request->presupuesto;
-            $equipo->save();
 
             $estadio = Estadio::find($equipo->estadio);
             $estadio->nombre = $request->nombre;
             $estadio->capacidad = $request->capacidad;
-            $estadio->save();
+
+
+            return $this->captarErrores($estadio,$equipo,$request);
+
+      }
+
+      public function captarErrores($estadio,$equipo,$request){
 
             try{
-                  $partido->save();
+                  //le pongo el valor aqui para poder hacer la condicion en el if
+                  $equipo->save();
+                  $estadio->save();
                   return redirect()->action('EquipoController@editar');
             }
             catch(\Illuminate\Database\QueryException $e){
-                  $validator = Validator::make(
-                        $request->all(), [
-                              'title' => '2',
-                              'body' => '2',
-                        ]
-                  );
-                  $validator->getMessageBag()->add('unique','Error, el CIF introducido ya existe');
+                  $validator = Validator::make($request->all(), [
+                  'title' => '2',
+                  'body' => '2',
+            ]);
+                  $validator->getMessageBag()->add('unique','Error, el CIF introducido ya existe.');
                   return back()->withErrors($validator)->withInput();
             }
       }
@@ -112,4 +118,7 @@ class EquipoController extends Controller
             $equipo->delete();
             return back();
       }
+
+
+
 }

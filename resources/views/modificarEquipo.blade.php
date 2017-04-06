@@ -4,6 +4,16 @@
 @include('cabecera',array('section'=>'plantilla'))
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
+       {{-- Muestra errores --}}
+            @if (count($errors) > 0)
+                  <ul>
+                  @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">
+                              <a href="#" class="alert-link">{{ $error }}</a>
+                        </div>
+                  @endforeach
+                  </ul>
+            @endif
             <h3>Modificar jugador</h3>
             <form class="form-horizontal" action="{{ action('EquipoController@modificarEquipoPost',[$equipo->id]) }}" method="post">
                   {{ csrf_field() }}
