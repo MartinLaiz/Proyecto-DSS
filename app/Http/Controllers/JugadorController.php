@@ -60,10 +60,7 @@ class JugadorController extends Controller
       public function crearJugador(Request $request){
             //Control de errores
             $errors = false;
-            $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:posts|max:255',
-            'body' => 'required',
-            ]);
+            $validator = Validator::make($request->all(), []);
             //Rellenar jugador
             $jugador = new Jugador();
             $jugador->dni = $request->dni;
@@ -76,10 +73,11 @@ class JugadorController extends Controller
             $jugador->equipo = $request->equipo;
             
             //Gestión del dorsal
-            $jugadores = Jugador::where('equipo','like',$jugador->equipo);
+            $jugadores = Jugador::all();
+            //dd($jugadores);
             foreach($jugadores as $jug){
-                  if($jugador->dorsal == $jug->dorsal){
-                        $errorDorsal = 'El jugador '.$jug->nombre.' ya tiene esa dorsal';
+                  if($jugador->dorsal == $jug->dorsal && $jugador->equipo == $jug->equipo){
+                        $errorDorsal = $jug->nombre.' ya tiene esa dorsal';
                         $validator->getMessageBag()->add('dorsal', $errorDorsal);
                         $errors = true;
                   }
