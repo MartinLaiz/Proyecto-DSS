@@ -12,11 +12,14 @@
             <h2>Jugadores del {{ $equipo }}</h2>
             @endif
             <div class="row">
+                  <div class="row">
+                        <label class="col-md-5" for="equipoSel">Selecciona un equipo:</label>
+                        <label class="col-md-5" for="equipoSel">Selecciona una posición:</label>
+                  </div>
                   <form class="row" action="{{ action('JugadorController@getJugadores') }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
                         <div class="col-md-5 form-group">
-                              <label for="equipoSel">Selecciona un equipo:</label>
                               <select class="form-control" name="equipoSel" id="equipoSel">
                                     <option value="Todos" selected>Todos los equipos</option>
                                     @foreach($equipos as $unEquipo)
@@ -25,7 +28,6 @@
                               </select>
                         </div>
                         <div class="col-md-5">
-                              <label for="equipoSel">Selecciona una posición:</label>
                               <select class="form-control" name="posicion" id="posicion">
                                     <option value="Todas" selected>Todas las posiciones</option>
                                     <option value="Delantero">Delantero</option>
@@ -34,7 +36,9 @@
                                     <option value="Portero">Portero</option>
                               </select>
                         </div>
-                        <button class="btn btn-success col-md-2" type="submit">Seleccionar equipo</button>
+                        <div class="col-md-2 text-center">
+                              <button class="btn btn-success btn-block" type="submit">Seleccionar equipo</button>
+                        </div>
                   </form>
             </div>
             {{ $jugadores->links() }}
