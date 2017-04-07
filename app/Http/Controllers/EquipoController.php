@@ -43,7 +43,7 @@ class EquipoController extends Controller
             $equipo->presupuesto = $request->input('presupuesto');
 
             return $this->captarErrores($estadio,$equipo,$request);
-          
+
       }
 
       public function getEquipo($id){
@@ -55,7 +55,7 @@ class EquipoController extends Controller
 
       public function mostrarEquipo(){
             $team = Equipo::join('estadio','equipo.estadio','=','estadio.id')
-            ->select('equipo.id as equipoid', 'equipo.*','estadio.*')->paginate(5);
+            ->select('equipo.id as equipoid', 'equipo.*','estadio.*')->paginate(8);
             return view('equipos',['lista' => $team]);
       }
 
@@ -69,7 +69,7 @@ class EquipoController extends Controller
                         'presupuesto'=>'Presupuesto',
                         'nombre'=>'Estadio',
                         'capacidad' => 'Capacidad'],
-                        'lista' => Equipo::where('nombreEquipo','<>','Libre')->join('estadio','estadio.id','=','equipo.estadio')->select('equipo.*','estadio.nombre','estadio.capacidad')->paginate(5)
+                        'lista' => Equipo::where('nombreEquipo','<>','Libre')->join('estadio','estadio.id','=','equipo.estadio')->select('equipo.*','estadio.nombre','estadio.capacidad')->paginate(8)
                   ]
             );
 

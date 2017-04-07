@@ -23,13 +23,13 @@ class JugadorController extends Controller
       }
 
       public function getJugadores(Request $request=null){
-            $jugadores = Jugador::join('equipo','jugador.equipo','=','equipo.id');
+            $jugadores = Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombreEquipo');
             $equipo = $request->equipoSel;
             $posicion = $request->posicion;
             if($equipo != "Todos" && $equipo != null){
                   $equipo = Equipo::find($equipo);
                   $jugadores = $equipo->jugadores();
-                  $equipo = Equipo::find($equipo)->nombreEquipo;
+                  $equipo = $equipo->nombreEquipo;
             }
             else{
                   $equipo = 'Todos';

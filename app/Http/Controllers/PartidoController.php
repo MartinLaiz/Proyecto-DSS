@@ -20,7 +20,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
 */
         $teams = Partido::join('equipo as team1','partido.equipoLocal','=','team1.id')->
                               join('equipo as team2','partido.equipoVisitante','=','team2.id')->
-                              select('partido.*','team1.nombreEquipo as equipoLocal','team2.nombreEquipo as equipoVisitante')->paginate(5);
+                              select('partido.*','team1.nombreEquipo as equipoLocal','team2.nombreEquipo as equipoVisitante')->paginate(8);
 
 
         return view('partidos', [
@@ -68,7 +68,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
    public function formularioModificar($id){
 
         $equipos = Equipo::orderBy('nombreEquipo')->where('nombreEquipo','<>','Libre')->get();
-       
+
 
         return view ('modificarPartido',[
                                             'idmodificar' => $id],[
@@ -91,7 +91,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
        $partido->golesVisitante = $request->golesVisitante;
        $partido->fecha = $request->fecha;
        $partido->tipo = $request->tipo;
-       
+
        return $this->verErrores($partido,$request);
    }
 
@@ -107,7 +107,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
 
 
          return $this->verErrores($partido,$request);
-       
+
      }
 
      public function verErrores($partido,$request){

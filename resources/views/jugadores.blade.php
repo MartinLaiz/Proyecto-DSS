@@ -37,7 +37,7 @@
                               </select>
                         </div>
                         <div class="col-md-2 text-center">
-                              <button class="btn btn-success btn-block" type="submit">Seleccionar equipo</button>
+                              <button class="btn btn-success btn-block" type="submit">Seleccionar jugadores</button>
                         </div>
                   </form>
             </div>
