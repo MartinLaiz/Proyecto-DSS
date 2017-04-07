@@ -53,6 +53,13 @@ class EquipoController extends Controller
             'jugadores'=>$team->jugadores()->get()]);
       }
 
+      public function mostrarEquipo(){
+            $team = Equipo::join('estadio','equipo.estadio','=','estadio.id')
+            ->select('equipo.id as equipoid', 'equipo.*','estadio.*')->paginate(5);
+            return view('equipos',['lista' => $team]);
+      }
+
+
 
       public function editar(){
             return view('editarEquipos',[

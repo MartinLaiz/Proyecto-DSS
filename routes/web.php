@@ -20,7 +20,7 @@ Route::get('/', function () {
 //Rutas Equipo
 Route::get('/home', 'EquipoController@getHome');
 Route::get('/equipo/{id}','EquipoController@getEquipo');
-
+Route::get('/equipos', 'EquipoController@mostrarEquipo');
 //Rutas Jugador
 Route::get('/jugadores', 'JugadorController@getJugadores');
 Route::get('/jugadores/{id}', 'JugadorController@getJugadoresEquipo');
