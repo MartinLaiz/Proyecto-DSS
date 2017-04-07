@@ -27,6 +27,11 @@
                         @else
                               <li><a href="{{action('JugadorController@getJugadores')}}">Plantilla</a></li>
                         @endif
+                        @if($section == "equipos")
+                              <li class="active"><a href="{{action('EquipoController@mostrarEquipo')}}">Equipos</a></li>
+                        @else
+                              <li><a href="{{action('EquipoController@mostrarEquipo')}}">Equipos</a></li>
+                        @endif
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                         @if($section == 'configuracion')
