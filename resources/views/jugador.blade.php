@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Inicio')
+@section('title', 'Perfil de jugador')
 @section('content')
 @include('cabecera',array('section'=>'plantilla'))
 
@@ -11,7 +11,7 @@
 
       </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-   
+        <br>
    
           <div class="panel panel-info">
             <div class="panel-heading">
@@ -33,7 +33,7 @@
                         <td>{{ $jugador->nombre }}</td>
                       </tr>
                       <tr>
-                        <td>Apellidos::</td>
+                        <td>Apellidos:</td>
                         <td>  {{ $jugador->apellidos }}</td>
                       </tr>
 

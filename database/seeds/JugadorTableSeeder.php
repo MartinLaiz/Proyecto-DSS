@@ -27,7 +27,7 @@ class JugadorTableSeeder extends Seeder
                   'fNac' => date($formato,$fecha),
                   'posicion' => 'Portero',
                   'cargo' => 2,
-                  'dorsal' =>2,
+                  'dorsal' =>1,
                   'equipo' => $equipo->id
             ]);
             $fecha = mt_rand($fMin, $fMax);
@@ -38,7 +38,7 @@ class JugadorTableSeeder extends Seeder
                   'fNac' => date($formato,$fecha),
                   'posicion' => 'Portero',
                   'cargo' =>19,
-                  'dorsal' =>2,
+                  'dorsal' =>25,
                   'equipo' => $equipo->id
             ]);
           
@@ -240,7 +240,7 @@ class JugadorTableSeeder extends Seeder
                   'fNac' => date($formato,$fecha),
                   'posicion' => 'Delantero',
                   'cargo' => 1,
-                  'dorsal' =>1,
+                  'dorsal' =>15,
                   'equipo' => $equipo->id
             ]);
 
