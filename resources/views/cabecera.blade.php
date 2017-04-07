@@ -7,7 +7,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                   </button>
-                  <a href="{{action('EquipoController@getHome')}}" class="navbar-brand pull-left"><img src="{{ asset('images/Escudo.png')}}" alt="Imagen del escudo"></a>
+                  <a href="{{action('EquipoController@getHome')}}" class="navbar-brand pull-left"><img src="{{ asset('images/escudos/Escudo.png')}}" alt="Imagen del escudo"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">

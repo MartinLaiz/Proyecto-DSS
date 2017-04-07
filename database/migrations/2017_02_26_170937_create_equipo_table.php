@@ -18,6 +18,7 @@ class CreateEquipoTable extends Migration
             $table->char('cif',9)->unique();
             $table->string('nombreEquipo');
             $table->integer('presupuesto');
+            $table->string('logo');
             $table->integer('estadio')->unique()->nullable();
             $table->foreign('estadio')->references('id')->on('estadio')->onDelete('set null');
             $table->timestamps();
