@@ -23,7 +23,7 @@ Route::get('/equipo/{id}','EquipoController@getEquipo');
 
 //Rutas Jugador
 Route::get('/jugadores', 'JugadorController@getJugadores');
-Route::get('/jugadores/{id}', 'JugadorController@getJugadoresEquipo');
+Route::post('/jugadores', 'JugadorController@getJugadores');
 Route::get('/jugador/{id}', 'JugadorController@getJugador');
 Route::post('/buscarJugador','JugadorController@buscarJugador');
 

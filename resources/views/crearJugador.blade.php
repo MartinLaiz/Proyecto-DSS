@@ -41,7 +41,7 @@
                   {{ csrf_field() }}
                   {{ method_field('POST') }}
                   {{--Campos: nombre, apellidos, fNac, posicion, dorsal --}}
-                  
+
                   <div class="row form-group">
                         <div class="col-md-3">
                               <input class="form-control" placeholder="DNI" type="text" name="dni" value="{{ old('dni') }}" id="dni" required>
@@ -65,9 +65,9 @@
                               {{--Posición--}}
                               <style>select:invalid { color: gray; }</style>
                               <select class="form-control" id="posicion" name="posicion" value="{{ old('posicion') }}" required>
-                                    <option value="Posición" disabled selected hidden>Posición</option>
+                                    <option value="Posicion" disabled selected hidden>Posición</option>
                                     <option value="Delantero">Delantero</option>
-                                    <option value="Mediocentro">Medio</option>
+                                    <option value="Medio">Medio</option>
                                     <option value="Defensa">Defensa</option>
                                     <option value="Portero">Portero</option>
                               </select>

@@ -6,21 +6,36 @@
       <div class="col-md-10 col-md-offset-1">
             @if($equipo == 'Todos')
             <h2>Todos los jugadores</h2>
+            @elseif($equipo == 'Libre')
+            <h2>Jugadores libres</h2>
             @else
-                  @if($equipo == 'Libre')
-                  <h2>Jugadores libres</h2>
-                  @else
-                  <h2>Jugadores del {{ $equipo }}</h2>
-                  @endif
+            <h2>Jugadores del {{ $equipo }}</h2>
             @endif
-            <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Seleccionar equipo <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                        @foreach($equipos as $unEquipo)
-                        <li><a href="{{ action('JugadorController@getJugadoresEquipo',[$unEquipo->id]) }}">{{ $unEquipo->nombreEquipo }}</a></li>
-                        @endforeach
-                  </ul>
-                  <a href="{{ action('JugadorController@getJugadores') }}" class="btn btn-info" role="button">Mostrar todos los jugadores</a>
+            <div class="row">
+                  <form class="row" action="{{ action('JugadorController@getJugadores') }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('POST') }}
+                        <div class="col-md-5 form-group">
+                              <label for="equipoSel">Selecciona un equipo:</label>
+                              <select class="form-control" name="equipoSel" id="equipoSel">
+                                    <option value="Todos" selected>Todos los equipos</option>
+                                    @foreach($equipos as $unEquipo)
+                                    <option value="{{ $unEquipo->id }}">{{ $unEquipo->nombreEquipo }}</option>
+                                    @endforeach
+                              </select>
+                        </div>
+                        <div class="col-md-5">
+                              <label for="equipoSel">Selecciona una posición:</label>
+                              <select class="form-control" name="posicion" id="posicion">
+                                    <option value="Todas" selected>Todas las posiciones</option>
+                                    <option value="Delantero">Delantero</option>
+                                    <option value="Medio">Medio</option>
+                                    <option value="Defensa">Defensa</option>
+                                    <option value="Portero">Portero</option>
+                              </select>
+                        </div>
+                        <button class="btn btn-success col-md-2" type="submit">Seleccionar equipo</button>
+                  </form>
             </div>
             {{ $jugadores->links() }}
             @if(count($jugadores) > 0)
@@ -46,15 +61,15 @@
                               <td>{!!$jugador->fNac!!}</td>
                               <td>{!!$jugador->posicion!!}</td>
                               <td>
-                              @if($jugador->cargo == 1)
-                              Primer capitán
-                              @elseif($jugador->cargo == 2)
-                              Segundo capitán
-                              @elseif($jugador->cargo == 3)
-                              Tercer capitán
-                              @else
-                              Sin cargo
-                              @endif
+                                    @if($jugador->cargo == 1)
+                                    Primer capitán
+                                    @elseif($jugador->cargo == 2)
+                                    Segundo capitán
+                                    @elseif($jugador->cargo == 3)
+                                    Tercer capitán
+                                    @else
+                                    Sin cargo
+                                    @endif
                               </td>
                               <td><a href="{{ action('EquipoController@getEquipo',$jugador->equipo) }}">{!!$jugador->nombreEquipo!!}</a></td>
                         </tr>
@@ -64,14 +79,14 @@
             @else
             <br>
             <div class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
                   <strong>    @if($equipo == 'Todos')
-                                    No hay jugadores en la base de datos
-                              @elseif($equipo == 'Libre')
-                                    No conocemos jugadores libres
-                              @else
-                                    No conocemos jugadores de éste equipo
-                              @endif
+                        No hay jugadores en la base de datos
+                        @elseif($equipo == 'Libre')
+                        No conocemos jugadores libres
+                        @else
+                        No conocemos jugadores de éste equipo
+                        @endif
                   </strong>
                   <br>
             </div>

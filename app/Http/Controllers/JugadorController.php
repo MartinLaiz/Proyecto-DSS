@@ -22,26 +22,28 @@ class JugadorController extends Controller
             return view('jugador',['jugador' => Jugador::find($id)]);
       }
 
-      public function getJugadores(){
+      public function getJugadores(Request $request=null){
+            $jugadores = Jugador::join('equipo','jugador.equipo','=','equipo.id');
+            $equipo = $request->equipoSel;
+            $posicion = $request->posicion;
+            if($equipo != "Todos" && $equipo != null){
+                  $equipo = Equipo::find($equipo);
+                  $jugadores = $equipo->jugadores();
+                  $equipo = Equipo::find($equipo)->nombreEquipo;
+            }
+            else{
+                  $equipo = 'Todos';
+            }
+            if($posicion != "Todas" && $posicion != null){
+                  $jugadores = $jugadores->where('jugador.posicion','=',$posicion);
+            }
             return view('jugadores',[
-                        'jugadores' => Jugador::join('equipo','jugador.equipo','=','equipo.id')->select('jugador.*','equipo.nombreEquipo')->orderby('equipo')->orderBy('dorsal')->paginate(20),
-                        'equipo' => 'Todos',
+                        'jugadores' => $jugadores->orderby('equipo')->orderBy('dorsal')->paginate(20),
+                        'equipo' => $equipo,
                         'equipos' => Equipo::get(),
                         'entrenadorNombre' => 'Ninguno',
                         'entrenadorApellidos' => 'Ninguno'
             ]);
-      }
-
-      public function getJugadoresEquipo($id){
-            $team = Equipo::find($id);
-            return view('jugadores',  array(
-                                    'jugadores' => $team->jugadores()->orderBy('apellidos')->simplePaginate(15),
-                                    'equipo' => $team->nombreEquipo,
-                                    'equipos' => Equipo::get(),
-                                    'entrenadorNombre' => 'Ninguno',
-                                    'entrenadorApellidos' => 'Ninguno'
-                                    )
-            );
       }
 
       //Devuelve la plantilla del equipo al que pertenece el jugador
@@ -71,7 +73,7 @@ class JugadorController extends Controller
             $jugador->cargo = $request->cargo;
             $jugador->dorsal = $request->dorsal;
             $jugador->equipo = $request->equipo;
-            
+
             //Gestión del dorsal
             $jugadores = Jugador::all();
             //dd($jugadores);
