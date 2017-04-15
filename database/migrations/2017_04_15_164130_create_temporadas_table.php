@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEntrenadorTable extends Migration
+class CreateTemporadasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateEntrenadorTable extends Migration
      */
     public function up()
     {
-        Schema::create('entrenador', function (Blueprint $table) {
+        Schema::create('temporada', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('dni',9)->unique();
             $table->string('nombre');
-            $table->string('apellidos');
-            $table->date('fNac');
-            $table->integer('equipo')->unsigned()->nullable();
-            $table->foreign('equipo')->references('id')->on('equipo')->onDelete('set null');
+            $table->timestamp('fecha');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateEntrenadorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entrenador');
+        Schema::dropIfExists('temporada');
     }
 }

@@ -69,3 +69,7 @@ Route::put('/formularioPartido/{id}','PartidoController@modificarPartido');
 Route::get('config/crear/partido','PartidoController@formularioInsertar');
 Route::put('config/crear/partido','PartidoController@crearPartido');
 Route::get('/formularioPartido/{id}','PartidoController@formularioModificar');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

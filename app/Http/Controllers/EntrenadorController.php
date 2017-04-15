@@ -50,7 +50,7 @@ class EntrenadorController extends Controller
                   );
    }
 
-   public function perfil($id){
+   public function entrenador($id){
          return view('entrenador',array('user'=> Entrenador::find($id)));
    }
 
