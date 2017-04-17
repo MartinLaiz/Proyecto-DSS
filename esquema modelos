@@ -1,7 +1,7 @@
 Modelo
       Metodos
-            modelo(id) -> muestra los datos de ese modelo
-            modelos(Request) -> muestra los datos (solo los importantes) de todos los modelos
+            getModelo(id) -> muestra los datos de ese modelo
+            getModelos(Request) -> muestra los datos (solo los importantes) de todos los modelos
                   Request son los dos datos para el filtrado
 
             crearModificarModelo(Request) -> crea o modifica un modelo (metodo para post)
