@@ -34,7 +34,7 @@ class UsuariosTableSeeder extends Seeder
                   'nombre' => 'Administrador',
                   'apellidos' => 'Dios',
                   'fNac' => date($formato,0),
-                  'password' => 'password'
+                  'password' => bcrypt('password')
             ]);
             $admin->save();
 
@@ -59,7 +59,7 @@ class UsuariosTableSeeder extends Seeder
                               'equipo' => $equipo->id,
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $director,
-                              'password' => 'password'
+                              'password' => bcrypt('password')
                         ]);
                         $user->save();
 
@@ -78,7 +78,7 @@ class UsuariosTableSeeder extends Seeder
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $entrenador,
                               'cargo' => $PrimerEntrenador,
-                              'password' => 'password'
+                              'password' => bcrypt('password')
                         ]);
                         $user->save();
 
@@ -97,7 +97,7 @@ class UsuariosTableSeeder extends Seeder
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $entrenador,
                               'cargo' => $SegundoEntrenador,
-                              'password' => 'password'
+                              'password' => bcrypt('password')
                         ]);
                         $user->save();
 
@@ -123,7 +123,7 @@ class UsuariosTableSeeder extends Seeder
                               'cargo' => $PrimerCapitan,
                               'posicion' => $posiciones[$posicion],
                               'dorsal' => 1+$i++,
-                              'password' => 'password'
+                              'password' => bcrypt('password')
                         ]);
                         $user->save();
                         array_splice($posiciones,$posicion,1);
@@ -147,7 +147,7 @@ class UsuariosTableSeeder extends Seeder
                               'cargo' => $SegundoCapitan,
                               'posicion' => $posiciones[$posicion],
                               'dorsal' => 1+$i++,
-                              'password' => 'password'
+                              'password' => bcrypt('password')
                         ]);
                         $user->save();
                         array_splice($posiciones,$posicion,1);
@@ -171,7 +171,7 @@ class UsuariosTableSeeder extends Seeder
                               'cargo' => $TercerCapitan,
                               'posicion' => $posiciones[$posicion],
                               'dorsal' => 1+$i++,
-                              'password' => 'password'
+                              'password' => bcrypt('password')
                         ]);
                         $user->save();
                         array_splice($posiciones,$posicion,1);
@@ -196,7 +196,7 @@ class UsuariosTableSeeder extends Seeder
                                     'cargo' => $SinCargo,
                                     'posicion' => $posiciones[$posicion],
                                     'dorsal' => $i+1,
-                                    'password' => 'password'
+                                    'password' => bcrypt('password')
                               ]);
                               $user->save();
                               array_splice($posiciones,$posicion,1);

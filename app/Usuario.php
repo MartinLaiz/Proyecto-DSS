@@ -11,6 +11,6 @@ class Usuario extends Model
       protected $dates = ['fNac'];
 
       public function equipo(){
-        return $this->belongsTo('App\Equipo','equipo');
+            return $this->belongsTo('App\Equipo');
       }
 }

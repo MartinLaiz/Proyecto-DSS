@@ -11,65 +11,97 @@
 |
 */
 
-use App\Jugador;
 
 Route::get('/', function () {
-    return view('index');
+      return view('index');
 });
 
-//Rutas Equipo
-Route::get('/home', 'EquipoController@getHome');
-Route::get('/equipo/{id}','EquipoController@getEquipo');
-Route::get('/equipos', 'EquipoController@mostrarEquipo');
-//Rutas Jugador
-Route::get('/jugadores', 'JugadorController@getJugadores');
-Route::post('/jugadores', 'JugadorController@getJugadores');
-Route::get('/jugador/{id}', 'JugadorController@getJugador');
-Route::post('/buscarJugador','JugadorController@buscarJugador');
 
-//Rutas de entrenador
-Route::get('/entrenadores', 'EntrenadorController@getEntrenadores');
+Route::group(['middleware' => 'auth'], function(){
 
-//Rutas de partido
-Route::get('/partidos', 'PartidoController@getPartidos');
-
-//Rutas configuracion
-Route::get('/config','EquipoController@configuracion');
-
-Route::get('/config/crear/jugador','JugadorController@formulario');
-Route::post('/config/crear/jugador','JugadorController@crearJugador');
-
-Route::get('/config/crear/entrenador','EntrenadorController@formulario');
-Route::put('/config/crear/entrenador','EntrenadorController@crearEntrenador');
-
-Route::get('/config/crear/equipo','EquipoController@formulario');
-Route::post('/config/crear/equipo','EquipoController@crearEquipo');
+      Route::get('/home', '');
 
 
-Route::get('/config/editar/jugadores','JugadorController@editar');
-Route::get('/config/editar/jugadores/{id}','JugadorController@editarJugadoresEquipo');
-Route::get('/config/editar/jugador/{id}','JugadorController@editarJugador');
-Route::post('/config/editar/jugador/{id}','JugadorController@editarJugadorPost');
+      /*
+      █  █ █▀▀ █  █ █▀▀█ █▀▀█  ▀  █▀▀█
+      █  █ ▀▀█ █  █ █▄▄█ █▄▄▀ ▀█▀ █  █
+       ▀▀▀ ▀▀▀  ▀▀▀ ▀  ▀ ▀ ▀▀ ▀▀▀ ▀▀▀▀
+      */
+      Route::group(['prefix' => 'usuario'], function(){
+            Route::get('/', '');                //Muestra todos los jugadores/entrenadores
+            Route::post('/','');                //Inserta un usuario
+            Route::get('/{id}','');             //Muestra solo un usuario
+            Route::put('/{id}','');             //Modifica ese usuario
+            Route::delete('/{id}','');          //Elimina ese usuario
+      });
 
-Route::get('/config/editar/equipos','EquipoController@editar');
-Route::get('/config/editar/equipo/{id}','EquipoController@modificarEquipo');
-Route::post('/config/editar/equipo/{id}','EquipoController@modificarEquipoPost');
 
-Route::get('/config/editar/entrenador/{id}','EntrenadorController@formularioModificar');
-Route::put('/config/editar/entrenador/{id}','EntrenadorController@modificarEntrenador');
+      /*
+      █▀▀ █▀▀█ █  █  ▀  █▀▀█ █▀▀█
+      █▀▀ █  █ █  █ ▀█▀ █  █ █  █
+      ▀▀▀ ▀▀▀█  ▀▀▀ ▀▀▀ █▀▀▀ ▀▀▀▀
+      */
+      Route::group(['prefix' => 'equipo'], function(){
+            Route::get('/', '');                //Muestra todos los equipos
+            Route::post('/','');                //Inserta un equipo
+            Route::get('/{id}','');             //Muestra solo un equipo
+            Route::put('/{id}','');             //Modifica ese equipo
+            Route::delete('/{id}','');          //Elimina ese equipo
+      });
 
-Route::get('/config/eliminar/partido/{id}','PartidoController@EliminarPartido');
-Route::get('/config/eliminar/jugador/{id}','JugadorController@eliminar');
-Route::get('/config/eliminar/equipo/{id}','EquipoController@eliminar');
-Route::get('/config/eliminar/entrenador/{id}','EntrenadorController@borrarEntrenador');
 
-//configuracion partidos
-Route::get('config/partidos', 'PartidoController@getPartidosConfig');
-Route::put('/formularioPartido/{id}','PartidoController@modificarPartido');
-Route::get('config/crear/partido','PartidoController@formularioInsertar');
-Route::put('config/crear/partido','PartidoController@crearPartido');
-Route::get('/formularioPartido/{id}','PartidoController@formularioModificar');
+      /*
+      █▀▀█ █▀▀█ █▀▀█ ▀▀█▀▀  ▀  █▀▀▄ █▀▀█
+      █  █ █▄▄█ █▄▄▀   █   ▀█▀ █  █ █  █
+      █▀▀▀ ▀  ▀ ▀ ▀▀   ▀   ▀▀▀ ▀▀▀  ▀▀▀▀
+      */
+      Route::group(['prefix' => 'partido'], function(){
+            Route::get('/', '');                //Muestra todos los partidos
+            Route::post('/','');                //Inserta un partido
+            Route::get('/{id}','');             //Muestra solo un partido
+            Route::put('/{id}','');             //Modifica ese partido
+            Route::delete('/{id}','');          //Elimina ese partido
+      });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+      /*
+      █▀▀ █▀▀█ █▀▀▄ █▀▀  ▀  █▀▀▀
+      █   █  █ █  █ █▀▀ ▀█▀ █ ▀█
+      ▀▀▀ ▀▀▀▀ ▀  ▀ ▀   ▀▀▀ ▀▀▀▀
+      */
+      Route::group(['prefix' => 'config'], function () {
+            Route::get('/','');
+            // jugador
+            Route::group(['prefix' => 'usuario'], function(){
+                  Route::get('/todos','');            //Obtiene todo los jugadores
+                  Route::get('/{id}','');             //Obtiene el jugador con el id
+                  Route::post('/crear','');
+                  Route::get('/editar/{id}','');
+                  Route::put('/editar/{id}','');
+                  Route::get('/eliminar/{id}','');
+                  Route::get('/todos','');
+                  Route::get('/todos/{id}','');
+            });
+
+            //Equipo
+            Route::get('/equipo/crear','');
+            Route::post('/equipo/crear','');
+            Route::get('/editar/equipos','');
+            Route::get('/editar/equipo/{id}','');
+            Route::post('/editar/equipo/{id}','');
+            Route::get('/eliminar/equipo/{id}','');
+            //Partido
+            Route::get('/eliminar/partido/{id}','');
+            Route::get('/partidos', '');
+            Route::put('/formularioPartido/{id}','');
+            Route::get('/crear/partido','');
+            Route::put('/crear/partido','');
+            Route::get('/formularioPartido/{id}','');
+      });
+
+
+      Route::group(['prefix' => 'admin'], function(){
+
+      });
+
+});

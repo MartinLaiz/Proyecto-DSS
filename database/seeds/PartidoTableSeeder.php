@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Partido;
+use App\Equipo;
 
 class PartidoTableSeeder extends Seeder
 {
@@ -12,14 +14,18 @@ class PartidoTableSeeder extends Seeder
       public function run()
       {
             $formato = 'Y-m-d H:i:s';
-            $equipos = DB::table('equipo')->get();
-            $libre = DB::table('equipo')->where('nombreEquipo','like','%Libre%')->first();
             $today = time();
+
+            $equipos = Equipo::get();
+            $libre = Equipo::where('nombreEquipo','like','%Libre%')->first();
+
             foreach ($equipos as $equipoLocal) {
                   foreach ($equipos as $equipoVisitante) {
+
                         if($equipoLocal->id != $equipoVisitante->id
                         and $equipoLocal->id!= $libre->id
                         and $equipoVisitante->id!= $libre->id){
+
                               $fecha = mt_rand(1470052800, 1527854400);
                               $golesLocal = 0;
                               $golesVisitante = 0;
@@ -27,18 +33,19 @@ class PartidoTableSeeder extends Seeder
                                     $golesLocal = mt_rand(0, 5);
                                     $golesVisitante = mt_rand(0, 5);
                               }
-                              DB::table('partido')->insert([
+
+                              $partido = new Partido([
                                     'equipoLocal'=> $equipoLocal->id,
                                     'equipoVisitante' => $equipoVisitante->id,
                                     'fecha' =>  date($formato,$fecha),
                                     'golesLocal' => $golesLocal,
                                     'golesVisitante' => $golesVisitante,
                                     'estadio' => $equipoLocal->estadio,
-                                    'tipo' => "Liga"
+                                    'competicion' => 'Liga'
                               ]);
+                              $partido->save();
                         }
                   }
             }
-
       }
 }

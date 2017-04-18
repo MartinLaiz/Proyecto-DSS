@@ -15,17 +15,17 @@ class CreatePartidoTable extends Migration
     {
         Schema::create('partido', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('equipoLocal')->unsigned()->nullable();
-            $table->integer('equipoVisitante')->unsigned()->nullable();
+            $table->integer('equipoLocal_id')->unsigned()->nullable();
+            $table->foreign('equipoLocal_id')->references('id')->on('equipo')->onDelete('set null');
+            $table->integer('equipoVisitante_id')->unsigned()->nullable();
+            $table->foreign('equipoVisitante_id')->references('id')->on('equipo')->onDelete('set null');
+            $table->string('competicion');
+            $table->unique(['equipoLocal', 'equipoVisitante','competicion']);
             $table->integer('golesLocal');
             $table->integer('golesVisitante');
             $table->timestamp('fecha');
-            $table->string('tipo');
-            $table->unique(['equipoLocal', 'equipoVisitante','tipo']);
-            $table->integer('estadio')->nullable();
-            $table->foreign('estadio')->references('id')->on('estadio')->onDelete('set null');
-            $table->foreign('equipoVisitante')->references('id')->on('equipo')->onDelete('set null');
-            $table->foreign('equipoLocal')->references('id')->on('equipo')->onDelete('set null');
+            $table->integer('estadio_id')->nullable();
+            $table->foreign('estadio_id')->references('id')->on('estadio')->onDelete('set null');
 
             $table->timestamps();
         });
