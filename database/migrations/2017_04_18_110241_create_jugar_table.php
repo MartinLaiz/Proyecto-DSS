@@ -18,8 +18,9 @@ class CreateJugarTable extends Migration
             $table->integer('competicion_id');
             $table->integer('temporada_id');
             $table->integer('partido_id');
-            $table->integer('resultado');
-            $table->integer('fecha');
+            $table->integer('golesLocal');
+            $table->integer('golesVisitante');
+            $table->timestamp('fecha');
             $table->unique(['competicion', 'temporada','partido']);
             $table->foreign('competicion_id')->references('id')->on('competicion')->onDelete('set null');
             $table->foreign('temporada_id')->references('id')->on('temporada')->onDelete('set null');

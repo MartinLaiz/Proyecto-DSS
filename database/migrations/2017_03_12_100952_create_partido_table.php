@@ -16,15 +16,11 @@ class CreatePartidoTable extends Migration
         Schema::create('partido', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('equipoLocal_id')->unsigned()->nullable();
-            $table->foreign('equipoLocal_id')->references('id')->on('equipo')->onDelete('set null');
             $table->integer('equipoVisitante_id')->unsigned()->nullable();
-            $table->foreign('equipoVisitante_id')->references('id')->on('equipo')->onDelete('set null');
-            $table->string('competicion');
-            $table->unique(['equipoLocal', 'equipoVisitante','competicion']);
-            $table->integer('golesLocal');
-            $table->integer('golesVisitante');
-            $table->timestamp('fecha');
+            $table->unique(['equipoLocal_id', 'equipoVisitante_id']);
             $table->integer('estadio_id')->nullable();
+            $table->foreign('equipoLocal_id')->references('id')->on('equipo')->onDelete('set null');
+            $table->foreign('equipoVisitante_id')->references('id')->on('equipo')->onDelete('set null');
             $table->foreign('estadio_id')->references('id')->on('estadio')->onDelete('set null');
 
             $table->timestamps();

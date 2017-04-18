@@ -37,11 +37,7 @@ class PartidoTableSeeder extends Seeder
                               $partido = new Partido([
                                     'equipoLocal_id'=> $equipoLocal->id,
                                     'equipoVisitante_id' => $equipoVisitante->id,
-                                    'fecha' =>  date($formato,$fecha),
-                                    'golesLocal' => $golesLocal,
-                                    'golesVisitante' => $golesVisitante,
-                                    'estadio_id' => $equipoLocal->estadio,
-                                    'competicion' => 'Liga'
+                                    'estadio_id' => $equipoLocal->estadio_id
                               ]);
                               $partido->save();
                         }
