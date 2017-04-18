@@ -20,7 +20,7 @@ class EquipoTableSeeder extends Seeder
             'cif'=>'000000000',
             'nombreEquipo'=>'Libre',
             'presupuesto' =>0,
-            'estadio' => $estadio->id,
+            'estadio_id' => $estadio->id,
             'logo' => "images/escudos/libre.png"
             
         ]);
@@ -30,7 +30,7 @@ class EquipoTableSeeder extends Seeder
             'cif'=>'A27417476',
             'nombreEquipo'=>'UA Football Club',
             'presupuesto' =>0,
-            'estadio' => $estadio->id,
+            'estadio_id' => $estadio->id,
             'logo' => 'images/escudos/Escudo.png'
         ]);
         $estadio = DB::table('estadio')->where('nombre','like','%Bernabéu%')->first();
@@ -38,7 +38,7 @@ class EquipoTableSeeder extends Seeder
             'cif'=> 'G28034718',
             'nombreEquipo' => 'Real Madrid Club de Futbol',
             'presupuesto' =>0,
-            'estadio' => $estadio->id,
+            'estadio_id' => $estadio->id,
             'logo' => "images/escudos/realmadrid.png"
         ]);
         $estadio = DB::table('estadio')->where('nombre','like','%Mendizorroza%')->first();
@@ -47,7 +47,7 @@ class EquipoTableSeeder extends Seeder
             'cif'=> 'G28034719',
             'nombreEquipo' => 'Deportivo Alavés',
             'presupuesto' =>0,
-            'estadio' => $estadio->id,
+            'estadio_id' => $estadio->id,
             'logo' => "images/escudos/alaves.png"
         ]);
 
@@ -57,7 +57,7 @@ class EquipoTableSeeder extends Seeder
             'cif'=> 'G28034720',
             'nombreEquipo' => 'Athletic Club de Bilbao',
             'presupuesto' =>0,
-            'estadio' => $estadio->id,
+            'estadio_id' => $estadio->id,
             'logo' => "images/escudos/bilbao.png"
         ]);
 
@@ -66,7 +66,7 @@ class EquipoTableSeeder extends Seeder
             'cif'=> 'G28034721',
             'nombreEquipo' => 'Granada Club de Fútbol',
             'presupuesto' =>0,
-            'estadio' => $estadio->id,
+            'estadio_id' => $estadio->id,
             'logo' => "images/escudos/granada.png"
         ]);
 
@@ -75,7 +75,7 @@ class EquipoTableSeeder extends Seeder
             'cif'=> 'G28034722',
             'nombreEquipo' => 'Real Betis Balompié',
             'presupuesto' =>0,
-            'estadio' => $estadio->id,
+            'estadio_id' => $estadio->id,
             'logo' => "images/escudos/betis.png"
         ]);
 
