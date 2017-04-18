@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Equipo;
 use App\Partido;
 use App\Estadio;
 use Carbon\Carbon;
-use App\Http\Controllers\Controller;
 use Validator;
 
 class EquipoController extends Controller
@@ -101,7 +101,6 @@ class EquipoController extends Controller
       }
 
       public function captarErrores($estadio,$equipo,$request){
-
             try{
                   //le pongo el valor aqui para poder hacer la condicion en el if
                   $equipo->save();
@@ -125,7 +124,4 @@ class EquipoController extends Controller
             $equipo->delete();
             return back();
       }
-
-
-
 }

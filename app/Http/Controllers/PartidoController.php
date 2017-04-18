@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Validator;
 use App\Equipo;
 use App\Partido;
+
+
 class PartidoController extends Controller
 {
     public function getPartidos(){
