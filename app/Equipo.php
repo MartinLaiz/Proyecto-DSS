@@ -8,21 +8,25 @@ class Equipo extends Model
 {
       protected $table = 'equipo';
 
-      public function director(){
-            return $this->hasOne('App\Usuario');
-      }
-      public function entrenadores(){
-            return $this->hasMany('App\Jugador');
+      public function usuarios(){
+            return $this->hasMany('App\Usuario');
       }
       public function jugadores(){
-            return $this->hasMany('App\Jugador');
+            return $this->usuarios()->where('rol','=','0');
       }
-      public function partido(){
-            return $this->belongsToMany('App\Partido','partido','equipoLocal','equipoVisitante');
+      public function entrenadores(){
+            return $this->usuarios()->where('rol','=','1');
       }
-
+      public function director(){
+            return $this->usuarios()->where('rol','=','2');
+      }
+      public function partidosLocal(){
+            return $this->hasMany('App\Partido','equipoLocal_id');
+      }
+      public function partidosVisitante(){
+            return $this->hasMany('App\Partido','equipoVisitante_id');
+      }
       public function estadio(){
             return $this->belongsTo('App\Estadio');
       }
-
 }

@@ -16,7 +16,7 @@ class EquipoController extends Controller
             $idUA = Equipo::where('nombreEquipo','like','%UA%')->first()->id;
             $ultPartidos = Partido::where('fecha','<',Carbon::now())->orderBy('fecha','desc')->take(5)->get();
             $proxPartidos = Partido::where('fecha','>',Carbon::now())->orderBy('fecha','asc')->take(5)->get();
-            dd($ultPartidos);
+            dd();
             return view('home',[
                   'equipos' => Equipo::get(),
                   'estadios' => Estadio::get(),
@@ -110,9 +110,9 @@ class EquipoController extends Controller
             }
             catch(\Illuminate\Database\QueryException $e){
                   $validator = Validator::make($request->all(), [
-                  'title' => '2',
-                  'body' => '2',
-            ]);
+                        'title' => '2',
+                        'body' => '2',
+                  ]);
                   $validator->getMessageBag()->add('unique','Error, el CIF introducido ya existe.');
                   return back()->withErrors($validator)->withInput();
             }
