@@ -4,14 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Temporada extends Model
+class Competicion extends Model
 {
-      protected $table = 'temporada';
-      protected $dates = ['fecha'];
+     protected $table = 'competicion';
 
 
-
-      public function jugar(){
+     public function jugar(){
         return $this->belongsToMany('App\Jugar','jugar','id');
       } 
 }

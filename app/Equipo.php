@@ -18,8 +18,9 @@ class Equipo extends Model
             return $this->hasMany('App\Jugador');
       }
       public function partido(){
-            return $this->hasMany('App\Partido');
+            return $this->belongsToMany('App\Partido','partido','equipoLocal','equipoVisitante');
       }
+
       public function estadio(){
             return $this->belongsTo('App\Estadio');
       }

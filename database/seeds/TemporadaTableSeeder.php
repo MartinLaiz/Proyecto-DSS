@@ -13,7 +13,7 @@ class TemporadaTableSeeder extends Seeder
       public function run()
       {
             DB::table('temporada')->delete();
-
+       
             $temporada = new Temporada(['nombre'=>'15/16', 'fecha'=>'2015-08-01']);
             $temporada->save();
 

@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Participar extends Model
 {
-    $table = 'participar';
+    protected $table = 'participar';
 
 }

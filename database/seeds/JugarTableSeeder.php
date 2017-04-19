@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Partido;
+use App\Competicion;
+use App\Temporada;
+use App\Jugar;
 
 class JugarTableSeeder extends Seeder
 {
@@ -25,12 +29,13 @@ class JugarTableSeeder extends Seeder
                     $fecha = mt_rand(1470052800, 1527854400);
                     $golesLocal = 0;
                     $golesVisitante = 0;
+
                     if($fecha<$today){
                         $golesLocal = mt_rand(0, 5);
                         $golesVisitante = mt_rand(0, 5);
                     }
 
-                    $partido = new Partido([
+                    $jugar = new Jugar([
                         'competicion_id'=> $competiciones->id,
                         'temporada_id' =>$temporadas->id,
                         'partido_id' => $partidos->id,
@@ -39,6 +44,7 @@ class JugarTableSeeder extends Seeder
                         'fecha' => $fecha
 
                     ]);
+                    $jugar->save();
                 }
             }
         }
