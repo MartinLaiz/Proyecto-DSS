@@ -15,7 +15,6 @@ class CompeticionTableSeeder extends Seeder
             'nombre' => 'Liga'
          ]);
 
-
          DB::table('competicion')->insert([
             'nombre' => 'Copa'
          ]);

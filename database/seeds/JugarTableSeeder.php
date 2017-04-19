@@ -8,20 +8,20 @@ use App\Jugar;
 
 class JugarTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
+      /**
+      * Run the database seeds.
+      *
+      * @return void
+      */
+      public function run()
+      {
 
-        $partido = Partido::get();
-        $competicion = Competicion::get();
-        $temporada = Temporada::get();
+            $partido = Partido::get();
+            $competicion = Competicion::get();
+            $temporada = Temporada::get();
 
-        $formato = 'Y-m-d H:i:s';
-        $today = time();
+            $formato = 'Y-m-d H:i:s';
+            $today = time();
 
         foreach($temporada as $temporadas){
             foreach($competicion as $competiciones){
@@ -47,8 +47,5 @@ class JugarTableSeeder extends Seeder
                     $jugar->save();
                 }
             }
-        }
-
-        
-    }
+      }
 }

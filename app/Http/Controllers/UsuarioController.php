@@ -57,7 +57,7 @@ class UsuarioController extends Controller
             $usuario->salario = $request->salario;
             $usuario->equipo_id = $request->equipo_id;
             $usuario->rol = $request->rol;//Pendiente de la vista para ver si cambia
-            
+
             //Roles: 0-Jugador, 1-Entrenador, 2-Director, 3-Administrador
             if($usuario->rol < 2){
                   //Entrenador o jugador: cargo
@@ -65,8 +65,7 @@ class UsuarioController extends Controller
 
                   if($usuario->rol == 0){
                         //Jugador: dorsal
-                        $usuarios = DB::table('usuarios')
-                                    where('equipo_id','=',$usuario->equipo_id);
+                        $usuarios = DB::table('usuarios')->where('equipo_id','=',$usuario->equipo_id);
                         foreach($usuarios as $usu){
                               if($usuario->dorsal == $usu->dorsal){
                                     $errorDorsal = $usu->nombre.' ya tiene esa dorsal';
@@ -76,19 +75,20 @@ class UsuarioController extends Controller
                         }
                         //Jugador: posición
                         $usuario->posicion = $request->posicion;
-            }
+                  }
 
-            //Intentamos insertar/modificar el usuario
-            try{
-                  $usuario->save();
-            } catch(QueryException $e){
-                  $validator->getMessageBag()->add('dni','Ese DNI ya existe');
-                  $errors = true;
-            }
-            finally{
-                  if($errors) return Redirect::back()->withErrors($validator)->withInput();
-            }
+                  //Intentamos insertar/modificar el usuario
+                  try{
+                        $usuario->save();
+                  } catch(QueryException $e){
+                        $validator->getMessageBag()->add('dni','Ese DNI ya existe');
+                        $errors = true;
+                  }
+                  finally{
+                        if($errors) return Redirect::back()->withErrors($validator)->withInput();
+                  }
 
+            }
             return Redirect::to('usuarios');//Probablemente ésto cambiará
       }
 

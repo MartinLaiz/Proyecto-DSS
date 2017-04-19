@@ -20,20 +20,21 @@
                         @if($section == "partidos")
                               <li class="active"><a href="#">Partidos</a></li>
                         @else
-                              <li><a href="{{ action('PartidoController@getPartidos') }}">Partidos</a></li>
+                              <li><a href="{{ action('EquipoController@getHome') }}">Partidos</a></li>
                         @endif
                         @if($section == "plantilla")
-                              <li class="active"><a href="{{action('JugadorController@getJugadores')}}">Plantilla</a></li>
+                              <li class="active"><a href="{{action('EquipoController@getHome')}}">Plantilla</a></li>
                         @else
-                              <li><a href="{{action('JugadorController@getJugadores')}}">Plantilla</a></li>
+                              <li><a href="{{action('EquipoController@getHome')}}">Plantilla</a></li>
                         @endif
                         @if($section == "equipos")
-                              <li class="active"><a href="{{action('EquipoController@mostrarEquipo')}}">Equipos</a></li>
+                              <li class="active"><a href="{{action('EquipoController@getHome')}}">Equipos</a></li>
                         @else
-                              <li><a href="{{action('EquipoController@mostrarEquipo')}}">Equipos</a></li>
+                              <li><a href="{{action('EquipoController@getHome')}}">Equipos</a></li>
                         @endif
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
+                        @if(Auth::check())
                         @if($section == 'configuracion')
                         <li class="dropdown active">
                         @else
@@ -45,6 +46,10 @@
                                     <li><a href="/">Cerrar sesión</a></li>
                               </ul>
                         </li>
+                        @else
+                        <li>Login</li>
+                        <li>Register</li>
+                        @endif
                         <li class="divider" role="separator"></li>
                   </ul>
             </div>

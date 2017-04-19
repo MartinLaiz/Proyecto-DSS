@@ -7,7 +7,7 @@
                   <img class="thumbnail img-responsive center-block" src="/images/Logo.png" alt="Logo FootballManager">
             </div>
             <div>
-                  <form action="./home">
+                  <form action="{{ action('EquipoController@getHome') }}" method="get">
                         <div class="row col-md-9">
                               <div class="col-md-6">
                                     <input type="text" class="form-control" placeholder="Usuario">

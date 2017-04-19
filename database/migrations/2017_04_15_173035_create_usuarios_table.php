@@ -14,13 +14,16 @@ class CreateUsuariosTable extends Migration
                   $table->string('nombre');
                   $table->string('apellidos');
                   $table->date('fNac');
+                  
                   $table->integer('salario')->nullable();
                   $table->string('posicion')->nullable();
                   $table->integer('rol')->nullable();
                   $table->integer('cargo')->nullable();
                   $table->integer('dorsal')->nullable();
+
                   $table->integer('equipo_id')->unsigned()->nullable();
                   $table->foreign('equipo_id')->references('id')->on('equipo')->onDelete('set null');
+
                   $table->string('password');
                   $table->timestamps();
             });

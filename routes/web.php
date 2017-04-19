@@ -17,52 +17,52 @@ Route::get('/', function () {
 });
 
 
-//Route::group(['middleware' => 'auth'], function(){
 
-      Route::get('/home', 'UsuarioController@getUsuario');
+Route::get('/home', 'EquipoController@getHome');
 
-      /*
-      █  █ █▀▀ █  █ █▀▀█ █▀▀█  ▀  █▀▀█
-      █  █ ▀▀█ █  █ █▄▄█ █▄▄▀ ▀█▀ █  █
-       ▀▀▀ ▀▀▀  ▀▀▀ ▀  ▀ ▀ ▀▀ ▀▀▀ ▀▀▀▀
-      */
-      Route::group(['prefix' => 'usuario'], function(){
-            Route::get('/', 'UsuarioController@getUsuarios');                //Muestra todos los jugadores/entrenadores
-            Route::post('/','UsuarioController@getUsuario');                //Inserta un usuario
-            Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un usuario
-            Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese usuario
-            Route::delete('/{id}','UsuarioController@getUsuario');          //Elimina ese usuario
-      });
-
-
-      /*
-      █▀▀ █▀▀█ █  █  ▀  █▀▀█ █▀▀█
-      █▀▀ █  █ █  █ ▀█▀ █  █ █  █
-      ▀▀▀ ▀▀▀█  ▀▀▀ ▀▀▀ █▀▀▀ ▀▀▀▀
-      */
-      Route::group(['prefix' => 'equipo'], function(){
-            Route::get('/', 'UsuarioController@getUsuario');                //Muestra todos los equipos
-            Route::post('/','UsuarioController@getUsuario');                //Inserta un equipo
-            Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un equipo
-            Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese equipo
-            Route::delete('/{id}','UsuarioController@getUsuario');          //Elimina ese equipo
-      });
+/*
+█  █ █▀▀ █  █ █▀▀█ █▀▀█  ▀  █▀▀█
+█  █ ▀▀█ █  █ █▄▄█ █▄▄▀ ▀█▀ █  █
+▀▀▀ ▀▀▀  ▀▀▀ ▀  ▀ ▀ ▀▀ ▀▀▀ ▀▀▀▀
+*/
+Route::group(['prefix' => 'usuario'], function(){
+      Route::get('/', 'UsuarioController@getUsuarios');                //Muestra todos los jugadores/entrenadores
+      Route::post('/','UsuarioController@getUsuario');                //Inserta un usuario
+      Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un usuario
+      Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese usuario
+      Route::delete('/{id}','UsuarioController@getUsuario');          //Elimina ese usuario
+});
 
 
-      /*
-      █▀▀█ █▀▀█ █▀▀█ ▀▀█▀▀  ▀  █▀▀▄ █▀▀█
-      █  █ █▄▄█ █▄▄▀   █   ▀█▀ █  █ █  █
-      █▀▀▀ ▀  ▀ ▀ ▀▀   ▀   ▀▀▀ ▀▀▀  ▀▀▀▀
-      */
-      Route::group(['prefix' => 'partido'], function(){
-            Route::get('/', 'UsuarioController@getUsuario');                //Muestra todos los partidos
-            Route::post('/','UsuarioController@getUsuario');                //Inserta un partido
-            Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un partido
-            Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese partido
-            Route::delete('/{id}','UsuarioController@getUsuario');          //Elimina ese partido
-      });
+/*
+█▀▀ █▀▀█ █  █  ▀  █▀▀█ █▀▀█
+█▀▀ █  █ █  █ ▀█▀ █  █ █  █
+▀▀▀ ▀▀▀█  ▀▀▀ ▀▀▀ █▀▀▀ ▀▀▀▀
+*/
+Route::group(['prefix' => 'equipo'], function(){
+      Route::get('/', 'UsuarioController@getUsuario');                //Muestra todos los equipos
+      Route::post('/','UsuarioController@getUsuario');                //Inserta un equipo
+      Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un equipo
+      Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese equipo
+      Route::delete('/{id}','UsuarioController@getUsuario');          //Elimina ese equipo
+});
 
 
+/*
+█▀▀█ █▀▀█ █▀▀█ ▀▀█▀▀  ▀  █▀▀▄ █▀▀█
+█  █ █▄▄█ █▄▄▀   █   ▀█▀ █  █ █  █
+█▀▀▀ ▀  ▀ ▀ ▀▀   ▀   ▀▀▀ ▀▀▀  ▀▀▀▀
+*/
+Route::group(['prefix' => 'partido'], function(){
+      Route::get('/', 'UsuarioController@getUsuario');                //Muestra todos los partidos
+      Route::post('/','UsuarioController@getUsuario');                //Inserta un partido
+      Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un partido
+      Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese partido
+      Route::delete('/{id}','UsuarioController@getUsuario');          //Elimina ese partido
+});
+
+
+Route::group(['middleware' => 'auth'], function(){
       /*
       █▀▀ █▀▀█ █▀▀▄ █▀▀  ▀  █▀▀▀
       █   █  █ █  █ █▀▀ ▀█▀ █ ▀█
@@ -102,9 +102,4 @@ Route::get('/', function () {
       Route::group(['prefix' => 'admin'], function(){
 
       });
-
-//});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
+});
