@@ -19,8 +19,10 @@ class CreateEquipoTable extends Migration
             $table->string('nombreEquipo');
             $table->integer('presupuesto');
             $table->string('logo');
+            $table->integer('patrocinador_id')->nullable();
             $table->integer('estadio_id')->unique()->nullable();
             $table->foreign('estadio_id')->references('id')->on('estadio')->onDelete('set null');
+            $table->foreign('patrocinador_id')->references('id')->on('patrocinador')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -33,6 +35,7 @@ class CreateEquipoTable extends Migration
     public function down()
     {
         //Previo: Eliminación de jugadores, entrenadores y partidos
+        Schema::dropIfExists('patrocinador');
         Schema::dropIfExists('estadio');
         Schema::dropIfExists('equipo');
     }

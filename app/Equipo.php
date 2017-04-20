@@ -29,4 +29,8 @@ class Equipo extends Model
       public function estadio(){
             return $this->belongsTo('App\Estadio');
       }
+
+      public function patrocinador(){
+            return $this->belongsTo('App\Patrocinador','patrocinador','patrocinador_id');
+      }
 }

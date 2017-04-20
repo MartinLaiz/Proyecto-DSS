@@ -15,31 +15,38 @@ class EquipoTableSeeder extends Seeder
         DB::table('equipo')->delete();
         $estadio = DB::table('estadio')->where('nombre','like','%Libre%')->first();
         //Insertar
-        
+        $patrocinador = DB::table('patrocinador')->where('nombre','like','%libre%')->first();
+
         DB::table('equipo')->insert([
             'cif'=>'000000000',
             'nombreEquipo'=>'Libre',
             'presupuesto' =>0,
             'estadio_id' => $estadio->id,
-            'logo' => "images/escudos/libre.png"
-            
+            'logo' => "images/escudos/libre.png",
+            'patrocinador_id' => $patrocinador->id
         ]);
 
         $estadio = DB::table('estadio')->where('nombre','like','%UA%')->first();
+        $patrocinador = DB::table('patrocinador')->where('nombre','like','%BBVA%')->first();
+
         DB::table('equipo')->insert([
             'cif'=>'A27417476',
             'nombreEquipo'=>'UA Football Club',
             'presupuesto' =>0,
             'estadio_id' => $estadio->id,
-            'logo' => 'images/escudos/Escudo.png'
+            'logo' => 'images/escudos/Escudo.png',
+            'patrocinador_id' => $patrocinador->id
         ]);
+
+        /*$patrocinador = DB::table('patrocinador')->where('nombre','like','%libre%')->first();
         $estadio = DB::table('estadio')->where('nombre','like','%Bernabéu%')->first();
         DB::table('equipo')->insert([
             'cif'=> 'G28034718',
             'nombreEquipo' => 'Real Madrid Club de Futbol',
             'presupuesto' =>0,
             'estadio_id' => $estadio->id,
-            'logo' => "images/escudos/realmadrid.png"
+            'logo' => "images/escudos/realmadrid.png",
+            'patrocinador_id' => $patrocinador->id
         ]);
         $estadio = DB::table('estadio')->where('nombre','like','%Mendizorroza%')->first();
 
@@ -48,7 +55,8 @@ class EquipoTableSeeder extends Seeder
             'nombreEquipo' => 'Deportivo Alavés',
             'presupuesto' =>0,
             'estadio_id' => $estadio->id,
-            'logo' => "images/escudos/alaves.png"
+            'logo' => "images/escudos/alaves.png",
+            'patrocinador_id' => $patrocinador->id
         ]);
 
         $estadio = DB::table('estadio')->where('nombre','like','%Mamés%')->first();
@@ -58,7 +66,8 @@ class EquipoTableSeeder extends Seeder
             'nombreEquipo' => 'Athletic Club de Bilbao',
             'presupuesto' =>0,
             'estadio_id' => $estadio->id,
-            'logo' => "images/escudos/bilbao.png"
+            'logo' => "images/escudos/bilbao.png",
+            'patrocinador_id' => $patrocinador->id
         ]);
 
         $estadio = DB::table('estadio')->where('nombre','like','%Cármenes%')->first();
@@ -67,7 +76,8 @@ class EquipoTableSeeder extends Seeder
             'nombreEquipo' => 'Granada Club de Fútbol',
             'presupuesto' =>0,
             'estadio_id' => $estadio->id,
-            'logo' => "images/escudos/granada.png"
+            'logo' => "images/escudos/granada.png",
+            'patrocinador_id' => $patrocinador->id
         ]);
 
         $estadio = DB::table('estadio')->where('nombre','like','%Villamarín%')->first();
@@ -76,7 +86,8 @@ class EquipoTableSeeder extends Seeder
             'nombreEquipo' => 'Real Betis Balompié',
             'presupuesto' =>0,
             'estadio_id' => $estadio->id,
-            'logo' => "images/escudos/betis.png"
+            'logo' => "images/escudos/betis.png",
+            'patrocinador_id' => $patrocinador->id
         ]);
 
            /*$equipos = DB::table('equipo')->get(); // select * from equipo
