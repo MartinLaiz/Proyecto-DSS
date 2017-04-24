@@ -14,9 +14,10 @@ class EquipoController extends Controller
 {
       public function getHome(){
             $idUA = Equipo::where('nombreEquipo','like','%UA%')->first()->id;
-            $ultPartidos = Partido::where('fecha','<',Carbon::now())->orderBy('fecha','desc')->take(5)->get();
+            $ultPartidos = Partido::where('fecha','<',Carbon::now())select * from temporada
+order by  nombre  desc->take(5)->get();
             $proxPartidos = Partido::where('fecha','>',Carbon::now())->orderBy('fecha','asc')->take(5)->get();
-            dd();
+            
             return view('home',[
                   'equipos' => Equipo::get(),
                   'estadios' => Estadio::get(),

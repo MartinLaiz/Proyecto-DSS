@@ -38,7 +38,7 @@ class EquipoTableSeeder extends Seeder
             'patrocinador_id' => $patrocinador->id
         ]);
 
-        /*$patrocinador = DB::table('patrocinador')->where('nombre','like','%libre%')->first();
+        $patrocinador = DB::table('patrocinador')->where('nombre','like','%libre%')->first();
         $estadio = DB::table('estadio')->where('nombre','like','%Bernabéu%')->first();
         DB::table('equipo')->insert([
             'cif'=> 'G28034718',

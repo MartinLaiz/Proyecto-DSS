@@ -2,6 +2,7 @@
 @section('title', 'Inicio')
 @section('content')
 
+
 <div class="contenedor row">
       @include('cabecera',array('section'=>'inicio'))
       <div class="col-md-10 col-md-offset-1">

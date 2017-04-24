@@ -22,4 +22,9 @@ class Jugar extends Model
       public function temporada(){
             return $this->belongsTo('App\Temporada');
       }
+
+
+      public function partidos($temp){
+            return $this->jugar('App\Temporada');
+      }
 }

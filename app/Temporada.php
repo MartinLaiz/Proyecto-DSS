@@ -14,4 +14,9 @@ class Temporada extends Model
       public function jugar(){
         return $this->belongsToMany('App\Jugar','jugar','id');
       }
+
+      public function temporadaUltima(){
+        return $this->temporada->orderBy('nombre','desc')->first();
+
+      }
 }
