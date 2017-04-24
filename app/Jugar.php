@@ -24,7 +24,7 @@ class Jugar extends Model
       }
 
 
-      public function partidos($temp){
-            return $this->jugar('App\Temporada');
+      public function partidos($temporada){
+            return $this->jugar->where('temporada_id','=',$temporada);
       }
 }

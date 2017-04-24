@@ -12,11 +12,11 @@ class Temporada extends Model
 
 
       public function jugar(){
-        return $this->belongsToMany('App\Jugar','jugar','id');
+        return $this->belongsToMany('App\Jugar','jugar','temporada_id');
       }
 
       public function temporadaUltima(){
-        return $this->temporada->orderBy('nombre','desc')->first();
+        return $this->jugar()->orderBy('nombre','desc');
 
       }
 }

@@ -11,5 +11,6 @@ class Competicion extends Model
 
      public function jugar(){
         return $this->belongsToMany('App\Jugar','jugar','id');
-      } 
+    }
+
 }
