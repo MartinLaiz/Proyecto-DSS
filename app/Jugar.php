@@ -10,4 +10,7 @@ class Jugar extends Model
 
       protected $dates = ['fecha'];
 
+      public function partido(){
+            $this->belongsTo('App\Partido');
+      }
 }

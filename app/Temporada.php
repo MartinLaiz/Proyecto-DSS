@@ -11,11 +11,11 @@ class Temporada extends Model
 
 
 
-    public function partidos(){
-      return $this->belongsToMany('App\Partido','jugar');
-    }
+      public function partidos(){
+            return $this->belongsToMany('App\Jugar');
+      }
 
-    public function competicion(){
-      return $this->belongsToMany('App\Competicion','jugar','competicion_id');
-    }
+      public function competicion(){
+            return $this->belongsToMany('App\Competicion','jugar','competicion_id');
+      }
 }

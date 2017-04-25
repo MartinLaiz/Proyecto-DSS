@@ -15,14 +15,15 @@ class JugarController extends Controller
 {
 
 
-    public function getJugar(){
-        //obtengo la ultima temporada
-        $ultimaTemp = Temporada::orderBy('nombre','desc')->first();
-
-        //consigo los partidos de la ultima temporada
-        $partidos = $ultimaTemp->with('partidos')->get();
-        dd(Equipo::find(3)->partidosLocal()->with('equipoLocal')->get());
-        //consigo los nombre de los equipos de partidos
-
-    }
+      public function getJugar(){
+            //obtengo la ultima temporada
+            $ultimaTemp = Temporada::orderBy('nombre','desc')->first();
+            $partidos = Partido::with('jugar')->get();
+            //consigo los partidos de la ultima temporada
+            //$partidos = $ultimaTemp->with('partidos')->get();
+            //consigo los nombre de los equipos de partidos
+            return view('prueba', [
+                  'partidos' => $partidos
+            ]);
+      }
 }
