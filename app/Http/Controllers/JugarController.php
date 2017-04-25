@@ -17,9 +17,9 @@ class JugarController extends Controller
     public function getJugar(){
         //obtengo la ultima temporada
         $ultimaTemp = Temporada::orderBy('nombre','desc')->first();
-        
+
         //consigo los partidos de la ultima temporada
-        $partidos = $ultimaTemp->partido()->get();
+        $partidos = $ultimaTemp->partidos()->get();
         dd($partidos);
         //consigo los nombre de los equipos de partidos
 

@@ -11,8 +11,8 @@ class Temporada extends Model
 
 
 
-    public function partido(){
-      return $this->belongsToMany('App\Partido','jugar','partido_id');
+    public function partidos(){
+      return $this->belongsToMany('App\Partido','jugar');
     }
 
     public function competicion(){
