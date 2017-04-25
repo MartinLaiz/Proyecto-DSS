@@ -16,24 +16,12 @@ class JugarController extends Controller
 
     public function getJugar(){
         //obtengo la ultima temporada
-        $ultimaTemp = Temporada::all();
+        $ultimaTemp = Temporada::orderBy('nombre','desc')->first();
         
-        $ultimaTemp->temporadaUltima()->first();
-        //conseguimos todos los partidos de la temporada ultima
-        $partidos = Jugar::partidos($ultimaTem->id)->get();
+        //consigo los partidos de la ultima temporada
+        $partidos = $ultimaTemp->partido()->get();
+        dd($partidos);
         //consigo los nombre de los equipos de partidos
-
-        return view('partidos', [
-                                'values' => [
-                                            'competicion_id'=> 'Competicion',
-                                            'temporada_id'=>'Temporada',
-                                            'partido_id'=>'Partido',
-                                            'golesLocal'=> 'Goles Local',
-                                            'golesVisitante'=>'Goles Visitante',
-                                            'fecha' => 'Fecha'],
-                                'lista' =>   $partidos,
-                                ]
-                    );
 
     }
 }
