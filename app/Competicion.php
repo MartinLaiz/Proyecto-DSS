@@ -8,6 +8,9 @@ class Competicion extends Model
 {
      protected $table = 'competicion';
 
+    public function partidosJugados(){
+        return $this->hasMany('App\Jugar');
+    }
 
     public function partido(){
         return $this->belongsToMany('App\Partido','jugar','partido_id');
