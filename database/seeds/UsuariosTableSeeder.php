@@ -12,7 +12,7 @@ class UsuariosTableSeeder extends Seeder
       {
             DB::table('usuario')->delete();
 
-            $nextDNI = 0;
+            $nextDNI = 1;
 
             $jugador = 0;
             $entrenador = 1;
@@ -55,7 +55,7 @@ class UsuariosTableSeeder extends Seeder
                               'dni'=> $dni,
                               'nombre' => $nombres[mt_rand(0, 601)],
                               'apellidos' => $apellidos[mt_rand(0, 1413)]." ".$apellidos[mt_rand(0, 1413)],
-                              'fNac' =>  date($formato,mt_rand(315532800, 946684799)),
+                              'fNac' =>  date($formato,mt_rand(strtotime('1970-01-01'), strtotime('1977-12-31'))),
                               'equipo_id' => $equipo->id,
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $director,
@@ -73,7 +73,7 @@ class UsuariosTableSeeder extends Seeder
                               'dni'=> $dni,
                               'nombre' => $nombres[mt_rand(0, 601)],
                               'apellidos' => $apellidos[mt_rand(0, 1413)]." ".$apellidos[mt_rand(0, 1413)],
-                              'fNac' =>  date($formato,mt_rand(315532800, 946684799)),
+                              'fNac' =>  date($formato,mt_rand(strtotime('1977-01-01'), strtotime('1992-12-31'))),
                               'equipo_id' => $equipo->id,
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $entrenador,
@@ -92,7 +92,7 @@ class UsuariosTableSeeder extends Seeder
                               'dni'=> $dni,
                               'nombre' => $nombres[mt_rand(0, 601)],
                               'apellidos' => $apellidos[mt_rand(0, 1413)]." ".$apellidos[mt_rand(0, 1413)],
-                              'fNac' =>  date($formato,mt_rand(315532800, 946684799)),
+                              'fNac' =>  date($formato,mt_rand(strtotime('1977-01-01'), strtotime('1992-12-31'))),
                               'equipo_id' => $equipo->id,
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $entrenador,
@@ -116,7 +116,7 @@ class UsuariosTableSeeder extends Seeder
                               'dni'=> $dni,
                               'nombre' => $nombres[mt_rand(0, 601)],
                               'apellidos' => $apellidos[mt_rand(0, 1413)]." ".$apellidos[mt_rand(0, 1413)],
-                              'fNac' =>  date($formato,mt_rand(315532800, 946684799)),
+                              'fNac' =>  date($formato,mt_rand(strtotime('1985-01-01'), strtotime('2000-12-31'))),
                               'equipo_id' => $equipo->id,
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $jugador,
@@ -140,7 +140,7 @@ class UsuariosTableSeeder extends Seeder
                               'dni'=> $dni,
                               'nombre' => $nombres[mt_rand(0, 601)],
                               'apellidos' => $apellidos[mt_rand(0, 1413)]." ".$apellidos[mt_rand(0, 1413)],
-                              'fNac' =>  date($formato,mt_rand(315532800, 946684799)),
+                              'fNac' =>  date($formato,mt_rand(strtotime('1985-01-01'), strtotime('2000-12-31'))),
                               'equipo_id' => $equipo->id,
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $jugador,
@@ -164,7 +164,7 @@ class UsuariosTableSeeder extends Seeder
                               'dni'=> $dni,
                               'nombre' => $nombres[mt_rand(0, 601)],
                               'apellidos' => $apellidos[mt_rand(0, 1413)]." ".$apellidos[mt_rand(0, 1413)],
-                              'fNac' =>  date($formato,mt_rand(315532800, 946684799)),
+                              'fNac' =>  date($formato,mt_rand(strtotime('1985-01-01'), strtotime('2000-12-31'))),
                               'equipo_id' => $equipo->id,
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $jugador,
@@ -189,7 +189,7 @@ class UsuariosTableSeeder extends Seeder
                                     'dni'=> $dni,
                                     'nombre' => $nombres[mt_rand(0, 601)],
                                     'apellidos' => $apellidos[mt_rand(0, 1413)]." ".$apellidos[mt_rand(0, 1413)],
-                                    'fNac' =>  date($formato,mt_rand(315532800, 946684799)),
+                                    'fNac' =>  date($formato,mt_rand(strtotime('1985-01-01'), strtotime('2000-12-31'))),
                                     'equipo_id' => $equipo->id,
                                     'salario' => mt_rand(5000, 100000),
                                     'rol' => $jugador,
