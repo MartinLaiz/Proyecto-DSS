@@ -15,5 +15,4 @@ class Estadio extends Model
     public function estadio(){
         return $this->hasMany('App\Partido');
     }
-
 }

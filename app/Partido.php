@@ -14,11 +14,11 @@ class Partido extends Model
 
 
       public function competicion(){
-            return $this->belongsToMany('App\Competicion','jugar','competicion_id');
+            return $this->belongsToMany('App\Competicion','jugar');
       }
 
       public function temporada(){
-            return $this->belongsToMany('App\Temporada','temporada');
+            return $this->belongsToMany('App\Temporada','jugar');
       }
 
       public function equipoVisitante(){
