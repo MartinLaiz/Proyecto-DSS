@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Partido extends Model
@@ -9,9 +9,8 @@ class Partido extends Model
       protected $table = 'partido';
 
       public function partido(){
-            return $this->belongsTo('App\Jugar');
+            return $this->hasMany('App\Jugar');
       }
-
 
       public function competicion(){
             return $this->belongsToMany('App\Competicion','jugar');
