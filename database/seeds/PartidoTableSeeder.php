@@ -13,26 +13,14 @@ class PartidoTableSeeder extends Seeder
       */
       public function run()
       {
-            $formato = 'Y-m-d H:i:s';
-            $today = time();
-
             $equipos = Equipo::get();
-            $libre = Equipo::where('nombreEquipo','like','%Libre%')->first();
+            $libreID = Equipo::where('nombreEquipo','like','%Libre%')->first()->id;
 
             foreach ($equipos as $equipoLocal) {
                   foreach ($equipos as $equipoVisitante) {
 
                         if($equipoLocal->id != $equipoVisitante->id
-                        and $equipoLocal->id!= $libre->id
-                        and $equipoVisitante->id!= $libre->id){
-
-                              $fecha = mt_rand(1470052800, 1527854400);
-                              $golesLocal = 0;
-                              $golesVisitante = 0;
-                              if($fecha<$today){
-                                    $golesLocal = mt_rand(0, 5);
-                                    $golesVisitante = mt_rand(0, 5);
-                              }
+                        and $equipoLocal->id != $libreID and $equipoVisitante->id != $libreID){
 
                               $partido = new Partido([
                                     'equipoLocal_id'=> $equipoLocal->id,

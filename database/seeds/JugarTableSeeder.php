@@ -26,8 +26,7 @@ class JugarTableSeeder extends Seeder
             foreach($temporadas as $temporada){
                   foreach($competiciones as $competicion){
                         foreach($partidos as $partido){
-                              //$fecha = mt_rand(strtotime($temporada->inicio, $temporada->fin));
-                              $fecha ='2015-08-01';
+                              $fecha = mt_rand(strtotime($temporada->inicio), strtotime($temporada->fin));
                               $golesLocal = 0;
                               $golesVisitante = 0;
 
@@ -42,7 +41,7 @@ class JugarTableSeeder extends Seeder
                                     'partido_id' => $partido->id,
                                     'golesLocal' =>$golesLocal,
                                     'golesVisitante' => $golesVisitante,
-                                    'fecha' => $fecha
+                                    'fecha' => date($formato,$fecha)
 
                               ]);
                               $jugar->save();

@@ -13,8 +13,8 @@ class CreateUsuariosTable extends Migration
                   $table->char('dni',9)->unique();
                   $table->string('nombre');
                   $table->string('apellidos');
-                  $table->date('fNac');
-                  
+                  $table->timestamp('fNac');
+
                   $table->integer('salario')->nullable();
                   $table->string('posicion')->nullable();
                   $table->integer('rol')->nullable();
