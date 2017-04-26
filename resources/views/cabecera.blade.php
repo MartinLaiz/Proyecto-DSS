@@ -28,9 +28,9 @@
                               <li><a href="{{action('EquipoController@getHome')}}">Plantilla</a></li>
                         @endif
                         @if($section == "equipos")
-                              <li class="active"><a href="{{action('EquipoController@getHome')}}">Equipos</a></li>
+                              <li class="active"><a href="{{action('EquipoController@getEquipos')}}">Equipos</a></li>
                         @else
-                              <li><a href="{{action('EquipoController@getHome')}}">Equipos</a></li>
+                              <li><a href="{{action('EquipoController@getEquipos')}}">Equipos</a></li>
                         @endif
                   </ul>
                   <ul class="nav navbar-nav navbar-right">

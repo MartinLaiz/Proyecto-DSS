@@ -40,9 +40,9 @@ Route::group(['prefix' => 'usuario'], function(){
 ▀▀▀ ▀▀▀█  ▀▀▀ ▀▀▀ █▀▀▀ ▀▀▀▀
 */
 Route::group(['prefix' => 'equipo'], function(){
-      Route::get('/', 'UsuarioController@getUsuario');                //Muestra todos los equipos
+      Route::get('/', 'EquipoController@getEquipos');                //Muestra todos los equipos
       Route::post('/','UsuarioController@getUsuario');                //Inserta un equipo
-      Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un equipo
+      Route::get('/{id}','EquipoController@getEquipo');             //Muestra solo un equipo
       Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese equipo
       Route::delete('/{id}','UsuarioController@getUsuario');          //Elimina ese equipo
 });
@@ -76,7 +76,7 @@ Route::group(['prefix' => 'partido'], function(){
 });
 
 
-Route::group(['middleware' => 'auth'], function(){
+//Route::group(['middleware' => 'auth'], function(){
       /*
       █▀▀ █▀▀█ █▀▀▄ █▀▀  ▀  █▀▀▀
       █   █  █ █  █ █▀▀ ▀█▀ █ ▀█
@@ -97,8 +97,9 @@ Route::group(['middleware' => 'auth'], function(){
             });
 
             //Equipo
-            Route::get('/equipo/crear','UsuarioController@getUsuario');
-            Route::post('/equipo/crear','UsuarioController@getUsuario');
+            Route::get('/equipo/crear','EquipoController@formulario');
+            Route::post('/equipo/crear','EquipoController@crearEquipo');
+            //Route::get('/equipo/crear','UsuarioController@crearEquipo');
             Route::get('/editar/equipos','UsuarioController@getUsuario');
             Route::get('/editar/equipo/{id}','UsuarioController@getUsuario');
             Route::post('/editar/equipo/{id}','UsuarioController@getUsuario');
@@ -116,4 +117,4 @@ Route::group(['middleware' => 'auth'], function(){
       Route::group(['prefix' => 'admin'], function(){
 
       });
-});
+//});

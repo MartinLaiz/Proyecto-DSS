@@ -48,6 +48,7 @@
                               <button class="btn btn-success" type="submit">Crear equipo</button>
                         </div>
                   </div>
+                  
             </form>
       </div>
 </div>

@@ -31,6 +31,11 @@ class Equipo extends Model
       }
 
       public function patrocinador(){
-            return $this->belongsTo('App\Patrocinador','patrocinador','patrocinador_id');
+            return $this->belongsTo('App\Patrocinador');
+      }
+
+
+      public function getPatrocinadorLibre(){
+            return $this->patrocinador()->where('nombre','=','libre');
       }
 }

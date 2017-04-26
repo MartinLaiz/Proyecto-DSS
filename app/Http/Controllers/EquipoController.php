@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use App\Equipo;
 use App\Partido;
 use App\Estadio;
+use App\Patrocinador;
 use Carbon\Carbon;
 use Validator;
 
@@ -30,10 +32,11 @@ class EquipoController extends Controller
       }
 
       public function formulario(){
-            return view('crearEquipo');
+            return view('config/crearEquipo');
       }
 
       public function crearEquipo(Request $request){
+            
             $estadio = new Estadio();
             $estadio->nombre = $request->input('estadioNombre');
             $estadio->capacidad = $request->input('aforo');
@@ -42,10 +45,19 @@ class EquipoController extends Controller
             $equipo->cif = $request->input('cif');
             $equipo->nombreEquipo = $request->input('equipoNombre');
             $equipo->presupuesto = $request->input('presupuesto');
+            $equipo->logo = '';
+            //Por defecto se crea sin ningun patrocinador.
+            $patrocinador = Patrocinador::where('nombre','=','libre')->first();
+            $equipo->patrocinador_id = $patrocinador->id;
+            //consigo el nuevo estadio
+           
+
+
+
 
             return $this->captarErrores($estadio,$equipo,$request);
-
       }
+
 
       public function getEquipo($id){
             $team = Equipo::find($id);
@@ -54,13 +66,12 @@ class EquipoController extends Controller
             'jugadores'=>$team->jugadores()->get()]);
       }
 
-      public function mostrarEquipo(){
-            $team = Equipo::join('estadio','equipo.estadio','=','estadio.id')
-            ->select('equipo.id as equipoid', 'equipo.*','estadio.*')->paginate(8);
+      public function getEquipos(){
+            //consigo todos los equipos con los estadios
+            $team = Equipo::with('estadio','patrocinador')->get();
+
             return view('equipos',['lista' => $team]);
       }
-
-
 
       public function editar(){
             return view('editarEquipos',[
@@ -104,9 +115,10 @@ class EquipoController extends Controller
       public function captarErrores($estadio,$equipo,$request){
             try{
                   //le pongo el valor aqui para poder hacer la condicion en el if
-                  $equipo->save();
                   $estadio->save();
-                  return redirect()->action('EquipoController@editar');
+                  $equipo->estadio_id = Estadio::where('nombre','=', $estadio->nombre)->first()->id;
+                  $equipo->save();
+                  return Redirect::to('/equipo');
             }
             catch(\Illuminate\Database\QueryException $e){
                   $validator = Validator::make($request->all(), [
