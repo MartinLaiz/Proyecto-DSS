@@ -77,12 +77,13 @@ class EquipoController extends Controller
       public function modificarEquipo($id){
             $equipo = Equipo::find($id);
             return view(
-                  'modificarEquipo',[
+                  'config/modificarEquipo',[
                         'equipo' => $equipo,
                         'estadio' => $equipo->estadio()->first()
                   ]
             );
       }
+
 
       public function modificarEquipoPost(Request $request, $id){
             $equipo = Equipo::find($id);

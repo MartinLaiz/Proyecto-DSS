@@ -100,8 +100,8 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/equipo/crear','EquipoController@formulario'); //Va al formulario de modificar
             Route::post('/equipo/crear','EquipoController@crearEquipo'); //Crea el quipo
             Route::get('/editar/equipos','EquipoController@editar'); 
-            Route::get('/editar/equipo/{id}','UsuarioController@getUsuario');
-            Route::post('/editar/equipo/{id}','UsuarioController@getUsuario');
+            Route::get('/editar/equipo/{id}','EquipoController@modificarEquipo');
+            Route::post('/editar/equipo/{id}','EquipoController@modificarEquipoPost');
             Route::get('/eliminar/equipo/{id}','EquipoController@eliminar');
             //Partido
             Route::get('/eliminar/partido/{id}','UsuarioController@getUsuario');

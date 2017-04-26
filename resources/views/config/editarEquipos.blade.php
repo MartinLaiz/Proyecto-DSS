@@ -34,7 +34,7 @@
                                     <td>{!!$team->patrocinador->nombre!!}</td>
                                     <td>
                                           <div class="btn-group ">
-                                                <a {{-- href="{{ action('EquipoController@modificarEquipo', $team->id) }}" --}}
+                                                <a href="{{ action('EquipoController@modificarEquipo', $team->id) }}" 
                                                       class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
                                                       role="button" title="Modificar">
                                                 </a>
