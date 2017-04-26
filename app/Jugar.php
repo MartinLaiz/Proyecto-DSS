@@ -28,6 +28,7 @@ class Jugar extends Model
             $temporadaActual = Temporada::where('inicio','<=',Carbon::now())
             ->where('fin','>=',Carbon::now())->first()->id;
             //devuelvo los partidos de la temporada actual
+
             return $this->partidos()->where('temporada_id','=',$temporadaActual);
       }
 }
