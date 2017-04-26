@@ -37,6 +37,8 @@ class UsuarioController extends Controller
             ]);
       }
 
+
+
       public function getForm(){
             return view('formUsuario', array(
                   'listaEquipos' => Equipo::orderBy('nombreEquipo')->get()

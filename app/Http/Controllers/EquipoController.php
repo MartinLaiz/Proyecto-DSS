@@ -50,10 +50,6 @@ class EquipoController extends Controller
             $patrocinador = Patrocinador::where('nombre','=','libre')->first();
             $equipo->patrocinador_id = $patrocinador->id;
             //consigo el nuevo estadio
-           
-
-
-
 
             return $this->captarErrores($estadio,$equipo,$request);
       }
@@ -74,17 +70,8 @@ class EquipoController extends Controller
       }
 
       public function editar(){
-            return view('editarEquipos',[
-                  'values' => [
-                        'cif' =>'CIF',
-                        'nombreEquipo'=>'Nombre del equipo',
-                        'presupuesto'=>'Presupuesto',
-                        'nombre'=>'Estadio',
-                        'capacidad' => 'Capacidad'],
-                        'lista' => Equipo::where('nombreEquipo','<>','Libre')->join('estadio','estadio.id','=','equipo.estadio')->select('equipo.*','estadio.nombre','estadio.capacidad')->paginate(8)
-                  ]
-            );
-
+            $team = Equipo::with('estadio','patrocinador')->get();
+            return view('config/editarEquipos',['lista' => $team]);
       }
 
       public function modificarEquipo($id){
