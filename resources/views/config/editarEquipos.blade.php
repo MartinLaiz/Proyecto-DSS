@@ -38,7 +38,7 @@
                                                       class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
                                                       role="button" title="Modificar">
                                                 </a>
-                                                <a {{-- href="{{ action('EquipoController@eliminar', $team->id) }}" --}} 
+                                                <a  href="{{ action('EquipoController@eliminar', $team->id) }}"  
                                                       class="btn btn-danger btn-block glyphicon glyphicon-trash" 
                                                       role="button" title="Borrar">
                                                 </a>

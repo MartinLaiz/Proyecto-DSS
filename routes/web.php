@@ -102,7 +102,7 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/editar/equipos','EquipoController@editar'); 
             Route::get('/editar/equipo/{id}','UsuarioController@getUsuario');
             Route::post('/editar/equipo/{id}','UsuarioController@getUsuario');
-            Route::get('/eliminar/equipo/{id}','UsuarioController@getUsuario');
+            Route::get('/eliminar/equipo/{id}','EquipoController@eliminar');
             //Partido
             Route::get('/eliminar/partido/{id}','UsuarioController@getUsuario');
             Route::get('/partidos', 'UsuarioController@getUsuario');
