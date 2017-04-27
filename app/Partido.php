@@ -12,15 +12,21 @@ class Partido extends Model
             return $this->hasMany('App\Jugar');
       }
 
+       public function jugarTemporadaActual(){
+            $temporadaActual = Temporada::with('temporadaActual')->first();
 
-      /*public function competiciones(){
+            return $this->jugar()->where('temporada_id','=', $temporadaActual->id);
+      }
+
+
+      public function competiciones(){
             return $this->belongsToMany('App\Competicion','jugar','partido_id','temporada_id'); //->withPivot('role_id')
       }
 
 
       public function temporadas(){
             return $this->belongsToMany('App\Temporada','jugar','partido_id','competicion_id')->withPivot('temporada_id');
-      }*/
+      }
 
 
 

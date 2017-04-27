@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use App\Partido;
 use App\Temporada;
@@ -21,15 +23,23 @@ class JugarController extends Controller
             //obtengo la temporada actual
             $temporadaActual = Temporada::with('temporadaActual')->first();
 
-            $partidos = Jugar::with('partidos','temporadas','competiciones')
-            ->where('temporada_id','=',  $temporadaActual->id)->get();
-            
-            dd($partidos->toArray());
-            //consigo los partidos de la ultima temporada
-            //$partidos = $ultimaTemp->with('partidos')->get();
-            //consigo los nombre de los equipos de partidos
-            return view('prueba', [
-                  'partidos' => $partidos
-            ]);
+            //obtengo los datos de partido con jugar con la temporada actual
+            $partidos = Partido::with('jugarTemporadaActual','equipoLocal','equipoVisitante')->paginate();
+            //obtengo las competiciones
+            $competiciones = Competicion::with('jugar')->get();
+            $variable = array();
+
+            foreach($partidos as $partido){      
+                  foreach( $partido->jugarTemporadaActual as $jugar){
+                         $variable[] = $jugar;
+                  }
+                  
+            }
+
+            return view('partidos', [
+                  'partidos' => $partidos,
+                  'competiciones' => $competiciones,
+                  'jugar' => $variable,
+                  'temporada' => $temporadaActual->nombre]);
       }
 }
