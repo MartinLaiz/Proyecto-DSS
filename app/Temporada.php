@@ -9,15 +9,25 @@ class Temporada extends Model
       protected $table = 'temporada';
       protected $dates = ['inicio', 'fin'];
 
-       public function temporada(){
-            return $this->belongsTo('App\Jugar');
+
+      public function jugar(){
+            return $this->hasMany('App\Jugar');
+      }
+     
+
+     public function temporadaActual(){
+           $temporadaActual = Temporada::where('inicio','<=',Carbon::now())
+            ->where('fin','>=',Carbon::now())->first();
+            
+            return $this->jugar()->where('temporada_id','=',  $temporadaActual->id);
+     }
+
+      /*public function partidos(){
+            return $this->belongsToMany('App\Partido','jugar','temporada_id','competicion_id'); 
       }
 
-      public function partidos(){
-            return $this->belongsToMany('App\Jugar');
-      }
 
-      public function competicion(){
-            return $this->belongsToMany('App\Competicion','jugar','competicion_id');
-      }
+      public function competiciones(){
+            return $this->belongsToMany('App\Competicion','jugar','partido_id','temporada_id'); //->withPivot('user_id') if you need saving
+      }*/
 }

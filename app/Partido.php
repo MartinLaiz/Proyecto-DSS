@@ -8,17 +8,21 @@ class Partido extends Model
 {
       protected $table = 'partido';
 
-      public function partido(){
-            return $this->hasMany('App\Jugar');
-      }
-
-      public function competicion(){
-            return $this->belongsToMany('App\Competicion','jugar');
-      }
-
       public function jugar(){
             return $this->hasMany('App\Jugar');
       }
+
+
+      /*public function competiciones(){
+            return $this->belongsToMany('App\Competicion','jugar','partido_id','temporada_id'); //->withPivot('role_id')
+      }
+
+
+      public function temporadas(){
+            return $this->belongsToMany('App\Temporada','jugar','partido_id','competicion_id')->withPivot('temporada_id');
+      }*/
+
+
 
       public function equipoVisitante(){
             return $this->belongsTo('App\Equipo','equipoVisitante_id');

@@ -2,6 +2,7 @@
 
 namespace App;
 use Carbon\Carbon;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Jugar extends Model
@@ -23,12 +24,5 @@ class Jugar extends Model
       }
 
 
-      public function partidoTemporadaActual(){
-            //obtengo la temporada actual
-            $temporadaActual = Temporada::where('inicio','<=',Carbon::now())
-            ->where('fin','>=',Carbon::now())->first()->id;
-            //devuelvo los partidos de la temporada actual
-
-            return $this->partidos()->where('temporada_id','=',$temporadaActual);
-      }
+    
 }

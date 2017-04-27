@@ -18,9 +18,13 @@ class JugarController extends Controller
 
 
       public function getJugar(){
-            //obtengo la ultima temporada
-            $partidos = Jugar::with('partidoTemporadaActual');
-            dd($partidos);
+            //obtengo la temporada actual
+            $temporadaActual = Temporada::with('temporadaActual')->first();
+
+            $partidos = Jugar::with('partidos','temporadas','competiciones')
+            ->where('temporada_id','=',  $temporadaActual->id)->get();
+            
+            dd($partidos->toArray());
             //consigo los partidos de la ultima temporada
             //$partidos = $ultimaTemp->with('partidos')->get();
             //consigo los nombre de los equipos de partidos
