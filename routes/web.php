@@ -83,12 +83,13 @@ Route::group(['prefix' => 'partido'], function(){
       ▀▀▀ ▀▀▀▀ ▀  ▀ ▀   ▀▀▀ ▀▀▀▀
       */
       Route::group(['prefix' => 'config'], function () {
-            Route::get('/','UsuarioController@getUsuario');
+            Route::get('/','UsuarioController@getForm');
             // jugador
             Route::group(['prefix' => 'usuario'], function(){
                   Route::get('/todos','UsuarioController@getUsuario');            //Obtiene todo los jugadores
                   Route::get('/{id}','UsuarioController@getUsuario');             //Obtiene el jugador con el id
-                  Route::post('/crear','UsuarioController@getUsuario');
+                  Route::get('/crearModificar','UsuarioController@getForm');
+                  Route::post('/crear','UsuarioController@crearModificarUsuario');
                   Route::get('/editar/{id}','UsuarioController@getUsuario');
                   Route::put('/editar/{id}','UsuarioController@getUsuario');
                   Route::get('/eliminar/{id}','UsuarioController@getUsuario');

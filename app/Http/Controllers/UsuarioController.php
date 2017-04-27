@@ -12,7 +12,7 @@ class UsuarioController extends Controller
 {
       public function getUsuario($id){
             return view('perfil',[
-                  'usuario' => Usuario::find($id)->first()
+                  'usuario' => Usuario::find($id)
             ]);
       }
 
@@ -73,6 +73,7 @@ class UsuarioController extends Controller
                                     $errorDorsal = $usu->nombre.' ya tiene esa dorsal';
                                     $validator->getMessageBag()->add('dorsal', $errorDorsal);
                                     $errors = true;
+                                    break;
                               }
                         }
                         //Jugador: posición
