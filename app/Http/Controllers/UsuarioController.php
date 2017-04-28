@@ -104,4 +104,8 @@ class UsuarioController extends Controller
 
             }
       }
+
+      public function getConfig(){
+            return view('config.configuracion');
+      }
 }

@@ -34,7 +34,6 @@
                         @endif
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                        @if(Auth::check())
                         @if($section == 'configuracion')
                         <li class="dropdown active">
                         @else
@@ -46,10 +45,6 @@
                                     <li><a href="/">Cerrar sesión</a></li>
                               </ul>
                         </li>
-                        @else
-                        <li>Login</li>
-                        <li>Register</li>
-                        @endif
                         <li class="divider" role="separator"></li>
                   </ul>
             </div>
