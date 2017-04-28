@@ -9,36 +9,30 @@
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
-                                <th>Equipo Local</th>
-                                <th>Equipo Visitante</th>
-                                <th>Goles Local</th>
-                                <th>Goles Visitante</th>
-                                <th>Competicion</th>
-                                <th>Temporada</th>
+                              <th>Equipo Local</th>
+                              <th>Equipo Visitante</th>
+                              <th>Estadio</th>
+                              <th>Goles Local</th>
+                              <th>Goles Visitante</th>
+                              <th>Competicion</th>
+                              <th>Temporada</th>
+                               
                        
                         </tr>
 
                   <tbody>
                   
-                   @foreach($jugar as $j)
+                   @foreach($partidos as $partido)
                     <tr>
-                        @foreach($partidos as $partido)
-                              @if($j->partido_id == $partido->id)
-                                    <td>{!!$partido->equipoLocal->nombreEquipo!!}</td>
-                                    <td>{!!$partido->equipoVisitante->nombreEquipo!!}</td>
-                                    <td>{!!$j->golesLocal!!}</td>
-                                    <td>{!!$j->golesVisitante!!}</td>
 
-                              @endif
-                        @endforeach
-
-                        @foreach($competiciones as $competicion)
-                              @if($j->competicion_id == $competicion->id)
-                                    <td>{!!$competicion->nombre!!}</td>
-                              @endif
-
-                        @endforeach
-                          <td>{!!$temporada!!}</td>
+                        <th>{!!$partido->partido->equipoLocal->nombreEquipo!!}</th>
+                        <th>{!!$partido->partido->equipoVisitante->nombreEquipo!!}</th>
+                        <th>{!!$partido->partido->estadio->nombre!!}</th>
+                        <th>{!!$partido->golesLocal!!}</th>
+                        <th>{!!$partido->golesVisitante!!}</th>
+                        <th>{!!$partido->competicion->nombre!!}</th>
+                        <th>{!!$partido->temporada->nombre!!}</th>
+                        
                     </tr>
                     @endforeach
                   </tbody>

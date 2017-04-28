@@ -24,22 +24,10 @@ class JugarController extends Controller
             $temporadaActual = Temporada::with('temporadaActual')->first();
 
             //obtengo los datos de partido con jugar con la temporada actual
-            $partidos = Partido::with('jugarTemporadaActual','equipoLocal','equipoVisitante')->paginate();
-            //obtengo las competiciones
-            $competiciones = Competicion::with('jugar')->get();
-            $variable = array();
-
-            foreach($partidos as $partido){      
-                  foreach( $partido->jugarTemporadaActual as $jugar){
-                         $variable[] = $jugar;
-                  }
-                  
-            }
+            $partidos = Jugar::with('competicion','partido','temporada')
+            ->where('temporada_id','=',$temporadaActual->id)->get();
 
             return view('partidos', [
-                  'partidos' => $partidos,
-                  'competiciones' => $competiciones,
-                  'jugar' => $variable,
-                  'temporada' => $temporadaActual->nombre]);
+                  'partidos' => $partidos]);
       }
 }

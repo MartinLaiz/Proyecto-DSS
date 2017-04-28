@@ -15,14 +15,18 @@ class Jugar extends Model
             return $this->belongsTo('App\Partido')->with('equipoLocal','equipoVisitante','estadio');
       }
 
-      public function competiciones(){
+      public function competicion(){
+
             return $this->belongsTo('App\Competicion');
       }
 
-      public function temporadas(){
+      public function temporada(){
             return $this->belongsTo('App\Temporada');
       }
 
-
+      public function temporadaActual(){
+            $temporadaActual = Temporada::with('temporadaActual')->first();
+               return $this->temporada()->where('temporada_id','=',$temporadaActual->id);
+      }
 
 }
