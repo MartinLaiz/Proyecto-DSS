@@ -20,7 +20,7 @@
                         @if($section == "partidos")
                               <li class="active"><a href="#">Partidos</a></li>
                         @else
-                              <li><a href="{{ action('EquipoController@getHome') }}">Partidos</a></li>
+                              <li><a href="{{ action('JugarController@getJugar') }}">Partidos</a></li>
                         @endif
                         @if($section == "plantilla")
                               <li class="active"><a href="{{action('EquipoController@getHome')}}">Plantilla</a></li>

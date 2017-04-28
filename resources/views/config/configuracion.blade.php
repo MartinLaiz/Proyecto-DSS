@@ -27,9 +27,9 @@
                   <div class="col-md-3 text-center">
                         <h3>Partido</h3>
 
-                        <a class="btn btn-primary btn-block" href="" role="button">Insertar partido</a><br>
+                        <a class="btn btn-primary btn-block" href="{{action('EquipoController@formulario')}}" role="button">Insertar partido</a><br>
 
-                        <a class="btn btn-primary btn-block" href="" role="button">Modificar/Borrar partido</a>
+                        <a class="btn btn-primary btn-block" href="{{action('EquipoController@editar')}}" role="button">Modificar/Borrar partido</a>
                         <br>
                   </div>
             </div>
