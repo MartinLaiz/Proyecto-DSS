@@ -35,11 +35,11 @@
                         <th>{!!$partido->temporada->nombre!!}</th>
                         <td>
                               <div class="btn-group ">
-                                    <a href="" 
+                                    <a href="{{ action('JugarController@EliminarJugar', $partido->id) }}" 
                                           class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
                                           role="button" title="Modificar">
                                     </a>
-                                    <a  href=""  
+                                    <a href="{{ action('JugarController@EliminarJugar', $partido->id) }}" 
                                           class="btn btn-danger btn-block glyphicon glyphicon-trash" 
                                           role="button" title="Borrar">
                                     </a>

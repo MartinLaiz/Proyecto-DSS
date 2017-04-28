@@ -42,4 +42,11 @@ class JugarController extends Controller
             return view('config/editarPartidos', [
                   'partidos' => $partidos]);
       }
+
+
+       public function EliminarJugar($id){
+        $partido = Jugar::find($id);
+        $partido->delete();
+        return back();
+   }
 }
