@@ -30,4 +30,16 @@ class JugarController extends Controller
             return view('partidos', [
                   'partidos' => $partidos]);
       }
+
+      public function editarPartidos(){
+            //obtengo la temporada actual
+            $temporadaActual = Temporada::with('temporadaActual')->first();
+
+            //obtengo los datos de partido con jugar con la temporada actual
+            $partidos = Jugar::with('competicion','partido','temporada')
+            ->where('temporada_id','=',$temporadaActual->id)->get();
+
+            return view('config/editarPartidos', [
+                  'partidos' => $partidos]);
+      }
 }

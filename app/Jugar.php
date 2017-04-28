@@ -24,9 +24,6 @@ class Jugar extends Model
             return $this->belongsTo('App\Temporada');
       }
 
-      public function temporadaActual(){
-            $temporadaActual = Temporada::with('temporadaActual')->first();
-               return $this->temporada()->where('temporada_id','=',$temporadaActual->id);
-      }
+   
 
 }

@@ -55,20 +55,9 @@ Route::group(['prefix' => 'equipo'], function(){
 */
 //voy a poner los de jugar ahora, ya que es donde esta con la temporada y la competicion
 
-Route::group(['prefix' => 'jugar'], function(){
-      Route::get('/', 'JugarController@getJugar');                //Muestra todos los partidos
-      Route::post('/','UsuarioController@getUsuario');                //Inserta un partido
-      Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un partido
-      Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese partido
-      Route::delete('/{id}','UsuarioController@getUsuario');          //Elimina ese partido
-});
-
-
-
-
 
 Route::group(['prefix' => 'partido'], function(){
-      Route::get('/', 'UsuarioController@getUsuario');                //Muestra todos los partidos
+      Route::get('/', 'JugarController@getJugar');                //Muestra todos los partidos
       Route::post('/','UsuarioController@getUsuario');                //Inserta un partido
       Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un partido
       Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese partido
@@ -106,7 +95,7 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/eliminar/equipo/{id}','EquipoController@eliminar');
             //Partido
             Route::get('/eliminar/partido/{id}','UsuarioController@getUsuario');
-            Route::get('/partidos', 'UsuarioController@getUsuario');
+            Route::get('/editar/partidos','JugarController@editarPartidos');
             Route::put('/formularioPartido/{id}','UsuarioController@getUsuario');
             Route::get('/crear/partido','UsuarioController@getUsuario');
             Route::put('/crear/partido','UsuarioController@getUsuario');

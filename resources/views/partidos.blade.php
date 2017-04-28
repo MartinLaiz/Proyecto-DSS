@@ -32,7 +32,8 @@
                         <th>{!!$partido->golesVisitante!!}</th>
                         <th>{!!$partido->competicion->nombre!!}</th>
                         <th>{!!$partido->temporada->nombre!!}</th>
-                        
+                        <td>
+                        </td>
                     </tr>
                     @endforeach
                   </tbody>
