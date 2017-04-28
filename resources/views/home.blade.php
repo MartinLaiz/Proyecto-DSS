@@ -2,7 +2,6 @@
 @section('title', 'Inicio')
 @section('content')
 
-
 <div class="contenedor row">
       @include('cabecera',array('section'=>'inicio'))
       <div class="col-md-10 col-md-offset-1">
@@ -15,16 +14,16 @@
                                     {{ date("d/m/Y",strtotime($partido->fecha)) }}
                               </div>
                               <div class="col-md-3 text-center">
-                                    {{ $equipos->find($partido->equipoLocal)->nombreEquipo }}
+                                    {{ $partido->partido->equipoLocal->nombreEquipo }}
                               </div>
                               <div class="col-md-1 text-center">
                                     {{ $partido->golesLocal }} - {{ $partido->golesVisitante }}
                               </div>
                               <div class="col-md-3 text-center">
-                                    {{ $equipos->find($partido->equipoVisitante)->nombreEquipo }}
+                                    {{ $partido->partido->equipoVisitante->nombreEquipo }}
                               </div>
                               <div class="col-md-3 text-center">
-                                    {{ $estadios->find($partido->estadio)->nombre }}
+                                    {{ $partido->partido->estadio->nombre }}
                               </div>
                         </li>
                         @endforeach
@@ -39,16 +38,16 @@
                                     {{ date("d/m/Y",strtotime($partido->fecha)) }}
                               </div>
                               <div class="col-md-3 text-center">
-                                    {{ $equipos->find($partido->equipoLocal)->nombreEquipo }}
+                                    {{ $partido->partido->equipoLocal->nombreEquipo }}
                               </div>
                               <div class="col-md-1 text-center">
                                     -
                               </div>
                               <div class="col-md-3 text-center">
-                                    {{ $equipos->find($partido->equipoVisitante)->nombreEquipo }}
+                                    {{ $partido->partido->equipoVisitante->nombreEquipo }}
                               </div>
                               <div class="col-md-3 text-center">
-                                    {{ $estadios->find($partido->estadio)->nombre }}
+                                    {{ $partido->partido->estadio->nombre }}
                               </div>
                         </li>
                         @endforeach

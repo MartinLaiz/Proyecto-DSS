@@ -11,8 +11,8 @@ class Jugar extends Model
 
       protected $dates = ['fecha'];
 
-      public function partidos(){
-            return $this->belongsTo('App\Partido');
+      public function partido(){
+            return $this->belongsTo('App\Partido')->with('equipoLocal','equipoVisitante','estadio');
       }
 
       public function competiciones(){
@@ -24,5 +24,5 @@ class Jugar extends Model
       }
 
 
-    
+
 }

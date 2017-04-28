@@ -28,7 +28,9 @@ class Partido extends Model
             return $this->belongsToMany('App\Temporada','jugar','partido_id','competicion_id')->withPivot('temporada_id');
       }
 
-
+      public function estadio(){
+            return $this->belongsTo('App\Estadio');
+      }
 
       public function equipoVisitante(){
             return $this->belongsTo('App\Equipo','equipoVisitante_id');

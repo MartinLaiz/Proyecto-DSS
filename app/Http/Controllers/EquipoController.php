@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use App\Equipo;
-use App\Partido;
+use App\Jugar;
 use App\Estadio;
 use App\Patrocinador;
 use Carbon\Carbon;
@@ -16,9 +16,8 @@ class EquipoController extends Controller
 {
       public function getHome(){
             $idUA = Equipo::where('nombreEquipo','like','%UA%')->first()->id;
-            $ultPartidos = Partido::where('fecha','<',Carbon::now())->orderBy('fecha','desc')->take(5)->get();
-            $proxPartidos = Partido::where('fecha','>',Carbon::now())->orderBy('fecha','asc')->take(5)->get();
-
+            $ultPartidos = Jugar::where('fecha','<',Carbon::now())->orderBy('fecha','desc')->with('partido')->take(5)->get();
+            $proxPartidos = Jugar::where('fecha','>',Carbon::now())->orderBy('fecha','asc')->with('partido')->take(5)->get();
             return view('home',[
                   'equipos' => Equipo::get(),
                   'estadios' => Estadio::get(),
@@ -36,7 +35,7 @@ class EquipoController extends Controller
       }
 
       public function crearEquipo(Request $request){
-            
+
             $estadio = new Estadio();
             $estadio->nombre = $request->input('estadioNombre');
             $estadio->capacidad = $request->input('aforo');
