@@ -75,9 +75,9 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/','UsuarioController@getConfig');
             // jugador
             Route::group(['prefix' => 'usuario'], function(){
+                  Route::get('crearModificar','UsuarioController@getForm');
                   Route::get('/todos','UsuarioController@getUsuario');            //Obtiene todo los jugadores
                   Route::get('/{id}','UsuarioController@getUsuario');             //Obtiene el jugador con el id
-                  Route::get('/crearModificar','UsuarioController@getForm');
                   Route::post('/crear','UsuarioController@crearModificarUsuario');
                   Route::get('/editar/{id}','UsuarioController@getUsuario');
                   Route::put('/editar/{id}','UsuarioController@getUsuario');

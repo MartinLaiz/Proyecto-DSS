@@ -5,29 +5,15 @@
 {{-----------Código para la fecha------------------}}
 <!--  jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<!-- Bootstrap Date-Picker Plugin -->
-{{--<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-<link rel="stylesheet" href="css/datepicker.css"/>
-<script>
-      $(document).ready(function(){
-            var date_input=$('input[name="date"]'); //our date input has the name "date"
-            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-            var options={
-                  format: 'mm/dd/yyyy',
-                  container: container,
-                  todayHighlight: true,
-                  autoclose: true,
-            };
-            date_input.datepicker(options);
-      })
-</script>--}}
 {{--Mostrar/ocultar--}}
 <script language="JavaScript">
   function mostrarJugador(obj) {
-    jugador.style.visibility = (obj.checked) ? 'visible' : 'hidden';
+      jugador.style.visibility = 'visible';
+      entrenador.style.visibility = 'hidden';
   }
   function mostrarEntrenador(obj) {
-    jugador.style.visibility = 'hidden';
+      jugador.style.visibility = 'hidden';
+      entrenador.style.visibility = 'visible';
   }  
 </script>
 {{------------------------------------------------}}
@@ -97,13 +83,13 @@
                     <legend>Rol del usuario</legend>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" onClick="mostrarJugador(this)">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="jugador" onClick="mostrarJugador(this)">
                         Quiero crear un jugador
                       </label>
                     </div>
                     <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" onClick="mostrarEntrenador(this)">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="entrenador" onClick="mostrarEntrenador(this)">
                         Quiero crear un entrenador
                       </label>
                     </div>
@@ -138,9 +124,22 @@
                               <input class="form-control" placeholder="Dorsal" type="number" name="dorsal" id="dorsal" value="{{ old('dorsal') }}" required>
                         </div>
                 </div>
+                {{-----------------------}}
+                {{--Parte de entrenador--}}
+                <div class="row form-group" style="visibility:hidden" name="entrenador" id="entrenador">{{--Así se oculta o muestra--}}
+                    <div class="col-md-3">
+                          {{--Cargo--}}
+                          <style>select:invalid { color: gray; }</style>
+                          <select class="form-control" id="cargo" name="cargo" value="{{ old('cargo') }}" required>
+                                <option value="1" selected>Primer entrenador</option>
+                                <option value="2">Segundo entrenador</option>
+                          </select>
+                    </div>
+                </div>
 
-                <div class="col-md-4">
-                        <button class="btn btn-success btn-block" type="submit">Crear jugador</button>
+                {{-----------------------}}
+                <div class="form-footer">
+                        <button class="btn btn-success btn-block" type="submit">Crear usuario</button>
                   </div>
             </form>
       </div>
