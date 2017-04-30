@@ -23,9 +23,9 @@
                               <li><a href="{{ action('JugarController@getJugar') }}">Partidos</a></li>
                         @endif
                         @if($section == "plantilla")
-                              <li class="active"><a href="{{action('EquipoController@getHome')}}">Plantilla</a></li>
+                              <li class="active"><a href="{{action('UsuarioController@getUsuarios')}}">Plantilla</a></li>
                         @else
-                              <li><a href="{{action('EquipoController@getHome')}}">Plantilla</a></li>
+                              <li><a href="{{action('UsuarioController@getUsuarios')}}">Plantilla</a></li>
                         @endif
                         @if($section == "equipos")
                               <li class="active"><a href="{{action('EquipoController@getEquipos')}}">Equipos</a></li>
