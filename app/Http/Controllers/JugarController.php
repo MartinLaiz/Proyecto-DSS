@@ -63,6 +63,17 @@ class JugarController extends Controller
       }
 
 
+      public function formularioModificar($id){
+
+            $equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
+            $temporadas = Temporada::with('jugar')->get();
+            
+            $competiciones = Competicion::with('jugar')->get();
+      
+            return view ('config/modificarPartido',[ 'competiciones' => $competiciones,
+            'equipos' => $equipos,'temporadas' => $temporadas, 'idmodificar' => $id]);
+      }
+
 
       public function crearJugar(Request $request){
             $jugar = new Jugar();
@@ -86,8 +97,6 @@ class JugarController extends Controller
                   $jugar->golesLocal = $request->golesLocal;
                   $jugar->golesVisitante = $request->golesVisitante;
                   $jugar->fecha = $request->fecha;
-                  
-
                   return $this->verErrores($jugar,$request,$partido);
             }
 
@@ -95,9 +104,35 @@ class JugarController extends Controller
 
 
 
-       public function verErrores($jugar,$request,  $partido){
+      public function modificarJugar(Request $request,$id){
 
-        if($partido ==null){
+            $jugar = Jugar::find($id);
+            
+            $equipoLocal = $request->equipoLocal;
+            $equipoVisitante = $request->equipoVisitante;
+            //busco el id de partido con este enfrentamiento
+            $partido = Partido::where('equipoLocal_id','=',$equipoLocal)
+            ->where('equipoVisitante_id','=',$equipoVisitante)->first();
+
+            if($partido == null){
+               
+                  return $this->verErrores($jugar,$request,$partido);
+
+            }else{
+                  $jugar->partido_id = $partido->id;
+                  $jugar->temporada_id = $request->temporada_id;
+                  $jugar->competicion_id = $request->competicion_id;
+                  $jugar->golesLocal = $request->golesLocal;
+                  $jugar->golesVisitante = $request->golesVisitante;
+                  $jugar->fecha = $request->fecha;
+                  return $this->verErrores($jugar,$request,$partido);
+            }
+
+      }
+
+      public function verErrores($jugar,$request,  $partido){
+
+            if($partido ==null){
             $validator = Validator::make($request->all(), [
             'title' => '2',
             'body' => '2',
@@ -105,22 +140,22 @@ class JugarController extends Controller
             $validator->getMessageBag()->add('unique','Error, no se puede crear un partido con el mismo equipo.');
             return back()->withErrors($validator)->withInput();
 
-        }else{
+            }else{
 
-            try{
-                $jugar->save();
-                return Redirect::to('/config/partidos');
+                  try{
+                        $jugar->save();
+                        return Redirect::to('/config/editar/partidos');
+                  }
+                  catch(\Illuminate\Database\QueryException $e){
+                        $validator = Validator::make($request->all(), [
+                        'title' => '2',
+                        'body' => '2',
+                        ]);
+                        $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
+                        return back()->withErrors($validator)->withInput();
+                  }
             }
-            catch(\Illuminate\Database\QueryException $e){
-                $validator = Validator::make($request->all(), [
-                'title' => '2',
-                'body' => '2',
-                ]);
-                $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
-                return back()->withErrors($validator)->withInput();
-            }
-        }
 
-    }
+      }
 
 }
