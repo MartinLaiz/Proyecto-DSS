@@ -24,4 +24,7 @@ class Partido extends Model
             return $this->belongsTo('App\Equipo','equipoLocal_id');
       }
 
+
+      
+
 }

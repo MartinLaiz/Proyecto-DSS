@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use App\Equipo;
 use App\Jugar;
+use App\Partido;
 use App\Estadio;
 use App\Patrocinador;
 use Carbon\Carbon;
@@ -105,7 +106,9 @@ class EquipoController extends Controller
                   $estadio->save();
                   $equipo->estadio_id = Estadio::where('nombre','=', $estadio->nombre)->first()->id;
                   $equipo->save();
-                  return Redirect::to('/equipo');
+                  //creo partidos con el nuevo equipo 
+
+                  return $this->crearPartidos($equipo);
             }
             catch(\Illuminate\Database\QueryException $e){
                   $validator = Validator::make($request->all(), [
@@ -115,6 +118,34 @@ class EquipoController extends Controller
                   $validator->getMessageBag()->add('unique','Error, el CIF introducido ya existe.');
                   return back()->withErrors($validator)->withInput();
             }
+      }
+
+
+      public function crearPartidos($teamNew){
+            $equipos = Equipo::where('nombreEquipo','<>','Libre')
+            ->where('nombreEquipo','<>',$teamNew->nombreEquipo)->get();
+
+            //metemos el equipo nuevo como local
+            foreach($equipos as $equipo){
+                  $partido = new Partido();
+
+                  $partido->equipoLocal_id = $teamNew->id;
+                  $partido->equipoVisitante_id = $equipo->id;
+                  $partido->estadio_id = $teamNew->estadio_id;
+                  $partido->save();
+            }
+
+
+            //metemos el equipo nuevo como visitante
+            foreach($equipos as $equipo){
+                  $partido = new Partido();
+
+                  $partido->equipoVisitante_id = $teamNew->id;
+                  $partido->equipoLocal_id = $equipo->id;
+                  $partido->estadio_id = $equipo->estadio_id;
+                  $partido->save();
+            }
+             return Redirect::to('/equipo');
       }
 
       public function eliminar($id){

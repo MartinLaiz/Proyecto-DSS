@@ -67,16 +67,22 @@ class JugarController extends Controller
       public function crearJugar(Request $request){
             $jugar = new Jugar();
             
-            $partido->equipoLocal = $request->equipoLocal;
-            $partido->equipoVisitante = $request->equipoVisitante;
+            $equipoLocal = $request->equipoLocal;
+            $equipoVisitante = $request->equipoVisitante;
             //busco el id de partido con este enfrentamiento
 
+            $partido = Partido::where('equipoLocal_id','=',$equipoLocal)
+            ->where('equipoVisitante_id','=',$equipoVisitante)->first();
+            dd( $partido)->get();
 
-            $partido->golesLocal = $request->golesLocal;
-            $partido->golesVisitante = $request->golesVisitante;
-            $partido->fecha = $request->fecha;
-            $partido->tipo = $request->tipo;
-
+            $jugar->partido_id = $partido->id;
+            $jugar->temporada_id = $request->temporada_id;
+            $jugar->competicion_id = $request->competicion_id;
+            $jugar->golesLocal = $request->golesLocal;
+            $jugar->golesVisitante = $request->golesVisitante;
+            $jugar->fecha = $request->fecha;
+            
+            $jugar->save();
 
             return back();
 
