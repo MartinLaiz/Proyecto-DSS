@@ -23,10 +23,10 @@ Route::get('/home', 'EquipoController@getHome');
 /*
 █  █ █▀▀ █  █ █▀▀█ █▀▀█  ▀  █▀▀█
 █  █ ▀▀█ █  █ █▄▄█ █▄▄▀ ▀█▀ █  █
-▀▀▀ ▀▀▀  ▀▀▀ ▀  ▀ ▀ ▀▀ ▀▀▀ ▀▀▀▀
+▀▀▀  ▀▀▀  ▀▀▀ ▀  ▀ ▀ ▀▀ ▀▀▀ ▀▀▀▀
 */
 Route::group(['prefix' => 'usuario'], function(){
-      Route::get('/', 'UsuarioController@getUsuarios');                //Muestra todos los jugadores/entrenadores
+      Route::get('/', 'UsuarioController@getUsuarios');               //Muestra todos los jugadores/entrenadores
       Route::post('/','UsuarioController@getUsuario');                //Inserta un usuario
       Route::get('/{id}','UsuarioController@getUsuario');             //Muestra solo un usuario
       Route::put('/{id}','UsuarioController@getUsuario');             //Modifica ese usuario

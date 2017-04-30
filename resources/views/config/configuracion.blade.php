@@ -7,14 +7,9 @@
             <br>
             <div class="row">
                   <div class="col-md-3 text-center">
-                        <h3>Jugadores</h3>
-                        <a class="btn btn-primary btn-block" href="" role="button">Insertar jugador</a><br>
-                        <a class="btn btn-primary btn-block" href="" role="button">Modificar/Borrar jugador</a>
-                        <br>
-                  </div>
-                  <div class="col-md-3 text-center">
-                        <h3>Entrenador</h3>
-                        <a class="btn btn-primary btn-block" href="" role="button">Insertar entrenador</a><br>
+                        <h3>Usuarios</h3>
+                        <a class="btn btn-primary btn-block" href="{{ action('UsuarioController@getForm') }}" role="button">Insertar usuario</a><br>
+                        <a class="btn btn-primary btn-block" href="" role="button">Modificar/Borrar jugador</a><br>
                         <a class="btn btn-primary btn-block" href="" role="button">Modificar/Borrar entrenador</a>
                         <br>
                   </div>

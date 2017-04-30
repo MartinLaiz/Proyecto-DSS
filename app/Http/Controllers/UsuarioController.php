@@ -11,13 +11,11 @@ use App\Equipo;
 class UsuarioController extends Controller
 {
       public function getUsuario($id){
-            return view('perfil',[
-                  'usuario' => Usuario::find($id)
-            ]);
+            return view('prueba');
       }
 
       public function getUsuarios(Request $request = null, $equipo = null, $rol = null, $cargo = null, $posicion = null){
-            $usuarios = Usuario::all();
+            $usuarios = Usuario::where('rol','<','3');
 
             if($equipo!=null){
                   $usuarios = $usuarios->where('equipo.id','=',$equipo);
@@ -33,14 +31,16 @@ class UsuarioController extends Controller
             }
 
             return view('usuarios',[
-                  'usuarios' => $usuarios->paginate(10)
+                  'usuarios' => $usuarios->paginate(10),
+                  'equipo' => 'Todos',
+                  'equipos' => Equipo::get()
             ]);
       }
 
 
 
       public function getForm(){
-            return view('formUsuario', array(
+            return view('config.crearUsuario', array(
                   'listaEquipos' => Equipo::orderBy('nombreEquipo')->get()
                   )
             );
@@ -92,7 +92,7 @@ class UsuarioController extends Controller
                   }
 
             }
-            return Redirect::to('usuarios');c//Probablemente ésto cambiará
+            return Redirect::to('usuarios');//Probablemente ésto cambiará
       }
 
       public function borrarUsuario($id){

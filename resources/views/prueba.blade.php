@@ -1,6 +1,1 @@
-@foreach($partidos as $partido)
-{{ $partido->jugar }}
-<br>
-<br>
-<br>
-@endforeach
+Esta es la vista de prueba
