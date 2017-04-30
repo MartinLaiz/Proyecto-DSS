@@ -63,6 +63,17 @@ class JugarController extends Controller
       }
 
 
+      public function formularioModificar($id){
+
+            $equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
+            $temporadas = Temporada::with('jugar')->get();
+            
+            $competiciones = Competicion::with('jugar')->get();
+      
+            return view ('config/modificarPartido',[ 'competiciones' => $competiciones,
+            'equipos' => $equipos,'temporadas' => $temporadas, 'idmodificar' => $id]);
+      }
+
 
       public function crearJugar(Request $request){
             $jugar = new Jugar();
@@ -71,20 +82,79 @@ class JugarController extends Controller
             $equipoVisitante = $request->equipoVisitante;
             //busco el id de partido con este enfrentamiento
 
+
             $partido = Partido::where('equipoLocal_id','=',$equipoLocal)
             ->where('equipoVisitante_id','=',$equipoVisitante)->first();
-            dd( $partido)->get();
 
-            $jugar->partido_id = $partido->id;
-            $jugar->temporada_id = $request->temporada_id;
-            $jugar->competicion_id = $request->competicion_id;
-            $jugar->golesLocal = $request->golesLocal;
-            $jugar->golesVisitante = $request->golesVisitante;
-            $jugar->fecha = $request->fecha;
+            if($partido == null){
+               
+                  return $this->verErrores($jugar,$request,$partido);
+
+            }else{
+                  $jugar->partido_id = $partido->id;
+                  $jugar->temporada_id = $request->temporada_id;
+                  $jugar->competicion_id = $request->competicion_id;
+                  $jugar->golesLocal = $request->golesLocal;
+                  $jugar->golesVisitante = $request->golesVisitante;
+                  $jugar->fecha = $request->fecha;
+                  return $this->verErrores($jugar,$request,$partido);
+            }
+
+      }
+
+
+
+      public function modificarJugar(Request $request,$id){
+
+            $jugar = Jugar::find($id);
             
-            $jugar->save();
+            $equipoLocal = $request->equipoLocal;
+            $equipoVisitante = $request->equipoVisitante;
+            //busco el id de partido con este enfrentamiento
+            $partido = Partido::where('equipoLocal_id','=',$equipoLocal)
+            ->where('equipoVisitante_id','=',$equipoVisitante)->first();
 
-            return back();
+            if($partido == null){
+               
+                  return $this->verErrores($jugar,$request,$partido);
+
+            }else{
+                  $jugar->partido_id = $partido->id;
+                  $jugar->temporada_id = $request->temporada_id;
+                  $jugar->competicion_id = $request->competicion_id;
+                  $jugar->golesLocal = $request->golesLocal;
+                  $jugar->golesVisitante = $request->golesVisitante;
+                  $jugar->fecha = $request->fecha;
+                  return $this->verErrores($jugar,$request,$partido);
+            }
+
+      }
+
+      public function verErrores($jugar,$request,  $partido){
+
+            if($partido ==null){
+            $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+            ]);
+            $validator->getMessageBag()->add('unique','Error, no se puede crear un partido con el mismo equipo.');
+            return back()->withErrors($validator)->withInput();
+
+            }else{
+
+                  try{
+                        $jugar->save();
+                        return Redirect::to('/config/editar/partidos');
+                  }
+                  catch(\Illuminate\Database\QueryException $e){
+                        $validator = Validator::make($request->all(), [
+                        'title' => '2',
+                        'body' => '2',
+                        ]);
+                        $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
+                        return back()->withErrors($validator)->withInput();
+                  }
+            }
 
       }
 
