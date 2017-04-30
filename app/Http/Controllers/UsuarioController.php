@@ -92,7 +92,7 @@ class UsuarioController extends Controller
                   }
 
             }
-            return Redirect::to('usuarios');//Probablemente ésto cambiará
+            return Redirect::to('usuarios');c//Probablemente ésto cambiará
       }
 
       public function borrarUsuario($id){
