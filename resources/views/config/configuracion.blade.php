@@ -20,8 +20,8 @@
                   </div>
                   <div class="col-md-3 text-center">
                         <h3>Equipo</h3>
-                        <a class="btn btn-primary btn-block" href="" role="button">Insertar equipo</a><br>
-                        <a class="btn btn-primary btn-block" href="" role="button">Modificar/Borrar equipo</a>
+                        <a class="btn btn-primary btn-block" href="{{action('EquipoController@formulario')}}" role="button">Insertar equipo</a><br>
+                        <a class="btn btn-primary btn-block" href="{{action('EquipoController@editar')}}" role="button">Modificar/Borrar equipo</a>
                         <br>
                   </div>
                   <div class="col-md-3 text-center">

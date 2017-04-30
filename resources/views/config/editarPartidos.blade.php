@@ -5,7 +5,7 @@
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
             <h2>Equipos</h2>
-            {{-- $lista->links() --}}
+            {{-- $partidos->links() --}}
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>

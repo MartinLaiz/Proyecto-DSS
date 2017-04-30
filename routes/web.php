@@ -97,8 +97,8 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/eliminar/partido/{id}','JugarController@EliminarJugar');
             Route::get('/editar/partidos','JugarController@editarPartidos');
             Route::put('/formularioPartido/{id}','UsuarioController@getUsuario');
-            Route::get('/crear/partido','UsuarioController@getUsuario');
-            Route::put('/crear/partido','UsuarioController@getUsuario');
+            Route::get('/crear/partido','JugarController@formularioInsertar');
+            Route::put('/crear/partido','JugarController@crearJugar');
             Route::get('/formularioPartido/{id}','UsuarioController@getUsuario');
       });
 
