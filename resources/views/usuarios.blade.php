@@ -12,32 +12,47 @@
             <h2>Jugadores del {{ $equipo }}</h2>
             @endif
             <div class="row">
-                  <div class="row">
-                        <label class="col-md-5" for="equipoSel">Selecciona un equipo:</label>
-                        <label class="col-md-5" for="equipoSel">Selecciona una posición:</label>
-                  </div>
-                  <form class="row" action="" method="POST">
+                  <form action="{{ action('UsuarioController@getUsuarios') }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
-                        <div class="col-md-5 form-group">
-                              <select class="form-control" name="equipoSel" id="equipoSel">
-                                    <option value="Todos" selected>Todos los equipos</option>
-                                    @foreach($equipos as $unEquipo)
-                                    <option value="{{ $unEquipo->id }}">{{ $unEquipo->nombreEquipo }}</option>
-                                    @endforeach
-                              </select>
+                        <div class="form-group row">
+                              <div class="col-lg-3 col-md-4 col-sm-4">
+                                    <select class="form-control" name="equipo" id="equipo">
+                                          <option value="Todos" selected>Todos los equipos</option>
+                                          @foreach($equipos as $unEquipo)
+                                          <option value="{{ $unEquipo->id }}">{{ $unEquipo->nombreEquipo }}</option>
+                                          @endforeach
+                                    </select>
+                              </div>
+                              <div class="col-lg-3 col-md-4 col-sm-4">
+                                    <select class="form-control" onchange="cargoFilter()" name="rol" id="rol">
+                                          <option value="0">Jugadores</option>
+                                          <option value="1">Entrenadores</option>
+                                          <option value="2">Directores</option>
+                                          <option value="3">Administradores</option>
+                                    </select>
+                              </div>
+                              <div class="col-lg-3 col-md-4 col-sm-4">
+                                    <select class="form-control" name="cargo" id="cargo">
+                                          <option value="-1" selected>Todos los cargos</option>
+                                          <option value="0">Sin cargo</option>
+                                          <option value="1">Primer capitan</option>
+                                          <option value="2">Segundo capitan</option>
+                                          <option value="3">Tercer capitan</option>
+                                    </select>
+                              </div>
+                              <div class="col-lg-3 col-md-4 col-sm-4">
+                                    <select class="form-control" name="posicion" id="posicion">
+                                          <option value="Todas" selected>Todas las posiciones</option>
+                                          <option value="Delantero">Delantero</option>
+                                          <option value="Medio">Medio</option>
+                                          <option value="Defensa">Defensa</option>
+                                          <option value="Portero">Portero</option>
+                                    </select>
+                              </div>
                         </div>
-                        <div class="col-md-5">
-                              <select class="form-control" name="posicion" id="posicion">
-                                    <option value="Todas" selected>Todas las posiciones</option>
-                                    <option value="Delantero">Delantero</option>
-                                    <option value="Medio">Medio</option>
-                                    <option value="Defensa">Defensa</option>
-                                    <option value="Portero">Portero</option>
-                              </select>
-                        </div>
-                        <div class="col-md-2 text-center">
-                              <button class="btn btn-success btn-block" type="submit">Seleccionar jugadores</button>
+                        <div class="col-lg-3 col-md-4 col-sm-4 text-center">
+                              <button class="btn btn-success btn-block" type="submit">Filtrar jugadores</button>
                         </div>
                   </form>
             </div>
@@ -62,8 +77,18 @@
                         <tr>
                               <td><a href="">{!!$usuario->nombre!!}</a></td>
                               <td><a href="">{!!$usuario->apellidos!!}</a></td>
-                              <td>{!!$usuario->fNac!!}</td>
-                              <td>{!!$usuario->posicion!!}</td>
+                              <td>{{date('d/m/Y',strtotime($usuario->fNac))}} ({{ date('Y')-date('Y',strtotime($usuario->fNac)) }})</td>
+                              <td>
+                                    @if($usuario->posicion == 1)
+                                    Portero
+                                    @elseif($usuario->posicion == 2)
+                                    Defensa
+                                    @elseif($usuario->posicion == 3)
+                                    Medio
+                                    @elseif($usuario->posicion == 4)
+                                    Delantero
+                                    @endif
+                              </td>
                               <td>
                                     @if($usuario->cargo == 1)
                                     Primer capitán
@@ -75,7 +100,7 @@
                                     Sin cargo
                                     @endif
                               </td>
-                              <td><a href="">{!!$usuario->nombreEquipo!!}</a></td>
+                              <td><a href="">{!!$usuario->equipo->nombreEquipo!!}</a></td>
                         </tr>
                         @endforeach
                   </tbody>
@@ -97,4 +122,54 @@
             @endif
       </div>
 </div>
+<script type="text/javascript">
+      function eliminarOpciones(){
+            var element = document.getElementById('cargo');
+            while (element.options.length>1) {
+                  element.remove(1);
+            }
+      }
+
+      function opcionesJugador(){
+            eliminarOpciones();
+            var element = document.getElementById('cargo');
+            var options = ['Sin cargo','Primer capitan','Segundo capitan','Tercer capitan'];
+            for (var i = 0; i < 4; i++) {
+                  var option = document.createElement('option');
+                  option.text = options[i];
+                  option.value = i;
+                  element.add(option);
+            }
+      }
+
+      function opcionesEntrenador(){
+            eliminarOpciones();
+            var element = document.getElementById('cargo');
+            var options = ['Primer entrenador','Segundo entrenador'];
+            for (var i = 0; i < 2; i++) {
+                  var option = document.createElement('option');
+                  option.text = options[i];
+                  option.value = i+1;
+                  element.add(option);
+            }
+      }
+
+      function cargoFilter(){
+            var posicion = document.getElementById('posicion');
+            posicion.disabled = true;
+            var rol = document.getElementById('cargo');
+            rol.disabled = true;
+
+            var option = document.getElementById('rol').value;
+            if(option == 0){
+                  posicion.disabled = false;
+                  rol.disabled = false;
+                  opcionesJugador();
+            }
+            else if (option == 1) {
+                  rol.disabled = false;
+                  opcionesEntrenador();
+            }
+      }
+</script>
 @endsection

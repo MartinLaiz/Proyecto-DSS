@@ -15,23 +15,30 @@ class UsuarioController extends Controller
       }
 
       public function getUsuarios(Request $request = null, $equipo = null, $rol = null, $cargo = null, $posicion = null){
-            $usuarios = Usuario::where('rol','<','3');
+            $equipo = $request->input('equipo','Todos');
+            $rol = $request->input('rol','0');
+            $cargo = $request->input('cargo','-1');
+            $posicion = $request->input('posicion','Todas');
 
-            if($equipo!=null){
+            $usuarios = Usuario::where('rol','=',$rol);
+
+            if($equipo!='Todos'){
                   $usuarios = $usuarios->where('equipo.id','=',$equipo);
             }
-            if($rol!=null){
-                  $usuarios = $usuarios->where('rol','=',$rol);
+            if($rol<2){
+                  if($cargo!=-1){
+                        $usuarios = $usuarios->where('cargo','=',$cargo);
+                  }
             }
-            if($cargo!=null){
-                  $usuarios = $usuarios->where('cargo','=',$cargo);
+            if($rol==1){
+                  if($posicion!='Todas'){
+                        $usuarios = $usuarios->where('posicion','=',$posicion);
+                  }
             }
-            if($posicion!=null){
-                  $usuarios = $usuarios->where('posicion','=',$posicion);
-            }
-
+            $usuarios = $usuarios->with('equipo')->paginate(10);
             return view('usuarios',[
-                  'usuarios' => $usuarios->paginate(10),
+                  'usuarios' => $usuarios,
+                  'rol' => $rol,
                   'equipo' => 'Todos',
                   'equipos' => Equipo::get()
             ]);
