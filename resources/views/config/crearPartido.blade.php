@@ -24,6 +24,7 @@ $(document).ready(function(){
 </script>
 
 <div class="contenedor row">
+      @include('config/configuracion')
       <div class="col-md-10 col-md-offset-1">
       <h2>Añadir un partido</h2>
       <br>

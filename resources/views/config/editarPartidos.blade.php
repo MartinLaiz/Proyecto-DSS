@@ -3,6 +3,7 @@
 @section('content')
 @include('cabecera',array('section'=>'partidos'))
 <div class="contenedor row">
+      @include('config/configuracion')
       <div class="col-md-10 col-md-offset-1">
             <h2>Equipos</h2>
             {{-- $partidos->links() --}}
