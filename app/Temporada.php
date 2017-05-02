@@ -10,8 +10,8 @@ class Temporada extends Model
       protected $dates = ['inicio', 'fin'];
 
 
-      public function jugar(){
-            return $this->hasMany('App\Jugar');
+      public function partido(){
+            return $this->hasMany('App\Partido');
       }
      
 

@@ -14,30 +14,17 @@ use App\Partido;
 class PartidoController extends Controller
 {
     public function getPartidos(){
-/*
-select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
-                           ,'team1.nombreEquipo as nameTeam1','team2.nombreEquipo as nameTeam2'
-                            ,'partido.golesLocal','partido.golesVisitante','partido.fecha')
-                            ->
-*/
-        $teams = Partido::join('equipo as team1','partido.equipoLocal','=','team1.id')->
-                              join('equipo as team2','partido.equipoVisitante','=','team2.id')->
-                              select('partido.*','team1.nombreEquipo as equipoLocal','team2.nombreEquipo as equipoVisitante')->paginate(8);
+            //obtengo la temporada actual
+  
 
+            //obtengo los datos de partido con jugar con la temporada actual
+            $partidos = Partido::with('competicion','temporada',
+            'equipoLocal','equipoVisitante','estadio')->get();
 
-        return view('partidos', [
-                                 'values' => [
-                                             'equipoLocal'=> 'Equipo Local',
-                                             'golesLocal'=>'Goles Local',
-                                             'golesVisitante'=>'Goles Visitante',
-                                             'equipoVisitante'=> 'Equipo Visitante',
-                                             'fecha'=>'Fecha',
-                                             'tipo' => 'Tipo'],
-                                 'lista' =>  $teams,
-                                 ]
-                    );
+            return view('partidos', [
+                  'partidos' => $partidos]);
+      }
 
-   }
 
 
    public function getPartidosConfig(){

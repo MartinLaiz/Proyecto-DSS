@@ -8,8 +8,16 @@ class Partido extends Model
 {
       protected $table = 'partido';
 
-      public function jugar(){
-            return $this->hasMany('App\Jugar');
+     
+
+
+      public function competicion(){
+
+            return $this->belongsTo('App\Competicion');
+      }
+
+      public function temporada(){
+            return $this->belongsTo('App\Temporada');
       }
 
       public function estadio(){
