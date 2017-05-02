@@ -3,10 +3,11 @@
 @section('content')
 @include('cabecera',array('section'=>'plantilla'))
 <div class="contenedor row">
+      @include('config/configuracion')
       <div class="col-md-10 col-md-offset-1">
             <h2>Todos los equipos</h2>
             <div class="">
-                  {{-- $lista->links() --}}
+                  {{$lista->links() }}
                   <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                         <thead>
                               <tr>

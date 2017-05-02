@@ -2,11 +2,12 @@
 @section('title', 'Partidos')
 @section('content')
 @include('cabecera',array('section'=>'partidos'))
+
 <div class="contenedor row">
       @include('config/configuracion')
       <div class="col-md-10 col-md-offset-1">
-            <h2>Equipos</h2>
-            {{-- $partidos->links() --}}
+            <h2>Partidos</h2>
+            {{ $partidos->links() }}
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
@@ -18,14 +19,11 @@
                               <th>Competicion</th>
                               <th>Temporada</th>
                               <th>Acciones</th>
-                               
-                       
                         </tr>
-
                   <tbody>
                   
-                   @foreach($partidos as $partido)
-                    <tr>
+                  @foreach($partidos as $partido)
+                  <tr>
 
                         <th>{!!$partido->partido->equipoLocal->nombreEquipo!!}</th>
                         <th>{!!$partido->partido->equipoVisitante->nombreEquipo!!}</th>

@@ -70,7 +70,7 @@ class EquipoController extends Controller
       }
 
       public function editar(){
-            $team = Equipo::with('estadio','patrocinador')->get();
+            $team = Equipo::with('estadio','patrocinador')->paginate(5);
             return view('config/editarEquipos',['lista' => $team]);
       }
 

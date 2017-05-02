@@ -37,13 +37,12 @@ class JugarController extends Controller
 
             //obtengo los datos de partido con jugar con la temporada actual
             $partidos = Jugar::with('competicion','partido','temporada')
-            ->where('temporada_id','=',$temporadaActual->id)->get();
+            ->where('temporada_id','=',$temporadaActual->id)->paginate(10);
 
             return view('config/editarPartidos', [
                   'partidos' => $partidos]);
       }
-
-
+      
       public function EliminarJugar($id){
             $partido = Jugar::find($id);
             $partido->delete();
