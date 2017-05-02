@@ -68,7 +68,7 @@ $(document).ready(function(){
              {{-- Goles y Fechas --}}
             <div class="row form-group">
                   <div class="col-md-2">
-                        <input class="form-control" placeholder="Goles Local" type="text" name="golesLocal" id="golesLocal" required>
+                        <input class="form-control"  placeholder="Goles Local" type="text" name="golesLocal" id="golesLocal" required>
                   </div>
 
                   <div class="col-md-2">
@@ -76,7 +76,7 @@ $(document).ready(function(){
                   </div>
 
                   <div class="col-md-4">
-                        <input class="form-control" id="fecha" name="fecha" placeholder="Fecha" type="date" required/>
+                        <input class="form-control" onfocus="(this.type='date')" id="fecha" name="fecha" placeholder="Fecha del partido" type="text" required/>
                   </div>
             </div>
             {{--Competiciones y Temporadas --}}
@@ -106,7 +106,7 @@ $(document).ready(function(){
             
             <div class="row form-group">
                   <div class="col-md-2">
-                        <button class="btn btn-success btn-success" type="submit">Aceptar</button>
+                        <button class="btn btn-success btn-success" type="submit">Siguiente</button>
                   </div>
             </div>
         </form> 
