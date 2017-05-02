@@ -44,7 +44,7 @@ class JugarController extends Controller
                   'partidos' => $partidos]);
       }
       
-      public function EliminarJugar($id){
+      public function eliminarJugar($id){
             $partido = Jugar::find($id);
             $partido->delete();
             return back();

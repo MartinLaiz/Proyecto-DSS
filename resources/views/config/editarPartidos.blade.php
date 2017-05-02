@@ -25,20 +25,20 @@
                   @foreach($partidos as $partido)
                   <tr>
 
-                        <th>{!!$partido->partido->equipoLocal->nombreEquipo!!}</th>
-                        <th>{!!$partido->partido->equipoVisitante->nombreEquipo!!}</th>
-                        <th>{!!$partido->partido->estadio->nombre!!}</th>
+                        <th>{!!$partido->equipoLocal->nombreEquipo!!}</th>
+                        <th>{!!$partido->equipoVisitante->nombreEquipo!!}</th>
+                        <th>{!!$partido->estadio->nombre!!}</th>
                         <th>{!!$partido->golesLocal!!}</th>
                         <th>{!!$partido->golesVisitante!!}</th>
                         <th>{!!$partido->competicion->nombre!!}</th>
                         <th>{!!$partido->temporada->nombre!!}</th>
                         <td>
                               <div class="btn-group ">
-                                    <a href="{{ action('JugarController@formularioModificar', $partido->id) }}" 
+                                    <a href="{{ action('PartidoController@formularioInsertar'}}" 
                                           class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
                                           role="button" title="Modificar">
                                     </a>
-                                    <a href="{{ action('JugarController@EliminarJugar', $partido->id) }}" 
+                                    <a href="{{ action('PartidoController@eliminarPartido', $partido->id) }}" 
                                           class="btn btn-danger btn-block glyphicon glyphicon-trash" 
                                           role="button" title="Borrar">
                                     </a>
