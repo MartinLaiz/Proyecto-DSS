@@ -73,7 +73,7 @@ class PartidoController extends Controller
 
             $equipo = Equipo::find($request->equipoLocal);
 
-            $partido->estadio = $equipo->estadio_id;
+            $partido->estadio_id = $equipo->estadio_id;
 
             return $this->verErrores($partido,$request);
             

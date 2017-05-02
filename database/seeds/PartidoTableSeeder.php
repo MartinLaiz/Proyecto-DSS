@@ -15,7 +15,7 @@ class PartidoTableSeeder extends Seeder
 	*/
 	public function run()
 	{
-
+		DB::table('partido')->delete();
 		$equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
 		$competiciones = Competicion::get();
 		$temporadas = Temporada::get();
