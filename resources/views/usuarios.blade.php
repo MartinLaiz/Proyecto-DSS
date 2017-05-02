@@ -4,13 +4,7 @@
 @include('cabecera',array('section'=>'plantilla'))
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
-            @if($equipo == 'Todos')
-            <h2>Todos los jugadores</h2>
-            @elseif($equipo == 'Libre')
-            <h2>Jugadores libres</h2>
-            @else
-            <h2>Jugadores del {{ $equipo }}</h2>
-            @endif
+            <br><br>
             <div class="row">
                   <form action="{{ action('UsuarioController@getUsuarios') }}" method="POST">
                         {{ csrf_field() }}
@@ -28,7 +22,7 @@
                                     <select class="form-control" onchange="cargoFilter()" name="rol" id="rol">
                                           <option value="0">Jugadores</option>
                                           <option value="1">Entrenadores</option>
-                                          <option value="2">Directores</option>
+                                          <option value="2">Director</option>
                                           <option value="3">Administradores</option>
                                     </select>
                               </div>
@@ -51,60 +45,27 @@
                                     </select>
                               </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-4 text-center">
+                        <div class="row col-lg-3 col-md-4 col-sm-4 text-center">
                               <button class="btn btn-success btn-block" type="submit">Filtrar jugadores</button>
                         </div>
                   </form>
             </div>
-            {{ $usuarios->links() }}
+            <br>
             @if(count($usuarios) > 0)
-            <table class="table table-striped table-responsive" cellspacing="0" width="100%">
-                  <thead>
-                        <tr>
-                              <th>Nombre</th>
-                              <th>Apellidos</th>
-                              <th>Fecha de nacimiento</th>
-                              <th>Posición</th>
-                              <th>Cargo</th>
-                              @if($equipo == 'Todos')
-                              <th>Equipo</th>
-                              @endif
-
-                        </tr>
-                  </thead>
-                  <tbody>
-                        @foreach($usuarios as $usuario)
-                        <tr>
-                              <td><a href="">{!!$usuario->nombre!!}</a></td>
-                              <td><a href="">{!!$usuario->apellidos!!}</a></td>
-                              <td>{{date('d/m/Y',strtotime($usuario->fNac))}} ({{ date('Y')-date('Y',strtotime($usuario->fNac)) }})</td>
-                              <td>
-                                    @if($usuario->posicion == 1)
-                                    Portero
-                                    @elseif($usuario->posicion == 2)
-                                    Defensa
-                                    @elseif($usuario->posicion == 3)
-                                    Medio
-                                    @elseif($usuario->posicion == 4)
-                                    Delantero
-                                    @endif
-                              </td>
-                              <td>
-                                    @if($usuario->cargo == 1)
-                                    Primer capitán
-                                    @elseif($usuario->cargo == 2)
-                                    Segundo capitán
-                                    @elseif($usuario->cargo == 3)
-                                    Tercer capitán
-                                    @else
-                                    Sin cargo
-                                    @endif
-                              </td>
-                              <td><a href="">{!!$usuario->equipo->nombreEquipo!!}</a></td>
-                        </tr>
-                        @endforeach
-                  </tbody>
-            </table>
+            <div class="row" id="jugadores">
+                  @foreach($usuarios as $usuario)
+                  <div class="well col-lg-2 col-md-3 col-sm-4">
+                        <div class="">
+                              <img class="img-responsive" src="./images/users/{{ $usuario->id }}.png" alt="User image" onerror="this.src = './images/users/defaultUser.png'">
+                              <a href="{{ action('UsuarioController@getUsuario',$usuario->id) }}">
+                                    <h4>{{ $usuario->nombre }}</h4>
+                                    <h5>{{ $usuario->apellidos }}</h5>
+                              </a>
+                              <h6></h6>
+                        </div>
+                  </div>
+                  @endforeach
+            </div>
             @else
             <br>
             <div class="alert alert-info">

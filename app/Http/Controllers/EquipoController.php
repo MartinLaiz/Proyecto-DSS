@@ -64,7 +64,7 @@ class EquipoController extends Controller
 
       public function getEquipos(){
             //consigo todos los equipos con los estadios
-            $team = Equipo::with('estadio','patrocinador')->get();
+            $team = Equipo::with('estadio','patrocinador')->paginate(2);
 
             return view('equipos',['lista' => $team]);
       }
@@ -106,7 +106,7 @@ class EquipoController extends Controller
                   $estadio->save();
                   $equipo->estadio_id = Estadio::where('nombre','=', $estadio->nombre)->first()->id;
                   $equipo->save();
-                  //creo partidos con el nuevo equipo 
+                  //creo partidos con el nuevo equipo
 
                   return $this->crearPartidos($equipo);
             }

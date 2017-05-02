@@ -56,10 +56,13 @@ class UsuariosTableSeeder extends Seeder
                               'nombre' => $nombres[mt_rand(0, 601)],
                               'apellidos' => $apellidos[mt_rand(0, 1413)]." ".$apellidos[mt_rand(0, 1413)],
                               'fNac' =>  date($formato,mt_rand(strtotime('1970-01-01'), strtotime('1977-12-31'))),
-                              'equipo_id' => $equipo->id,
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $director,
-                              'password' => bcrypt('password')
+                              'cargo' => null,
+                              'posicion' => null,
+                              'dorsal' => null,
+                              'password' => bcrypt('password'),
+                              'equipo_id' => $equipo->id
                         ]);
                         $user->save();
 
@@ -78,6 +81,8 @@ class UsuariosTableSeeder extends Seeder
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $entrenador,
                               'cargo' => $PrimerEntrenador,
+                              'posicion' => null,
+                              'dorsal' => null,
                               'password' => bcrypt('password')
                         ]);
                         $user->save();
@@ -97,13 +102,14 @@ class UsuariosTableSeeder extends Seeder
                               'salario' => mt_rand(5000, 100000),
                               'rol' => $entrenador,
                               'cargo' => $SegundoEntrenador,
+                              'posicion' => null,
+                              'dorsal' => null,
                               'password' => bcrypt('password')
                         ]);
                         $user->save();
 
                         //Jugadores
                         $i = 0;
-
 
                         //PrimerCapitan
                         $posicion = mt_rand(0,count($posiciones)-1);

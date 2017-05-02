@@ -10,6 +10,9 @@ use App\Equipo;
 
 class UsuarioController extends Controller
 {
+      public function nada(){
+            return view('home');
+      }
       public function getUsuario($id){
             return view('prueba');
       }
@@ -21,25 +24,30 @@ class UsuarioController extends Controller
             $posicion = $request->input('posicion','Todas');
 
             $usuarios = Usuario::where('rol','=',$rol);
-
             if($equipo!='Todos'){
-                  $usuarios = $usuarios->where('equipo.id','=',$equipo);
-            }
-            if($rol<2){
-                  if($cargo!=-1){
-                        $usuarios = $usuarios->where('cargo','=',$cargo);
-                  }
+                  $usuarios = $usuarios->where('equipo_id','=',$equipo);
+                  $equipo = Equipo::where('id','=',$equipo)->first()->nombreEquipo;
             }
             if($rol==1){
                   if($posicion!='Todas'){
                         $usuarios = $usuarios->where('posicion','=',$posicion);
                   }
             }
-            $usuarios = $usuarios->with('equipo')->paginate(10);
+            if($rol==2){
+                  if($cargo!=-1){
+                        $usuarios = $usuarios->where('cargo','=',$cargo);
+                  }
+            }
+            $usuarios = $usuarios->with('equipo')->get();
+
+            $roles = ['Jugadores', 'Entrenadores','Directores','Administradores'];
+            $rol = $roles[$rol];
+
             return view('usuarios',[
                   'usuarios' => $usuarios,
                   'rol' => $rol,
-                  'equipo' => 'Todos',
+                  'posicion' => $posicion,
+                  'equipo' => $equipo,
                   'equipos' => Equipo::get()
             ]);
       }
