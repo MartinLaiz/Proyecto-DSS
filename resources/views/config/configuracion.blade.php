@@ -25,8 +25,8 @@
                   <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Partidos <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-option-vertical"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
-                              <li><a href="{{action('JugarController@formularioInsertar')}}">Crear</a> </li>
-                              <li><a href="{{action('JugarController@editarPartidos')}}">Modificar</a></li>
+                              <li><a href="">Crear</a> </li>
+                              <li><a href="">Modificar</a></li>
                         </ul>
                   </li>               
                   <li class="dropdown">

@@ -18,16 +18,22 @@ class CreatePartidoTable extends Migration
 
             $table->integer('equipoLocal_id')->unsigned()->nullable();
             $table->foreign('equipoLocal_id')->references('id')->on('equipo')->onDelete('set null');
+
             $table->integer('equipoVisitante_id')->unsigned()->nullable();
             $table->foreign('equipoVisitante_id')->references('id')->on('equipo')->onDelete('set null');
+
             $table->integer('competicion_id');
             $table->foreign('competicion_id')->references('id')->on('competicion')->onDelete('set null');
+
             $table->integer('temporada_id');
             $table->foreign('temporada_id')->references('id')->on('temporada')->onDelete('set null');
+
             $table->unique(['equipoLocal_id', 'equipoVisitante_id','temporada_id','competicion_id']);
+            
             $table->integer('golesLocal');
             $table->integer('golesVisitante');
             $table->timestamp('fecha');
+
             $table->integer('estadio_id')->nullable();
             $table->foreign('estadio_id')->references('id')->on('estadio')->onDelete('set null');
 
@@ -42,6 +48,8 @@ class CreatePartidoTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('temporada');
+        Schema::dropIfExists('competicion');
         Schema::dropIfExists('estadio');
         Schema::dropIfExists('partido');
     }

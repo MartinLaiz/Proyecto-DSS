@@ -108,7 +108,7 @@ class EquipoController extends Controller
                   $equipo->save();
                   //creo partidos con el nuevo equipo
 
-                  return $this->crearPartidos($equipo);
+                  return Redirect::to('/partido');
             }
             catch(\Illuminate\Database\QueryException $e){
                   $validator = Validator::make($request->all(), [
@@ -121,32 +121,7 @@ class EquipoController extends Controller
       }
 
 
-      public function crearPartidos($teamNew){
-            $equipos = Equipo::where('nombreEquipo','<>','Libre')
-            ->where('nombreEquipo','<>',$teamNew->nombreEquipo)->get();
-
-            //metemos el equipo nuevo como local
-            foreach($equipos as $equipo){
-                  $partido = new Partido();
-
-                  $partido->equipoLocal_id = $teamNew->id;
-                  $partido->equipoVisitante_id = $equipo->id;
-                  $partido->estadio_id = $teamNew->estadio_id;
-                  $partido->save();
-            }
-
-
-            //metemos el equipo nuevo como visitante
-            foreach($equipos as $equipo){
-                  $partido = new Partido();
-
-                  $partido->equipoVisitante_id = $teamNew->id;
-                  $partido->equipoLocal_id = $equipo->id;
-                  $partido->estadio_id = $equipo->estadio_id;
-                  $partido->save();
-            }
-             return Redirect::to('/equipo');
-      }
+ 
 
       public function eliminar($id){
             $equipo = Equipo::find($id);

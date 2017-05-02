@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use Validator;
 use App\Equipo;
 use App\Partido;
+use App\Temporada;
+use App\Estadio;
+use App\Competicion;
 
 
 class PartidoController extends Controller
@@ -27,81 +30,59 @@ class PartidoController extends Controller
 
 
 
-   public function getPartidosConfig(){
-        $teams = Partido::join('equipo as team1','partido.equipoLocal','=','team1.id')->
-                              join('equipo as team2','partido.equipoVisitante','=','team2.id')->
-                              select('partido.*','team1.nombreEquipo as equipoLocal','team2.nombreEquipo as equipoVisitante')->paginate(5);
 
-        return view('editarPartidos', [
-                                 'values' => [
-                                             'equipoLocal'=> 'Equipo Local',
-                                             'golesLocal'=>'Goles Local',
-                                             'golesVisitante'=>'Goles Visitante',
-                                             'equipoVisitante'=> 'Equipo Visitante',
-                                             'fecha'=>'Fecha',
-                                             'tipo' => 'Tipo'],
-                                 'lista' =>  $teams,
-                                 ]
-                    );
+   /*public function editarPartidos(){
+            //obtengo la temporada actual
+            $temporadaActual = Temporada::with('temporadaActual')->first();
 
-   }
+            //obtengo los datos de partido con jugar con la temporada actual
+            $partidos = Jugar::with('competicion','partido','temporada')
+            ->where('temporada_id','=',$temporadaActual->id)->paginate(10);
 
-
-   public function EliminarPartido($id){
-        $partido = Partido::find($id);
-        $partido->delete();
-        return back();
-   }
+            return view('config/editarPartidos', [
+                  'partidos' => $partidos]);
+      }
+      
+      public function EliminarJugar($id){
+            $partido = Jugar::find($id);
+            $partido->delete();
+            return back();
+      }*/
 
 
-   public function formularioModificar($id){
+      public function formularioInsertar(){
 
-        $equipos = Equipo::orderBy('nombreEquipo')->where('nombreEquipo','<>','Libre')->get();
+            $equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
+            $temporadas = Temporada::with('partido')->get();
+            $competiciones = Competicion::with('partido')->get();
+      
+            return view ('config/crearPartido',[ 'competiciones' => $competiciones,
+            'equipos' => $equipos,'temporadas' => $temporadas]);
+      }
 
+      public function crearPartido(Request $request){
+            $partido = new Partido();
+            
+            $partido->equipoLocal_id = $request->equipoLocal;
+            $partido->equipoVisitante_id = $request->equipoVisitante;
+            $partido->temporada_id = $request->temporada_id;
+            $partido->competicion_id = $request->competicion_id;
+            $partido->golesLocal = $request->golesLocal;
+            $partido->golesVisitante = $request->golesVisitante;
+            $partido->fecha = $request->fecha;
 
-        return view ('modificarPartido',[
-                                            'idmodificar' => $id],[
-                                            'listaEquipos' =>  $equipos
-                                            ]);
-   }
+            $equipo = Equipo::find($request->equipoLocal);
 
-   public function formularioInsertar(){
+            $partido->estadio = $equipo->estadio_id;
 
-        return view ('crearPartido',['listaEquipos' => Equipo::orderBy('nombreEquipo')->get()]);
-   }
+            return $this->verErrores($partido,$request);
+            
 
-
-
-   public function modificarPartido(Request $request,$id){
-       $partido = Partido::find($id);
-       $partido->equipoLocal = $request->equipoLocal;
-       $partido->equipoVisitante = $request->equipoVisitante;
-       $partido->golesLocal = $request->golesLocal;
-       $partido->golesVisitante = $request->golesVisitante;
-       $partido->fecha = $request->fecha;
-       $partido->tipo = $request->tipo;
-
-       return $this->verErrores($partido,$request);
-   }
-
-
-    public function crearPartido(Request $request){
-         $partido = new Partido();
-         $partido->equipoLocal = $request->equipoLocal;
-         $partido->equipoVisitante = $request->equipoVisitante;
-         $partido->golesLocal = $request->golesLocal;
-         $partido->golesVisitante = $request->golesVisitante;
-         $partido->fecha = $request->fecha;
-         $partido->tipo = $request->tipo;
-
-
-         return $this->verErrores($partido,$request);
-
-     }
+      }
 
      public function verErrores($partido,$request){
 
-        if($partido->equipoLocal ==  $partido->equipoVisitante){
+        if($partido->equipoLocal_id ==  $partido->equipoVisitante_id){
             $validator = Validator::make($request->all(), [
             'title' => '2',
             'body' => '2',
@@ -113,7 +94,7 @@ class PartidoController extends Controller
 
             try{
                 $partido->save();
-                return Redirect::to('/config/partidos');
+                return Redirect::to('/partido');
             }
             catch(\Illuminate\Database\QueryException $e){
                 $validator = Validator::make($request->all(), [

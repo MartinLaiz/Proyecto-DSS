@@ -38,7 +38,7 @@ $(document).ready(function(){
                   @endforeach
                   </ul>
             @endif
-          <form action="{{action('JugarController@crearJugar')}}" method="POST">
+          <form action="{{action('PartidoController@crearPartido')}}" method="POST">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}  
                 
@@ -106,7 +106,7 @@ $(document).ready(function(){
             
             <div class="row form-group">
                   <div class="col-md-2">
-                        <button class="btn btn-success btn-success" type="submit">Siguiente</button>
+                        <button class="btn btn-success btn-success" type="submit">Aceptar</button>
                   </div>
             </div>
         </form> 
