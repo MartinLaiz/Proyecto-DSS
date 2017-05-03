@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Equipo extends Model
 {
@@ -34,8 +35,13 @@ class Equipo extends Model
             return $this->belongsTo('App\Patrocinador');
       }
 
-
       public function getPatrocinadorLibre(){
             return $this->patrocinador()->where('nombre','=','libre');
+      }
+
+      public function partidos(){
+            $local = $this->partidosLocal()->with('equipoLocal','equipoVisitante')->get();
+            $visitante = $this->partidosVisitante()->with('equipoLocal','equipoVisitante')->get();
+            return $local->merge($visitante);
       }
 }
