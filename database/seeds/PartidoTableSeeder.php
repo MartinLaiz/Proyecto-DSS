@@ -17,7 +17,7 @@ class PartidoTableSeeder extends Seeder
 	{
 		DB::table('partido')->delete();
 		$equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
-		$competiciones = Competicion::get();
+		$competiciones = Competicion::where('nombre','<>','Amistoso')->get();
 		$temporadas = Temporada::get();
 
 		$formato = 'Y-m-d H:i:s';

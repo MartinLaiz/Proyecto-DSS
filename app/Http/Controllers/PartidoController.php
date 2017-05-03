@@ -55,7 +55,6 @@ class PartidoController extends Controller
 
     public function crearPartido(Request $request){
         $partido = new Partido();
-
         $partido->equipoLocal_id = $request->equipoLocal;
         $partido->equipoVisitante_id = $request->equipoVisitante;
         $partido->temporada_id = $request->temporada_id;
@@ -121,7 +120,16 @@ class PartidoController extends Controller
 
             try{
                 $partido->save();
-                return Redirect::to('/partido');
+                if($request->introducir != null){
+                     return $this->introducirJugadores($partido);
+
+                }else{
+                    //si quieres introducir solamente el partido
+                    return Redirect::to('/partido');
+                }
+
+
+               
             }
             catch(\Illuminate\Database\QueryException $e){
                 $validator = Validator::make($request->all(), [
@@ -132,6 +140,13 @@ class PartidoController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
         }
-
     }
+
+
+     public function introducirParticipar($partido){
+         //busco los jugadores del equipo Local
+         
+         //busco los jugadores del equipo visitante
+
+        }
 }

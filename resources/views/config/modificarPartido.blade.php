@@ -48,7 +48,7 @@ $(document).ready(function(){
                         <style>select:invalid { color: gray; }</style>
                         <select class="form-control" id="equipoLocal" placeholder="equipoLocal" name="equipoLocal" required>
                               <option value="Equipo" disabled selected hidden>Equipo Local</option>
-                              @foreach($equipos as $equipo)
+                                    @foreach($equipos as $equipo)
                               <option value="{{ $equipo->id }}"> {{ $equipo->nombreEquipo }}</option>
                               @endforeach
                         </select>
