@@ -17,37 +17,37 @@ class UsuarioController extends Controller
             return view('prueba');
       }
 
-      public function getUsuarios(Request $request = null, $equipo = null, $rol = null, $cargo = null, $posicion = null){
+      public function getUsuarios(Request $request){
             $equipo = $request->input('equipo','Todos');
             $rol = $request->input('rol','0');
             $cargo = $request->input('cargo','-1');
-            $posicion = $request->input('posicion','Todas');
+            $posicion = $request->input('posicion',0);
 
-            $usuarios = Usuario::where('rol','=',$rol);
-            if($equipo!='Todos'){
-                  $usuarios = $usuarios->where('equipo_id','=',$equipo);
-                  $equipo = Equipo::where('id','=',$equipo)->first()->nombreEquipo;
-            }
-            if($rol==1){
-                  if($posicion!='Todas'){
+            $usuarios = Usuario::with('equipo')->where('rol','=',$rol);
+            if($rol < 3 ){
+                  if($equipo != 'Todos'){
+                        $usuarios = $usuarios->where('equipo_id','=',$equipo);
+                  }
+                  if($cargo>=0){
+                        $usuarios = $usuarios->where('cargo','=',$cargo);
+                  }
+                  //dd($posicion);
+                  if($posicion != 0){
                         $usuarios = $usuarios->where('posicion','=',$posicion);
                   }
             }
-            if($rol==2){
-                  if($cargo!=-1){
-                        $usuarios = $usuarios->where('cargo','=',$cargo);
-                  }
+            else {
+                  $equipo = 'Todos';
+                  $cargo = -1;
+                  $posicion = 'Todas';
             }
-            $usuarios = $usuarios->with('equipo')->get();
-
-            $roles = ['Jugadores', 'Entrenadores','Directores','Administradores'];
-            $rol = $roles[$rol];
 
             return view('usuarios',[
-                  'usuarios' => $usuarios,
-                  'rol' => $rol,
-                  'posicion' => $posicion,
+                  'usuarios' => $usuarios->paginate(18),
                   'equipo' => $equipo,
+                  'rol' => $rol,
+                  'cargo' => $cargo,
+                  'posicion' => $posicion,
                   'equipos' => Equipo::get()
             ]);
       }

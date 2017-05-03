@@ -58,6 +58,13 @@ hr{
             min-height: 80%;
       }
 
+.well{
+      background-color: rgb(246, 246, 246);
+}
+
+.espaciado{
+      padding: auto 5px auto 5px;
+}
 
 .fondo{
       background-color: #F5F5F5;

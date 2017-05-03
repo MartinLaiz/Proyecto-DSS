@@ -6,42 +6,42 @@
       <div class="col-md-10 col-md-offset-1">
             <br><br>
             <div class="row">
-                  <form action="{{ action('UsuarioController@getUsuarios') }}" method="POST">
+                  <form action="{{ action('UsuarioController@getUsuarios') }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
                         <div class="form-group row">
                               <div class="col-lg-3 col-md-4 col-sm-4">
                                     <select class="form-control" name="equipo" id="equipo">
-                                          <option value="Todos" selected>Todos los equipos</option>
+                                          <option value="Todos" @if( $equipo == 'Todos') selected @endif >Todos los equipos</option>
                                           @foreach($equipos as $unEquipo)
-                                          <option value="{{ $unEquipo->id }}">{{ $unEquipo->nombreEquipo }}</option>
+                                          <option value="{{ $unEquipo->id }}" @if( $equipo == $unEquipo->id) selected @endif >{{ $unEquipo->nombreEquipo }}</option>
                                           @endforeach
                                     </select>
                               </div>
                               <div class="col-lg-3 col-md-4 col-sm-4">
                                     <select class="form-control" onchange="cargoFilter()" name="rol" id="rol">
-                                          <option value="0">Jugadores</option>
-                                          <option value="1">Entrenadores</option>
-                                          <option value="2">Director</option>
-                                          <option value="3">Administradores</option>
+                                          <option value="0" @if($rol == 0) selected @endif>Jugadores</option>
+                                          <option value="1" @if($rol == 1) selected @endif>Entrenadores</option>
+                                          <option value="2" @if($rol == 2) selected @endif>Director</option>
+                                          <option value="3" @if($rol == 3) selected @endif>Administradores</option>
                                     </select>
                               </div>
                               <div class="col-lg-3 col-md-4 col-sm-4">
                                     <select class="form-control" name="cargo" id="cargo">
-                                          <option value="-1" selected>Todos los cargos</option>
-                                          <option value="0">Sin cargo</option>
-                                          <option value="1">Primer capitan</option>
-                                          <option value="2">Segundo capitan</option>
-                                          <option value="3">Tercer capitan</option>
+                                          <option value="-1" @if($cargo == -1) selected @endif >Todos los cargos</option>
+                                          <option value="0"  @if($cargo == 0) selected @endif >Sin cargo</option>
+                                          <option value="1"  @if($cargo == 1) selected @endif >Primer capitan</option>
+                                          <option value="2"  @if($cargo == 2) selected @endif >Segundo capitan</option>
+                                          <option value="3"  @if($cargo == 3) selected @endif >Tercer capitan</option>
                                     </select>
                               </div>
                               <div class="col-lg-3 col-md-4 col-sm-4">
                                     <select class="form-control" name="posicion" id="posicion">
-                                          <option value="Todas" selected>Todas las posiciones</option>
-                                          <option value="Delantero">Delantero</option>
-                                          <option value="Medio">Medio</option>
-                                          <option value="Defensa">Defensa</option>
-                                          <option value="Portero">Portero</option>
+                                          <option value="0" selected>Todas las posiciones</option>
+                                          <option value="4">Delantero</option>
+                                          <option value="3">Medio</option>
+                                          <option value="2">Defensa</option>
+                                          <option value="1">Portero</option>
                                     </select>
                               </div>
                         </div>
@@ -51,17 +51,19 @@
                   </form>
             </div>
             <br>
+            {{ $usuarios->appends(['equipo' => $equipo,'rol' => $rol,'cargo' => $cargo,'posicion' => $posicion])->links() }}
             @if(count($usuarios) > 0)
             <div class="row" id="jugadores">
                   @foreach($usuarios as $usuario)
-                  <div class="well col-lg-2 col-md-3 col-sm-4">
+                  <div class="well well-sm col-lg-2 col-md-3 col-sm-4">
                         <div class="">
-                              <img class="img-responsive" src="./images/users/{{ $usuario->id }}.png" alt="User image" onerror="this.src = './images/users/defaultUser.png'">
+                              <img class="img-responsive" src="./images/users/{{ $usuario->dni }}.png" alt="User image" onerror="this.src = './images/users/defaultUser.png'">
                               <a href="{{ action('UsuarioController@getUsuario',$usuario->id) }}">
                                     <h4>{{ $usuario->nombre }}</h4>
                                     <h5>{{ $usuario->apellidos }}</h5>
                               </a>
-                              <h6></h6>
+                              <h6><strong>{{ $usuario->equipo->nombreEquipo or 'Administrador'}}</strong></h6>
+                              <h6>{{ date('d/m/Y',strtotime($usuario->fNac)) }}  (<strong>{{ \Carbon\Carbon::now()->diffInYears($usuario->fNac) }}</strong>)</h6>
                         </div>
                   </div>
                   @endforeach
@@ -70,13 +72,8 @@
             <br>
             <div class="alert alert-info">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong>    @if($equipo == 'Todos')
-                        No hay jugadores en la base de datos
-                        @elseif($equipo == 'Libre')
-                        No hay jugadores libres
-                        @else
-                        No conocemos jugadores de éste equipo
-                        @endif
+                  <strong>
+                        Error
                   </strong>
                   <br>
             </div>
@@ -132,5 +129,6 @@
                   opcionesEntrenador();
             }
       }
+      window.onload = cargoFilter;
 </script>
 @endsection

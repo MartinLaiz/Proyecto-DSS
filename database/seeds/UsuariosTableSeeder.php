@@ -33,6 +33,10 @@ class UsuariosTableSeeder extends Seeder
                   'dni' => '00000000A',
                   'nombre' => 'Administrador',
                   'apellidos' => 'Dios',
+                  'rol' => 3,
+                  'cargo' => null,
+                  'posicion' => null,
+                  'dorsal' => null,
                   'fNac' => date($formato,0),
                   'password' => bcrypt('password')
             ]);
