@@ -3,33 +3,56 @@
 use Illuminate\Database\Seeder;
 use App\Partido;
 use App\Equipo;
+use App\Competicion;
+use App\Temporada;
 
 class PartidoTableSeeder extends Seeder
 {
-      /**
-      * Run the database seeds.
-      *
-      * @return void
-      */
-      public function run()
-      {
-      $equipos = Equipo::get();
-      $libreID = Equipo::where('nombreEquipo','like','%Libre%')->first()->id;
+	/**
+	* Run the database seeds.
+	*
+	* @return void
+	*/
+	public function run()
+	{
+		DB::table('partido')->delete();
+		$equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
+		$competiciones = Competicion::get();
+		$temporadas = Temporada::get();
 
-      foreach ($equipos as $equipoLocal) {
-            foreach ($equipos as $equipoVisitante) {
+		$formato = 'Y-m-d H:i:s';
+		$today = time();
 
-                  if($equipoLocal->id != $equipoVisitante->id
-                  and $equipoLocal->id != $libreID and $equipoVisitante->id != $libreID){
+		 foreach($temporadas as $temporada){
+			foreach($competiciones as $competicion){
+				foreach ($equipos as $equipoLocal) {
+					foreach ($equipos as $equipoVisitante) {
+						$fecha = mt_rand(strtotime($temporada->inicio), strtotime($temporada->fin));
+						$golesLocal = 0;
+						$golesVisitante = 0;
 
-                        $partido = new Partido([
-                              'equipoLocal_id'=> $equipoLocal->id,
-                              'equipoVisitante_id' => $equipoVisitante->id,
-                              'estadio_id' => $equipoLocal->estadio_id
-                        ]);
-                        $partido->save();
-                  }
-            }
-      }
-}
+						if($fecha<$today){
+							$golesLocal = mt_rand(0, 5);
+							$golesVisitante = mt_rand(0, 5);
+						}
+
+						if($equipoLocal->id != $equipoVisitante->id){
+
+							$partido = new Partido([
+							'competicion_id'=> $competicion->id,
+							'temporada_id' =>$temporada->id,
+							'golesLocal' =>$golesLocal,
+							'golesVisitante' => $golesVisitante,
+							'fecha' => date($formato,$fecha),
+							'equipoLocal_id'=> $equipoLocal->id,
+							'equipoVisitante_id' => $equipoVisitante->id,
+							'estadio_id' => $equipoLocal->estadio_id
+							]);
+							$partido->save();
+						}
+					}
+				}
+			}
+		 }
+	}
 }

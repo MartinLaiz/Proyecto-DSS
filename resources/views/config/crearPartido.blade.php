@@ -24,6 +24,7 @@ $(document).ready(function(){
 </script>
 
 <div class="contenedor row">
+      @include('config/configuracion')
       <div class="col-md-10 col-md-offset-1">
       <h2>Añadir un partido</h2>
       <br>
@@ -37,7 +38,7 @@ $(document).ready(function(){
                   @endforeach
                   </ul>
             @endif
-          <form action="{{action('JugarController@crearJugar')}}" method="POST">
+          <form action="{{action('PartidoController@crearPartido')}}" method="POST">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}  
                 
@@ -67,7 +68,7 @@ $(document).ready(function(){
              {{-- Goles y Fechas --}}
             <div class="row form-group">
                   <div class="col-md-2">
-                        <input class="form-control" placeholder="Goles Local" type="text" name="golesLocal" id="golesLocal" required>
+                        <input class="form-control"  placeholder="Goles Local" type="text" name="golesLocal" id="golesLocal" required>
                   </div>
 
                   <div class="col-md-2">
@@ -75,7 +76,7 @@ $(document).ready(function(){
                   </div>
 
                   <div class="col-md-4">
-                        <input class="form-control" id="fecha" name="fecha" placeholder="Fecha" type="date" required/>
+                        <input class="form-control" onfocus="(this.type='date')" id="fecha" name="fecha" placeholder="Fecha del partido" type="text" required/>
                   </div>
             </div>
             {{--Competiciones y Temporadas --}}

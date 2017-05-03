@@ -10,8 +10,8 @@ class Competicion extends Model
 
 
 
-      public function jugar(){
-            return $this->hasMany('App\Jugar');
+      public function partido(){
+            return $this->hasMany('App\Partido');
       } 
 
 

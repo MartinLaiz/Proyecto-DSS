@@ -15,16 +15,12 @@ class CreateParticiparTable extends Migration
     {
         Schema::create('participar', function (Blueprint $table) {
             $table->increments('id');
-            /*$table->integer('jugador');
-            $table->integer('equipoLocal');
-            $table->integer('equipoVisitante');
-            $table->integer('tipo')->nullable(); //1 si es titular, dos si esta en el banquillo.
-            $table->integer('gol')->nullable();
-            $table->integer('asistencia')->nullable();
-            $table->primary(['jugador','equipoVisitante','equipoLocal']);
-            $table->foreign(array('equipoLocal','equipoVisitante'))
-            ->references(array('equipoLocal','equipoVisitante'))->on('partido')->onDelete('set null');
-            $table->foreign('jugador')->references('id')->on('jugador')->onDelete('set null');*/
+            $table->integer('jugar_id');
+            $table->integer('usuario_id');
+            $table->integer('evento');
+            $table->unique(['jugar_id','usuario_id']);
+            $table->foreign('jugar_id')->references('id')->on('jugar')->onDelete('set null');
+            $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('set null');
 
             $table->timestamps();
         });
@@ -36,7 +32,8 @@ class CreateParticiparTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {  
+       
         Schema::dropIfExists('participar');
     }
 }

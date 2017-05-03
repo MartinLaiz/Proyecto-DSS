@@ -9,112 +9,107 @@ use App\Http\Controllers\Controller;
 use Validator;
 use App\Equipo;
 use App\Partido;
+use App\Temporada;
+use App\Estadio;
+use App\Competicion;
 
 
 class PartidoController extends Controller
 {
     public function getPartidos(){
-/*
-select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
-                           ,'team1.nombreEquipo as nameTeam1','team2.nombreEquipo as nameTeam2'
-                            ,'partido.golesLocal','partido.golesVisitante','partido.fecha')
-                            ->
-*/
-        $teams = Partido::join('equipo as team1','partido.equipoLocal','=','team1.id')->
-                              join('equipo as team2','partido.equipoVisitante','=','team2.id')->
-                              select('partido.*','team1.nombreEquipo as equipoLocal','team2.nombreEquipo as equipoVisitante')->paginate(8);
-
+        $partidos = Partido::with('competicion','temporada',
+        'equipoLocal','equipoVisitante','estadio')->get();
 
         return view('partidos', [
-                                 'values' => [
-                                             'equipoLocal'=> 'Equipo Local',
-                                             'golesLocal'=>'Goles Local',
-                                             'golesVisitante'=>'Goles Visitante',
-                                             'equipoVisitante'=> 'Equipo Visitante',
-                                             'fecha'=>'Fecha',
-                                             'tipo' => 'Tipo'],
-                                 'lista' =>  $teams,
-                                 ]
-                    );
-
-   }
+                'partidos' => $partidos]);
+    }
 
 
-   public function getPartidosConfig(){
-        $teams = Partido::join('equipo as team1','partido.equipoLocal','=','team1.id')->
-                              join('equipo as team2','partido.equipoVisitante','=','team2.id')->
-                              select('partido.*','team1.nombreEquipo as equipoLocal','team2.nombreEquipo as equipoVisitante')->paginate(5);
-
-        return view('editarPartidos', [
-                                 'values' => [
-                                             'equipoLocal'=> 'Equipo Local',
-                                             'golesLocal'=>'Goles Local',
-                                             'golesVisitante'=>'Goles Visitante',
-                                             'equipoVisitante'=> 'Equipo Visitante',
-                                             'fecha'=>'Fecha',
-                                             'tipo' => 'Tipo'],
-                                 'lista' =>  $teams,
-                                 ]
-                    );
-
-   }
 
 
-   public function EliminarPartido($id){
+    public function editarPartidos(){
+        $partidos = Partido::with('competicion','temporada',
+        'equipoLocal','equipoVisitante','estadio')->paginate(10);
+
+
+        return view('config/editarPartidos', [
+                'partidos' => $partidos]);
+    }
+
+    public function eliminarPartido($id){
         $partido = Partido::find($id);
         $partido->delete();
         return back();
-   }
+    }
 
 
-   public function formularioModificar($id){
+    public function formularioInsertar(){
 
-        $equipos = Equipo::orderBy('nombreEquipo')->where('nombreEquipo','<>','Libre')->get();
+        $equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
+        $temporadas = Temporada::with('partido')->get();
+        $competiciones = Competicion::with('partido')->get();
 
-
-        return view ('modificarPartido',[
-                                            'idmodificar' => $id],[
-                                            'listaEquipos' =>  $equipos
-                                            ]);
-   }
-
-   public function formularioInsertar(){
-
-        return view ('crearPartido',['listaEquipos' => Equipo::orderBy('nombreEquipo')->get()]);
-   }
-
-
-
-   public function modificarPartido(Request $request,$id){
-       $partido = Partido::find($id);
-       $partido->equipoLocal = $request->equipoLocal;
-       $partido->equipoVisitante = $request->equipoVisitante;
-       $partido->golesLocal = $request->golesLocal;
-       $partido->golesVisitante = $request->golesVisitante;
-       $partido->fecha = $request->fecha;
-       $partido->tipo = $request->tipo;
-
-       return $this->verErrores($partido,$request);
-   }
-
+        return view ('config/crearPartido',[ 'competiciones' => $competiciones,
+        'equipos' => $equipos,'temporadas' => $temporadas]);
+    }
 
     public function crearPartido(Request $request){
-         $partido = new Partido();
-         $partido->equipoLocal = $request->equipoLocal;
-         $partido->equipoVisitante = $request->equipoVisitante;
-         $partido->golesLocal = $request->golesLocal;
-         $partido->golesVisitante = $request->golesVisitante;
-         $partido->fecha = $request->fecha;
-         $partido->tipo = $request->tipo;
+        $partido = new Partido();
+
+        $partido->equipoLocal_id = $request->equipoLocal;
+        $partido->equipoVisitante_id = $request->equipoVisitante;
+        $partido->temporada_id = $request->temporada_id;
+        $partido->competicion_id = $request->competicion_id;
+        $partido->golesLocal = $request->golesLocal;
+        $partido->golesVisitante = $request->golesVisitante;
+        $partido->fecha = $request->fecha;
+
+        $equipo = Equipo::find($request->equipoLocal);
+
+        $partido->estadio_id = $equipo->estadio_id;
+
+        return $this->verErrores($partido,$request);
 
 
-         return $this->verErrores($partido,$request);
+    }
 
-     }
+
+    public function modificarPartido(Request $request,$id){
+        $partido = Partido::find($id);
+        
+        $partido->equipoLocal_id = $request->equipoLocal;
+        $partido->equipoVisitante_id = $request->equipoVisitante;
+        $partido->temporada_id = $request->temporada_id;
+        $partido->competicion_id = $request->competicion_id;
+        $partido->golesLocal = $request->golesLocal;
+        $partido->golesVisitante = $request->golesVisitante;
+        $partido->fecha = $request->fecha;
+
+        $equipo = Equipo::find($request->equipoLocal);
+
+        $partido->estadio_id = $equipo->estadio_id;
+
+        return $this->verErrores($partido,$request);
+
+
+    }
+
+
+
+    public function formularioModificar($id){
+
+        $equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
+        $temporadas = Temporada::with('partido')->get();
+
+        $competiciones = Competicion::with('partido')->get();
+
+        return view ('config/modificarPartido',[ 'competiciones' => $competiciones,
+        'equipos' => $equipos,'temporadas' => $temporadas, 'idmodificar' => $id]);
+    }
 
      public function verErrores($partido,$request){
 
-        if($partido->equipoLocal ==  $partido->equipoVisitante){
+        if($partido->equipoLocal_id ==  $partido->equipoVisitante_id){
             $validator = Validator::make($request->all(), [
             'title' => '2',
             'body' => '2',
@@ -126,7 +121,7 @@ select('team1,equipoLocal as idlocal, team2.equipoVisitante as idVisitante'
 
             try{
                 $partido->save();
-                return Redirect::to('/config/partidos');
+                return Redirect::to('/partido');
             }
             catch(\Illuminate\Database\QueryException $e){
                 $validator = Validator::make($request->all(), [

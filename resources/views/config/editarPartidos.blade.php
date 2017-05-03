@@ -2,10 +2,12 @@
 @section('title', 'Partidos')
 @section('content')
 @include('cabecera',array('section'=>'partidos'))
+
 <div class="contenedor row">
+      @include('config/configuracion')
       <div class="col-md-10 col-md-offset-1">
-            <h2>Equipos</h2>
-            {{-- $partidos->links() --}}
+            <h2>Partidos</h2>
+            {{ $partidos->links() }}
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
@@ -17,29 +19,26 @@
                               <th>Competicion</th>
                               <th>Temporada</th>
                               <th>Acciones</th>
-                               
-                       
                         </tr>
-
                   <tbody>
                   
-                   @foreach($partidos as $partido)
-                    <tr>
+                  @foreach($partidos as $partido)
+                  <tr>
 
-                        <th>{!!$partido->partido->equipoLocal->nombreEquipo!!}</th>
-                        <th>{!!$partido->partido->equipoVisitante->nombreEquipo!!}</th>
-                        <th>{!!$partido->partido->estadio->nombre!!}</th>
+                        <th>{!!$partido->equipoLocal->nombreEquipo!!}</th>
+                        <th>{!!$partido->equipoVisitante->nombreEquipo!!}</th>
+                        <th>{!!$partido->estadio->nombre!!}</th>
                         <th>{!!$partido->golesLocal!!}</th>
                         <th>{!!$partido->golesVisitante!!}</th>
                         <th>{!!$partido->competicion->nombre!!}</th>
                         <th>{!!$partido->temporada->nombre!!}</th>
                         <td>
                               <div class="btn-group ">
-                                    <a href="{{ action('JugarController@formularioModificar', $partido->id) }}" 
+                                    <a href="{{ action('PartidoController@formularioInsertar'}}" 
                                           class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
                                           role="button" title="Modificar">
                                     </a>
-                                    <a href="{{ action('JugarController@EliminarJugar', $partido->id) }}" 
+                                    <a href="{{ action('PartidoController@eliminarPartido', $partido->id) }}" 
                                           class="btn btn-danger btn-block glyphicon glyphicon-trash" 
                                           role="button" title="Borrar">
                                     </a>

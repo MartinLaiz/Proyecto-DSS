@@ -18,9 +18,9 @@
                               <li><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
                         @endif
                         @if($section == "partidos")
-                              <li class="active"><a href="{{ action('JugarController@getJugar') }}">Partidos</a></li>
+                              <li class="active"><a href="">Partidos</a></li>
                         @else
-                              <li><a href="{{ action('JugarController@getJugar') }}">Partidos</a></li>
+                              <li><a href="">Partidos</a></li>
                         @endif
                         @if($section == "plantilla")
                               <li class="active"><a href="{{action('UsuarioController@getUsuarios')}}">Plantilla</a></li>
@@ -41,7 +41,7 @@
                         @endif
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi perfil <span class="caret"></span></a>
                               <ul class="dropdown-menu">
-                                    <li><a href="/config">Configuración</a></li>
+                                    <li><a href="">Configuración</a></li>
                                     <li><a href="/">Cerrar sesión</a></li>
                               </ul>
                         </li>

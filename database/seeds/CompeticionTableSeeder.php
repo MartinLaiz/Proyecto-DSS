@@ -12,6 +12,7 @@ class CompeticionTableSeeder extends Seeder
       */
       public function run()
       {
+            DB::table('competicion')->delete();
             $competicion = new Competicion([
                   'nombre' => 'Liga'
             ]);

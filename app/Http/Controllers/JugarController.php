@@ -10,6 +10,7 @@ use App\Partido;
 use App\Temporada;
 use App\Competicion;
 use App\Equipo;
+use App\Usuario;
 use App\Jugar;
 use Carbon\Carbon;
 use Validator;
@@ -37,14 +38,13 @@ class JugarController extends Controller
 
             //obtengo los datos de partido con jugar con la temporada actual
             $partidos = Jugar::with('competicion','partido','temporada')
-            ->where('temporada_id','=',$temporadaActual->id)->get();
+            ->where('temporada_id','=',$temporadaActual->id)->paginate(10);
 
             return view('config/editarPartidos', [
                   'partidos' => $partidos]);
       }
-
-
-      public function EliminarJugar($id){
+      
+      public function eliminarJugar($id){
             $partido = Jugar::find($id);
             $partido->delete();
             return back();
@@ -133,29 +133,46 @@ class JugarController extends Controller
       public function verErrores($jugar,$request,  $partido){
 
             if($partido ==null){
-            $validator = Validator::make($request->all(), [
-            'title' => '2',
-            'body' => '2',
-            ]);
-            $validator->getMessageBag()->add('unique','Error, no se puede crear un partido con el mismo equipo.');
-            return back()->withErrors($validator)->withInput();
+                  $validator = Validator::make($request->all(), [
+                  'title' => '2',
+                  'body' => '2',
+                  ]);
+                  $validator->getMessageBag()->add('unique','Error, no se puede crear un partido con el mismo equipo.');
+                  return back()->withErrors($validator)->withInput();
 
             }else{
-
-                  try{
-                        $jugar->save();
-                        return Redirect::to('/config/editar/partidos');
-                  }
-                  catch(\Illuminate\Database\QueryException $e){
+                  $usuarioLocales = Usuario::where('equipo_id','=',$request->equipoLocal)->get();
+                  $usuarioVisitante = Usuario::where('equipo_id','=',$request->equipoVisitante)->get();
+                  if(   $usuarioLocales->toArray() == null || $usuarioVisitante->toArray() == null){
                         $validator = Validator::make($request->all(), [
                         'title' => '2',
                         'body' => '2',
                         ]);
-                        $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
+                        $validator->getMessageBag()->add('unique','Error, el equipo no tiene el minimo de jugadores.');
                         return back()->withErrors($validator)->withInput();
+                  }else{
+                        try{
+                              //guardamos el partido
+                              $jugar->save();
+                              return $this->crearParticipar($request,$jugar);
+                        }
+                        catch(\Illuminate\Database\QueryException $e){
+                              $validator = Validator::make($request->all(), [
+                              'title' => '2',
+                              'body' => '2',
+                              ]);
+                              $validator->getMessageBag()->add('unique','Error, existe ya un partido con las mismas caracteristicas');
+                              return back()->withErrors($validator)->withInput();
+                        }
                   }
             }
 
+      }
+
+
+      public function crearParticipar($request,$jugar){
+            $usuarioLocales = Usuario::where('equipo_id','=',$request->equipoVisitante)->get();
+            dd($usuarioLocales->toArray());
       }
 
 }
