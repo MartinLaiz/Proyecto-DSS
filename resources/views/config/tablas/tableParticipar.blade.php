@@ -1,0 +1,51 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Once Inicial</th>
+        <th>Banquillo</th>
+    </tr>
+</thead>
+    <tbody>
+
+        <tr>
+            <td>Titular</td>
+            <td>Suplente</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+            <td>Suplente</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+            <td>Suplente</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+            <td>Suplente</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+            <td>Suplente</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+            <td>Suplente</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+            <td>Suplente</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+        </tr>
+        <tr>
+            <td>Titular</td>
+        </tr>
+    </tbody>
+</table>

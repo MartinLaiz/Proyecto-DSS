@@ -25,13 +25,21 @@ class ParticiparController extends Controller
     }*/
 
     public function verParticipar($idPartido){
-        $participar = Participar::where('partido_id','=',$idPartido)->get();
+        $partido = Partido::with('equipoLocal','equipoVisitante')
+        ->where('id','=',$idPartido)->first();
 
-        if($participar->toArray() == null){
-            return view('config/perfilPartido');
+
+        $participar = Participar::where('partido_id','=',$idPartido)->first();
+
+        if($participar != null){
+             return view ('config/partido/perfilPartido',[ 'partido' => $partido
+             ,'cantidad' => 0]);
         }else{
-            return view('config/perfilPartido');
+            return view ('config/partido/perfilPartido',[ 'partido' => $partido
+            ,'cantidad' => 0]);
         }
+
+       
        
     }
 }

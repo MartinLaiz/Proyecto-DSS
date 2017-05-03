@@ -33,7 +33,7 @@ class PartidoController extends Controller
         'equipoLocal','equipoVisitante','estadio')->paginate(10);
 
 
-        return view('config/editarPartidos', [
+        return view('config/partido/editarPartidos', [
                 'partidos' => $partidos]);
     }
 
@@ -50,7 +50,7 @@ class PartidoController extends Controller
         $temporadas = Temporada::with('partido')->get();
         $competiciones = Competicion::with('partido')->get();
 
-        return view ('config/crearPartido',[ 'competiciones' => $competiciones,
+        return view ('config/partido/crearPartido',[ 'competiciones' => $competiciones,
         'equipos' => $equipos,'temporadas' => $temporadas]);
     }
 
@@ -104,7 +104,7 @@ class PartidoController extends Controller
 
         $competiciones = Competicion::with('partido')->get();
 
-        return view ('config/modificarPartido',[ 'competiciones' => $competiciones,
+        return view ('config/partido/modificarPartido',[ 'competiciones' => $competiciones,
         'equipos' => $equipos,'temporadas' => $temporadas, 'idmodificar' => $id]);
     }
 
