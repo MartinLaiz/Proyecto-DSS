@@ -8,7 +8,7 @@ class Partido extends Model
 {
       protected $table = 'partido';
       protected $dates = ['fecha'];
-     
+
 
 
       public function competicion(){
@@ -40,5 +40,6 @@ class Partido extends Model
 
 
       
+
 
 }

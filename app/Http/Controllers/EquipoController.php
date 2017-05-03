@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use App\Equipo;
-use App\Jugar;
 use App\Partido;
 use App\Estadio;
 use App\Patrocinador;
@@ -16,14 +15,17 @@ use Validator;
 class EquipoController extends Controller
 {
       public function getHome(){
-            $idUA = Equipo::where('nombreEquipo','like','%UA%')->first()->id;
-            $ultPartidos = Jugar::where('fecha','<',Carbon::now())->orderBy('fecha','desc')->with('partido')->take(5)->get();
-            $proxPartidos = Jugar::where('fecha','>',Carbon::now())->orderBy('fecha','asc')->with('partido')->take(5)->get();
+
+            $UA = Equipo::where('nombreEquipo','like','%UA%')->first();
+            $ultLocal = $UA->partidosLocal()->with('equipoLocal','equipoVisitante')->where('fecha','<',Carbon::now())->get();
+            $ultVisitante = $UA->partidosVisitante()->with('equipoLocal','equipoVisitante')->where('fecha','<',Carbon::now())->get();
+            $proxLocal = $UA->partidosLocal()->with('equipoLocal','equipoVisitante')->where('fecha','>',Carbon::now())->get();
+            $proxVisitante = $UA->partidosVisitante()->with('equipoLocal','equipoVisitante')->where('fecha','>',Carbon::now())->get();
             return view('home',[
                   'equipos' => Equipo::get(),
                   'estadios' => Estadio::get(),
-                  'ultPartidos' => $ultPartidos,
-                  'proxPartidos' => $proxPartidos
+                  'ultPartidos' => $ultLocal->merge($ultVisitante)->sortByDesc('fecha')->take(5),
+                  'proxPartidos' => $proxLocal->merge($proxVisitante)->sortBy('fecha')->take(5)
             ]);
       }
 
@@ -121,7 +123,7 @@ class EquipoController extends Controller
       }
 
 
- 
+
 
       public function eliminar($id){
             $equipo = Equipo::find($id);
