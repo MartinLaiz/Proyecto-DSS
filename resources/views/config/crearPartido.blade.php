@@ -87,7 +87,7 @@ $(document).ready(function(){
                         <select class="form-control" id="competicion_id" placeholder="competicion_id" name="competicion_id" required>
                               <option value="Competicion" disabled selected hidden>Competicion</option>
                               @foreach($competiciones as $competicion)
-                              <option value="{{ $competicion->id }}"> {{ $competicion->nombre }}</option>
+                                    <option value="{{ $competicion->id }}"> {{ $competicion->nombre }}</option>
                               @endforeach
                         </select>
                   </div>
@@ -97,7 +97,7 @@ $(document).ready(function(){
                         <select class="form-control" id="temporada_id" placeholder="temporada_id" name="temporada_id" required>
                               <option value="Temporada" disabled selected hidden>Temporada</option>
                               @foreach($temporadas as $temporada)
-                              <option value="{{ $temporada->id }}"> {{ $temporada->nombre }}</option>
+                                    <option value="{{ $temporada->id }}"> {{ $temporada->nombre }}</option>
                               @endforeach
                         </select>
                   </div>

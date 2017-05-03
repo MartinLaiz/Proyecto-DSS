@@ -100,6 +100,8 @@ Route::group(['prefix' => 'partido'], function(){
             Route::put('/crear/partido','PartidoController@crearPartido');
             Route::post('/modidificar/partido/{id}','PartidoController@modificarPartido');
             Route::get('/modidificar/partido/{id}','PartidoController@formularioModificar');
+            Route::get('/introducirJugadores/partido/{id}','PartidoController@introducirJugadores');
+            Route::get('/partido/{id}','ParticiparController@verParticipar');
       });
 
 

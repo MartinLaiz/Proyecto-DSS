@@ -33,6 +33,12 @@ class Partido extends Model
       }
 
 
+      public function participar(){
+            return $this->hasMany('App\Participar');
+      }
+     
+
+
       
 
 }

@@ -11,6 +11,7 @@ use App\Equipo;
 use App\Partido;
 use App\Temporada;
 use App\Estadio;
+use App\Usuario;
 use App\Competicion;
 
 
@@ -55,6 +56,7 @@ class PartidoController extends Controller
 
     public function crearPartido(Request $request){
         $partido = new Partido();
+		dd($request->equipoLocal);
         $partido->equipoLocal_id = $request->equipoLocal;
         $partido->equipoVisitante_id = $request->equipoVisitante;
         $partido->temporada_id = $request->temporada_id;
@@ -121,15 +123,13 @@ class PartidoController extends Controller
             try{
                 $partido->save();
                 if($request->introducir != null){
-                     return $this->introducirJugadores($partido);
+                    //si quieres introducir los jugaddores de partido
+                    return $this->introducirJugadores($partido->id);
 
                 }else{
                     //si quieres introducir solamente el partido
                     return Redirect::to('/partido');
                 }
-
-
-               
             }
             catch(\Illuminate\Database\QueryException $e){
                 $validator = Validator::make($request->all(), [
@@ -143,10 +143,16 @@ class PartidoController extends Controller
     }
 
 
-     public function introducirParticipar($partido){
-         //busco los jugadores del equipo Local
-         
-         //busco los jugadores del equipo visitante
+	public function introducirJugadores($idPartido){
+		$partido = Partido::find($idPartido);
+		//busco los jugadores del equipo Local
+		$usuariosLocales= Usuario::where('equipo_id','=',$partido->equipoLocal_id)->get();
+		//busco los jugadores del equipo visitante
+		$usuariosVisitantes= Usuario::where('equipo_id','=',$partido->equipoVisitante_id)->get();
 
-        }
+
+		return view ('config/crearParticipar',[ 'locales' => $usuariosLocales,
+		'visitantes'=> $usuariosVisitantes]);
+
+	}
 }
