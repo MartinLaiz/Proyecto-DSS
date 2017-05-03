@@ -11,6 +11,7 @@
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
+                              <th>Partido</th>
                               <th>Equipo Local</th>
                               <th>Equipo Visitante</th>
                               <th>Estadio</th>
@@ -25,6 +26,7 @@
                   @foreach($partidos as $partido)
                   <tr>
 
+                        <td><a href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->id!!}</a></td>
                         <th>{!!$partido->equipoLocal->nombreEquipo!!}</th>
                         <th>{!!$partido->equipoVisitante->nombreEquipo!!}</th>
                         <th>{!!$partido->estadio->nombre!!}</th>
@@ -34,11 +36,11 @@
                         <th>{!!$partido->temporada->nombre!!}</th>
                         <td>
                               <div class="btn-group ">
-                                    <a href="{{ action('PartidoController@formularioInsertar'}}" 
+                                    <a href="{{ action('PartidoController@formularioModificar', $partido->id)}}" 
                                           class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
                                           role="button" title="Modificar">
                                     </a>
-                                    <a href="{{ action('PartidoController@eliminarPartido', $partido->id) }}" 
+                                    <a href="{{ action('PartidoController@introducirJugadores', $partido->id) }}" 
                                           class="btn btn-danger btn-block glyphicon glyphicon-trash" 
                                           role="button" title="Borrar">
                                     </a>

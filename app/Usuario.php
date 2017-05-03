@@ -13,4 +13,9 @@ class Usuario extends Model
       public function equipo(){
             return $this->belongsTo('App\Equipo');
       }
+
+
+      public function participar(){
+            return $this->hasMany('App\Participar');
+      }
 }

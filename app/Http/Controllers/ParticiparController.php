@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Usuario;
+use App\Participar;
+use App\Partido;
 
 class ParticiparController extends Controller
 {
@@ -21,11 +24,22 @@ class ParticiparController extends Controller
         return view ('config/crearParticipar');
     }*/
 
-    public function formularioParticipar($equipoLocal,$equipoVisitante){
-        $jugadoresLocal = Usuario::where('equipo_id','=',$equipoLocal->id);
+    public function verParticipar($idPartido){
+        $partido = Partido::with('equipoLocal','equipoVisitante')
+        ->where('id','=',$idPartido)->first();
 
-        dd($jugadoresLocal->get()->toArray());
 
-        return view ('config/crearParticipar');
+        $participar = Participar::where('partido_id','=',$idPartido)->first();
+
+        if($participar != null){
+             return view ('config/partido/perfilPartido',[ 'partido' => $partido
+             ,'cantidad' => 0]);
+        }else{
+            return view ('config/partido/perfilPartido',[ 'partido' => $partido
+            ,'cantidad' => 0]);
+        }
+
+       
+       
     }
 }

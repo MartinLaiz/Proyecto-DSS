@@ -22,5 +22,11 @@ class CompeticionTableSeeder extends Seeder
                   'nombre' => 'Copa'
             ]);
             $competicion->save();
+
+
+            $competicion = new Competicion([
+                  'nombre' => 'Amistoso'
+            ]);
+            $competicion->save();
       }
 }
