@@ -102,6 +102,8 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/modidificar/partido/{id}','PartidoController@formularioModificar');
             Route::get('/introducirJugadores/partido/{id}','PartidoController@introducirJugadores');
             Route::get('/partido/{id}','ParticiparController@verParticipar');
+            Route::get('/introducir/datos/partido/{id}','ParticiparController@formularioInsertar');
+            Route::put('/introducir/datos/partido/{id}','ParticiparController@crearParticipar');
       });
 
 

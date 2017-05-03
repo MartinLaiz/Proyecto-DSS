@@ -9,20 +9,36 @@ use App\Partido;
 
 class ParticiparController extends Controller
 {
-    public function crearParticipar($request){
+    public function crearParticipar(Request $request,$id){
         $participar = new Participar();
+        $contadorTitularLocal = 0;
+        $contadorTitularVisitante = 0;
+        $contadorBanquilloLocal = 0;
+        $contadorBanquilloVisitante = 0;
 
+        dd($request);
+        //cuenta el total de jugadores que hay
+        foreach($request->request as $r){
+            //si hay dato cuenta uno
+            if($request->titularLocal != null){
+                $contadorTitularLocal += 1;
+            }else if($request->titularVisitante != null){
+                $contadorBanquilloLocal += 1;
+            }else if($request->banquilloLocal != null){
+                $contadorBanquilloLocal += 1;
+            }else{
+           
+                $contadorBanquilloVisitante += 1;
+            }
+        }
+        dd($contadorTitularLocal );
         $participar->usuario_id = $request->usuario_id;
         $participar->jugar_id = $request->jugar_id;
         $participar->evento_id = $request->evento_id;
         $participar->save();
+
+        return back();
     }
-
-
-    /*public function formularioParticipar($golLocal,$golVisitante,$equipoLocal,$equipoVisitante){
-
-        return view ('config/crearParticipar');
-    }*/
 
     public function verParticipar($idPartido){
         $partido = Partido::with('equipoLocal','equipoVisitante')
@@ -38,8 +54,21 @@ class ParticiparController extends Controller
             return view ('config/partido/perfilPartido',[ 'partido' => $partido
             ,'cantidad' => 0]);
         }
+    }
 
+
+    public function formularioInsertar($idPartido){
+        $partido = Partido::find($idPartido);
+        //obtengo los jugadores locales
+        $locales = Usuario::where('equipo_id','=',$partido->equipoLocal_id)
+        ->orderBy('posicion')->get();
        
-       
+        //obtengo los jugadores visitantes
+        $visitantes = Usuario::where('equipo_id','=',$partido->equipoVisitante_id)
+        ->orderBy('posicion')->get();
+
+        return view ('config/partido/crearParticipar',[ 'partido' => $partido
+        ,'locales' => $locales,'visitantes' => $visitantes]);
+
     }
 }

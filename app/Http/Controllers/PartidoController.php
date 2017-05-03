@@ -56,7 +56,7 @@ class PartidoController extends Controller
 
     public function crearPartido(Request $request){
         $partido = new Partido();
-		dd($request->equipoLocal);
+		dd($request);
         $partido->equipoLocal_id = $request->equipoLocal;
         $partido->equipoVisitante_id = $request->equipoVisitante;
         $partido->temporada_id = $request->temporada_id;
