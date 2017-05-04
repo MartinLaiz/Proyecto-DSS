@@ -7,6 +7,17 @@
 <div class="contenedor row">
 
 	@include('config/configuracion')
+	    {{-- Muestra errores --}}
+
+	@if (count($errors) > 0)
+            <ul>
+            @foreach ($errors->all() as $error)
+                  <div class="alert alert-danger">
+                        <a href="#" class="alert-link">{{ $error }}</a>
+                  </div>
+            @endforeach
+            </ul>
+      @endif
 	<ul class="nav nav-tabs">
 		<li class="active"><a data-toggle="tab" href="#home">Información</a></li>
 		<li><a data-toggle="tab" href="#menu1">Jugadores</a></li>
@@ -67,7 +78,27 @@
 				</tbody>
 				</table>
 			</div>
+
+
+		<div class="bs-calltoaction bs-calltoaction-default">
+			<div class="row">
+				<div class="col-md-9 cta-contents">
+					<h1 class="cta-title">Cronica</h1>
+					<div class="cta-desc">
+						@if($cantidad != 0)
+							<PRE>{{ $titulares[1]->evento }}</PRE>
+						@else
+							<p>No hay datos disponibles</p>
+						@endif
+					</div>
+				</div>
+			</div>
 		</div>
+
+			<a title="Modificar Partido" href="{{ action('PartidoController@formularioModificar', $partido->id)}}" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+			<a title="Eliminar Partido" href="{{ action('PartidoController@eliminarPartido', $partido->id) }}"  data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+	
+	</div>
 		{{-- JUGARORES --}}
 		<div id="menu1" class="tab-pane fade">
 			<div class="row form-group">
@@ -80,10 +111,10 @@
 						@include('config/tablas/tableParticiparSin')
 					@endif
 
-					<div class="panel-footer">
-						<a href="{{ action('ParticiparController@formularioInsertar', $partido->id) }}" data-original-title="Edit this user" data-toggle="tooltip" 
-						type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-					</div>
+				
+						<a  title="Crear Jugadores y Cronica" href="{{ action('ParticiparController@formularioInsertar', $partido->id) }}" data-original-title="Edit this user" data-toggle="tooltip" 
+						type="button" class="btn btn btn-success"><i class="glyphicon glyphicon-edit"></i></a>
+						<a title="Eliminar Jugadores y Cronica" href="{{ action('ParticiparController@borrarParticipar', $partido->id) }}"  data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
 
 				</div>
 

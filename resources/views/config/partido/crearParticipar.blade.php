@@ -93,6 +93,16 @@
 		</div>
 	
 	</div>
+	<div class="row form-group">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for ="description"> Cronica</label>
+				<textarea  name="cronica" style="width: 500px; height: 102px ;resize: vertical;"  class="form-control" id="description" placeholder="Enter Your Message"></textarea>
+			</div>
+							
+		</div>
+	</div>
+	
 
 	<div class="row form-group">
 		<div class="col-md-2">

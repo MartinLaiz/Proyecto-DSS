@@ -12,7 +12,6 @@ use App\Partido;
 class ParticiparController extends Controller
 {
     public function crearParticipar(Request $request,$idPartido){
-       
         //contadores
         $contador = 0;
         $contadorTitularLocal = 0;
@@ -32,13 +31,13 @@ class ParticiparController extends Controller
                     $contadorBanquilloLocal += 1;
                 }else if($checked[0] == "titularVisitante"){
                     $contadorTitularVisitante += 1;
-                }else{
+                }else if($checked[0] == "banquilloVisitante"){
                     $contadorBanquilloVisitante += 1;
                 }
             }
             $contador++;
         }
-
+  
         //si se cumple, se mete los datos, si no salta error
         if($contadorTitularLocal == 11 && $contadorBanquilloLocal== 7 
         && $contadorTitularVisitante == 11 && $contadorBanquilloVisitante ==7){
@@ -46,7 +45,7 @@ class ParticiparController extends Controller
             $contador = 0;
             foreach($request->request as $r){
                 $participar = new Participar();
-                if($contador >=2){
+                if($contador >=2 ){
                     //separo los string
                     $checked = explode(" ", $r);
                     //si es titular
@@ -54,7 +53,7 @@ class ParticiparController extends Controller
                         
                         $participar->partido_id = $idPartido;
                         $participar->usuario_id = $checked[1];
-                        $participar->evento = "prueba";
+                        $participar->evento = $request->cronica;
                         $participar->titular = "si";
                         $participar->local = "si";
                         $participar->save();
@@ -62,21 +61,21 @@ class ParticiparController extends Controller
                     }else if($checked[0]  == "banquilloLocal"){
                         $participar->partido_id = $idPartido;
                         $participar->usuario_id = $checked[1];
-                        $participar->evento = "prueba";
+                        $participar->evento = $request->cronica;
                         $participar->titular = "no";
                         $participar->local = "si";
                         $participar->save();
                     }else if($checked[0] == "titularVisitante"){
                         $participar->partido_id = $idPartido;
                         $participar->usuario_id = $checked[1];
-                        $participar->evento = "prueba";
+                        $participar->evento = $request->cronica;
                         $participar->titular = "si";
                         $participar->local = "no";
                         $participar->save();
-                    }else{
+                   }else if($checked[0] == "banquilloVisitante"){
                         $participar->partido_id = $idPartido;
                         $participar->usuario_id = $checked[1];
-                        $participar->evento = "prueba";
+                        $participar->evento = $request->cronica;
                         $participar->titular = "no";
                         $participar->local = "no";
                         $participar->save();
@@ -129,18 +128,52 @@ class ParticiparController extends Controller
     }
 
 
-    public function formularioInsertar($idPartido){
-        $partido = Partido::find($idPartido);
-        //obtengo los jugadores locales
-        $locales = Usuario::where('equipo_id','=',$partido->equipoLocal_id)
-        ->orderBy('posicion')->get();
-       
-        //obtengo los jugadores visitantes
-        $visitantes = Usuario::where('equipo_id','=',$partido->equipoVisitante_id)
-        ->orderBy('posicion')->get();
+    public function formularioInsertar($idPartido,Request $request){
 
-        return view ('config/partido/crearParticipar',[ 'partido' => $partido
-        ,'locales' => $locales,'visitantes' => $visitantes]);
+        $cantidad = Participar::where('partido_id','=',$idPartido)->first();
+        //si hay datos salta el error
+        if($cantidad != null){
+            $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+            ]);
+            $validator->getMessageBag()->add('unique','Error, ya estan creado los jugadores de este partido.');
+            return back()->withErrors($validator)->withInput();
+        }else{
+            $partido = Partido::find($idPartido);
+            //obtengo los jugadores locales
+            $locales = Usuario::where('equipo_id','=',$partido->equipoLocal_id)
+            ->orderBy('posicion')->get();
+        
+            //obtengo los jugadores visitantes
+            $visitantes = Usuario::where('equipo_id','=',$partido->equipoVisitante_id)
+            ->orderBy('posicion')->get();
+
+            return view ('config/partido/crearParticipar',[ 'partido' => $partido
+            ,'locales' => $locales,'visitantes' => $visitantes]);
+        }
+
+    }
+
+
+    public function borrarParticipar($idPartido,Request $request){
+        $cantidad = Participar::where('partido_id','=',$idPartido)->first();
+        $participar = Participar::where('partido_id','=',$idPartido)->get();
+        //borramos todas las tablas de participar con el partido asociado
+        if($cantidad == null){
+            $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+            ]);
+            $validator->getMessageBag()->add('unique','Error, para borrar tiene que haber jugadores.');
+            return back()->withErrors($validator)->withInput();
+        }else{
+            foreach($participar as $p){
+            $aux = Participar::find($p->id);
+            $aux ->delete();
+            }
+        }
+        return back();
 
     }
 }
