@@ -18,7 +18,8 @@ class CreateParticiparTable extends Migration
             $table->integer('partido_id');
             $table->integer('usuario_id');
             $table->integer('evento');
-            $table->string('titular?');
+            $table->string('titular');
+            $table->string('local');
             $table->unique(['partido_id','usuario_id']);
             $table->foreign('partido_id')->references('id')->on('partido')->onDelete('set null');
             $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('set null');

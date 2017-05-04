@@ -1,3 +1,7 @@
+
+
+ 
+ 
  <table class="table table-striped table-responsive" cellspacing="0" width="100%">
     <thead>
         <tr>
@@ -27,7 +31,7 @@
                 <td>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="{!!$local->id!!}" id="{!!$local->id!!}"  value="{!!$local->id!!}" >
+                            <input type="radio" name="{!!$local->id!!}" id="titularLocal {!!$local->id!!}"  value="titularLocal {!!$local->id!!}" >
                         </label>
                     </div>
 
@@ -35,7 +39,7 @@
                 <td>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="{!!$local->id!!}"  id="{!!$local->id!!}"  value="{!!$local->id!!}">
+                            <input type="radio" name="{!!$local->id!!}"  id="titularVisitante"  value="banquilloLocal {!!$local->id!!}">
                         </label
                     </div>
 

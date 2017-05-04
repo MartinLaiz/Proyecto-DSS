@@ -8,44 +8,20 @@
     <tbody>
 
         <tr>
-            <td>Titular</td>
-            <td>Suplente</td>
+        <td>
+                @foreach($titulares as $titular)
+                     {!!$titular->usuario->nombre!!}
+
+                @endforeach
+            </td>
+
+             <td>
+                @foreach($banquillo as $b)
+                     {!!$b->usuario->nombre!!}
+
+                @endforeach
+            </td>
         </tr>
-        <tr>
-            <td>Titular</td>
-            <td>Suplente</td>
-        </tr>
-        <tr>
-            <td>Titular</td>
-            <td>Suplente</td>
-        </tr>
-        <tr>
-            <td>Titular</td>
-            <td>Suplente</td>
-        </tr>
-        <tr>
-            <td>Titular</td>
-            <td>Suplente</td>
-        </tr>
-        <tr>
-            <td>Titular</td>
-            <td>Suplente</td>
-        </tr>
-        <tr>
-            <td>Titular</td>
-            <td>Suplente</td>
-        </tr>
-        <tr>
-            <td>Titular</td>
-        </tr>
-        <tr>
-            <td>Titular</td>
-        </tr>
-        <tr>
-            <td>Titular</td>
-        </tr>
-        <tr>
-            <td>Titular</td>
-        </tr>
+    
     </tbody>
 </table>

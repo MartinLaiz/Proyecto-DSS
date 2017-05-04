@@ -55,7 +55,7 @@
 		</div>
 		<div class="col-md-6">
 			@if($cantidad != 0)
-				@include('config/tablas/tableParticipar')
+
 			@else
 				@include('config/tablas/tableParticiparSin')
 			@endif

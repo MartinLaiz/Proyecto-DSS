@@ -1,12 +1,56 @@
 
+
+
+{{-- for (var x=0; x < locales.length; x++) --}}
+<script type="text/javascript"> 
+	
+	function contarSeleccionados()
+	{
+		var i = 1;
+
+		var locales  = $'{$locales}';
+		alert(locales)
+
+		aux.forEach(function(a) {
+    		alert(a);
+		});
+
+		for (var x=0; x < locales.length; x++){
+			var aux = locales[i].id
+			alert(locales[i]);
+			if (document.getElementById('titularLocal aux').checked)
+			{
+				cant++;
+			}
+		}
+		alert('Conoce ' + cant + ' lenguajes');
+	}
+</script>
+
+
+
+
+
 @extends('layouts.master')
 @section('title', 'Inicio')
 @section('content')
 @include('cabecera',array('section'=>'plantilla'))
 
 <div class="contenedor row">
+	 {{-- Muestra errores --}}
+      @if (count($errors) > 0)
+            <ul>
+            @foreach ($errors->all() as $error)
+                  <div class="alert alert-danger">
+                        <a href="#" class="alert-link">{{ $error }}</a>
+                  </div>
+            @endforeach
+            </ul>
+      @endif
+
+
 	@include('config/configuracion')
-	<form action="{{action('ParticiparController@crearParticipar',[$partido->id])}}" method="POST">
+	<form   action="{{action('ParticiparController@crearParticipar',[$partido->id])}}" method="POST">
 	{{ csrf_field() }}
 	{{ method_field('PUT') }}  
 	<div class="row">

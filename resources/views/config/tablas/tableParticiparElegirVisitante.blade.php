@@ -27,7 +27,7 @@
                 <td>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="{!!$visitante->id!!}" id="{!!$visitante->id!!}"  value="{!!$visitante->id!!}" >
+                            <input type="radio" name="{!!$visitante->id!!}" id="{!!$visitante->id!!}"  value="titularVisitante {!!$visitante->id!!}" >
                         </label>
                     </div>
 
@@ -35,7 +35,7 @@
                 <td>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="{!!$visitante->id!!}"  id="{!!$visitante->id!!}"  value="{!!$visitante->id!!}" >
+                            <input type="radio" name="{!!$visitante->id!!}"  id="{!!$visitante->id!!}"  value="banquilloVisitante {!!$visitante->id!!}" >
                         </label>
                     </div>
 
