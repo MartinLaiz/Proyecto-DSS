@@ -66,7 +66,7 @@ class EquipoController extends Controller
 
       public function getEquipos(){
             //consigo todos los equipos con los estadios
-            $team = Equipo::with('estadio','patrocinador')->paginate(2);
+            $team = Equipo::with('estadio','patrocinador')->paginate(5);
 
             return view('equipos',['lista' => $team]);
       }

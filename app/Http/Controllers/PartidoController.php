@@ -56,7 +56,8 @@ class PartidoController extends Controller
 
     public function crearPartido(Request $request){
         $partido = new Partido();
-		dd($request);
+ 
+
         $partido->equipoLocal_id = $request->equipoLocal;
         $partido->equipoVisitante_id = $request->equipoVisitante;
         $partido->temporada_id = $request->temporada_id;
@@ -122,13 +123,15 @@ class PartidoController extends Controller
 
             try{
                 $partido->save();
+                $valor= $partido->id;
+                $valor=trim($valor);
                 if($request->introducir != null){
                     //si quieres introducir los jugaddores de partido
                     return $this->introducirJugadores($partido->id);
 
                 }else{
                     //si quieres introducir solamente el partido
-                    return Redirect::to('/partido');
+                    return Redirect::to("/config/partido/" . $valor);
                 }
             }
             catch(\Illuminate\Database\QueryException $e){

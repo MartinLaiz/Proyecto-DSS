@@ -107,6 +107,7 @@ class ParticiparController extends Controller
         $cantidad = Participar::where('partido_id','=',$idPartido)->count();
 
 
+        //No tocar las selects
         $participarTitular = Participar::with('usuario')
         ->where('partido_id','=',$idPartido)
         ->where('titular','=','si')->get();
@@ -114,7 +115,7 @@ class ParticiparController extends Controller
 
          $participarBanquillo = Participar::with('usuario')
         ->where('partido_id','=',$idPartido)
-        ->where('titular','=','no')->count();
+        ->where('titular','=','no')->get();
 
         
         if($cantidad != null){
