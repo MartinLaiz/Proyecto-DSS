@@ -17,10 +17,10 @@ class EquipoController extends Controller
       public function getHome(){
 
             $UA = Equipo::where('nombreEquipo','like','%UA%')->first();
-            $ultLocal = $UA->partidosLocal()->with('equipoLocal','equipoVisitante')->where('fecha','<',Carbon::now())->get();
-            $ultVisitante = $UA->partidosVisitante()->with('equipoLocal','equipoVisitante')->where('fecha','<',Carbon::now())->get();
-            $proxLocal = $UA->partidosLocal()->with('equipoLocal','equipoVisitante')->where('fecha','>',Carbon::now())->get();
-            $proxVisitante = $UA->partidosVisitante()->with('equipoLocal','equipoVisitante')->where('fecha','>',Carbon::now())->get();
+            $ultLocal = $UA->partidosLocal()->where('fecha','<',Carbon::now())->get();
+            $ultVisitante = $UA->partidosVisitante()->where('fecha','<',Carbon::now())->get();
+            $proxLocal = $UA->partidosLocal()->where('fecha','>',Carbon::now())->get();
+            $proxVisitante = $UA->partidosVisitante()->where('fecha','>',Carbon::now())->get();
             return view('home',[
                   'equipos' => Equipo::get(),
                   'estadios' => Estadio::get(),

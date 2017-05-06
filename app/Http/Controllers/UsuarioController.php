@@ -14,7 +14,9 @@ class UsuarioController extends Controller
             return view('home');
       }
       public function getUsuario($id){
-            return view('prueba');
+            return view('usuario',[
+                  'usuario' => Usuario::find($id)
+            ]);
       }
 
       public function getUsuarios(Request $request){

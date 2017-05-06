@@ -22,10 +22,10 @@ class Equipo extends Model
             return $this->usuarios()->where('rol','=','2');
       }
       public function partidosLocal(){
-            return $this->hasMany('App\Partido','equipoLocal_id');
+            return $this->hasMany('App\Partido','equipoLocal_id')->with('equipoLocal','equipoVisitante');
       }
       public function partidosVisitante(){
-            return $this->hasMany('App\Partido','equipoVisitante_id');
+            return $this->hasMany('App\Partido','equipoVisitante_id')->with('equipoLocal','equipoVisitante');
       }
       public function estadio(){
             return $this->belongsTo('App\Estadio');
