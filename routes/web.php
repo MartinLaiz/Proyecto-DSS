@@ -93,14 +93,17 @@ Route::group(['prefix' => 'partido'], function(){
             Route::post('editar/equipo/{id}','EquipoController@modificarEquipoPost');
             Route::get('eliminar/equipo/{id}','EquipoController@eliminar');
             //Partido
-            Route::get('eliminar/partido/{id}','PartidoController@eliminarPartido');
-            Route::get('editar/partidos','PartidoController@editarPartidos');
-            Route::get('crear/partido','PartidoController@formularioInsertar');
-            Route::put('crear/partido','PartidoController@crearPartido');
-            Route::post('modidificar/partido/{id}','PartidoController@modificarPartido');
-            Route::get('modidificar/partido/{id}','PartidoController@formularioModificar');
-            Route::get('introducirJugadores/partido/{id}','PartidoController@introducirJugadores');
-            Route::get('partido/{id}','ParticiparController@verParticipar');
+            Route::get('/eliminar/partido/{id}','PartidoController@eliminarPartido');
+            Route::get('/editar/partidos','PartidoController@editarPartidos');
+            Route::get('/crear/partido','PartidoController@formularioInsertar');
+            Route::put('/crear/partido','PartidoController@crearPartido');
+            Route::post('/modidificar/partido/{id}','PartidoController@modificarPartido');
+            Route::get('/modidificar/partido/{id}','PartidoController@formularioModificar');
+            Route::get('/introducirJugadores/partido/{id}','PartidoController@introducirJugadores');
+            Route::get('/partido/{id}','ParticiparController@verParticipar');
+            Route::get('/introducir/datos/partido/{id}','ParticiparController@formularioInsertar');
+            Route::put('/introducir/datos/partido/{id}','ParticiparController@crearParticipar');
+             Route::get('/eliminar/partido/jugadores/{id}','ParticiparController@borrarParticipar');
       });
 
 

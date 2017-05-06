@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Validator;
 use App\Equipo;
+use App\Participar;
 use App\Partido;
 use App\Temporada;
 use App\Estadio;
@@ -38,9 +39,23 @@ class PartidoController extends Controller
     }
 
     public function eliminarPartido($id){
-        $partido = Partido::find($id);
-        $partido->delete();
-        return back();
+        $participar = Participar::where('partido_id','=',$id)->first();
+        //si no hay datos de partido borra el partido directamente
+        if($participar == null){
+            $partido = Partido::find($id);
+            $partido->delete();
+            return Redirect::to("/config/editar/partidos");
+        }else{
+            $participar = Participar::where('partido_id','=',$id)->get();
+            //borramos todas las tablas de participar con el partido asociado
+            foreach($participar as $p){
+                $aux = Participar::find($p->id);
+                $aux ->delete();
+            }
+            $partido = Partido::find($id);
+            $partido->delete();
+            return Redirect::to("/config/editar/partidos");
+        }
     }
 
 
@@ -56,7 +71,8 @@ class PartidoController extends Controller
 
     public function crearPartido(Request $request){
         $partido = new Partido();
-		dd($request->equipoLocal);
+ 
+
         $partido->equipoLocal_id = $request->equipoLocal;
         $partido->equipoVisitante_id = $request->equipoVisitante;
         $partido->temporada_id = $request->temporada_id;
@@ -69,7 +85,7 @@ class PartidoController extends Controller
 
         $partido->estadio_id = $equipo->estadio_id;
 
-        return $this->verErrores($partido,$request);
+        return $this->verErrores($partido,$request,true);
 
 
     }
@@ -77,6 +93,16 @@ class PartidoController extends Controller
 
     public function modificarPartido(Request $request,$id){
         $partido = Partido::find($id);
+
+        //miro si se ha modificado algun equipo 
+        //para borrar los datos de modificarPartido
+
+        if( $partido->equipoLocal_id ==  $request->equipoLocal
+        &&  $partido->equipoVisitante_id ==  $request->equipoVisitante){
+            $igual = true;
+        }else{
+            $igual = false;
+        }
         
         $partido->equipoLocal_id = $request->equipoLocal;
         $partido->equipoVisitante_id = $request->equipoVisitante;
@@ -90,7 +116,7 @@ class PartidoController extends Controller
 
         $partido->estadio_id = $equipo->estadio_id;
 
-        return $this->verErrores($partido,$request);
+        return $this->verErrores($partido,$request,$igual);
 
 
     }
@@ -108,8 +134,9 @@ class PartidoController extends Controller
         'equipos' => $equipos,'temporadas' => $temporadas, 'idmodificar' => $id]);
     }
 
-     public function verErrores($partido,$request){
 
+     public function verErrores($partido,$request,$igual){
+        //si es el musmo equipo error
         if($partido->equipoLocal_id ==  $partido->equipoVisitante_id){
             $validator = Validator::make($request->all(), [
             'title' => '2',
@@ -122,15 +149,20 @@ class PartidoController extends Controller
 
             try{
                 $partido->save();
-                if($request->introducir != null){
-                    //si quieres introducir los jugaddores de partido
-                    return $this->introducirJugadores($partido->id);
-
-                }else{
-                    //si quieres introducir solamente el partido
-                    return Redirect::to('/partido');
+                if($igual == false){
+                    $participar = Participar::where('partido_id','=',$partido->id)->get();
+                    //borramos todas las tablas de participar con el partido asociado
+                    foreach($participar as $p){
+                        $aux = Participar::find($p->id);
+                        $aux ->delete();
+                    }
                 }
+                $valor= $partido->id;
+                $valor=trim($valor);
+                return Redirect::to("/config/partido/" . $valor);
+                
             }
+            //excecipon en la bbdd
             catch(\Illuminate\Database\QueryException $e){
                 $validator = Validator::make($request->all(), [
                 'title' => '2',
@@ -142,17 +174,4 @@ class PartidoController extends Controller
         }
     }
 
-
-	public function introducirJugadores($idPartido){
-		$partido = Partido::find($idPartido);
-		//busco los jugadores del equipo Local
-		$usuariosLocales= Usuario::where('equipo_id','=',$partido->equipoLocal_id)->get();
-		//busco los jugadores del equipo visitante
-		$usuariosVisitantes= Usuario::where('equipo_id','=',$partido->equipoVisitante_id)->get();
-
-
-		return view ('config/crearParticipar',[ 'locales' => $usuariosLocales,
-		'visitantes'=> $usuariosVisitantes]);
-
-	}
 }

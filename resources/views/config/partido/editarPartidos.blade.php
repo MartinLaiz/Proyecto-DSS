@@ -40,7 +40,7 @@
                                           class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
                                           role="button" title="Modificar">
                                     </a>
-                                    <a href="{{ action('PartidoController@introducirJugadores', $partido->id) }}" 
+                                    <a href="{{ action('PartidoController@eliminarPartido', $partido->id) }}" 
                                           class="btn btn-danger btn-block glyphicon glyphicon-trash" 
                                           role="button" title="Borrar">
                                     </a>
