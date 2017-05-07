@@ -57,7 +57,7 @@ Route::group(['prefix' => 'equipo'], function(){
 
 Route::group(['prefix' => 'partido'], function(){
       Route::get('/', 'PartidoController@getPartidos');                //Muestra todos los partidos
-      Route::post('/','UsuarioController@nada');                //Inserta un partido
+      Route::post('/','PartidoController@getPartidos');                //Inserta un partido
       Route::get('{id}','UsuarioController@nada');             //Muestra solo un partido
       Route::put('{id}','UsuarioController@nada');             //Modifica ese partido
       Route::delete('{id}','UsuarioController@nada');          //Elimina ese partido

@@ -18,12 +18,43 @@ use App\Competicion;
 
 class PartidoController extends Controller
 {
-    public function getPartidos(){
-        $partidos = Partido::with('competicion','temporada',
-        'equipoLocal','equipoVisitante','estadio')->get();
+    public function getPartidos(Request $request){
 
+        //Manejo de variables
+        $equipo1 =  $request->input('equipo1','Todos');
+        $equipo2 =  $request->input('equipo2','Todos');
+        $temporadaFiltro =$request->input('temporada','temporadaActual'); 
+
+
+        //Gestión de partidos where('rol','=',$rol)
+        $partidos = null;
+        //Condición 1: A contra B
+        if($equipo1 != 'Todos' && $equipo2 != 'Todos'){
+            $partidos = Partido::with('competicion','temporada',
+                'equipoLocal','equipoVisitante','estadio')
+                ->where([
+                    ['equipoLocal_id','=',$equipo1],
+                    ['equipoVisitante_id','=',$equipo2]
+                    ])
+                ->orWhere([
+                    ['equipoLocal_id','=',$equipo2],
+                    ['equipoVisitante_id','=',$equipo1]
+                    ]);
+        }
+        //Condición 2: A contra todos ->orWhere('equipoLocal','=',$equipo1);
+
+        else{
+            $partidos = Partido::with('competicion','temporada',
+                'equipoLocal','equipoVisitante','estadio');
+        }
+        
+        
         return view('partidos', [
-                'partidos' => $partidos]);
+                'partidos' => $partidos->paginate(10),
+                'equipos'  => Equipo::get(),
+                'equipo1'  => $equipo1,
+                'equipo2'  => $equipo2
+                ]);
     }
 
 
