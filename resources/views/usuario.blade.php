@@ -73,7 +73,7 @@
                                                 </table>
                                           </div>
                                           <div class="col-md-3 col-md-offset-9 col-lg-3 col-lg-offset-9">
-                                                <button type="button" href="{{ action('UserController@edit',['user' => $usuario]) }}" class="btn btn-success btn-block" name="button">Editar</button>
+                                                <button type="button" href="{{ action('UsuarioController@edit',['user' => $usuario]) }}" class="btn btn-success btn-block" name="button">Editar</button>
                                           </div>
                                     </div>
                               </div>

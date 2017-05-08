@@ -18,6 +18,9 @@ class UsuarioController extends Controller
                   'usuario' => Usuario::find($id)
             ]);
       }
+      public function edit($user){
+            return view('prueba');
+      }
 
       public function getUsuarios(Request $request){
             $equipo = $request->input('equipo','Todos');
