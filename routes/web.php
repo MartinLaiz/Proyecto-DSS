@@ -52,6 +52,7 @@ Route::group(['prefix' => 'equipo'], function(){
 
 Route::group(['prefix' => 'partido'], function(){
       Route::get('/', 'PartidoController@getPartidos');                //Muestra todos los partidos
+      Route::post('/','PartidoController@getPartidos');                //Inserta un partido
 });
 
 
