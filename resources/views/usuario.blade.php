@@ -36,19 +36,19 @@
 
                                                       <tr>
                                                             <td>Fecha de nacimiento:</td>
-                                                            <td>   {{ $usuario->fNac }}</td>
+                                                            <td>   {{ date('d/m/Y',strtotime($usuario->fNac)) }} <strong>({{ \Carbon\Carbon::now()->diffInYears($usuario->fNac) }})</strong></td>
                                                       </tr>
 
                                                       <tr>
                                                             <td> Posición:</td>
                                                             <td>
-                                                                  @if($usuario->posicion == 'Delantero')
+                                                                  @if($usuario->posicion == '4')
                                                                   Delantero
-                                                                  @elseif($usuario->posicion == 'Medio')
+                                                                  @elseif($usuario->posicion == '3')
                                                                   Medio
-                                                                  @elseif($usuario->posicion == 'Defensa')
+                                                                  @elseif($usuario->posicion == '2')
                                                                   Defensa
-                                                                  @elseif($usuario->posicion == 'Portero')
+                                                                  @elseif($usuario->posicion == '1')
                                                                   Portero
                                                                   @else
                                                                   No asignado</h4>
@@ -73,7 +73,7 @@
                                                 </table>
                                           </div>
                                           <div class="col-md-3 col-md-offset-9 col-lg-3 col-lg-offset-9">
-                                                <button type="button" href="{{ action('UsuarioController@edit',['user' => $usuario]) }}" class="btn btn-success btn-block" name="button">Editar</button>
+                                                <a href="{{ action('UsuarioController@getFormUpdate', ['id' => $usuario->id]) }}" class="btn btn-success btn-block">Editar</a>
                                           </div>
                                     </div>
                               </div>
