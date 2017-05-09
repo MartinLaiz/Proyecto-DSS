@@ -20,16 +20,31 @@ class JugarController extends Controller
 {
 
 
-      public function getJugar(){
-            //obtengo la temporada actual
-            $temporadaActual = Temporada::with('temporadaActual')->first();
+      public function getJugar(Request $request, $equipo1 = null, $equipo2 = null){
+            //Manejo de variables
+            $equipo1 =  $request->input('equipo1','Todos');
+            $equipo2 =  $request->input('equipo2','Todos');
+            $temporadaFiltro =$request->input('temporada','temporadaActual'); 
+
+
+
+
+
+            //obtengo la temporada
+            $temporada = Temporada::with($temporadaFiltro)->first();
 
             //obtengo los datos de partido con jugar con la temporada actual
             $partidos = Jugar::with('competicion','partido','temporada')
-            ->where('temporada_id','=',$temporadaActual->id)->get();
+            ->where('temporada_id','=',$temporada->id)->get();
+
+            //Gestión de partidos
 
             return view('partidos', [
-                  'partidos' => $partidos]);
+                  'partidos' => $partidos,
+                  'equipos'  => Equipo::get(),
+                  'equipo1'  => $equipo1,
+                  'equipo2'  => $equipo2
+                  ]);
       }
 
       public function editarPartidos(){

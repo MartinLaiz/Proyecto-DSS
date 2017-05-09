@@ -37,11 +37,11 @@
                               </div>
                               <div class="col-lg-3 col-md-4 col-sm-4">
                                     <select class="form-control" name="posicion" id="posicion">
-                                          <option value="0" selected>Todas las posiciones</option>
-                                          <option value="4">Delantero</option>
-                                          <option value="3">Medio</option>
-                                          <option value="2">Defensa</option>
-                                          <option value="1">Portero</option>
+                                          <option value="0" @if($posicion == -1) selected @endif >Todas las posiciones</option>
+                                          <option value="4" @if($posicion == 4) selected @endif >Delantero</option>
+                                          <option value="3" @if($posicion == 3) selected @endif >Medio</option>
+                                          <option value="2" @if($posicion == 2) selected @endif >Defensa</option>
+                                          <option value="1" @if($posicion == 1) selected @endif >Portero</option>
                                     </select>
                               </div>
                         </div>
@@ -57,7 +57,7 @@
                   @foreach($usuarios as $usuario)
                   <div class="well well-sm col-lg-2 col-md-3 col-sm-4">
                         <div class="">
-                              <img class="img-responsive" src="./images/users/{{ $usuario->dni }}.png" alt="User image" onerror="this.src = './images/users/defaultUser.png'">
+                              <img class="img-responsive" src="/images/users/{{ $usuario->dni }}.png" alt="User image" onerror="this.src = '/images/users/defaultUser.png'">
                               <a href="{{ action('UsuarioController@getUsuario',$usuario->id) }}">
                                     <h4>{{ $usuario->nombre }}</h4>
                                     <h5>{{ $usuario->apellidos }}</h5>

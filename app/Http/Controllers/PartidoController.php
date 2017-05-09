@@ -18,12 +18,62 @@ use App\Competicion;
 
 class PartidoController extends Controller
 {
-    public function getPartidos(){
-        $partidos = Partido::with('competicion','temporada',
-        'equipoLocal','equipoVisitante','estadio')->get();
+    public function getPartidos(Request $request){
 
+        //Manejo de variables
+        $equipo1    =   $request->input('equipo1','Todos');
+        $equipo2    =   $request->input('equipo2','Todos');
+        $temporada  =   $request->input('temporada','Todas');
+        $competicion=   $request->input('competicion','Todas'); 
+
+
+        //Gestión de partidos where('rol','=',$rol)
+        $partidos = Partido::with('competicion','temporada',
+                'equipoLocal','equipoVisitante','estadio');
+
+        //PARTE DE EQUIPOS
+        //Condición 1: A contra B
+        if($equipo1 != 'Todos' && $equipo2 != 'Todos'){
+            $partidos = $patidos
+                ->where([
+                    ['equipoLocal_id','=',$equipo1],
+                    ['equipoVisitante_id','=',$equipo2]
+                    ])
+                ->orWhere([
+                    ['equipoLocal_id','=',$equipo2],
+                    ['equipoVisitante_id','=',$equipo1]
+                    ]);
+        }
+        //Condición 2: A contra todos ->orWhere('equipoLocal','=',$equipo1);
+        else if($equipo1 != 'Todos' && $equipo2 == 'Todos'){
+            $partidos = $partidos
+                ->where([
+                    ['equipoLocal_id','=',$equipo1]
+                    ])
+                ->orWhere([
+                    ['equipoVisitante_id','=',$equipo1]
+                    ]); 
+        }
+        //PARTE DE TEMPORADA
+        if($temporada != 'Todas'){
+            $partidos = $partidos->where('temporada_id','=',$temporada);
+        }
+        //PARTE DE COMPETICIÓN
+        if($competicion != 'Todas'){
+            $partidos = $partidos->where('competicion_id','=',$competicion);
+        }
+        
+        
         return view('partidos', [
-                'partidos' => $partidos]);
+                'partidos' => $partidos->paginate(10),
+                'equipos'  => Equipo::get(),
+                'equipo1'  => $equipo1,
+                'equipo2'  => $equipo2,
+                'temporadas'=>Temporada::get(),
+                'temporada'=> $temporada,
+                'competiciones' =>Competicion::get(),
+                'competicion'=> $competicion
+                ]);
     }
 
 

@@ -18,6 +18,11 @@ class UsuarioController extends Controller
                   'usuario' => Usuario::find($id)
             ]);
       }
+      public function getFormUpdate($id){
+            return view('config.modificarUsuario', [
+                  'usuario' => Usuario::find($id)
+            ]);
+      }
 
       public function getUsuarios(Request $request){
             $equipo = $request->input('equipo','Todos');
@@ -120,6 +125,20 @@ class UsuarioController extends Controller
             } catch (Illuminate\Database\Eloquent\ModelNotFoundException $excepcion){
 
             }
+      }
+
+      public function modificar(Request $request, $id){
+            $usuario = Usuario::find($id);
+            $usuario->dni = $request->input('dni');
+            $usuario->nombre = $request->input('nombre');
+            $usuario->apellidos = $request->input('apellidos');
+            $usuario->fNac = $request->input('fNac');
+            $usuario->salario = $request->input('salario');
+            $usuario->posicion = $request->input('posicion');
+            $usuario->rol = $request->input('rol');
+
+
+            dd($usuario);
       }
 
       public function getConfig(){

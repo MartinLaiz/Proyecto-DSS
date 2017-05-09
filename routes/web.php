@@ -27,10 +27,8 @@ Route::get('/home', 'EquipoController@getHome');
 */
 Route::group(['prefix' => 'usuarios'], function(){
       Route::get('/', 'UsuarioController@getUsuarios');               //Muestra todos los jugadores/entrenadores
-      Route::post('/','UsuarioController@nada');                //Inserta un usuario
+      Route::post('/','UsuarioController@getUsuarios');                //Inserta un usuario
       Route::get('{id}','UsuarioController@getUsuario');             //Muestra solo un usuario
-      Route::put('{id}','UsuarioController@nada');             //Modifica ese usuario
-      Route::delete('{id}','UsuarioController@nada');          //Elimina ese usuario
 });
 
 
@@ -41,10 +39,7 @@ Route::group(['prefix' => 'usuarios'], function(){
 */
 Route::group(['prefix' => 'equipo'], function(){
       Route::get('/', 'EquipoController@getEquipos');                //Muestra todos los equipos
-      Route::post('/','UsuarioController@nada');                //Inserta un equipo
       Route::get('{id}','EquipoController@getEquipo');             //Muestra solo un equipo
-      Route::put('{id}','UsuarioController@nada');             //Modifica ese equipo
-      Route::delete('{id}','UsuarioController@nada');          //Elimina ese equipo
 });
 
 
@@ -57,10 +52,7 @@ Route::group(['prefix' => 'equipo'], function(){
 
 Route::group(['prefix' => 'partido'], function(){
       Route::get('/', 'PartidoController@getPartidos');                //Muestra todos los partidos
-      Route::post('/','UsuarioController@nada');                //Inserta un partido
-      Route::get('{id}','UsuarioController@nada');             //Muestra solo un partido
-      Route::put('{id}','UsuarioController@nada');             //Modifica ese partido
-      Route::delete('{id}','UsuarioController@nada');          //Elimina ese partido
+      Route::post('/','PartidoController@getPartidos');                //Inserta un partido
 });
 
 
@@ -74,15 +66,10 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/','UsuarioController@getConfig');
             // jugador
             Route::group(['prefix' => 'usuario'], function(){
-                  Route::get('crearModificar','UsuarioController@getForm');
-                  Route::get('todos','UsuarioController@nada');            //Obtiene todo los jugadores
-                  Route::get('{id}','UsuarioController@nada');             //Obtiene el jugador con el id
-                  Route::post('crear','UsuarioController@crearModificarUsuario');
-                  Route::get('editar/{id}','UsuarioController@nada');
-                  Route::put('editar/{id}','UsuarioController@nada');
-                  Route::get('eliminar/{id}','UsuarioController@nada');
-                  Route::get('todos','UsuarioController@nada');
-                  Route::get('todos/{id}','UsuarioController@nada');
+                  Route::get('create','UsuarioController@getFormCreate');
+                  Route::post('create','UsuarioController@crearModificarUsuario');
+                  Route::get('update/{id}','UsuarioController@getFormUpdate');
+                  Route::post('update/{id}','UsuarioController@modificar');
             });
 
             //Equipo
