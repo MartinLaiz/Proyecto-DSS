@@ -141,7 +141,5 @@ class UsuarioController extends Controller
             dd($usuario);
       }
 
-      public function getConfig(){
-            return view('config.configuracion');
-      }
+  
 }

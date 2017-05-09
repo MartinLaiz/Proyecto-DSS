@@ -85,7 +85,7 @@
 
 	<div class="row">
 		<div class="col-md-6">
-			@include('config/tablas/tableParticiparElegirLocal')
+			@include('config/tablas/tableParticiparModificarLocal')
 		
 		</div>
 		<div class="col-md-6">
