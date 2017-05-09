@@ -26,9 +26,9 @@ Route::get('/home', 'EquipoController@getHome');
 ▀▀▀  ▀▀▀  ▀▀▀ ▀  ▀ ▀ ▀▀ ▀▀▀ ▀▀▀▀
 */
 Route::group(['prefix' => 'usuarios'], function(){
-      Route::get('/', 'UsuarioController@getUsuarios');               //Muestra todos los jugadores/entrenadores
-      Route::post('/','UsuarioController@getUsuarios');                //Inserta un usuario
-      Route::get('{id}','UsuarioController@getUsuario');             //Muestra solo un usuario
+      Route::get('/', 'UsuarioController@getUsuarios');           //Muestra todos los jugadores/entrenadores
+      Route::post('/','UsuarioController@getUsuarios');           //Filtro de usuarios
+      Route::get('/{id}','UsuarioController@getUsuario');          //Muestra solo un usuario
 });
 
 
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'usuarios'], function(){
 */
 Route::group(['prefix' => 'equipo'], function(){
       Route::get('/', 'EquipoController@getEquipos');                //Muestra todos los equipos
-      Route::get('{id}','EquipoController@getEquipo');             //Muestra solo un equipo
+      Route::get('/{id}','EquipoController@getEquipo');             //Muestra solo un equipo
 });
 
 
@@ -52,7 +52,7 @@ Route::group(['prefix' => 'equipo'], function(){
 
 Route::group(['prefix' => 'partido'], function(){
       Route::get('/', 'PartidoController@getPartidos');                //Muestra todos los partidos
-      Route::post('/','PartidoController@getPartidos');                //Inserta un partido
+      Route::post('/','PartidoController@getPartidos');                //Filtro partidos
 });
 
 
@@ -64,12 +64,14 @@ Route::group(['prefix' => 'partido'], function(){
       */
       Route::group(['prefix' => 'config'], function () {
             Route::get('/','UsuarioController@getConfig');
+
             // jugador
             Route::group(['prefix' => 'usuario'], function(){
                   Route::get('create','UsuarioController@getFormCreate');
-                  Route::post('create','UsuarioController@crearModificarUsuario');
+                  Route::post('create','UsuarioController@create');
                   Route::get('update/{id}','UsuarioController@getFormUpdate');
-                  Route::post('update/{id}','UsuarioController@modificar');
+                  Route::post('update/{id}','UsuarioController@update');
+                  Route::delete('delete/{id}','UsuarioController@delete');
             });
 
             //Equipo

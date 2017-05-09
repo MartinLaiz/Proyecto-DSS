@@ -63,7 +63,47 @@
                                     <h5>{{ $usuario->apellidos }}</h5>
                               </a>
                               <h6><strong>{{ $usuario->equipo->nombreEquipo or 'Administrador'}}</strong></h6>
-                              <h6>{{ date('d/m/Y',strtotime($usuario->fNac)) }}  (<strong>{{ \Carbon\Carbon::now()->diffInYears($usuario->fNac) }}</strong>)</h6>
+                              <h5>{{ date('d/m/Y',strtotime($usuario->fNac)) }}  (<strong>{{ \Carbon\Carbon::now()->diffInYears($usuario->fNac) }}</strong>)</h5>
+                              @if($usuario->rol == 2)
+                                    <h5>Director</h5>
+                              @elseif($usuario->rol == 1)
+                                    <h5>
+                                          @if($usuario->cargo == 1)
+                                          Primer entrenador
+                                          @elseif($usuario->cargo == 2)
+                                          Segundo entrenador
+                                          @else
+                                          Becario
+                                          @endif
+                                    </h5>
+                              @elseif($usuario->rol == 0)
+                                    <h5>
+                                          @if($usuario->posicion == '4')
+                                          Delantero,
+                                          @elseif($usuario->posicion == '3')
+                                          Medio,
+                                          @elseif($usuario->posicion == '2')
+                                          Defensa,
+                                          @elseif($usuario->posicion == '1')
+                                          Portero,
+                                          @else
+                                          No asignado,
+                                          @endif
+                                           Dorsal: {{ $usuario->dorsal}}
+                                    </h5>
+                                    <h5>
+                                          @if($usuario->cargo == '1')
+                                          Primer capitán
+                                          @elseif($usuario->cargo == '2')
+                                          Segundo capitán
+                                          @elseif($usuario->cargo == '3')
+                                          Tercer capitán
+                                          @else
+                                          Sin cargo
+                                          @endif
+                                    </h5>
+                              @endif
+
                         </div>
                   </div>
                   @endforeach
@@ -72,9 +112,7 @@
             <br>
             <div class="alert alert-info">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong>
-                        Error
-                  </strong>
+                  <strong>No hay usuarios con esas caracteristicas</strong>
                   <br>
             </div>
             @endif
