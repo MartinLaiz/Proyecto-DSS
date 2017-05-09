@@ -8,14 +8,20 @@
       <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 toppad" >
                   <br>
-
+                  @if (count($errors) > 0)
+                  <div class="alert alert-danger">
+                  @foreach ($errors->all() as $error)
+                        <strong>Error! </strong> {{ $error }}
+                  @endforeach
+                  </div>
+                  @endif
                   <div class="panel panel-info">
                         <div class="panel-heading">
                               <h3 class="panel-title">Perfil</h3>
                         </div>
                         <div class="panel-body">
                               <div class="row">
-                                    <form action="{{ action('UsuarioController@modificar', $usuario->id) }}" method="POST">
+                                    <form action="{{ action('UsuarioController@update', $usuario->id) }}" method="POST">
                                           {{ csrf_field() }}
                                           {{ method_field('POST') }}
                                           <div class="col-md-3 col-lg-3 " align="center">
@@ -29,32 +35,33 @@
                                                       <br><br>
                                                 </div>
                                           </div>
+                                          <input type="hidden" name="equipo" id="equipo" value="{{ $usuario->equipo_id }}">
                                           <div class=" col-md-9 col-lg-9 ">
                                                 <table class="table table-user-information">
                                                       <tbody>
                                                             <tr>
                                                                   <td>DNI:</td>
-                                                                  <td><input class="form-control" type="text" name="dni" id="dni" value="{{ $usuario->dni }}"></td>
+                                                                  <td><input class="form-control" type="text" name="dni" id="dni" value="{!! $usuario->dni !!}" required></td>
                                                             </tr>
                                                             <tr>
                                                                   <td>Nombre:</td>
-                                                                  <td><input class="form-control" type="text" name="nombre" id="nombre" value="{{ $usuario->nombre }}"></td>
+                                                                  <td><input class="form-control" type="text" name="nombre" id="nombre" value="{!! $usuario->nombre !!}" required></td>
                                                             </tr>
                                                             <tr>
                                                                   <td>Apellidos:</td>
-                                                                  <td><input class="form-control" type="text" name="apellidos"id="apellidos" value="{{ $usuario->apellidos }}"></td>
+                                                                  <td><input class="form-control" type="text" name="apellidos"id="apellidos" value="{!! $usuario->apellidos !!}" required></td>
                                                             </tr>
 
                                                             <tr>
                                                                   <td>Fecha de nacimiento:</td>
-                                                                  <td><input class="form-control" type="date" name="fNac" id="fNac" value="{{ date('Y-m-d',strtotime($usuario->fNac)) }}"></td>
+                                                                  <td><input class="form-control" type="date" name="fNac" id="fNac" value="{{ date('Y-m-d',strtotime($usuario->fNac)) }}" required></td>
                                                             </tr>
 
                                                             <tr>
                                                                   <td>Salario:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <input class="form-control" type="number" name="salario" id="salario" min="0" value="{{ $usuario->salario }}">
+                                                                              <input class="form-control" type="number" name="salario" id="salario" min="0" value="{{ $usuario->salario }}" required>
                                                                         </div>
                                                                   </td>
                                                             </tr>
@@ -63,7 +70,7 @@
                                                                   <td>Rol:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <select class="form-control" name="rol" id="rol" onchange="cargoFilter()">
+                                                                              <select class="form-control" name="rol" id="rol" onchange="cargoFilter()" required>
                                                                                     <option value="0" @if($usuario->rol == 0) selected @endif>Jugador</option>
                                                                                     <option value="1" @if($usuario->rol == 1) selected @endif>Entrenador</option>
                                                                                     <option value="2" @if($usuario->rol == 2) selected @endif>Director</option>
@@ -77,7 +84,7 @@
                                                                   <td> Posición:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <select class="form-control" name="posicion" id="posicion">
+                                                                              <select class="form-control" name="posicion" id="posicion" required>
                                                                                     <option value="0" @if($usuario->posicion == 0) selected @endif>No asignado</option>
                                                                                     <option value="1" @if($usuario->posicion == 1) selected @endif>Portero</option>
                                                                                     <option value="2" @if($usuario->posicion == 2) selected @endif>Defensa</option>
@@ -92,7 +99,7 @@
                                                                   <td>Cargo:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <select class="form-control" name="cargo" id="cargo">
+                                                                              <select class="form-control" name="cargo" id="cargo" required>
                                                                                     <option value="0" @if($usuario->cargo == 0) selected @endif>Sin cargo</option>
                                                                                     <option value="1" @if($usuario->cargo == 1) selected @endif>Primer capitán</option>
                                                                                     <option value="2" @if($usuario->cargo == 2) selected @endif>Segundo capitán</option>
@@ -105,23 +112,36 @@
                                                                   <td>Dorsal:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value="{{ $usuario->dorsal }}">
+                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value="{{$usuario->dorsal}}" required>
                                                                         </div>
                                                                   </td>
                                                             </tr>
                                                       </tbody>
                                                 </table>
-                                                <div class="row">
-                                                      <div class="col-md-6 col-lg-6">
-                                                            <input class="form-control" type="password" name="password" id="password" value="">
+                                          </div>
+                                          <!--<div class="col-md-2">
+                                                <label for="">Contraseña</label>
+                                          </div>
+                                          <div class="col-md-10 col-md-offset-1 row">
+                                                <div class="col-md-6 col-lg-6">
+                                                      <input class="form-control" type="password" name="password" id="password" value="">
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                      <input class="form-control" type="password" name="passwordVerify" id="passwordVerify" value="">
+                                                </div>
+                                          </div>-->
+                                          <div class="row">
+                                                <div class="col-md-8">
+                                                      <div class="col-md-6">
+                                                            <input class="form-control col-md-7" type="password" name="password" id="password" placeholder="Nueva contraseña">
                                                       </div>
-                                                      <div class="col-md-6 col-lg-6">
-                                                            <input class="form-control" type="password" name="password" id="password" value="">
+                                                      <div class="col-md-6">
+                                                            <input class="form-control col-md-7" type="password" name="passwordVerify" placeholder="Repite contraseña">
                                                       </div>
                                                 </div>
-                                          </div>
-                                          <div class="col-md-3 col-md-offset-9 col-lg-3 col-lg-offset-9">
-                                                <input type="submit" class="btn btn-success btn-block" value="Editar usuario">
+                                                <div class="col-md-4">
+                                                      <input type="submit" class="btn btn-success btn-block" value="Editar usuario">
+                                                </div>
                                           </div>
                                     </form>
                               </div>
@@ -174,10 +194,23 @@
                   option.value = i+1;
                   element.add(option);
             }
+            element.value = {{ $usuario->cargo }};
             var pos = document.getElementById('posicion');
             var option = document.createElement('option');
             option.text = "No disponible";
             option.value = -1;
+            pos.add(option);
+      }
+
+      function opcionesDirecAdmin(){
+            eliminarOpciones();
+            var option = document.createElement('option');
+            option.text = "No disponible";
+            option.value = -1;
+
+            var element = document.getElementById('cargo');
+            element.add(option);
+            var pos = document.getElementById('posicion');
             pos.add(option);
       }
 
@@ -196,6 +229,9 @@
             else if (option == 1) {
                   opcionesEntrenador();
                   rol.disabled = false;
+            }
+            else{
+                  opcionesDirecAdmin();
             }
       }
       window.onload = cargoFilter;
