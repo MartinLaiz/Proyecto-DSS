@@ -225,10 +225,13 @@ class ParticiparController extends Controller
             foreach($request->request as $r){
                 //separo los string
                 $checked = explode(" ", $r);
-                $participar = Participar::where('partido_id','=',$idPartido)
-                ->where('jugador_id','=',$checked[1])->first();
+  
                 //si es titular
                 if($checked[0] == "titularLocal"){
+  
+                    $participar = Participar::where('partido_id','=',$idPartido)
+                    ->where('usuario_id','=',$checked[1])->first();
+    
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
@@ -238,6 +241,8 @@ class ParticiparController extends Controller
                     $participar->save();
 
                 }else if($checked[0]  == "banquilloLocal"){
+                    $participar = Participar::where('partido_id','=',$idPartido)
+                    ->where('usuario_id','=',$checked[1])->first();
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
@@ -246,6 +251,8 @@ class ParticiparController extends Controller
                     $participar->asistencia = 2;
                     $participar->save();
                 }else if($checked[0] == "titularVisitante"){
+                    $participar = Participar::where('partido_id','=',$idPartido)
+                    ->where('usuario_id','=',$checked[1])->first();
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
@@ -254,6 +261,9 @@ class ParticiparController extends Controller
                     $participar->asistencia = 1;
                     $participar->save();
                 }else if($checked[0] == "banquilloVisitante"){
+                    $participar = Participar::where('partido_id','=',$idPartido)
+                    ->where('usuario_id','=',$checked[1])->first();
+
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
                     $participar->local = "no";
@@ -261,6 +271,9 @@ class ParticiparController extends Controller
                     $participar->asistencia = 2;
                     $participar->save();
                 }else if($checked[0] == "noAsistenciaLocal"){
+                    $participar = Participar::where('partido_id','=',$idPartido)
+                    ->where('usuario_id','=',$checked[1])->first();
+
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
                     $participar->local = "si";
@@ -268,6 +281,9 @@ class ParticiparController extends Controller
                     $participar->asistencia = 0;
                     $participar->save();
                 }else if($checked[0] == "noAsistenciaVisitante"){
+                    $participar = Participar::where('partido_id','=',$idPartido)
+                    ->where('usuario_id','=',$checked[1])->first();
+
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
                     $participar->local = "no";
