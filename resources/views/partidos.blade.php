@@ -35,7 +35,16 @@
                                           <option value="Todas">Todas las temporadas</option>
                                           @foreach($temporadas as $unaTemporada)
                                           <option value="{{ $unaTemporada->id }}" @if($unaTemporada->id == $temporada) selected @endif>
-                                          {{ $unaTemporada->nombre }}</option>
+                                          Temporada {{ $unaTemporada->nombre }}</option>
+                                          @endforeach
+                                    </select>
+                              </div>
+                              <div class="col-lg-3 col-md-4 col-sm-4">
+                                    <select class="form-control" name="competicion" id="competicion">
+                                          <option value="Todas">Cualquier competición</option>
+                                          @foreach($competiciones as $unaCompeticion)
+                                          <option value="{{ $unaCompeticion->id }}" @if($unaCompeticion->id == $competicion) selected @endif>
+                                          {{ $unaCompeticion->nombre }}</option>
                                           @endforeach
                                     </select>
                               </div>
