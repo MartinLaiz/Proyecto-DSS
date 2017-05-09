@@ -29,7 +29,7 @@
                     <td>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="{!!$jugador->usuario->id!!}" id="titularLocal {!!$jugador->usuario->id!!}"  value="titularLocal {!!$jugador->usuario->id!!}" 
+                                <input type="radio" name="{!!$jugador->usuario->id!!}" id="titularLocal {!!$jugador->usuario->id!!}"  value="titularVisitante {!!$jugador->usuario->id!!}" 
                                 @if($jugador->asistencia == 1) checked @endif>
                             </label>
                         </div>
@@ -38,7 +38,7 @@
                     <td>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="{!!$jugador->usuario->id!!}" id="titularLocal {!!$jugador->usuario->id!!}"  value="titularLocal {!!$jugador->usuario->id!!}" 
+                                <input type="radio" name="{!!$jugador->usuario->id!!}" id="titularLocal {!!$jugador->usuario->id!!}"  value="banquilloVisitante {!!$jugador->usuario->id!!}" 
                                 @if($jugador->asistencia == 2) checked @endif  >
                             </label>
                         </div>

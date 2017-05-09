@@ -38,7 +38,7 @@ $(document).ready(function(){
             @endforeach
             </ul>
       @endif
-        <form class="form-horizontal"  action="{{action('PartidoController@modificarPartido',[$idmodificar])}}" method="post">
+        <form class="form-horizontal"  action="{{action('PartidoController@modificarParticipar',[$idmodificar])}}" method="post">
                   {{ csrf_field() }}
                   {{ method_field('POST') }}
                 

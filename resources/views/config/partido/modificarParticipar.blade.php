@@ -1,36 +1,3 @@
-
-
-
-{{-- for (var x=0; x < locales.length; x++) --}}
-<script type="text/javascript"> 
-	
-	function contarSeleccionados()
-	{
-		var i = 1;
-
-		var locales  = $'{$locales}';
-		alert(locales)
-
-		aux.forEach(function(a) {
-    		alert(a);
-		});
-
-		for (var x=0; x < locales.length; x++){
-			var aux = locales[i].id
-			alert(locales[i]);
-			if (document.getElementById('titularLocal aux').checked)
-			{
-				cant++;
-			}
-		}
-		alert('Conoce ' + cant + ' lenguajes');
-	}
-</script>
-
-
-
-
-
 @extends('layouts.master')
 @section('title', 'Inicio')
 @section('content')
@@ -54,7 +21,9 @@
 	{{ csrf_field() }}
 	{{ method_field('PUT') }}  
 	<div class="row">
-	
+		 <form class="form-horizontal"  action="{{action('ParticiparController@modificarParticipar',[$partido->id])}}" method="post">
+		{{ csrf_field() }}
+		{{ method_field('POST') }}
                   
 		<div class="col-md-6">
 			<table class="table">
@@ -97,9 +66,7 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				<label for ="description"> Cronica</label>
-                @for($i = 0; $i < 1; $i++)
-				    <textarea value = "{!!$jugadores[1]->cronica!!}" name="cronica" style="width: 500px; height: 102px ;resize: vertical;"  class="form-control" id="description" placeholder="Enter Your Message"></textarea>
-                @endfor
+					<textarea name="cronica" style="width: 500px; height: 102px ;resize: vertical;"  class="form-control" id="description" placeholder="Introduce la cronica">{!!$partido->cronica!!}</textarea>
 			</div>
 							
 		</div>

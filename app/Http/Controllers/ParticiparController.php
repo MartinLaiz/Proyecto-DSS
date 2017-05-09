@@ -48,7 +48,6 @@ class ParticiparController extends Controller
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
-                    $participar->evento = $request->cronica;
                     $participar->local = "si";
                     // 0 no asistencia, 1 titular, 2 banquillo
                     $participar->asistencia = 1;
@@ -58,7 +57,6 @@ class ParticiparController extends Controller
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
-                    $participar->evento = $request->cronica;
                     $participar->local = "si";
                     // 0 no asistencia, 1 titular, 2 banquillo
                     $participar->asistencia = 2;
@@ -67,7 +65,6 @@ class ParticiparController extends Controller
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
-                    $participar->evento = $request->cronica;
                     $participar->local = "no";
                     // 0 no asistencia, 1 titular, 2 banquillo
                     $participar->asistencia = 1;
@@ -75,7 +72,6 @@ class ParticiparController extends Controller
                 }else if($checked[0] == "banquilloVisitante"){
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
-                    $participar->evento = $request->cronica;
                     $participar->local = "no";
                     // 0 no asistencia, 1 titular, 2 banquillo
                     $participar->asistencia = 2;
@@ -83,7 +79,6 @@ class ParticiparController extends Controller
                 }else if($checked[0] == "noAsistenciaLocal"){
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
-                    $participar->evento = $request->cronica;
                     $participar->local = "si";
                     // 0 no asistencia, 1 titular, 2 banquillo
                     $participar->asistencia = 0;
@@ -91,12 +86,15 @@ class ParticiparController extends Controller
                 }else if($checked[0] == "noAsistenciaVisitante"){
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
-                    $participar->evento = $request->cronica;
                     $participar->local = "no";
                     // 0 no asistencia, 1 titular, 2 banquillo
                     $participar->asistencia = 0;
                     $participar->save();
                 }
+                //añadimos en el partido la cronica
+                $partido = Partido::find($idPartido);
+                $partido->cronica = $request->cronica;
+                $partido->save();
             }
         }else{
 
@@ -108,7 +106,9 @@ class ParticiparController extends Controller
             return back()->withErrors($validator)->withInput();
 
         }
-        return Redirect::to('/partido');
+        $valor= $idPartido;
+        $valor=trim($valor);
+        return Redirect::to("/config/partido/" . $valor);
     }
 
     public function verParticipar($idPartido){
@@ -190,6 +190,109 @@ class ParticiparController extends Controller
             'jugadores' => $jugadores]);
         }
 
+    }
+
+
+    public function modificarParticipar(Request $request,$idPartido){
+        //contadores
+        $contador = 0;
+        $contadorTitularLocal = 0;
+        $contadorTitularVisitante = 0;
+        $contadorBanquilloLocal = 0;
+        $contadorBanquilloVisitante = 0;
+
+        //miro los errores que de checked
+        foreach($request->request as $r){
+            //dos para que empieze en los datos
+                //separo los string
+            $checked = explode(" ", $r);
+            if($checked[0] == "titularLocal"){
+                $contadorTitularLocal += 1;
+            }else if($checked[0]  == "banquilloLocal"){
+                $contadorBanquilloLocal += 1;
+            }else if($checked[0] == "titularVisitante"){
+                $contadorTitularVisitante += 1;
+            }else if($checked[0] == "banquilloVisitante"){
+                $contadorBanquilloVisitante += 1;
+            }
+        }
+
+
+        //si se cumple, se mete los datos, si no salta error
+        if($contadorTitularLocal == 11 && $contadorBanquilloLocal== 7 
+        && $contadorTitularVisitante == 11 && $contadorBanquilloVisitante ==7){
+            
+            foreach($request->request as $r){
+                //separo los string
+                $checked = explode(" ", $r);
+                $participar = Participar::where('partido_id','=',$idPartido)
+                ->where('jugador_id','=',$checked[1])->first();
+                //si es titular
+                if($checked[0] == "titularLocal"){
+
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->local = "si";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 1;
+                    $participar->save();
+
+                }else if($checked[0]  == "banquilloLocal"){
+
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->local = "si";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 2;
+                    $participar->save();
+                }else if($checked[0] == "titularVisitante"){
+
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->local = "no";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 1;
+                    $participar->save();
+                }else if($checked[0] == "banquilloVisitante"){
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->local = "no";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 2;
+                    $participar->save();
+                }else if($checked[0] == "noAsistenciaLocal"){
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->local = "si";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 0;
+                    $participar->save();
+                }else if($checked[0] == "noAsistenciaVisitante"){
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->local = "no";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 0;
+                    $participar->save();
+                }
+                //añadimos en el partido la cronica
+                $partido = Partido::find($idPartido);
+                $partido->cronica = $request->cronica;
+                $partido->save();
+            }
+        }else{
+
+            $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+            ]);
+            $validator->getMessageBag()->add('unique','Error, tiene que haber 11 titulares y 7 suplentes por equipo.');
+            return back()->withErrors($validator)->withInput();
+
+        }
+        $valor= $idPartido;
+        $valor=trim($valor);
+        return Redirect::to("/config/partido/" . $valor);
     }
 
 

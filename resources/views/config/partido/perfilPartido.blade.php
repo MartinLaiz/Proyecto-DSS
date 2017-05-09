@@ -86,7 +86,7 @@
 					<h1 class="cta-title">Cronica</h1>
 					<div class="cta-desc">
 						@if($cantidad != 0)
-							<PRE>{{ $titulares[1]->evento }}</PRE>
+							<PRE>{{ $partido->cronica }}</PRE>
 						@else
 							<p>No hay datos disponibles</p>
 						@endif

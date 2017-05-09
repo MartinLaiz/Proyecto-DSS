@@ -132,6 +132,7 @@ class PartidoController extends Controller
         $partido->golesLocal = $request->golesLocal;
         $partido->golesVisitante = $request->golesVisitante;
         $partido->fecha = $request->fecha;
+        $partido->cronica = null;
 
         $equipo = Equipo::find($request->equipoLocal);
 
@@ -163,6 +164,7 @@ class PartidoController extends Controller
         $partido->golesLocal = $request->golesLocal;
         $partido->golesVisitante = $request->golesVisitante;
         $partido->fecha = $request->fecha;
+        $partido->cronica = null;
 
         $equipo = Equipo::find($request->equipoLocal);
 

@@ -17,7 +17,6 @@ class CreateParticiparTable extends Migration
             $table->increments('id');
             $table->integer('partido_id');
             $table->integer('usuario_id');
-            $table->string('evento');
             $table->string('local');
             $table->integer('asistencia');
             $table->unique(['partido_id','usuario_id']);
