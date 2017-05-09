@@ -69,6 +69,7 @@ Route::group(['prefix' => 'partido'], function(){
             Route::group(['prefix' => 'usuario'], function(){
                   Route::get('create','UsuarioController@getFormCreate');
                   Route::post('create','UsuarioController@create');
+                  Route::get('update','UsuarioController@getUsuariosUpdate');
                   Route::get('update/{id}','UsuarioController@getFormUpdate');
                   Route::post('update/{id}','UsuarioController@update');
                   Route::delete('delete/{id}','UsuarioController@delete');

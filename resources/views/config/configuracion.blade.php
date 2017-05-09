@@ -11,26 +11,26 @@
       <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
             <ul class="nav navbar-nav">
                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Usuarios <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
-                              <li><a href="{{action('EquipoController@formulario')}}">Crear</a> </li>
-                              <li><a href="#">Modificar</a></li>
+                              <li><a href="{{action('UsuarioController@getFormCreate')}}">Crear</a> </li>
+                              <li><a href="{{action('UsuarioController@getUsuariosUpdate')}}">Modificar</a></li>
                         </ul>
                   </li>
                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Partidos <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-option-vertical"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon glyphicon-th-list"></span> Partidos <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
                               <li><a href="{{action('PartidoController@formularioInsertar')}}">Crear</a> </li>
                               <li><a href="{{action('PartidoController@editarPartidos')}}">Modificar</a></li>
                         </ul>
                   </li>
                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Equipos <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th"></span> Equipos <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
                               <li><a href="{{action('EquipoController@formulario')}}">Crear</a> </li>
                               <li><a href="{{action('EquipoController@editar')}}">Modificar</a></li>
                         </ul>
-                  </li>              
+                  </li>
             </ul>
       </div>
 </nav>

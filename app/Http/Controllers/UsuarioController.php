@@ -25,7 +25,6 @@ class UsuarioController extends Controller
                   if($cargo>=0){
                         $usuarios = $usuarios->where('cargo','=',$cargo);
                   }
-                  //dd($posicion);
                   if($posicion != 0){
                         $usuarios = $usuarios->where('posicion','=',$posicion);
                   }
@@ -65,6 +64,10 @@ class UsuarioController extends Controller
             );
       }
 
+      public function getUsuariosUpdate(){
+
+      }
+
       public function getConfig(){
             return view('config.configuracion');
       }
@@ -90,8 +93,6 @@ class UsuarioController extends Controller
 
             $usuario->password = bcrypt($request->input('password'));
 
-
-            dd($usuario);
       }
 
       public function update(Request $request, $id){
