@@ -4,9 +4,9 @@
 @include('cabecera',array('section'=>'partidos'))
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
-            <h2>Partidos</h2>
+            <h2>Partidos <a href="#filtros" class="btn btn-info" data-toggle="collapse">Filtrar</a></h2>
             <!--Parte del filtro-->
-            <div class="row">
+            <div class="row collapse" id="filtros">
                   <form action="{{ action('PartidoController@getPartidos') }}" method="POST" name="filtro">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
@@ -104,6 +104,7 @@
                     @endforeach
                   </tbody>
             </table>
+            {{$partidos->appends(['equipo1' => $equipo1, 'equipo2' => $equipo2,'temporada' => $temporada,'competicion' => $competicion,'results'=>$results])->links()}}
             @else
             <div class="alert alert-info">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
