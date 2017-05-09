@@ -50,14 +50,28 @@
                                           @endforeach
                                     </select>
                               </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-4 text-center" style="display: none">
+                                          <input class="form-control" type="number" name="results" id="results">
+                                    </div>
                               <div class="col-lg-3 col-md-4 col-sm-4 text-center">
                                     <button class="btn btn-success btn-block" type="submit">Filtrar</button>
                               </div>
                         </div>
                   </form>
             </div>
-            {{$partidos->appends(['equipo1' => $equipo1, 'equipo2' => $equipo2,'temporada' => $temporada,'competicion' => $competicion])->links()}}
+            {{$partidos->appends(['equipo1' => $equipo1, 'equipo2' => $equipo2,'temporada' => $temporada,'competicion' => $competicion,'results'=>$results])->links()}}
             @if($partidos->count() > 0)
+            <div class="row">
+                  <div>
+                        <select class="form-control" name="resultsNumber" id="resultsNumber" onchange="cambiarPaginacion()">
+                              <option value=5 @if($results == 5) selected @endif>5 resultados por página</option>
+                              <option value=10 @if($results == 10) selected @endif>10 resultados por página</option>
+                              <option value=15 @if($results == 15) selected @endif>15 resultados por página</option>
+                              <option value=30 @if($results == 30) selected @endif>30 resultados por página</option>
+                              <option value=50 @if($results == 50) selected @endif>50 resultados por página</option>
+                        </select>
+                  </div>
+            </div>
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
@@ -120,6 +134,12 @@
             temporada.value = 'Todas';
             var competicion = document.getElementById('competicion');
             competicion.value = 'Todas';
+            document.filtro.submit();
+      }
+      function cambiarPaginacion(){
+            var resultsNumber = document.getElementById('resultsNumber');
+            var results = document.getElementById('results');
+            results.value = resultsNumber.value;
             document.filtro.submit();
       }
       window.onload = mostrarOcultarEquipo2;
