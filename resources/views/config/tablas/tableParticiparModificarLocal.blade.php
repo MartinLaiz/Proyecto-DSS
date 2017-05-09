@@ -12,6 +12,7 @@
 
         </tr>
         <tbody>
+
         @foreach($locales as $local)
             @if($local->posicion != null)
             <tr>
@@ -30,31 +31,17 @@
   
                 <td>
                     <div class="radio">
-                        @foreach($jugadores as $jugador)
                                 <label>
-                                    <input type="radio" name="{!!$local->id!!}" id="titularLocal {!!$local->id!!}"  value="titularLocal {!!$local->id!!}" checked >
+                                    <input type="radio" name="{!!$local->id!!}" id="titularLocal {!!$local->id!!}"  value="titularLocal {!!$local->id!!}" @if($jugador->titular =="si") checked @endif >
                                 </label>
-                                @break
-                                <label>
-                                    <input type="radio" name="{!!$local->id!!}" id="titularLocal {!!$local->id!!}"  value="titularLocal {!!$local->id!!}"  >
-                                </label>
-                        @endforeach
                     </div>
 
                 </td>
                 <td>
                     <div class="radio">
-                       @foreach($jugadores as $jugador)
-                            @if($jugador->jugador == $local->id)
-                                <label>
-                                    <input type="radio" name="{!!$local->id!!}" id="titularLocal {!!$local->id!!}"  value="titularLocal {!!$local->id!!}" checked >
-                                </label>
-                            @else 
-                                <label>
-                                    <input type="radio" name="{!!$local->id!!}" id="titularLocal {!!$local->id!!}"  value="titularLocal {!!$local->id!!}"  >
-                                </label>
-                            @endif
-                        @endforeach
+                       <label>
+                            <input type="radio" name="{!!$local->id!!}" id="titularLocal {!!$local->id!!}"  value="titularLocal {!!$local->id!!}" @if($jugador->titular =="no") checked @endif>
+                        </label>
                     </div>
 
                 </td>

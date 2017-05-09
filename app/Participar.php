@@ -18,4 +18,9 @@ class Participar extends Model
         return $this->belongsTo('App\Usuario');
     }
 
+    public function usuariosLocal(){
+        return $this->usuario()->where('local','=','si');
+    }
+   
+
 }

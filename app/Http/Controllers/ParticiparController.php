@@ -50,8 +50,9 @@ class ParticiparController extends Controller
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
                     $participar->evento = $request->cronica;
-                    $participar->titular = "si";
                     $participar->local = "si";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = "si";
                     $participar->save();
 
                 }else if($checked[0]  == "banquilloLocal"){
@@ -74,7 +75,6 @@ class ParticiparController extends Controller
                     $participar->save();
                 }else if($checked[0] == "banquilloVisitante"){
                     $contadorBanquilloVisitante += 1;
-                    
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
                     $participar->evento = $request->cronica;
@@ -172,11 +172,12 @@ class ParticiparController extends Controller
             return back()->withErrors($validator)->withInput();
         }else{
             //obtengo todos los jugadores que hay en el partido
-            $jugadores = Participar::where('partido_id','=',$idPartido)->get();
+            $jugadores = Participar::where('partido_id','=',$idPartido)->with('usuario')->get();
+            dd($jugadores->toArray());
             //obtengo el partido
             $partido = Partido::find($idPartido);
             //obtengo los jugadores locales
-            $locales = Usuario::where('equipo_id','=',$partido->equipoLocal_id)
+            $locales = Usuario::where('equipo_id',$partido->equipoLocal_id)
             ->orderBy('posicion')->get();
         
             //obtengo los jugadores visitantes
