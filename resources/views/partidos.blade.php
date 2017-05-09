@@ -125,10 +125,11 @@
 
             var equipo2 = document.getElementById('equipo2');
             
-            if(equipo1.value != 'Todos'){
-                  equipo2.disabled = false;
+            if(equipo1.value == 'Todos'){
+                  equipo2.disabled = true;
+                  equipo2.value = 'Todos';
             }
-            else equipo2.disabled = true;
+            else equipo2.disabled = false;
       }
       function restablecerFiltro(){
             var equipo1 = document.getElementById('equipo1');

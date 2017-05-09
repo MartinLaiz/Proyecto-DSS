@@ -35,7 +35,7 @@ class PartidoController extends Controller
         //PARTE DE EQUIPOS
         //Condición 1: A contra B
         if($equipo1 != 'Todos' && $equipo2 != 'Todos'){
-            $partidos = $patidos
+            $partidos = $partidos
                 ->where([
                     ['equipoLocal_id','=',$equipo1],
                     ['equipoVisitante_id','=',$equipo2]
