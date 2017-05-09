@@ -41,7 +41,7 @@
                         @endif
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi perfil <span class="caret"></span></a>
                               <ul class="dropdown-menu">
-                                    <li><a href="{{ action('UsuarioController@getConfig') }}">Configuración</a></li>
+                                    <li><a href="{{action('EquipoController@editar')}}">Configuración</a></li>
                                     <li><a href="/">Cerrar sesión</a></li>
                               </ul>
                         </li>

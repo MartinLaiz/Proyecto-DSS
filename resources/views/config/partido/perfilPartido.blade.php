@@ -112,9 +112,9 @@
 					@endif
 
 				
-						<a  title="Crear Jugadores y Cronica" href="{{ action('ParticiparController@formularioInsertar', $partido->id) }}" data-original-title="Edit this user" data-toggle="tooltip" 
-						type="button" class="btn btn btn-success"><i class="glyphicon glyphicon-edit"></i></a>
+						<a title="Crear Jugadores y Cronica" href="{{ action('ParticiparController@formularioInsertar', $partido->id) }}" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn btn-success"><i class="glyphicon glyphicon-edit"></i></a>
 						<a title="Eliminar Jugadores y Cronica" href="{{ action('ParticiparController@borrarParticipar', $partido->id) }}"  data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+						<a title="Modificar Jugadores y Cronica" href="{{ action('ParticiparController@formularioModificar', $partido->id) }}"  data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-remove"></i></a>
 
 				</div>
 

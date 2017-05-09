@@ -30,8 +30,7 @@
                               <li><a href="{{action('EquipoController@formulario')}}">Crear</a> </li>
                               <li><a href="{{action('EquipoController@editar')}}">Modificar</a></li>
                         </ul>
-                  </li>
-                  <li ><a href="#">Tags<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a></li>
+                  </li>              
             </ul>
       </div>
 </nav>

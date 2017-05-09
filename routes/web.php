@@ -92,7 +92,9 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/partido/{id}','ParticiparController@verParticipar');
             Route::get('/introducir/datos/partido/{id}','ParticiparController@formularioInsertar');
             Route::put('/introducir/datos/partido/{id}','ParticiparController@crearParticipar');
-             Route::get('/eliminar/partido/jugadores/{id}','ParticiparController@borrarParticipar');
+            Route::get('/eliminar/partido/jugadores/{id}','ParticiparController@borrarParticipar');
+            Route::post('/modificar/partido/jugadores/{id}','PartidoController@modificarPartido');
+            Route::get('/modificar/partido/jugadores/{id}','ParticiparController@formularioModificar');
       });
 
 

@@ -21,17 +21,21 @@ class PartidoController extends Controller
     public function getPartidos(Request $request){
 
         //Manejo de variables
-        $equipo1 =  $request->input('equipo1','Todos');
-        $equipo2 =  $request->input('equipo2','Todos');
-        $temporadaFiltro =$request->input('temporada','temporadaActual'); 
+        $equipo1    =   $request->input('equipo1','Todos');
+        $equipo2    =   $request->input('equipo2','Todos');
+        $temporada  =   $request->input('temporada','Todas');
+        $competicion=   $request->input('competicion','Todas');
+        $results    =   $request->input('results',10);
 
 
         //Gestión de partidos where('rol','=',$rol)
-        $partidos = null;
+        $partidos = Partido::with('competicion','temporada',
+                'equipoLocal','equipoVisitante','estadio');
+
+        //PARTE DE EQUIPOS
         //Condición 1: A contra B
         if($equipo1 != 'Todos' && $equipo2 != 'Todos'){
-            $partidos = Partido::with('competicion','temporada',
-                'equipoLocal','equipoVisitante','estadio')
+            $partidos = $patidos
                 ->where([
                     ['equipoLocal_id','=',$equipo1],
                     ['equipoVisitante_id','=',$equipo2]
@@ -42,18 +46,35 @@ class PartidoController extends Controller
                     ]);
         }
         //Condición 2: A contra todos ->orWhere('equipoLocal','=',$equipo1);
-
-        else{
-            $partidos = Partido::with('competicion','temporada',
-                'equipoLocal','equipoVisitante','estadio');
+        else if($equipo1 != 'Todos' && $equipo2 == 'Todos'){
+            $partidos = $partidos
+                ->where([
+                    ['equipoLocal_id','=',$equipo1]
+                    ])
+                ->orWhere([
+                    ['equipoVisitante_id','=',$equipo1]
+                    ]); 
+        }
+        //PARTE DE TEMPORADA
+        if($temporada != 'Todas'){
+            $partidos = $partidos->where('temporada_id','=',$temporada);
+        }
+        //PARTE DE COMPETICIÓN
+        if($competicion != 'Todas'){
+            $partidos = $partidos->where('competicion_id','=',$competicion);
         }
         
         
         return view('partidos', [
-                'partidos' => $partidos->paginate(10),
+                'partidos' => $partidos->paginate($results),
                 'equipos'  => Equipo::get(),
                 'equipo1'  => $equipo1,
-                'equipo2'  => $equipo2
+                'equipo2'  => $equipo2,
+                'temporadas'=>Temporada::get(),
+                'temporada'=> $temporada,
+                'competiciones' =>Competicion::get(),
+                'competicion'=> $competicion,
+                'results' => $results
                 ]);
     }
 

@@ -1,47 +1,59 @@
-<table class="table">
-    <thead>
-    <tr>
-        <th>Once Inicial</th>
-        <th>Posición</th>
-        <th>Banquillo</th>
-        <th>Posición</th>
-    </tr>
-</thead>
-    <tbody>
-        @for($i = 11; $i < 22 ; $i++)
-        <tr>
-            @if($titulares[$i]->local == "no")
-                <th> {!!$titulares[$i]->usuario->nombre!!} </th>
+<table class="table"> 
+    <thead> 
+    <tr> 
+        <th>Once Inicial</th> 
+        <th>Posición</th> 
+    </tr> 
+</thead> 
+    <tbody> 
+        @foreach($titulares as $titular)
+        <tr> 
+            @if($titular->local == "no") 
+                <th> {!!$titular->usuario->nombre!!} </th> 
+                @if($titular->usuario->posicion == 1) 
+                    <td>Portero</td> 
+                @elseif($titular->usuario->posicion == 2) 
+                    <td>Defensa</ttdh> 
+                @elseif($titular->usuario->posicion == 3) 
+                    <td>Medio</td> 
+                @elseif($titular->usuario->posicion == 4) 
+                    <td>Delantero</td> 
+                @else 
+                    <th></th> 
+                @endif 
+            @endif 
+        </tr> 
+         @endforeach
+    </tbody> 
+</table>
 
-                @if($titulares[$i]->usuario->posicion == 1)
-                    <td>Portero</td>
-                @elseif($titulares[$i]->usuario->posicion == 2)
-                    <td>Defensa</ttdh>
-                @elseif($titulares[$i]->usuario->posicion == 3)
-                    <td>Medio</td>
-                @elseif($titulares[$i]->usuario->posicion == 4)
-                    <td>Delantero</td>
-                @else
-                    <th></th>
-                @endif
 
-                @if($i < 18)
-                    <th> {!!$banquillo[24 - $i]->usuario->nombre!!} </th>
 
-                    @if($banquillo[24 - $i]->usuario->posicion == 1)
-                        <td>>Portero</td>
-                    @elseif($banquillo[24 - $i]->usuario->posicion == 2)
-                        <td>Defensa</ttdh>
-                    @elseif($banquillo[24 - $i]->usuario->posicion == 3)
-                        <td>Medio</td>
-                    @elseif($banquillo[24 - $i]->usuario->posicion == 4)
-                        <td>Delantero</td>
-                    @else
-                        <th></th>
-                    @endif
-                @endif
-            @endif
-        </tr>
-         @endfor
-    </tbody>
+<table class="table"> 
+    <thead> 
+    <tr> 
+        <th>Banquillo</th> 
+        <th>Posición</th> 
+    </tr> 
+</thead> 
+    <tbody> 
+        @foreach($banquillo as $b)
+        <tr> 
+            @if($b->local == "no") 
+                <th> {!!$b->usuario->nombre!!} </th> 
+                @if($b->usuario->posicion == 1) 
+                    <td>Portero</td> 
+                @elseif($b->usuario->posicion == 2) 
+                    <td>Defensa</ttdh> 
+                @elseif($b->usuario->posicion == 3) 
+                    <td>Medio</td> 
+                @elseif($b->usuario->posicion == 4) 
+                    <td>Delantero</td> 
+                @else 
+                    <th></th> 
+                @endif 
+            @endif 
+        </tr> 
+         @endforeach
+    </tbody> 
 </table>

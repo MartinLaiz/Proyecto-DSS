@@ -22,69 +22,82 @@ class ParticiparController extends Controller
         //miro los errores que de checked
         foreach($request->request as $r){
             //dos para que empieze en los datos
-            if($contador >=2){
                 //separo los string
-                $checked = explode(" ", $r);
-                if($checked[0] == "titularLocal"){
-                    $contadorTitularLocal += 1;
-                }else if($checked[0]  == "banquilloLocal"){
-                    $contadorBanquilloLocal += 1;
-                }else if($checked[0] == "titularVisitante"){
-                    $contadorTitularVisitante += 1;
-                }else if($checked[0] == "banquilloVisitante"){
-                    $contadorBanquilloVisitante += 1;
-                }
+            $checked = explode(" ", $r);
+            if($checked[0] == "titularLocal"){
+                $contadorTitularLocal += 1;
+            }else if($checked[0]  == "banquilloLocal"){
+                $contadorBanquilloLocal += 1;
+            }else if($checked[0] == "titularVisitante"){
+                $contadorTitularVisitante += 1;
+            }else if($checked[0] == "banquilloVisitante"){
+                $contadorBanquilloVisitante += 1;
             }
-            $contador++;
         }
-  
+
         //si se cumple, se mete los datos, si no salta error
         if($contadorTitularLocal == 11 && $contadorBanquilloLocal== 7 
         && $contadorTitularVisitante == 11 && $contadorBanquilloVisitante ==7){
             
-            $contador = 0;
             foreach($request->request as $r){
                 $participar = new Participar();
-                if($contador >=2 ){
-                    //separo los string
-                    $checked = explode(" ", $r);
-                    //si es titular
-                    if($checked[0] == "titularLocal"){
-                        
-                        $participar->partido_id = $idPartido;
-                        $participar->usuario_id = $checked[1];
-                        $participar->evento = $request->cronica;
-                        $participar->titular = "si";
-                        $participar->local = "si";
-                        $participar->save();
+                //separo los string
+                $checked = explode(" ", $r);
+                //si es titular
+                if($checked[0] == "titularLocal"){
 
-                    }else if($checked[0]  == "banquilloLocal"){
-                        $participar->partido_id = $idPartido;
-                        $participar->usuario_id = $checked[1];
-                        $participar->evento = $request->cronica;
-                        $participar->titular = "no";
-                        $participar->local = "si";
-                        $participar->save();
-                    }else if($checked[0] == "titularVisitante"){
-                        $participar->partido_id = $idPartido;
-                        $participar->usuario_id = $checked[1];
-                        $participar->evento = $request->cronica;
-                        $participar->titular = "si";
-                        $participar->local = "no";
-                        $participar->save();
-                   }else if($checked[0] == "banquilloVisitante"){
-                        $participar->partido_id = $idPartido;
-                        $participar->usuario_id = $checked[1];
-                        $participar->evento = $request->cronica;
-                        $participar->titular = "no";
-                        $participar->local = "no";
-                        $participar->save();
-                    }
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->evento = $request->cronica;
+                    $participar->local = "si";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 1;
+                    $participar->save();
+
+                }else if($checked[0]  == "banquilloLocal"){
+
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->evento = $request->cronica;
+                    $participar->local = "si";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 2;
+                    $participar->save();
+                }else if($checked[0] == "titularVisitante"){
+
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->evento = $request->cronica;
+                    $participar->local = "no";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 1;
+                    $participar->save();
+                }else if($checked[0] == "banquilloVisitante"){
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->evento = $request->cronica;
+                    $participar->local = "no";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 2;
+                    $participar->save();
+                }else if($checked[0] == "noAsistenciaLocal"){
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->evento = $request->cronica;
+                    $participar->local = "si";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 0;
+                    $participar->save();
+                }else if($checked[0] == "noAsistenciaVisitante"){
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->evento = $request->cronica;
+                    $participar->local = "no";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 0;
+                    $participar->save();
                 }
-                $contador++;
             }
-            
-
         }else{
 
             $validator = Validator::make($request->all(), [
@@ -106,15 +119,14 @@ class ParticiparController extends Controller
         $cantidad = Participar::where('partido_id','=',$idPartido)->count();
 
 
-        //No tocar las selects
         $participarTitular = Participar::with('usuario')
         ->where('partido_id','=',$idPartido)
-        ->where('titular','=','si')->get();
+        ->where('asistencia','=',1)->get();
 
 
          $participarBanquillo = Participar::with('usuario')
         ->where('partido_id','=',$idPartido)
-        ->where('titular','=','no')->get();
+        ->where('asistencia','=',2)->get();
 
         
         if($cantidad != null){
@@ -154,6 +166,32 @@ class ParticiparController extends Controller
         }
 
     }
+
+
+
+    public function formularioModificar($idPartido,Request $request){
+
+        $cantidad = Participar::where('partido_id','=',$idPartido)->first();
+        //si hay datos salta el error
+        if($cantidad == null){
+            $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+            ]);
+            $validator->getMessageBag()->add('unique','Error, para modificar tiene que haber jugadores.');
+            return back()->withErrors($validator)->withInput();
+        }else{
+            //obtengo todos los jugadores que hay en el partido
+            $jugadores = Participar::where('partido_id','=',$idPartido)->with('usuarioOrdenadoPosicion')->get();
+            //obtengo el partido
+            $partido = Partido::find($idPartido);
+
+            return view ('config/partido/modificarParticipar',[ 'partido' => $partido,
+            'jugadores' => $jugadores]);
+        }
+
+    }
+
 
 
     public function borrarParticipar($idPartido,Request $request){

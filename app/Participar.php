@@ -18,4 +18,13 @@ class Participar extends Model
         return $this->belongsTo('App\Usuario');
     }
 
+
+     public function usuarioOrdenadoPosicion(){
+        return $this->usuario()->orderby('usuario.posicion');
+    }
+
+
+
+
+
 }
