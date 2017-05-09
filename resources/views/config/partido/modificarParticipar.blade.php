@@ -89,7 +89,7 @@
 		
 		</div>
 		<div class="col-md-6">
-			@include('config/tablas/tableParticiparElegirVisitante')
+			@include('config/tablas/tableParticiparModificarVisitante')
 		</div>
 	
 	</div>

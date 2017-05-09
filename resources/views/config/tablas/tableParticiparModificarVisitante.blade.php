@@ -8,55 +8,52 @@
 
         </tr>
         <tbody>
-        @foreach($visitantes as $visitante)
-            @if($visitante->posicion != null)
-            <tr>
-                <th>{!!$visitante->nombre!!}</th>
-                @if($visitante->posicion == 1)
-                    <th>Portero</th>
-                @elseif($visitante->posicion == 2)
-                    <th>Defensa</th>
-                @elseif($visitante->posicion == 3)
-                    <th>Medio</th>
-                @elseif($visitante->posicion == 4)
-                    <th>Delantero</th>
-                @else
-                    <th></th>
+        @foreach($jugadores as $jugador)
+            @if($jugador->local == "no")
+                @if($jugador->usuario->posicion != null)
+                <tr>
+                    <th>{!!$jugador->usuario->nombre!!}</th>
+                    @if($jugador->usuario->posicion == 1)
+                        <th>Portero</th>
+                    @elseif($jugador->usuario->posicion == 2)
+                        <th>Defensa</th>
+                    @elseif($jugador->usuario->posicion == 3)
+                        <th>Medio</th>
+                    @elseif($jugador->usuario->posicion == 4)
+                        <th>Delantero</th>
+                    @else
+                        <th></th>
+                    @endif
+                
+
+                    <td>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="{!!$jugador->usuario->id!!}" id="titularLocal {!!$jugador->usuario->id!!}"  value="titularLocal {!!$jugador->usuario->id!!}" 
+                                @if($jugador->asistencia == 1) checked @endif>
+                            </label>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="{!!$jugador->usuario->id!!}" id="titularLocal {!!$jugador->usuario->id!!}"  value="titularLocal {!!$jugador->usuario->id!!}" 
+                                @if($jugador->asistencia == 2) checked @endif  >
+                            </label>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="{!!$jugador->usuario->id!!}"  id="titularVisitante"  value="noAsistenciaVisitante {!!$jugador->usuario->id!!}" 
+                                @if($jugador->asistencia == 0) checked @endif >
+                            </label>
+                        </div>
+                    </td>
+                </tr>
                 @endif
-  
-                <td>
-                    <div class="radio">
-                        @foreach($jugadores as $jugador)
-                            @if($jugador.id == $visitante->id)
-                                <label>
-                                    <input type="radio" name="{!!$visitante->id!!}" id="titularLocal {!!$visitante->id!!}"  value="titularLocal {!!$visitante->id!!}" checked >
-                                </label>
-                            @else 
-                                <label>
-                                    <input type="radio" name="{!!$visitante->id!!}" id="titularLocal {!!$visitante->id!!}"  value="titularLocal {!!$visitante->id!!}"  >
-                                </label>
-                            @endif
-                        @endforeach
-                    </div>
-
-                </td>
-                <td>
-                    <div class="radio">
-                       @foreach($jugadores as $jugador)
-                            @if($jugador.id == $visitante->id)
-                                <label>
-                                    <input type="radio" name="{!!$visitante->id!!}" id="titularLocal {!!$visitante->id!!}"  value="titularLocal {!!$visitante->id!!}" checked >
-                                </label>
-                            @else 
-                                <label>
-                                    <input type="radio" name="{!!$visitante->id!!}" id="titularLocal {!!$visitante->id!!}"  value="titularLocal {!!$visitante->id!!}"  >
-                                </label>
-                            @endif
-                        @endforeach
-                    </div>
-
-                </td>
-            </tr>
             @endif
         @endforeach
         </tbody>

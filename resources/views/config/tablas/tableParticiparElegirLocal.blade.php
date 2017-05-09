@@ -9,7 +9,7 @@
             <th>Posición</th>
             <th>Titular</th>
             <th>banquillo</th>
-            <th>Asistencia?</th>
+            <th>¿Asistencia?</th>
 
         </tr>
         <tbody>
@@ -43,12 +43,11 @@
                             <input type="radio" name="{!!$local->id!!}"  id="titularVisitante"  value="banquilloLocal {!!$local->id!!}">
                         </label
                     </div>
-
                 </td>
                 <td>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="{!!$local->id!!}"  id="titularVisitante"  value="banquilloLocal {!!$local->id!!}" checked>
+                            <input type="radio" name="{!!$local->id!!}"  id="titularVisitante"  value="noAsistenciaLocal {!!$local->id!!}" checked>
                         </label
                     </div>
 

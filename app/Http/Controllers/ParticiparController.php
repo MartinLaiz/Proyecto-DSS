@@ -34,7 +34,7 @@ class ParticiparController extends Controller
                 $contadorBanquilloVisitante += 1;
             }
         }
-  
+
         //si se cumple, se mete los datos, si no salta error
         if($contadorTitularLocal == 11 && $contadorBanquilloLocal== 7 
         && $contadorTitularVisitante == 11 && $contadorBanquilloVisitante ==7){
@@ -45,48 +45,59 @@ class ParticiparController extends Controller
                 $checked = explode(" ", $r);
                 //si es titular
                 if($checked[0] == "titularLocal"){
-                    $contadorTitularLocal += 1;
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
                     $participar->evento = $request->cronica;
                     $participar->local = "si";
                     // 0 no asistencia, 1 titular, 2 banquillo
-                    $participar->asistencia = "si";
+                    $participar->asistencia = 1;
                     $participar->save();
 
                 }else if($checked[0]  == "banquilloLocal"){
-                    $contadorBanquilloLocal += 1;
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
                     $participar->evento = $request->cronica;
-                    $participar->titular = "no";
                     $participar->local = "si";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 2;
                     $participar->save();
                 }else if($checked[0] == "titularVisitante"){
-                    $contadorTitularVisitante += 1;
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
                     $participar->evento = $request->cronica;
-                    $participar->titular = "si";
                     $participar->local = "no";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 1;
                     $participar->save();
                 }else if($checked[0] == "banquilloVisitante"){
-                    $contadorBanquilloVisitante += 1;
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
                     $participar->evento = $request->cronica;
-                    $participar->titular = "no";
                     $participar->local = "no";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 2;
+                    $participar->save();
+                }else if($checked[0] == "noAsistenciaLocal"){
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->evento = $request->cronica;
+                    $participar->local = "si";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 0;
+                    $participar->save();
+                }else if($checked[0] == "noAsistenciaVisitante"){
+                    $participar->partido_id = $idPartido;
+                    $participar->usuario_id = $checked[1];
+                    $participar->evento = $request->cronica;
+                    $participar->local = "no";
+                    // 0 no asistencia, 1 titular, 2 banquillo
+                    $participar->asistencia = 0;
                     $participar->save();
                 }
-                
-
             }
-            
-
         }else{
 
             $validator = Validator::make($request->all(), [
@@ -108,15 +119,14 @@ class ParticiparController extends Controller
         $cantidad = Participar::where('partido_id','=',$idPartido)->count();
 
 
-        //No tocar las selects
         $participarTitular = Participar::with('usuario')
         ->where('partido_id','=',$idPartido)
-        ->where('titular','=','si')->get();
+        ->where('asistencia','=',1)->get();
 
 
          $participarBanquillo = Participar::with('usuario')
         ->where('partido_id','=',$idPartido)
-        ->where('titular','=','no')->get();
+        ->where('asistencia','=',2)->get();
 
         
         if($cantidad != null){
@@ -172,20 +182,12 @@ class ParticiparController extends Controller
             return back()->withErrors($validator)->withInput();
         }else{
             //obtengo todos los jugadores que hay en el partido
-            $jugadores = Participar::where('partido_id','=',$idPartido)->with('usuario')->get();
-            dd($jugadores->toArray());
+            $jugadores = Participar::where('partido_id','=',$idPartido)->with('usuarioOrdenadoPosicion')->get();
             //obtengo el partido
             $partido = Partido::find($idPartido);
-            //obtengo los jugadores locales
-            $locales = Usuario::where('equipo_id',$partido->equipoLocal_id)
-            ->orderBy('posicion')->get();
-        
-            //obtengo los jugadores visitantes
-            $visitantes = Usuario::where('equipo_id','=',$partido->equipoVisitante_id)
-            ->orderBy('posicion')->get();
 
-            return view ('config/partido/modificarParticipar',[ 'partido' => $partido
-            ,'locales' => $locales,'visitantes' => $visitantes,'jugadores' => $jugadores]);
+            return view ('config/partido/modificarParticipar',[ 'partido' => $partido,
+            'jugadores' => $jugadores]);
         }
 
     }

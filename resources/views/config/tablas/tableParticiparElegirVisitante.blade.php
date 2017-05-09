@@ -5,6 +5,7 @@
             <th>Posición</th>
             <th>Titular</th>
             <th>banquillo</th>
+            <th>¿Asistencia?</th>
         </tr>
         <tbody>
         @foreach($visitantes as $visitante)
@@ -36,6 +37,15 @@
                         <label>
                             <input type="radio" name="{!!$visitante->id!!}"  id="{!!$visitante->id!!}"  value="banquilloVisitante {!!$visitante->id!!}" >
                         </label>
+                    </div>
+
+                </td>
+
+                <td>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="{!!$visitante->id!!}"  id="titularVisitante"  value="noAsistenciaVisitante {!!$visitante->id!!}" checked>
+                        </label
                     </div>
 
                 </td>
