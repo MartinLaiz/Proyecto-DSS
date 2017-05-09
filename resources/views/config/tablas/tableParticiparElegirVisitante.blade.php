@@ -5,7 +5,6 @@
             <th>Posición</th>
             <th>Titular</th>
             <th>banquillo</th>
-
         </tr>
         <tbody>
         @foreach($visitantes as $visitante)
