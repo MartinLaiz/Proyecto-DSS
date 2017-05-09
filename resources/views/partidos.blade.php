@@ -12,7 +12,7 @@
                         {{ method_field('POST') }}
                         <div class="form-group row">
                               <div class="col-lg-3 col-md-4 col-sm-4">
-                                    <select class="form-control" name="equipo1" id="equipo1">
+                                    <select class="form-control" onchange="mostrarOcultarEquipo2()" name="equipo1" id="equipo1">
                                           <option value="Todos">Todos los equipos</option>
                                           @foreach($equipos as $unEquipo)
                                           <option value="{{ $unEquipo->id }}" @if($unEquipo->id == $equipo1) selected @endif>
@@ -30,13 +30,22 @@
                                           @endforeach
                                     </select>
                               </div>
+                              <div class="col-lg-3 col-md-4 col-sm-4">
+                                    <select class="form-control" name="temporada" id="temporada">
+                                          <option value="Todas">Todas las temporadas</option>
+                                          @foreach($temporadas as $unaTemporada)
+                                          <option value="{{ $unaTemporada->id }}" @if($unaTemporada->id == $temporada) selected @endif>
+                                          {{ $unaTemporada->nombre }}</option>
+                                          @endforeach
+                                    </select>
+                              </div>
                         </div>
                         <div class="row col-lg-3 col-md-4 col-sm-4 text-center">
                               <button class="btn btn-success btn-block" type="submit">Establecer filtro</button>
                         </div>
                   </form>
             </div>
-            {{$partidos->appends(['equipo1' => $equipo1, 'equipo2' => $equipo2])->links()}}
+            {{$partidos->appends(['equipo1' => $equipo1, 'equipo2' => $equipo2,'temporada' => $temporada])->links()}}
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
@@ -94,4 +103,18 @@
             </table>
        </div>
  </div>
+<script type="text/javascript">
+      function mostrarOcultarEquipo2(){
+            var equipo1 = document.getElementById('equipo1');
+
+            var equipo2 = document.getElementById('equipo2');
+            
+            if(equipo1.value != 'Todos'){
+                  equipo2.disabled = false;
+            }
+            else equipo2.disabled = true;
+      }
+      window.onload = mostrarOcultarEquipo2;
+
+</script>
 @endsection
