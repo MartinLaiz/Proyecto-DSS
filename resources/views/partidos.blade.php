@@ -11,19 +11,19 @@
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
                         <div class="form-group row">
-                              <div class="col-lg-4 col-md-4 col-sm-4">
+                              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
                                     <select class="form-control" onchange="mostrarOcultarEquipo2()" name="equipo1" id="equipo1">
-                                          <option value="Todos">Todos los equipos</option>
+                                          <option value="Todos">Equipos: Todos</option>
                                           @foreach($equipos as $unEquipo)
                                           <option value="{{ $unEquipo->id }}" @if($unEquipo->id == $equipo1) selected @endif>
                                           {{ $unEquipo->nombreEquipo }}</option>
                                           @endforeach
                                     </select>
                               </div>
-                              <div class="col-lg-1 col-md-4 col-sm-4 text-center"><img src="{{ asset('images/Vs.png')}}" alt="Versus" width="30px"></div>
-                              <div class="col-lg-4 col-md-4 col-sm-4">
+                              <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs text-center"><img src="{{ asset('images/Vs.png')}}" alt="Versus" width="30px"></div>
+                              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
                                     <select class="form-control" name="equipo2" id="equipo2">
-                                          <option value="Todos">Todos los equipos</option>
+                                          <option value="Todos">Equipos: Todos</option>
                                           @foreach($equipos as $unEquipo)
                                           <option value="{{ $unEquipo->id }}" @if($unEquipo->id == $equipo2) selected @endif>
                                           {{ $unEquipo->nombreEquipo }}</option>
@@ -32,28 +32,28 @@
                               </div>
                         </div>
                         <div class="form-group row">
-                              <div class="col-lg-4 col-md-4 col-sm-4">
+                              <div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
                                     <select class="form-control" name="temporada" id="temporada">
-                                          <option value="Todas">Todas las temporadas</option>
+                                          <option value="Todas">Temporadas: Todas</option>
                                           @foreach($temporadas as $unaTemporada)
                                           <option value="{{ $unaTemporada->id }}" @if($unaTemporada->id == $temporada) selected @endif>
                                           Temporada {{ $unaTemporada->nombre }}</option>
                                           @endforeach
                                     </select>
                               </div>
-                              <div class="col-lg-4 col-md-4 col-sm-4">
+                              <div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
                                     <select class="form-control" name="competicion" id="competicion">
-                                          <option value="Todas">Cualquier competición</option>
+                                          <option value="Todas">Competición: Todas</option>
                                           @foreach($competiciones as $unaCompeticion)
                                           <option value="{{ $unaCompeticion->id }}" @if($unaCompeticion->id == $competicion) selected @endif>
                                           {{ $unaCompeticion->nombre }}</option>
                                           @endforeach
                                     </select>
                               </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-4 text-center" style="display: none">
+                                    <div class="col-lg-3 col-md-4 col-sm-5 text-center" style="display: none">
                                           <input class="form-control" type="number" name="results" id="results">
                                     </div>
-                              <div class="col-lg-3 col-md-4 col-sm-4 text-center">
+                              <div class="col-lg-3 col-md-4 col-sm-2 text-center">
                                     <button class="btn btn-success btn-block" type="submit">Filtrar</button>
                               </div>
                         </div>
@@ -75,13 +75,16 @@
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
-                              <th>Equipo Local</th>
-                              <th>Equipo Visitante</th>
+                              <th class="visible-xs">Local</th>
+                              <th class="hidden-xs">Equipo Local</th>
+                              <th class="visible-xs">Visitante</th>
+                              <th class="hidden-xs">Equipo Visitante</th>
                               <th>Estadio</th>
-                              <th>Goles Local</th>
-                              <th>Goles Visitante</th>
-                              <th>Competición</th>
-                              <th>Temporada</th>
+                              <th class="hidden-xs">Goles Local</th>
+                              <th class="hidden-xs">Goles Visitante</th>
+                              <th class="visible-xs">Resultado</th>
+                              <th class="hidden-xs">Competición</th>
+                              <th class="hidden-xs">Temporada</th>
                                
                        
                         </tr>
@@ -89,13 +92,14 @@
                   <tbody>
                    @foreach($partidos as $partido)
                     <tr>
-                        <th>{!!$partido->equipoLocal->nombreEquipo!!}</th>
-                        <th>{!!$partido->equipoVisitante->nombreEquipo!!}</th>
-                        <th>{!!$partido->estadio->nombre!!}</th>
-                        <th>{!!$partido->golesLocal!!}</th>
-                        <th>{!!$partido->golesVisitante!!}</th>
-                        <th>{!!$partido->competicion->nombre!!}</th>
-                        <th>{!!$partido->temporada->nombre!!}</th>
+                        <td>{!!$partido->equipoLocal->nombreEquipo!!}</td>
+                        <td>{!!$partido->equipoVisitante->nombreEquipo!!}</td>
+                        <td>{!!$partido->estadio->nombre!!}</td>
+                        <td class="hidden-xs text-center">{!!$partido->golesLocal!!}</td>
+                        <td class="hidden-xs text-center">{!!$partido->golesVisitante!!}</td>
+                        <td class="visible-xs text-center">{!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
+                        <td class="hidden-xs">{!!$partido->competicion->nombre!!}</td>
+                        <td class="hidden-xs">{!!$partido->temporada->nombre!!}</td>
                     </tr>
                     @endforeach
                   </tbody>
