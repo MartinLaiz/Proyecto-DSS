@@ -24,7 +24,8 @@ class PartidoController extends Controller
         $equipo1    =   $request->input('equipo1','Todos');
         $equipo2    =   $request->input('equipo2','Todos');
         $temporada  =   $request->input('temporada','Todas');
-        $competicion=   $request->input('competicion','Todas'); 
+        $competicion=   $request->input('competicion','Todas');
+        $results    =   $request->input('results',10);
 
 
         //Gestión de partidos where('rol','=',$rol)
@@ -65,14 +66,15 @@ class PartidoController extends Controller
         
         
         return view('partidos', [
-                'partidos' => $partidos->paginate(10),
+                'partidos' => $partidos->paginate($results),
                 'equipos'  => Equipo::get(),
                 'equipo1'  => $equipo1,
                 'equipo2'  => $equipo2,
                 'temporadas'=>Temporada::get(),
                 'temporada'=> $temporada,
                 'competiciones' =>Competicion::get(),
-                'competicion'=> $competicion
+                'competicion'=> $competicion,
+                'results' => $results
                 ]);
     }
 
