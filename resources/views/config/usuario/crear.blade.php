@@ -5,13 +5,14 @@
 
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
-            <h2>Crear un jugador</h2>
+            <h2>Insertar usuario</h2>
             <!-- Errores -->
             @if(count($errors) > 0)
             <div class="alert alert-danger">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
                   @foreach ($errors->all() as $message)
                   <strong>Error! </strong>{{$message}}
+                  <br>
                   @endforeach
             </div>
             @endif
@@ -24,13 +25,13 @@
                               <div class="col-md-5">
                                     <label class="control-label col-md-3">DNI:</label>
                                     <div class="col-md-8">
-                                          <input type="text" class="form-control" name="dni" placeholder="12345678A">
+                                          <input type="text" class="form-control" name="dni" pattern="[0-9]{8}[A-Z]" placeholder="12345678A" value="{{ old('dni') }}" required>
                                     </div>
                               </div>
                               <div class="col-md-7">
                                     <label class="control-label col-md-6">Fecha de nacimiento:</label>
                                     <div class="col-md-6">
-                                          <input type="date" class="form-control" name="fnac">
+                                          <input type="date" class="form-control" name="fNac" value="{{ old('fNac') }}" required>
                                     </div>
                               </div>
                         </div>
@@ -38,17 +39,17 @@
                               <label class="control-label col-md-3">Nombre y apellidos:</label>
                               <div class="col-md-9 row">
                                     <div class="col-md-6">
-                                          <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                                          <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="{{ old('nombre') }}" required>
                                     </div>
                                     <div class="col-md-6">
-                                          <input type="text" class="form-control" name="apellidos" placeholder="Apellidos">
+                                          <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" value="{{ old('apellidos') }}" required>
                                     </div>
                               </div>
                         </div>
                         <div class="form-group">
                               <label class="control-label col-md-3">Equipo:</label>
                               <div class="col-md-8">
-                                    <select class="form-control" id="equipo" placeholder="Equipo" name="equipo" required>
+                                    <select class="form-control" id="equipo" name="equipo" onchange="equipoFilter()" value="{{ old('equipo') }}" required>
                                           <option value="Equipo" disabled selected hidden>Equipo</option>
                                           @foreach($listaEquipos as $equipo)
                                           @if(old('equipo')==$equipo->id)
@@ -58,6 +59,18 @@
                                           @endif
                                           @endforeach
                                     </select>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label class="control-label col-md-3">Contraseña:</label>
+                              <div class="col-md-7">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label class="control-label col-md-3">Repite contraseña:</label>
+                              <div class="col-md-7">
+                                    <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="Repite la contraseña" required>
                               </div>
                         </div>
                   </div>
@@ -105,9 +118,12 @@
                         </div>
                         <div class="form-group">
                               <div class="col-md-8 col-md-offset-2">
-                                    <input type="number" class="form-control" name="salario" placeholder="Salario">
+                                    <input type="number" class="form-control" name="salario" id="salario" placeholder="Salario">
                               </div>
                         </div>
+                  </div>
+                  <div class="col-md-4 col-md-offset-4">
+                        <input type="submit" class="btn btn-success btn-block" value="Crear">
                   </div>
             </form>
       </div>
@@ -197,5 +213,21 @@ function cargoFilter(){
       }
 }
 window.onload = cargoFilter;
+
+function equipoFilter(){
+      var team = document.getElementById('equipo');
+      if(team.value == 1){
+            document.getElementById('salario').disabled = true;
+            document.getElementById('cargo').disabled = true;
+            document.getElementById('dorsal').disabled = true;
+      }
+      else{
+            document.getElementById('salario').disabled = false;
+            document.getElementById('cargo').disabled = false;
+            document.getElementById('dorsal').disabled = false;
+      }
+}
+
+
 </script>
 @endsection

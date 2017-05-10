@@ -89,7 +89,10 @@
                                           @else
                                           No asignado,
                                           @endif
-                                           Dorsal: {{ $usuario->dorsal}}
+
+                                          @if($equipo != 1 )
+                                          Dorsal: {{ $usuario->dorsal}}
+                                          @endif
                                     </h5>
                                     <h5>
                                           @if($usuario->cargo == '1')

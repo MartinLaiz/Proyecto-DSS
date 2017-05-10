@@ -15,7 +15,7 @@
                   @endforeach
                   </ul>
             @endif
-            <h3>Modificar jugador</h3>
+            <h3>Modificar equipo</h3>
             <form class="form-horizontal" action="{{ action('EquipoController@modificarEquipoPost',[$equipo->id]) }}" method="post">
                   {{ csrf_field() }}
                   {{ method_field('POST') }}
