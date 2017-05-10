@@ -64,8 +64,38 @@ class UsuarioController extends Controller
             );
       }
 
-      public function getUsuariosUpdate(){
+      public function getUsuariosUpdate(Request $request){
+            $equipo = $request->input('equipo','Todos');
+            $rol = $request->input('rol','0');
+            $cargo = $request->input('cargo','-1');
+            $posicion = $request->input('posicion',0);
 
+            $usuarios = Usuario::with('equipo')->where('rol','=',$rol);
+            if($rol < 3 ){
+                  if($equipo != 'Todos'){
+                        $usuarios = $usuarios->where('equipo_id','=',$equipo);
+                  }
+                  if($cargo>=0){
+                        $usuarios = $usuarios->where('cargo','=',$cargo);
+                  }
+                  if($posicion != 0){
+                        $usuarios = $usuarios->where('posicion','=',$posicion);
+                  }
+            }
+            else {
+                  $equipo = 'Todos';
+                  $cargo = -1;
+                  $posicion = 'Todas';
+            }
+
+            return view('config.usuario.listaModificar',[
+                  'usuarios' => $usuarios->paginate(18),
+                  'equipo' => $equipo,
+                  'rol' => $rol,
+                  'cargo' => $cargo,
+                  'posicion' => $posicion,
+                  'equipos' => Equipo::get()
+            ]);
       }
 
       public function getConfig(){
@@ -206,5 +236,6 @@ class UsuarioController extends Controller
             } catch (Illuminate\Database\Eloquent\ModelNotFoundException $excepcion){
 
             }
+            return Redirect::back();
       }
 }

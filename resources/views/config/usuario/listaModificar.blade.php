@@ -6,7 +6,7 @@
       <div class="col-md-10 col-md-offset-1">
             <br><br>
             <div class="row">
-                  <form action="{{ action('UsuarioController@getUsuarios') }}" method="post">
+                  <form action="{{ action('UsuarioController@getUsuariosUpdate') }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
                         <div class="form-group row">
@@ -106,6 +106,10 @@
                                           @endif
                                     </h5>
                               @endif
+                              <div class="btn-group">
+                                    <a href="{{ action('UsuarioController@getFormUpdate', $usuario->id) }}" class="btn btn-warning glyphicon glyphicon-pencil" role="button" title="Modificar"></a>
+                                    <a href="{{ action('UsuarioController@delete', $usuario->id) }}" class="btn btn-danger glyphicon glyphicon-trash" role="button" title="Borrar"></a>
+                              </div>
                         </div>
                   </div>
                   @endforeach
