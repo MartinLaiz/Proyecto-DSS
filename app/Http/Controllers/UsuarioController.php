@@ -52,13 +52,13 @@ class UsuarioController extends Controller
       }
 
       public function getFormUpdate($id){
-            return view('config.modificarUsuario', [
+            return view('config.usuario.modificar', [
                   'usuario' => Usuario::find($id)
             ]);
       }
 
       public function getFormCreate(){
-            return view('config.crearUsuario', array(
+            return view('config.usuario.crear', array(
                   'listaEquipos' => Equipo::orderBy('nombreEquipo')->get()
                   )
             );
@@ -73,26 +73,71 @@ class UsuarioController extends Controller
       }
 
       public function create(Request $request){
+            $validator = Validator::make($request->all(),[]);
+
             $usuario = new Usuario();
             $usuario->dni = $request->input('dni');
             $usuario->nombre = $request->input('nombre');
             $usuario->apellidos = $request->input('apellidos');
             $usuario->fNac = $request->input('fNac');
-            $usuario->salario = $request->input('salario');
+
             $usuario->posicion = $request->input('posicion');
+            $usuario->equipo_id = $request->input('equipo');
             $usuario->rol = $request->input('rol');
 
-            if($usuario->rol < 2){
-                  $usuario->cargo = $request->input('cargo');
+            $libre = Equipo::where('nombreEquipo','like','%Libre%')->first()->id;
+            if($usuario->rol == 0){ //Jugador
+                  if($request->equipo != $libre){
+                        if(Usuario::where('equipo_id','=',$request->equipo)->where('dorsal','=',$request->dorsal)->first() != null){
+                              $validator->getMessageBag()->add('dorsal','Existe jugador en el mismo equipo con ese dorsal');
+                        }
+                        else{
+                              $usuario->dorsal = $request->dorsal;
+                        }
+
+                        if($request->cargo != 0 && Usuario::where('equipo_id','=',$request->equipo)->where('cargo','=',$request->cargo)->first() != null){
+                              $validator->getMessageBag()->add('cargo','Existe jugador en el mismo equipo con ese cargo');
+                        }
+                        else{
+                              $usuario->cargo = $request->cargo;
+                        }
+                  }
+                  $usuario->posicion = $request->posicion;
+            }
+            elseif ($usuario->rol == 1) { //Entrenador
+                  if($request->equipo != $libre){
+                        if($request->cargo != 0 && Usuario::where('equipo_id','=',$request->equipo)->where('cargo','=',$request->cargo)->first() != null){
+                              $validator->getMessageBag()->add('cargo','Existe entrenador en el mismo equipo con ese cargo');
+                        }
+                        else{
+                              $usuario->cargo = $request->cargo;
+                        }
+                  }
+            }
+            if($usuario->rol < 3){
+                  $usuario->salario = $request->input('salario');
+            }
+            if($request->password == $request->passwordCheck ){
+                  $usuario->password = bcrypt($request->password);
+            }
+            else{
+                  $validator->getMessageBag()->add('password','Las contraseñas deben de ser iguales');
+            }
+            if($request->foto != null ){
+                  $usuario->foto = $request->foto;
+            }
+            try {
+                  $usuario->save();
+            } catch (\Illuminate\Database\QueryException $e) {
+                  $validator->getMessageBag()->add('exception',$e->getMessage());
+                  $validator->getMessageBag()->add('dni','Existe usuario con ese dni');
             }
 
-            if($usuario->rol == 0){
-                  $usuario->dorsal = $request->input('drosal');
-                  $usuario->posicion = $request->input('posicion');
-            }
 
-            $usuario->password = bcrypt($request->input('password'));
+            if($validator->getMessageBag()->count()>0) return Redirect::back()->withErrors($validator)->withInput($request->except('password'));
 
+
+            return redirect()->action('UsuarioController@getUsuario',[ 'id' => $usuario->id ]);//Probablemente ésto cambiará
       }
 
       public function update(Request $request, $id){

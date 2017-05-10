@@ -34,7 +34,7 @@ class EquipoController extends Controller
       }
 
       public function formulario(){
-            return view('config/crearEquipo');
+            return view('config.equipo.crear');
       }
 
       public function crearEquipo(Request $request){
@@ -73,13 +73,13 @@ class EquipoController extends Controller
 
       public function editar(){
             $team = Equipo::with('estadio','patrocinador')->paginate(5);
-            return view('config/editarEquipos',['lista' => $team]);
+            return view('config.equipo.editar',['lista' => $team]);
       }
 
       public function modificarEquipo($id){
             $equipo = Equipo::find($id);
             return view(
-                  'config/modificarEquipo',[
+                  'config.equipo.modificar',[
                         'equipo' => $equipo,
                         'estadio' => $equipo->estadio()->first()
                   ]
