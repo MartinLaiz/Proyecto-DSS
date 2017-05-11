@@ -97,6 +97,12 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/eliminar/partido/jugadores/{id}','ParticiparController@borrarParticipar');
             Route::post('/modificar/partido/jugadores/{id}','ParticiparController@modificarParticipar');
             Route::get('/modificar/partido/jugadores/{id}','ParticiparController@formularioModificar');
+
+
+            //competicion
+            Route::get('/introducir/competicion','CompeticionController@formularioIntertar');
+            Route::get('/editar/competicion','CompeticionController@editar');
+
       });
 
 
