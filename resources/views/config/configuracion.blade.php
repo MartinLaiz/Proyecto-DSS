@@ -43,7 +43,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th"></span> Temporada <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">                     
                               <li><a href="{{action('TemporadaController@crearTemporada')}}" data-toggle="modal">Crear</a></li>
-                              <li><a href="">Modificar</a></li>
+                              <li><a href="{{action('TemporadaController@editar')}}">Modificar</a></li>
                         </ul>
                   </li>
             </ul>

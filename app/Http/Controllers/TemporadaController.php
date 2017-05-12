@@ -51,4 +51,20 @@ class TemporadaController extends Controller
         
     }
 
+
+    public function eliminarTemporada($id){
+        $temporada = Temporada::find($id);
+        $temporada->delete();
+        return back();
+    }
+
+
+    public function editar(){
+        $temporadas = Temporada::all();
+
+        return view('config/editarTemporada',['temporadas' => $temporadas]);
+    }
+
+
+
 }
