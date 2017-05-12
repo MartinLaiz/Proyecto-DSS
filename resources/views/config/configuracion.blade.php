@@ -34,7 +34,7 @@
                   <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th"></span> Competiciones <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">                     
-                              <li><a href="#consumergoods" data-toggle="modal">Consumer goods</a></li>
+                              <li><a href="#consumergoods" data-toggle="modal">Crear</a></li>
                               <li><a href="{{action('CompeticionController@editar')}}">Modificar</a></li>
                         </ul>
                   </li>
@@ -45,7 +45,7 @@
 
 
 
-
+{{-- Competicion --}}
 <div class="modal fade" id="consumergoods" data-target="#consumergoods">
       <div class="modal-dialog">
       
@@ -55,16 +55,18 @@
                   </div>
                   <div class="modal-body">
                         <h2>Añadir una competición</h2>
-                        <form>
+                        <form action="{{action('CompeticionController@crearCompeticion')}}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('PUT') }}  
                               <div class="form-group">
-                              <label for="Username">Nombre</label>
-                              <input type="text" name="text" class="form-control">
+                                    <label for="Username">Nombre</label>
+                                    <input class="form-control"  type="text" name="nombre" id="nombre" required>
                               </div>
-                        </form>
-                  </div>
-                  <div class="modal-footer">
-                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
-                  </div>
+                        </div>
+                        <div class="modal-footer">
+                              <button class="btn btn-success btn-success" type="submit">Aceptar</button>
+                        </div>
+                  </form>
             </div>
       </div>
 </div>

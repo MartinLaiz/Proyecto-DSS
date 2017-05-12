@@ -16,14 +16,31 @@ class CompeticionController extends Controller
 {
 
 
-    public function formularioIntertar(){
-        //consigo todos los equipo
-        $equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
-        $temporada = Temporada::all();
+    public function crearCompeticion(Request $request){
+        $competicion = new Competicion();
 
-        dd($temporada->toArray());
+        $competicion->nombre = $request->nombre;
+        $competicion->save();
+
+        return back();
+        
     }
 
+    public function eliminarCompeticion($id){
+        $competicion = Competicion::find($id);
+        $competicion->delete();
+        return back();
+        
+    }
+
+    public function editarCompeticion($id,Request $request){
+        $competicion = Competicion::find($id);
+        $competicion->nombre = $request->nombre;
+        $competicion->save();
+
+        return back();
+        
+    }
 
     public function editar(){
         //consigo todos los equipo

@@ -100,8 +100,10 @@ Route::group(['prefix' => 'partido'], function(){
 
 
             //competicion
-            Route::get('/introducir/competicion','CompeticionController@formularioIntertar');
+            Route::put('/introducir/competicion','CompeticionController@crearCompeticion');
             Route::get('/editar/competicion','CompeticionController@editar');
+            Route::get('/eliminar/competicion/{id}','CompeticionController@eliminarCompeticion');
+            Route::post('/modificar/competicion/{id}','CompeticionController@editarCompeticion');
 
       });
 
