@@ -38,9 +38,30 @@
                               <li><a href="{{action('CompeticionController@editar')}}">Modificar</a></li>
                         </ul>
                   </li>
+                  </li>
+                  <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th"></span> Temporada <span class="caret"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">                     
+                              <li><a href="{{action('TemporadaController@crearTemporada')}}" data-toggle="modal">Crear</a></li>
+                              <li><a href="">Modificar</a></li>
+                        </ul>
+                  </li>
             </ul>
       </div>
 </nav>
+
+
+	    {{-- Muestra errores --}}
+
+	@if (count($errors) > 0)
+            <ul>
+            @foreach ($errors->all() as $error)
+                  <div class="alert alert-success">
+                        <a href="#" class="alert-link">{{ $error }}</a>
+                  </div>
+            @endforeach
+            </ul>
+      @endif
 
 
 
@@ -70,3 +91,7 @@
             </div>
       </div>
 </div>
+
+
+
+

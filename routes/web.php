@@ -105,6 +105,9 @@ Route::group(['prefix' => 'partido'], function(){
             Route::get('/eliminar/competicion/{id}','CompeticionController@eliminarCompeticion');
             Route::post('/modificar/competicion/{id}','CompeticionController@editarCompeticion');
 
+            Route::get('/introducir/temporada','TemporadaController@crearTemporada');
+            
+
       });
 
 
