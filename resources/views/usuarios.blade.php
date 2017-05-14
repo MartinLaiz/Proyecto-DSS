@@ -79,7 +79,7 @@
                               @elseif($usuario->rol == 0)
                                     <h5>
                                           @if($usuario->posicion == '4')
-                                          Delantero,
+                                          Delant,
                                           @elseif($usuario->posicion == '3')
                                           Medio,
                                           @elseif($usuario->posicion == '2')
@@ -110,6 +110,7 @@
                   </div>
                   @endforeach
             </div>
+            {{ $usuarios->appends(['equipo' => $equipo,'rol' => $rol,'cargo' => $cargo,'posicion' => $posicion])->links() }}
             @else
             <br>
             <div class="alert alert-info">

@@ -34,6 +34,9 @@
                                                       <input type="button" class="btn btn-primary btn-block" name="fakeFoto" onclick="document.getElementById('foto').click()" value="Elegir imagen">
                                                       <br><br>
                                                 </div>
+                                                <div>
+                                                      <button type="button" class="btn" name="button" onclick="window.history.back()"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
+                                                </div>
                                           </div>
                                           <input type="hidden" name="equipo" id="equipo" value="{{ $usuario->equipo_id }}">
                                           <div class=" col-md-9 col-lg-9 ">

@@ -58,17 +58,18 @@ class EquipoController extends Controller
 
 
       public function getEquipo($id){
-            $team = Equipo::find($id);
-            return view('equipo',[  'equipo' => $team,
-            'estadio'=> $team->estadio()->first(),
-            'jugadores'=>$team->jugadores()->get()]);
+            return view('equipo',[
+                  'equipo' => Equipo::find($id)
+            ]);
       }
 
       public function getEquipos(){
             //consigo todos los equipos con los estadios
             $team = Equipo::with('estadio','patrocinador')->paginate(5);
 
-            return view('equipos',['lista' => $team]);
+            return view('equipos',[
+                  'lista' => $team
+            ]);
       }
 
       public function editar(){
@@ -78,12 +79,10 @@ class EquipoController extends Controller
 
       public function modificarEquipo($id){
             $equipo = Equipo::find($id);
-            return view(
-                  'config.equipo.modificar',[
-                        'equipo' => $equipo,
-                        'estadio' => $equipo->estadio()->first()
-                  ]
-            );
+            return view('config.equipo.modificar',[
+                  'equipo' => $equipo,
+                  'estadio' => $equipo->estadio()->first()
+            ]);
       }
 
 
