@@ -25,7 +25,7 @@ class PartidoController extends Controller
         $equipo2    =   $request->input('equipo2','Todos');
         $temporada  =   $request->input('temporada','Todas');
         $competicion=   $request->input('competicion','Todas');
-        $results    =   $request->input('results',10);
+        $results    =   $request->input('results',15);
 
 
         //Gestión de partidos where('rol','=',$rol)

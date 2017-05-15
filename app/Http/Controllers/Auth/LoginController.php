@@ -37,4 +37,8 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+    //------Métodos extra-----------
+    public function username(){//Cambia la autenticación del email al DNI
+        return 'dni';
+    }
 }
