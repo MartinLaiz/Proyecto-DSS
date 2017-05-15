@@ -17,15 +17,15 @@
 
                         </tr>
                   <tbody>
-                  
+
                   @foreach($temporadas as $temporada)
                   <tr>
                         <th>{!!$temporada->nombre!!}</th>
-                        <th>{!!$temporada->inicio!!}</th>
-                        <th>{!!$temporada->fin!!}</th>
+                        <th>{!! date('d/m/Y',strtotime($temporada->inicio)) !!}</th>
+                        <th>{!! date('d/m/Y',strtotime($temporada->fin)) !!}</th>
 			            <th><a title="Eliminar Temporada" href="{{ action('TemporadaController@eliminarTemporada', $temporada->id)}}"  data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a></th>
-                           
-                        
+
+
                     </tr>
                     @endforeach
                   </tbody>
