@@ -94,18 +94,16 @@
                                     <input class="form-control" type="number" min="1" name="dorsal" id="dorsal" placeholder="Dorsal" value="{{ old('cargo') }}">
                               </div>
                         </div>
-                        <div class="form-group">
-                              <div class="col-md-8 col-md-offset-2">
+                        <div class="row">
+                              <div class="col-md-6">
                                     <select class="form-control" id="cargo" name="cargo" value="{{ old('cargo') }}" required>
-                                          <option value="0" selected>No capitan</option>
+                                          <option value="0" selected>Sin cargo</option>
                                           <option value="1">Primer capitan</option>
                                           <option value="2">Segundo capitan</option>
                                           <option value="3">Tercer capitan</option>
                                     </select>
                               </div>
-                        </div>
-                        <div class="form-group">
-                              <div class="col-md-8 col-md-offset-2">
+                              <div class="col-md-6">
                                     <select class="form-control" id="posicion" name="posicion" value="{{ old('posicion') }}" required>
                                           <option value="Posicion" disabled selected hidden>Posición</option>
                                           <option value="Delantero">Delantero</option>
@@ -116,8 +114,9 @@
                                     </select>
                               </div>
                         </div>
+                        <br>
                         <div class="form-group">
-                              <div class="col-md-8 col-md-offset-2">
+                              <div class="col-md-10 col-md-offset-1">
                                     <input type="number" class="form-control" name="salario" id="salario" placeholder="Salario">
                               </div>
                         </div>

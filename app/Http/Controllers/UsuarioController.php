@@ -156,18 +156,18 @@ class UsuarioController extends Controller
             if($request->foto != null ){
                   $usuario->foto = $request->foto;
             }
-            try {
-                  $usuario->save();
-            } catch (\Illuminate\Database\QueryException $e) {
-                  $validator->getMessageBag()->add('exception',$e->getMessage());
-                  $validator->getMessageBag()->add('dni','Existe usuario con ese dni');
+            if($validator->getMessageBag()->count() <= 0){
+                  try {
+                        $usuario->save();
+                  } catch (\Illuminate\Database\QueryException $e) {
+                        $validator->getMessageBag()->add('dni','Existe usuario con ese dni');
+                  }
+            }
+            if($validator->getMessageBag()->count() > 0){
+                  return Redirect::back()->withErrors($validator)->withInput($request->except('password'));
             }
 
-
-            if($validator->getMessageBag()->count()>0) return Redirect::back()->withErrors($validator)->withInput($request->except('password'));
-
-
-            return redirect()->action('UsuarioController@getUsuario',[ 'id' => $usuario->id ]);//Probablemente ésto cambiará
+            return redirect()->action('UsuarioController@getUsuario',[ 'id' => $usuario->id ]);
       }
 
       public function update(Request $request, $id){
