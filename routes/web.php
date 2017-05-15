@@ -10,15 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
 
-Route::get('/', function () {
-      return view('index');
-});
-
-
-
-Route::get('/home', 'EquipoController@getHome');
+Route::get('/', 'EquipoController@getHome');
+Route::get('/login', 'EquipoController@getHome');
+Route::get('/register', 'EquipoController@getHome');
 
 /*
 █  █ █▀▀ █  █ █▀▀█ █▀▀█  ▀  █▀▀█
@@ -56,7 +51,7 @@ Route::group(['prefix' => 'partido'], function(){
 });
 
 
-//Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function(){
       /*
       █▀▀ █▀▀█ █▀▀▄ █▀▀  ▀  █▀▀▀
       █   █  █ █  █ █▀▀ ▀█▀ █ ▀█
@@ -116,4 +111,11 @@ Route::group(['prefix' => 'partido'], function(){
       Route::group(['prefix' => 'admin'], function(){
 
       });
-//});
+});
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
