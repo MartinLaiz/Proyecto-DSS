@@ -53,7 +53,6 @@ class RegisterController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
     }
-             'dni' => 'required|min:9|max:9|unique:usuarios',
 
     /**
      * Create a new user instance after a valid registration.
