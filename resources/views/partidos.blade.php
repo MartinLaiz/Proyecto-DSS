@@ -53,36 +53,49 @@
                                     <div class="col-lg-3 col-md-4 col-sm-5 text-center" style="display: none">
                                           <input class="form-control" type="number" name="results" id="results">
                                     </div>
-                              <div class="col-lg-3 col-md-4 col-sm-2 text-center">
+                              <div class="col-lg-3 col-md-4 col-sm-2 text-center hidden-xs">
                                     <button class="btn btn-success btn-block" type="submit">Filtrar</button>
                               </div>
                         </div>
+                        <div class="row visible-xs">
+                                    <button class="btn btn-success btn-block" type="submit">Filtrar</button>
+                              </div>
                   </form>
             </div>
-            {{$partidos->appends(['equipo1' => $equipo1, 'equipo2' => $equipo2,'temporada' => $temporada,'competicion' => $competicion,'results'=>$results])->links()}}
+            <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
+                  {{$partidos->appends(['equipo1' => $equipo1, 'equipo2' => $equipo2,'temporada' => $temporada,'competicion' => $competicion,'results'=>$results])->links()}}
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <br class="hidden-xs">
+            @if($partidos->count() > 0)
+                  <select class="form-control" name="resultsNumber" id="resultsNumber" onchange="cambiarPaginacion()">
+                        <option value=5 @if($results == 5) selected @endif>5 resultados por página</option>
+                        <option value=10 @if($results == 10) selected @endif>10 resultados por página</option>
+                        <option value=15 @if($results == 15 || $results == null) selected @endif>15 resultados por página</option>
+                        <option value=30 @if($results == 30) selected @endif>30 resultados por página</option>
+                        <option value=50 @if($results == 50) selected @endif>50 resultados por página</option>
+                  </select>
+                  @endif
+            </div>
+           
+            </div>
+            
             @if($partidos->count() > 0)
             <div class="row">
-                  <div>
-                        <select class="form-control" name="resultsNumber" id="resultsNumber" onchange="cambiarPaginacion()">
-                              <option value=5 @if($results == 5) selected @endif>5 resultados por página</option>
-                              <option value=10 @if($results == 10) selected @endif>10 resultados por página</option>
-                              <option value=15 @if($results == 15 || $results == null) selected @endif>15 resultados por página</option>
-                              <option value=30 @if($results == 30) selected @endif>30 resultados por página</option>
-                              <option value=50 @if($results == 50) selected @endif>50 resultados por página</option>
-                        </select>
-                  </div>
+                 
             </div>
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
                               <th class="visible-xs">Local</th>
                               <th class="hidden-xs">Equipo Local</th>
-                              <th class="visible-xs">Visitante</th>
-                              <th class="hidden-xs">Equipo Visitante</th>
-                              <th>Estadio</th>
                               <th class="hidden-xs">Goles Local</th>
                               <th class="hidden-xs">Goles Visitante</th>
                               <th class="visible-xs">Resultado</th>
+                              <th class="visible-xs">Visitante</th>
+                              <th class="hidden-xs">Equipo Visitante</th>
+                              <th>Estadio</th>
                               <th class="hidden-xs">Competición</th>
                               <th class="hidden-xs">Temporada</th>
                                
@@ -93,11 +106,11 @@
                    @foreach($partidos as $partido)
                     <tr>
                         <td>{!!$partido->equipoLocal->nombreEquipo!!}</td>
-                        <td>{!!$partido->equipoVisitante->nombreEquipo!!}</td>
-                        <td>{!!$partido->estadio->nombre!!}</td>
                         <td class="hidden-xs text-center">{!!$partido->golesLocal!!}</td>
                         <td class="hidden-xs text-center">{!!$partido->golesVisitante!!}</td>
                         <td class="visible-xs text-center">{!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
+                        <td>{!!$partido->equipoVisitante->nombreEquipo!!}</td>
+                        <td>{!!$partido->estadio->nombre!!}</td>
                         <td class="hidden-xs">{!!$partido->competicion->nombre!!}</td>
                         <td class="hidden-xs">{!!$partido->temporada->nombre!!}</td>
                     </tr>
@@ -109,7 +122,7 @@
             <div class="alert alert-info">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
                   <strong>
-                  @if($equipo1 != $equipo2)
+                  @if($equipo1 == 'Todos')
                      No hay partidos así, prueba con otro filtro.
                      <br>
                      Sino siempre puedes <a href="javascript:restablecerFiltro()">restablecer el filtro</a>.

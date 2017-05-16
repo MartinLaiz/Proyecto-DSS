@@ -8,10 +8,9 @@
       <div class="col-md-10 col-md-offset-1">
             <h2>Partidos</h2>
             {{ $partidos->links() }}
-            <table class="table table-striped table-responsive" cellspacing="0" width="100%">
+            <table class="table table-striped table-hover table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
-                              <th>Partido</th>
                               <th>Equipo Local</th>
                               <th>Equipo Visitante</th>
                               <th>Estadio</th>
@@ -24,16 +23,15 @@
                   <tbody>
                   
                   @foreach($partidos as $partido)
-                  <tr>
+                  <tr onclick="window.location.href = '{{ action('ParticiparController@verParticipar', $partido->id)}}';">
 
-                        <td><a href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->id!!}</a></td>
-                        <th>{!!$partido->equipoLocal->nombreEquipo!!}</th>
-                        <th>{!!$partido->equipoVisitante->nombreEquipo!!}</th>
-                        <th>{!!$partido->estadio->nombre!!}</th>
-                        <th>{!!$partido->golesLocal!!}</th>
-                        <th>{!!$partido->golesVisitante!!}</th>
-                        <th>{!!$partido->competicion->nombre!!}</th>
-                        <th>{!!$partido->temporada->nombre!!}</th>
+                        <td>{!!$partido->equipoLocal->nombreEquipo!!}</th>
+                        <td>{!!$partido->equipoVisitante->nombreEquipo!!}</th>
+                        <td>{!!$partido->estadio->nombre!!}</th>
+                        <td>{!!$partido->golesLocal!!}</th>
+                        <td>{!!$partido->golesVisitante!!}</th>
+                        <td>{!!$partido->competicion->nombre!!}</th>
+                        <td>{!!$partido->temporada->nombre!!}</th>
                         <td>
                               <div class="btn-group ">
                                     <a href="{{ action('PartidoController@formularioModificar', $partido->id)}}" 
@@ -47,7 +45,7 @@
                               </div>
                         </td>
                         
-                    </tr>
+                    </t>
                     @endforeach
                   </tbody>
             </table>
