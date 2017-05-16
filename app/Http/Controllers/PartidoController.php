@@ -85,7 +85,7 @@ class PartidoController extends Controller
         $partidos = Partido::with('competicion','temporada',
         'equipoLocal','equipoVisitante','estadio')->paginate(10);
 
-
+        #dd($partidos->toArray());
         return view('config/partido/editarPartidos', [
                 'partidos' => $partidos]);
     }
@@ -178,12 +178,12 @@ class PartidoController extends Controller
 
 
     public function formularioModificar($id){
-
+        
         $equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
         $temporadas = Temporada::with('partido')->get();
-
+        
         $competiciones = Competicion::with('partido')->get();
-
+        
         return view ('config/partido/modificarPartido',[ 'competiciones' => $competiciones,
         'equipos' => $equipos,'temporadas' => $temporadas, 'idmodificar' => $id]);
     }

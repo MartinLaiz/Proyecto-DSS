@@ -24,30 +24,32 @@
                   <tbody>
                   
                   @foreach($partidos as $partido)
-                  <tr>
+                        @if($partido->temporada != null && $partido->competicion != null)
+                        <tr>
 
-                        <td><a href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->id!!}</a></td>
-                        <th>{!!$partido->equipoLocal->nombreEquipo!!}</th>
-                        <th>{!!$partido->equipoVisitante->nombreEquipo!!}</th>
-                        <th>{!!$partido->estadio->nombre!!}</th>
-                        <th>{!!$partido->golesLocal!!}</th>
-                        <th>{!!$partido->golesVisitante!!}</th>
-                        <th>{!!$partido->competicion->nombre!!}</th>
-                        <th>{!!$partido->temporada->nombre!!}</th>
-                        <td>
-                              <div class="btn-group ">
-                                    <a href="{{ action('PartidoController@formularioModificar', $partido->id)}}" 
-                                          class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
-                                          role="button" title="Modificar">
-                                    </a>
-                                    <a href="{{ action('PartidoController@eliminarPartido', $partido->id) }}" 
-                                          class="btn btn-danger btn-block glyphicon glyphicon-trash" 
-                                          role="button" title="Borrar">
-                                    </a>
-                              </div>
-                        </td>
-                        
-                    </tr>
+                              <td><a href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->id!!}</a></td>
+                              <th>{!!$partido->equipoLocal->nombreEquipo!!}</th>
+                              <th>{!!$partido->equipoVisitante->nombreEquipo!!}</th>
+                              <th>{!!$partido->estadio->nombre!!}</th>
+                              <th>{!!$partido->golesLocal!!}</th>
+                              <th>{!!$partido->golesVisitante!!}</th>
+                              <th>{!!$partido->competicion->nombre!!}</th>
+                              <th>{!!$partido->temporada->nombre!!}</th>
+                              <td>
+                                    <div class="btn-group ">
+                                          <a href="{{ action('PartidoController@formularioModificar', $partido->id)}}" 
+                                                class="btn btn-warning btn-block btn-sm  glyphicon glyphicon-pencil" 
+                                                role="button" title="Modificar">
+                                          </a>
+                                          <a href="{{ action('PartidoController@eliminarPartido', $partido->id) }}" 
+                                                class="btn btn-danger btn-block glyphicon glyphicon-trash" 
+                                                role="button" title="Borrar">
+                                          </a>
+                                    </div>
+                              </td>
+                              
+                        </tr>
+                        @endif
                     @endforeach
                   </tbody>
             </table>
