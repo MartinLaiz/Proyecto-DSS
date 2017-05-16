@@ -28,8 +28,15 @@ class CompeticionController extends Controller
 
     public function eliminarCompeticion($id){
         $competicion = Competicion::find($id);
+        //borramos los partidos que hay en esa competicion
+        $partidos = Partido::where('competicion_id','=',$id)->get();
+        foreach($partidos as $partido){
+            $partido->delete();
+        }
+
         $competicion->delete();
         return back();
+        
         
     }
 
@@ -45,7 +52,7 @@ class CompeticionController extends Controller
     public function editar(){
         //consigo todos los equipo
         $competiciones = Competicion::all();
-    
+        
         return view('config/competicion/editarCompeticion',['competiciones' => $competiciones]);
     }
 
