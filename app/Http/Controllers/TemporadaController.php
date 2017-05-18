@@ -18,51 +18,57 @@ class TemporadaController extends Controller
 
 
     public function crearTemporada(Request $request){
-        //cogemos la ultima temporada
-        $temporada = Temporada::orderby('nombre','desc')->first();
-        if($temporada != null){
-            $numeros = explode("/",  $temporada ->nombre);
-            $num1 = $numeros[0] + 1;
-            $num2 = $numeros[1] + 1;
 
-            $temporada = New Temporada();
-
-            // 'inicio'=>'2016-08-01', 'fin' => '2017-06-30']
-            $valor1= $num1;
-            $valor1=trim($valor1);
-            $valor2= $num2;
-            $valor2=trim($valor2);
-            $temporada->nombre = $valor1 . "/" . $valor2;
-            
-            $valor1 = "20" . $valor1;
-            $temporada->inicio = $valor1 ."-08-01";
-
-            $valor2 = "20" .$valor2;
-            $temporada->fin = $valor2 ."-06-30";
-            $temporada->save();
-
-            $validator = Validator::make($request->all(), [
-            'title' => '2',
-            'body' => '2',
-            ]);
-            $validator->getMessageBag()->add('unique','Se ha creado la temporada ' . $temporada->nombre);
-            return back()->withErrors($validator)->withInput();
-        }else{
-            $fecha = Carbon::now();
-            $year = explode(" ",  $fecha);
-            $fecha= new DateTime($year[0]);
-            $inicio = new DateTime('2016-08-01');
-
-            if($fecha >= $inicio){
-                dd(1);
-
-            }else{
-   
+        $fecha = explode("-",  $request->inicio);
+        //me quedo con el año
+        $aux = $fecha[0];
+        $year1 = "";
+        for($i= 0;$i < strlen($aux);$i++){
+            //recojo los dos ultimos digitos para el año
+            if( strlen($aux)- $i <= 2){
+                $year1 =  $year1 . $aux[$i];
             }
-
         }
 
+        $fecha = explode("-",  $request->fin);
+        //me quedo con el año
+        $aux = $fecha[0];
+        $year2 = "";
+        for($i= 0;$i < strlen($aux);$i++){
+            //recojo los dos ultimos digitos para el año
+            if( strlen($aux)- $i <= 2){
+                $year2 =  $year2 . $aux[$i];
+            }
+        }
 
+        //si la temporada se hace en el mismo año da error
+        if($year1 == $year2){
+             $validator = Validator::make($request->all(), [
+                'title' => '2',
+                'body' => '2',
+                ]);
+                $validator->getMessageBag()->add('unique','Error, las fechas inicio y fin tiene que ser de años distintos.');
+                return back()->withErrors($validator)->withInput();
+        }else{
+            try{
+                $yearName = $year1 . "/" . $year2;
+                $temporada = New Temporada();
+
+                $temporada->nombre = $yearName;
+                $temporada->inicio = $request->inicio;
+                $temporada->fin = $request->fin;
+                $temporada->save();
+                return back();
+            }catch(\Illuminate\Database\QueryException $e){
+                $validator = Validator::make($request->all(), [
+                'title' => '2',
+                'body' => '2',
+                ]);
+                $validator->getMessageBag()->add('unique','Error, ya existe esa temporada.');
+                return back()->withErrors($validator)->withInput();
+            }
+            
+        }
         
     }
 

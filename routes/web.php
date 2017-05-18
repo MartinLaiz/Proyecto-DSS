@@ -104,7 +104,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('/modificar/competicion/{id}','CompeticionController@editarCompeticion');
 
             //Temporada
-            Route::get('/introducir/temporada','TemporadaController@crearTemporada');
+            Route::put('/introducir/temporada','TemporadaController@crearTemporada');
             Route::get('/editar/temporada','TemporadaController@editar');
             Route::get('/eliminar/temporada/{id}','TemporadaController@eliminarTemporada');
 

@@ -1,3 +1,23 @@
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" href="css/datepicker.css"/>
+<script>
+$(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+            format: 'yyyy/mm/dd',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+      };
+      date_input.datepicker(options);
+})
+</script>
+
+
 <nav class="navbar navbar-default sidebar" role="navigation" >
       <div class="container-fluid">
             <div class="navbar-header">
@@ -56,7 +76,7 @@
 	@if (count($errors) > 0)
             <ul>
             @foreach ($errors->all() as $error)
-                  <div class="alert alert-success">
+                  <div class="alert alert-danger">
                         <a href="#" class="alert-link">{{ $error }}</a>
                   </div>
             @endforeach
@@ -106,15 +126,15 @@
                   
                   <div class="modal-body">
                         <h2> Crear Temporada </h2>
-                        <form action="" method="POST">
+                         <form action="{{action('TemporadaController@crearTemporada')}}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}  
                               <div class="row form-group">
                                     <div class="col-md-6">
-                                          <input class="form-control" onfocus="(this.type='date')" id="fecha" name="fecha" placeholder="Inicio de la temporada" type="text" required/>
+                                          <input class="form-control" onfocus="(this.type='date')" id="fecha" name="inicio" placeholder="Inicio de la temporada" type="text" required/>
                                     </div>
                                     <div class="col-md-6">
-                                          <input class="form-control" onfocus="(this.type='date')" id="fecha" name="fecha" placeholder="Fin de la temporada" type="text" required/>
+                                          <input class="form-control" onfocus="(this.type='date')" id="fecha" name="fin" placeholder="Fin de la temporada" type="text" required/>
                                     </div>
                               </div>
                         </div>
