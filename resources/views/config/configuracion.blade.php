@@ -71,7 +71,7 @@ $(document).ready(function(){
 </nav>
 
 
-	    {{-- Muestra errores --}}
+      {{-- Muestra errores --}}
 
 	@if (count($errors) > 0)
             <ul>

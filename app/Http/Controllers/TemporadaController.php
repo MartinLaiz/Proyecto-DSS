@@ -75,6 +75,10 @@ class TemporadaController extends Controller
 
     public function eliminarTemporada($id){
         $temporada = Temporada::find($id);
+        $partidos = Partido::where('temporada_id','=',$id)->get();
+        foreach($partidos as $partido){
+            $partido->delete();
+        }
         $temporada->delete();
         return back();
     }
