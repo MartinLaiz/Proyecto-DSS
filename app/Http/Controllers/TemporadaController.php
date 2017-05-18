@@ -57,7 +57,7 @@ class TemporadaController extends Controller
                 dd(1);
 
             }else{
-                dd(1);
+   
             }
 
         }
