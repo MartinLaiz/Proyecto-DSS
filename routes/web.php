@@ -84,6 +84,7 @@ Route::group(['middleware' => 'auth'], function(){
             //Partido
             Route::get('/eliminar/partido/{id}','PartidoController@eliminarPartido');
             Route::get('/editar/partidos','PartidoController@editarPartidos');
+            Route::post('/editar/partidos','PartidoController@editarPartidos');
             Route::get('/crear/partido','PartidoController@formularioInsertar');
             Route::put('/crear/partido','PartidoController@crearPartido');
             Route::post('/modidificar/partido/{id}','PartidoController@modificarPartido');

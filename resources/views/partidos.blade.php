@@ -88,12 +88,14 @@
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
-                              <th class="visible-xs">Local</th>
+                              <th class="visible-lg">Logo</th>
                               <th class="hidden-xs">Equipo Local</th>
                               <th class="hidden-xs">Goles Local</th>
-                              <th class="hidden-xs">Goles Visitante</th>
+                              <th class="visible-xs">Local</th>
                               <th class="visible-xs">Resultado</th>
                               <th class="visible-xs">Visitante</th>
+                              <th class="hidden-xs">Goles Visitante</th>
+                              <th class="visible-lg">Logo</th>
                               <th class="hidden-xs">Equipo Visitante</th>
                               <th>Estadio</th>
                               <th class="hidden-xs">Competición</th>
@@ -105,10 +107,12 @@
                   <tbody>
                    @foreach($partidos as $partido)
                     <tr>
+                        <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoLocal->logo)}}" alt="Logo" width=100%></td>
                         <td>{!!$partido->equipoLocal->nombreEquipo!!}</td>
-                        <td class="hidden-xs text-center">{!!$partido->golesLocal!!}</td>
-                        <td class="hidden-xs text-center">{!!$partido->golesVisitante!!}</td>
-                        <td class="visible-xs text-center">{!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
+                        <td class="hidden-xs">{!!$partido->golesLocal!!}</td>
+                        <td class="hidden-xs">{!!$partido->golesVisitante!!}</td>
+                        <td class="visible-xs">{!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
+                        <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoVisitante->logo)}}" alt="Logo" width=100%></td>
                         <td>{!!$partido->equipoVisitante->nombreEquipo!!}</td>
                         <td>{!!$partido->estadio->nombre!!}</td>
                         <td class="hidden-xs">{!!$partido->competicion->nombre!!}</td>
