@@ -26,8 +26,8 @@
                         @foreach($competiciones as $competicion)
                         <tr>
                               <th>{!!$competicion->nombre!!}</th>
-                              <th><a  data-toggle="modal" title="Modificar Partido" href="#editarCompeticion" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a></th>
-                              <th><a title="Eliminar Partido" href="{{ action('CompeticionController@eliminarCompeticion', $competicion->id)}}"  data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a></th>
+                              <th><a  data-toggle="modal" title="Modificar competicion" href="#editarCompeticion" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a></th>
+                              <th><a title="Eliminar competicion" href="{{ action('CompeticionController@eliminarCompeticion', $competicion->id)}}"  data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a></th>
                               
                               
                         </tr>
