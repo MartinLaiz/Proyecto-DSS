@@ -14,7 +14,7 @@
                         <div class="panel-body">
                               <div class="row">
                                     <div class="col-md-3 col-lg-3 " align="center">
-                                          <img alt="User Pic" src="/images/users/{{ $usuario->dni }}.png" onerror="this.src = '/images/users/defaultUser.png'" class="img-circle img-responsive">
+                                          <img alt="User Pic" src="{{URL::asset('images/users/').'/'.$usuario->foto}}" onerror="this.src = '/images/users/defaultUser.png'" class="img-circle img-responsive">
                                     </div>
                                     <div class=" col-md-9 col-lg-9 ">
                                           <table class="table table-user-information">

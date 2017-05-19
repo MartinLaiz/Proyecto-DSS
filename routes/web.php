@@ -63,7 +63,7 @@ Route::group(['middleware' => 'auth'], function(){
       Route::group(['prefix' => 'config'], function () {
             Route::get('/','UsuarioController@getConfig');
 
-            // jugador
+            // Usuario
             Route::group(['prefix' => 'usuario'], function(){
                   Route::get('create','UsuarioController@getFormCreate');
                   Route::post('create','UsuarioController@create');

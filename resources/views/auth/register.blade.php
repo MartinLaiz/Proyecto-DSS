@@ -12,25 +12,25 @@
                         <div class="form-group">
                               <label class="col-md-3 control-label">DNI</label>
                               <div class="col-md-9">
-                                    <input id="dni" type="text" class="form-control" name="dni" placeholder="DNI" required>
+                                    <input id="dni" type="text" class="form-control" name="dni" value="{{ old('dni') }}" placeholder="DNI" required>
                               </div>
                         </div>
                         <div class="form-group">
                               <label class="col-md-3 control-label">Nombre</label>
                               <div class="col-md-9">
-                                    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+                                    <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" placeholder="Nombre" required>
                               </div>
                         </div>
                         <div class="form-group">
                               <label class="col-md-3 control-label">Apellidos</label>
                               <div class="col-md-9">
-                                    <input id="apellidos" type="text" class="form-control" name="apellidos" placeholder="Apellidos" required>
+                                    <input id="apellidos" type="text" class="form-control" name="apellidos" value="{{ old('apellidos') }}" placeholder="Apellidos" required>
                               </div>
                         </div>
                         <div class="form-group">
                               <label class="col-sm-4 control-label">Fecha de nacimiento</label>
                               <div class="col-md-8">
-                                    <input id="fNac" type="date" class="form-control" name="fNac" placeholder="Fecha" required>
+                                    <input id="fNac" type="date" class="form-control" name="fNac" value="{{ old('fNac') }}" placeholder="Fecha" required>
                               </div>
                         </div>
                         <div class="form-group">

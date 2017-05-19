@@ -218,7 +218,9 @@ class UsuarioController extends Controller
                   $usuario->password = bcrypt($request->password);
             }
             if($request->foto != null ){
-                  $usuario->foto = $request->foto;
+                  $destino='images/users';
+                  $usuario->foto = $usuario->dni.'.'.$request->foto->getClientOriginalExtension();
+                  $request->foto->move($destino,$usuario->dni.'.'.$request->foto->getClientOriginalExtension());
             }
             try {
                   $usuario->save();

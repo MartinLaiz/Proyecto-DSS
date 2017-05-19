@@ -21,12 +21,12 @@
                         </div>
                         <div class="panel-body">
                               <div class="row">
-                                    <form action="{{ action('UsuarioController@update', $usuario->id) }}" method="POST">
+                                    <form action="{{ action('UsuarioController@update', $usuario->id) }}" method="POST" enctype="multipart/form-data">
                                           {{ csrf_field() }}
                                           {{ method_field('POST') }}
                                           <div class="col-md-3 col-lg-3 " align="center">
                                                 <div class="col-md-12 col-lg-12">
-                                                      <img alt="User Pic" src="/images/users/{{ $usuario->dni }}.png" onerror="this.src = '/images/users/defaultUser.png'" class="img-circle img-responsive">
+                                                      <img alt="User Pic" src="{{URL::asset('images/users/').'/'.$usuario->foto}}" onerror="this.src = '/images/users/defaultUser.png'" class="img-circle img-responsive">
                                                 </div>
                                                 <div class="col-md-12 col-lg-12">
                                                       <input style="display:none" type="file" name="foto" id="foto" value="foto">
