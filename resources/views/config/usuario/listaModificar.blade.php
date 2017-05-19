@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Plantilla')
+@section('title', 'Configuración: Usuarios')
 @section('content')
 @include('cabecera',array('section'=>'plantilla'))
 <div class="contenedor row">
@@ -10,7 +10,7 @@
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
                         <div class="form-group row">
-                              <div class="col-lg-3 col-md-4 col-sm-4">
+                              <div class="col-lg-3 col-md-6 col-sm-6">
                                     <select class="form-control" name="equipo" id="equipo">
                                           <option value="Todos" @if( $equipo == 'Todos') selected @endif >Todos los equipos</option>
                                           @foreach($equipos as $unEquipo)
@@ -18,7 +18,7 @@
                                           @endforeach
                                     </select>
                               </div>
-                              <div class="col-lg-3 col-md-4 col-sm-4">
+                              <div class="col-lg-3 col-md-6 col-sm-6">
                                     <select class="form-control" onchange="cargoFilter()" name="rol" id="rol">
                                           <option value="0" @if($rol == 0) selected @endif>Jugadores</option>
                                           <option value="1" @if($rol == 1) selected @endif>Entrenadores</option>
@@ -26,7 +26,7 @@
                                           <option value="3" @if($rol == 3) selected @endif>Administradores</option>
                                     </select>
                               </div>
-                              <div class="col-lg-3 col-md-4 col-sm-4">
+                              <div class="col-lg-3 col-md-6 col-sm-6">
                                     <select class="form-control" name="cargo" id="cargo">
                                           <option value="-1" @if($cargo == -1) selected @endif >Todos los cargos</option>
                                           <option value="0"  @if($cargo == 0) selected @endif >Sin cargo</option>
@@ -35,7 +35,7 @@
                                           <option value="3"  @if($cargo == 3) selected @endif >Tercer capitan</option>
                                     </select>
                               </div>
-                              <div class="col-lg-3 col-md-4 col-sm-4">
+                              <div class="col-lg-3 col-md-6 col-sm-6">
                                     <select class="form-control" name="posicion" id="posicion">
                                           <option value="0" @if($posicion == -1) selected @endif >Todas las posiciones</option>
                                           <option value="4" @if($posicion == 4) selected @endif >Delantero</option>
@@ -51,7 +51,7 @@
                   </form>
             </div>
             <br>
-            {{ $usuarios->appends(['equipo' => $equipo,'rol' => $rol,'cargo' => $cargo,'posicion' => $posicion])->links() }}
+            <div class="hidden-xs">{{ $usuarios->appends(['equipo' => $equipo,'rol' => $rol,'cargo' => $cargo,'posicion' => $posicion])->links() }}</div>
             @if(count($usuarios) > 0)
             <div class="row" id="jugadores">
                   @foreach($usuarios as $usuario)

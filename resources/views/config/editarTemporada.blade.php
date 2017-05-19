@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Partidos')
+@section('title', 'Configuración: Temporadas')
 @section('content')
 @include('cabecera',array('section'=>'partidos'))
 
