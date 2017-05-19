@@ -9,11 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Usuario extends Authenticatable
 {
       use Notifiable;
-      /**
-       * The attributes that should be hidden for arrays.
-       *
-       * @var array
-       */
+
+
       protected $hidden = [
           'password', 'remember_token',
       ];
@@ -25,7 +22,6 @@ class Usuario extends Authenticatable
       public function equipo(){
             return $this->belongsTo('App\Equipo');
       }
-
 
       public function participar(){
             return $this->hasMany('App\Participar');
