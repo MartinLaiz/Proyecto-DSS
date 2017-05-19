@@ -17,6 +17,8 @@ class UsuarioController extends Controller
             $rol = $request->input('rol','0');
             $cargo = $request->input('cargo','-1');
             $posicion = $request->input('posicion',0);
+            $nombre = $request->input('nombre','Todos');
+
             if($rol != 3 ){
                   if($rol == -1){
                         $usuarios = Usuario::with('equipo');
@@ -39,6 +41,9 @@ class UsuarioController extends Controller
                   $cargo = -1;
                   $posicion = 'Todas';
             }
+            if($nombre != 'Todos'){
+                  $usuarios = $usuarios->where('nombre','like','%'.$nombre.'%');
+            }
 
             return view('usuarios',[
                   'usuarios' => $usuarios->paginate(18),
@@ -46,7 +51,8 @@ class UsuarioController extends Controller
                   'rol' => $rol,
                   'cargo' => $cargo,
                   'posicion' => $posicion,
-                  'equipos' => Equipo::get()
+                  'equipos' => Equipo::get(),
+                  'nombre' => $nombre
             ]);
       }
 
