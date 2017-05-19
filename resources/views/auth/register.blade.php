@@ -1,90 +1,67 @@
-@extends('layouts.app')
-
+@extends('layouts.master')
+@section('title', 'Registro')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Registro</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                            <label for="nombre" class="col-md-4 control-label">Nombre</label>
-
-                            <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required autofocus>
-
-                                @if ($errors->has('nombre'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('nombre') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('apellidos') ? ' has-error' : '' }}">
-                            <label for="apellidos" class="col-md-4 control-label">Apellidos</label>
-
-                            <div class="col-md-6">
-                                <input id="apellidos" type="text" class="form-control" name="apellidos" value="{{ old('apellidos') }}" required>
-
-                                @if ($errors->has('apellidos'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('apellidos') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
-                            <label for="dni" class="col-md-4 control-label">DNI</label>
-
-                            <div class="col-md-6">
-                                <input id="dni" type="text" class="form-control" name="dni" value="{{ old('dni') }}" required>
-
-                                @if ($errors->has('dni'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('dni') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirmar contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Registrarse
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<div class="flex-center position-ref full-height">
+      <div class="col-md-6">
+            <div>
+                  <img class="thumbnail img-responsive center-block" src="/images/Logo.png" alt="Logo FootballManager">
             </div>
-        </div>
-    </div>
+            <div>
+                  <form role="form" action="{{ route('register') }}" method="post" class="form-horizontal well well-sm">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                              <label class="col-md-3 control-label">DNI</label>
+                              <div class="col-md-9">
+                                    <input id="dni" type="text" class="form-control" name="dni" placeholder="DNI" required>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label class="col-md-3 control-label">Nombre</label>
+                              <div class="col-md-9">
+                                    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label class="col-md-3 control-label">Apellidos</label>
+                              <div class="col-md-9">
+                                    <input id="apellidos" type="text" class="form-control" name="apellidos" placeholder="Apellidos" required>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label class="col-sm-4 control-label">Fecha de nacimiento</label>
+                              <div class="col-md-8">
+                                    <input id="fNac" type="date" class="form-control" name="fNac" placeholder="Fecha" required>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label class="col-md-3 control-label">Contraseña</label>
+                              <div class="col-md-9">
+                                    <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña" required>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label class="col-sm-4 control-label">Repite contraseña</label>
+                              <div class="col-md-8">
+                                    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Contraseña" required>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <div class="col-md-6 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success btn-block"> Crear cuenta </button>
+                              </div>
+                        </div>
+                        @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                              <button type="button" class="close" data-dismiss="alert">&times;</button>
+                              @foreach ($errors->all() as $message)
+                              <strong>Error! </strong>{{$message}}
+                              <br>
+                              @endforeach
+                        </div>
+                        @endif
+                  </form>
+
+            </div>
+      </div>
 </div>
 @endsection

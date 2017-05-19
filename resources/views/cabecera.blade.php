@@ -40,8 +40,9 @@
                         @else
                         <li class="dropdown">
                         @endif
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi perfil <span class="caret"></span></a>
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->nombre }} <span class="caret"></span></a>
                               <ul class="dropdown-menu">
+                                    <li><a href="{{action('UsuarioController@getUsuario',Auth::user()->id)}}">Mi perfil</a></li>
                                     <li><a href="{{action('EquipoController@editar')}}">Configuración</a></li>
                                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li>
                               </ul>

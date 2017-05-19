@@ -20,6 +20,7 @@
                               </div>
                               <div class="col-lg-3 col-md-4 col-sm-4">
                                     <select class="form-control" onchange="cargoFilter()" name="rol" id="rol">
+                                          <option value="-1" @if($rol == -1) selected @endif>Todos los usuarios</option>
                                           <option value="0" @if($rol == 0) selected @endif>Jugadores</option>
                                           <option value="1" @if($rol == 1) selected @endif>Entrenadores</option>
                                           <option value="2" @if($rol == 2) selected @endif>Director</option>

@@ -11,7 +11,7 @@
                         {{ csrf_field() }}
                         <div class="row col-md-9">
                               <div class="col-md-6">
-                                    <input type="text" id="dni" type="text" class="form-control" name="dni" placeholder="Usuario">
+                                    <input id="dni" type="text" class="form-control" name="dni" placeholder="Usuario">
                               </div>
                               <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña">

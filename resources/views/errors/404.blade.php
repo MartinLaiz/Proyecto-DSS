@@ -1,1 +1,1 @@
-Route not foun
+Route not found

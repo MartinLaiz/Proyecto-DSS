@@ -8,6 +8,7 @@ use Validator;
 use Redirect;
 use App\Usuario;
 use App\Equipo;
+use Auth;
 
 class UsuarioController extends Controller
 {
@@ -16,9 +17,13 @@ class UsuarioController extends Controller
             $rol = $request->input('rol','0');
             $cargo = $request->input('cargo','-1');
             $posicion = $request->input('posicion',0);
-
-            $usuarios = Usuario::with('equipo')->where('rol','=',$rol);
-            if($rol < 3 ){
+            if($rol != 3 ){
+                  if($rol == -1){
+                        $usuarios = Usuario::with('equipo');
+                  }
+                  else{
+                        $usuarios = Usuario::with('equipo')->where('rol','=',$rol);
+                  }
                   if($equipo != 'Todos'){
                         $usuarios = $usuarios->where('equipo_id','=',$equipo);
                   }
