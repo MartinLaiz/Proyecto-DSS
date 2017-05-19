@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Perfil de jugador')
+@section('title', $usuario->nombre.' '.$usuario->apellidos)
 @section('content')
 @include('cabecera',array('section'=>'plantilla'))
 
@@ -83,39 +83,41 @@
                                                                   </td>
                                                             </tr>
 
-                                                            <tr>
+                                                            <tr id="posicionTr">
                                                                   <td> Posición:</td>
                                                                   <td>
                                                                         <div class="">
                                                                               <select class="form-control" name="posicion" id="posicion" required>
-                                                                                    <option value="0" @if($usuario->posicion == 0) selected @endif>No asignado</option>
+                                                                                    <option value="0" @if($usuario->posicion == 0 || $usuario->posicion == null) selected @endif>No asignado</option>
                                                                                     <option value="1" @if($usuario->posicion == 1) selected @endif>Portero</option>
                                                                                     <option value="2" @if($usuario->posicion == 2) selected @endif>Defensa</option>
                                                                                     <option value="3" @if($usuario->posicion == 3) selected @endif>Medio</option>
                                                                                     <option value="4" @if($usuario->posicion == 4) selected @endif>Delantero</option>
                                                                               </select>
                                                                         </div>
+                                                                        <input style="display: none" type="text" name="posicionUsuario" value=@if($usuario->posicion != null) $usuario->posicion @else "No disponible" @endif required>
                                                                   </td>
                                                             </tr>
 
-                                                            <tr>
+                                                            <tr id="cargoTr">
                                                                   <td>Cargo:</td>
                                                                   <td>
                                                                         <div class="">
                                                                               <select class="form-control" name="cargo" id="cargo" required>
-                                                                                    <option value="0" @if($usuario->cargo == 0) selected @endif>Sin cargo</option>
+                                                                                    <option value="0" @if($usuario->cargo == 0 || $usuario->cargo == null) selected @endif>Sin cargo</option>
                                                                                     <option value="1" @if($usuario->cargo == 1) selected @endif>Primer capitán</option>
                                                                                     <option value="2" @if($usuario->cargo == 2) selected @endif>Segundo capitán</option>
                                                                                     <option value="3" @if($usuario->cargo == 3) selected @endif>Tercer capitán</option>
                                                                               </select>
                                                                         </div>
+                                                                        <input style="display: none" type="text" name="cargoUsuario" value=@if($usuario->cargo != null) $usuario->cargo @else "No disponible" @endif required>
                                                                   </td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr id="dorsalTr">
                                                                   <td>Dorsal:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value="{{$usuario->dorsal}}" required>
+                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value=@if($usuario->dorsal != null) $usuario->dorsal @else "0" @endif required>
                                                                         </div>
                                                                   </td>
                                                             </tr>
@@ -163,6 +165,7 @@
             while (pos.options.length != 0) {
                   pos.remove(0);
             }
+            var dorsal = document.getElementById('dorsal');
       }
 
       function opcionesJugador(){
@@ -175,7 +178,9 @@
                   option.value = i;
                   element.add(option);
             }
-            element.value = {{ $usuario->cargo }};
+            if(document.getElementById('posicionUsuario') != null)
+                  element.value = document.getElementById('posicionUsuario').value;
+
             element = document.getElementById('posicion');
             var options = ['Portero','Defensa','Medio','Delantero'];
             for (var i = 0; i < 4; i++) {
@@ -184,7 +189,8 @@
                   option.value = i+1;
                   element.add(option);
             }
-            element.value = {{ $usuario->posicion }};
+            if(document.getElementById('cargoUsuario') != null)
+                  element.value = document.getElementById('cargoUsuario').value;
       }
 
       function opcionesEntrenador(){
@@ -197,7 +203,8 @@
                   option.value = i+1;
                   element.add(option);
             }
-            element.value = {{ $usuario->cargo }};
+            element.value = document.getElementById('cargoUsuario').value;
+            element.disabled = false;
             var pos = document.getElementById('posicion');
             var option = document.createElement('option');
             option.text = "No disponible";
@@ -218,23 +225,26 @@
       }
 
       function cargoFilter(){
-            var posicion = document.getElementById('posicion');
-            posicion.disabled = true;
-            var rol = document.getElementById('cargo');
-            rol.disabled = true;
+            var posicionTr = document.getElementById('posicionTr');
+            posicionTr.style.display = "none";
+            var cargo = document.getElementById('cargoTr');
+            cargoTr.style.display = "none";
+            var dorsalTr = document.getElementById('dorsalTr');
+            dorsalTr.style.display = "none";
 
             var option = document.getElementById('rol').value;
             if(option == 0){
-                  posicion.disabled = false;
-                  rol.disabled = false;
+                  posicionTr.style.display = "block";
+                  cargoTr.style.display = "block";
+                  dorsalTr.style.display = "block";
                   opcionesJugador();
             }
             else if (option == 1) {
-                  opcionesEntrenador();
-                  rol.disabled = false;
+                  {{--opcionesEntrenador()--}};
+                  cargoTr.style.display = "block";
             }
             else{
-                  opcionesDirecAdmin();
+                  {{--opcionesDirecAdmin()--}};
             }
       }
       window.onload = cargoFilter;

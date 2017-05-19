@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Perfil de jugador')
+@section('title', $usuario->nombre.' '.$usuario->apellidos)
 @section('content')
 @include('cabecera',array('section'=>'plantilla'))
 <div class="contenedor row">
@@ -104,6 +104,7 @@
                         </div>
                         <div class="panel-body">
                               <div class="row">
+                                    @if($usuario->equipo->id > 1)
                                     <div class=" col-md-9 col-lg-9 ">
                                           <table class="table table-user-information">
                                                 <tbody>
@@ -125,6 +126,11 @@
                                     <div class="col-md-3 col-lg-3 " align="center">
                                           <img alt="User Pic" src="../{{ $usuario->equipo->logo }}" onerror="this.src = '../images/escudos/defaultTeam.png'" class="img-circle img-responsive">
                                     </div>
+                                    @else
+                                    <div class="text-center">
+                                           Ninguno
+                                    </div>
+                                    @endif
                               </div>
                         </div>
                   </div>
