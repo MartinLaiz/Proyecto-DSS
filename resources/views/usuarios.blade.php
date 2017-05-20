@@ -17,6 +17,9 @@
       </div>
             
             <div class="row collapse" id="filtros">
+                  <form action="{{ action('UsuarioController@getUsuarios') }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('POST') }}
                         <div class="form-group row">
                               <div class="col-lg-3 col-md-6 col-sm-6">
                                     <select class="form-control" name="equipo" id="equipo">
