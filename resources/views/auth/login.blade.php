@@ -6,7 +6,7 @@
             <div>
                   <img class="thumbnail img-responsive center-block" src="/images/Logo.png" alt="Logo FootballManager">
             </div>
-            <div>
+            <div class="row">
                   <form class="form-horizontal" role="form" action="{{ route('login') }}" method="post">
                         {{ csrf_field() }}
                         <div class="row col-md-9">
@@ -21,6 +21,10 @@
                               <button type="submit" class="btn btn-success btn-block"> Iniciar sesión </button>
                         </div>
                   </form>
+            </div>
+            <br>
+            <div class="col-md-4 col-md-offset-4">
+                  <a href="{{ action('EquipoController@getHome') }}" class="btn btn-primary btn-block">Volver a inicio</a>
             </div>
       </div>
 </div>

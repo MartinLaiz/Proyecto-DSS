@@ -52,7 +52,7 @@ class RegisterController extends Controller
                   'nombre' => 'required|max:255',
                   'apellidos' => 'required|max:255',
                   'fNac' => 'required|date',
-                  'dni' => 'required|min:9|max:9',
+                  'dni' => 'required|min:9|max:9|unique:usuario',
                   'password' => 'required|min:6|confirmed',
             ]);
       }

@@ -53,7 +53,7 @@ $(document).ready(function(){
                   </li>
                   <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th"></span> Competiciones <span class="caret"></span></a>
-                        <ul class="dropdown-menu forAnimate" role="menu">                     
+                        <ul class="dropdown-menu forAnimate" role="menu">
                               <li><a href="#consumergoods" data-toggle="modal">Crear</a></li>
                               <li><a href="{{action('CompeticionController@editar')}}">Modificar</a></li>
                         </ul>
@@ -61,7 +61,7 @@ $(document).ready(function(){
                   </li>
                   <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th"></span> Temporada <span class="caret"></span></a>
-                        <ul class="dropdown-menu forAnimate" role="menu">                     
+                        <ul class="dropdown-menu forAnimate" role="menu">
                               <li><a href="#creartemporada" data-toggle="modal">Crear</a></li>
                               <li><a href="{{action('TemporadaController@editar')}}">Modificar</a></li>
                         </ul>
@@ -71,25 +71,11 @@ $(document).ready(function(){
 </nav>
 
 
-      {{-- Muestra errores --}}
-
-	@if (count($errors) > 0)
-            <ul>
-            @foreach ($errors->all() as $error)
-                  <div class="alert alert-danger">
-                        <a href="#" class="alert-link">{{ $error }}</a>
-                  </div>
-            @endforeach
-            </ul>
-      @endif
-
-
-
 
 {{-- Competicion --}}
 <div class="modal fade" id="consumergoods" data-target="#consumergoods">
       <div class="modal-dialog">
-      
+
             <div class="modal-content">
                   <div class="modal-header">
                         <button class="close" data-dismiss="modal">&times;</button>
@@ -98,7 +84,7 @@ $(document).ready(function(){
                         <h2>Añadir una competición</h2>
                         <form action="{{action('CompeticionController@crearCompeticion')}}" method="POST">
                         {{ csrf_field() }}
-                        {{ method_field('PUT') }}  
+                        {{ method_field('PUT') }}
                               <div class="form-group">
                                     <label for="Username">Nombre</label>
                                     <input class="form-control"  type="text" name="nombre" id="nombre" required>
@@ -116,19 +102,19 @@ $(document).ready(function(){
 {{-- Temporada --}}
 <div class="modal fade" id="creartemporada" data-target="#creartemporada">
       <div class="modal-dialog">
-      
+
             <div class="modal-content">
-            
+
                   <div class="modal-header">
-                  
+
                         <button class="close" data-dismiss="modal">&times;</button>
                   </div>
-                  
+
                   <div class="modal-body">
                         <h2> Crear Temporada </h2>
                          <form action="{{action('TemporadaController@crearTemporada')}}" method="POST">
                         {{ csrf_field() }}
-                        {{ method_field('PUT') }}  
+                        {{ method_field('PUT') }}
                               <div class="row form-group">
                                     <div class="col-md-6">
                                           <input class="form-control" onfocus="(this.type='date')" id="fecha" name="inicio" placeholder="Inicio de la temporada" type="text" required/>
@@ -151,19 +137,19 @@ $(document).ready(function(){
 {{-- Temporada --}}
 <div class="modal fade" id="creartemporada" data-target="#creartemporada">
       <div class="modal-dialog">
-      
+
             <div class="modal-content">
-            
+
                   <div class="modal-header">
-                  
+
                         <button class="close" data-dismiss="modal">&times;</button>
                   </div>
-                  
+
                   <div class="modal-body">
                         <h2> Crear Temporada </h2>
                          <form action="{{action('TemporadaController@crearTemporada')}}" method="POST">
                         {{ csrf_field() }}
-                        {{ method_field('PUT') }}  
+                        {{ method_field('PUT') }}
                               <div class="row form-group">
                                     <div class="col-md-6">
                                           <input class="form-control" onfocus="(this.type='date')" id="fecha" name="inicio" placeholder="Inicio de la temporada" type="text" required/>
@@ -180,7 +166,3 @@ $(document).ready(function(){
             </div>
       </div>
 </div>
-
-
-
-
