@@ -10,6 +10,8 @@ use App\Usuario;
 use App\Equipo;
 use Auth;
 
+use Intervention\Image\ImageManagerStatic as Image;
+
 class UsuarioController extends Controller
 {
       public function getUsuarios(Request $request){
@@ -224,9 +226,12 @@ class UsuarioController extends Controller
                   $usuario->password = bcrypt($request->password);
             }
             if($request->foto != null ){
-                  $destino='images/users';
-                  $usuario->foto = $usuario->dni.'.'.$request->foto->getClientOriginalExtension();
-                  $request->foto->move($destino,$usuario->dni.'.'.$request->foto->getClientOriginalExtension());
+                  try{
+                        Image::make($request->file('foto')->getRealPath())->fit(150)->encode('png')->save('images/users/'.$usuario->dni.'.png');
+                        $usuario->foto = $usuario->dni . '.png';
+                  }catch(\Intervention\Image\Exception\NotReadableException $e){
+                        $validator->getMessageBag()->add('foto','Foto demasiado grande');
+                  }
             }
             try {
                   $usuario->save();

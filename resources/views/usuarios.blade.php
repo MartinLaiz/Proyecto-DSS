@@ -15,7 +15,7 @@
                   <button type="submit" class="btn btn-success">Buscar</button>
                   </form>
       </div>
-            
+
             <div class="row collapse" id="filtros">
                   <form action="{{ action('UsuarioController@getUsuarios') }}" method="post">
                         {{ csrf_field() }}
@@ -70,7 +70,7 @@
                   @foreach($usuarios as $usuario)
                   <div class="well well-sm col-lg-2 col-md-3 col-sm-4">
                         <div class="">
-                              <img class="img-responsive" src="/images/users/{{ $usuario->dni }}.png" alt="User image" onerror="this.src = '/images/users/defaultUser.png'">
+                                    <img class="img-rounded img-responsive" src="/images/users/{{ $usuario->dni }}.png" alt="User image" onerror="this.src = '/images/users/defaultUser.png'">
                               <a href="{{ action('UsuarioController@getUsuario',$usuario->id) }}">
                                     <h4>{{ $usuario->nombre }}</h4>
                                     <h5>{{ $usuario->apellidos }}</h5>

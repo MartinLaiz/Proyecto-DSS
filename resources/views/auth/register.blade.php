@@ -46,7 +46,10 @@
                               </div>
                         </div>
                         <div class="form-group">
-                              <div class="col-md-6 col-md-offset-3">
+                              <div class="col-md-6">
+                                    <a class="btn btn-primary btn-block" href="{{ action('EquipoController@getHome') }}">Volver a inicio</a>
+                              </div>
+                              <div class="col-md-6">
                                     <button type="submit" class="btn btn-success btn-block"> Crear cuenta </button>
                               </div>
                         </div>

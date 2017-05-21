@@ -26,7 +26,7 @@
                                           {{ method_field('POST') }}
                                           <div class="col-md-3 col-lg-3" align="center">
                                                 <div class="col-md-12 col-lg-12">
-                                                      <img alt="User Pic" src="{{URL::asset('images/users/').'/'.$usuario->foto}}" onerror="this.src = '/images/users/defaultUser.png'" class="img-circle img-responsive">
+                                                      <img alt="User Pic" src="/images/users/{{$usuario->foto}}" onerror="this.src = '/images/users/defaultUser.png'" class="img-rounded img-responsive">
                                                 </div>
                                                 <div class="col-md-12 col-lg-12">
                                                       <input style="display:none" type="file" name="foto" id="foto" value="foto">
@@ -117,7 +117,7 @@
                                                                   <td>Dorsal:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value=@if($usuario->dorsal != null) "$usuario->dorsal" @else "0" @endif required>
+                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value="{{ $usuario->dorsal }}" required>
                                                                         </div>
                                                                   </td>
                                                             </tr>

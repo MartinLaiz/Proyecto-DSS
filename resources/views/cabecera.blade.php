@@ -12,34 +12,15 @@
             <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                         <li class="divider" role="separator"></li>
-                        @if($section == "inicio")
-                              <li class="active"><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
-                        @else
-                              <li><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
-                        @endif
-                        @if($section == "partidos")
-                              <li class="active"><a href="{{action('PartidoController@getPartidos')}}">Partidos</a></li>
-                        @else
-                              <li><a href="{{action('PartidoController@getPartidos')}}">Partidos</a></li>
-                        @endif
-                        @if($section == "plantilla")
-                              <li class="active"><a href="{{action('UsuarioController@getUsuarios')}}">Plantilla</a></li>
-                        @else
-                              <li><a href="{{action('UsuarioController@getUsuarios')}}">Plantilla</a></li>
-                        @endif
-                        @if($section == "equipos")
-                              <li class="active"><a href="{{action('EquipoController@getEquipos')}}">Equipos</a></li>
-                        @else
-                              <li><a href="{{action('EquipoController@getEquipos')}}">Equipos</a></li>
-                        @endif
+                        <li @if($section == "inicio") class="active" @endif ><a href="{{action('EquipoController@getHome')}}">Inicio</a></li>
+                        <li @if($section == "partidos") class="active" @endif ><a href="{{action('PartidoController@getPartidos')}}">Partidos</a></li>
+                        <li @if($section == "plantilla") class="active" @endif ><a href="{{action('UsuarioController@getUsuarios')}}">Plantilla</a></li>
+                        <li @if($section == "equipos") class="active" @endif ><a href="{{action('EquipoController@getEquipos')}}">Equipos</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                         @if(Auth::check())
-                        @if($section == 'configuracion')
-                        <li class="dropdown active">
-                        @else
-                        <li class="dropdown">
-                        @endif
+
+                        <li class="dropdown @if($section == 'configuracion') active @endif">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->nombre }} <span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                     <li><a href="{{action('UsuarioController@getUsuario',Auth::user()->id)}}">Mi perfil</a></li>
@@ -51,7 +32,7 @@
                                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li>
                               </ul>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                  {{ csrf_field() }}
+                                    {{ csrf_field() }}
                               </form>
                         </li>
                         @else

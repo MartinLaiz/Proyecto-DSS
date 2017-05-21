@@ -14,11 +14,11 @@
                         <div class="panel-body">
                               <div class="row">
                                     <div class="col-md-3 col-lg-3 " align="center">
-                                          <img alt="User Pic" src="{{URL::asset('images/users/').'/'.$usuario->foto}}" onerror="this.src = '/images/users/defaultUser.png'" class="img-circle img-responsive">
+                                          <img alt="User Pic" src="{{URL::asset('images/users/').'/'.$usuario->foto}}" onerror="this.src = '/images/users/defaultUser.png'" class="img-rounded img-responsive">
                                           <br>
                                           <br>
                                           <div class="col-md-8 col-md-offset-2">
-                                                <button type="button" class="btn btn-block" name="button" onclick="window.history.back()"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
+                                                <button type="button" class="btn btn-block" name="button" onclick="{{  }}"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
                                           </div>
                                     </div>
                                     <div class=" col-md-9 col-lg-9 ">
