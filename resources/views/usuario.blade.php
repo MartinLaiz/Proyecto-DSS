@@ -15,6 +15,11 @@
                               <div class="row">
                                     <div class="col-md-3 col-lg-3 " align="center">
                                           <img alt="User Pic" src="{{URL::asset('images/users/').'/'.$usuario->foto}}" onerror="this.src = '/images/users/defaultUser.png'" class="img-circle img-responsive">
+                                          <br>
+                                          <br>
+                                          <div class="col-md-8 col-md-offset-2">
+                                                <button type="button" class="btn btn-block" name="button" onclick="window.history.back()"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
+                                          </div>
                                     </div>
                                     <div class=" col-md-9 col-lg-9 ">
                                           <table class="table table-user-information">
@@ -90,12 +95,13 @@
                                                 </tbody>
                                           </table>
                                     </div>
-                                    <div class="col-md-3 col-lg-3">
-                                          <button type="button" class="btn" name="button" onclick="window.history.back()"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
-                                    </div>
+                                    @if(Auth::check())
+                                    @if(Auth::user()->id == $usuario->id or Auth::user()->rol>1)
                                     <div class="col-md-3 col-md-offset-6 col-lg-3 col-lg-offset 6">
                                           <a href="{{ action('UsuarioController@getFormUpdate', ['id' => $usuario->id]) }}" class="btn btn-success btn-block">Editar</a>
                                     </div>
+                                    @endif
+                                    @endif
                               </div>
                         </div>
 

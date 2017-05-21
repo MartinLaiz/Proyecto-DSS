@@ -43,7 +43,11 @@
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->nombre }} <span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                     <li><a href="{{action('UsuarioController@getUsuario',Auth::user()->id)}}">Mi perfil</a></li>
+                                    @if(Auth::check())
+                                    @if(Auth::user()->rol>0)
                                     <li><a href="{{action('EquipoController@editar')}}">Configuración</a></li>
+                                    @endif
+                                    @endif
                                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li>
                               </ul>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -51,8 +55,8 @@
                               </form>
                         </li>
                         @else
-                        <li><a href="./login">Iniciar sesión</a></li>
-                        <li><a href="./register">Registrarse</a></li>
+                        <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
+                        <li><a href="{{ route('register') }}">Registrarse</a></li>
                         @endif
                         <li class="divider" role="separator"></li>
                   </ul>

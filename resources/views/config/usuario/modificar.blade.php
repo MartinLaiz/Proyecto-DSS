@@ -10,9 +10,9 @@
                   <br>
                   @if (count($errors) > 0)
                   <div class="alert alert-danger">
-                  @foreach ($errors->all() as $error)
+                        @foreach ($errors->all() as $error)
                         <strong>Error! </strong> {{ $error }}
-                  @endforeach
+                        @endforeach
                   </div>
                   @endif
                   <div class="panel panel-info">
@@ -21,10 +21,10 @@
                         </div>
                         <div class="panel-body">
                               <div class="row">
-                                    <form action="{{ action('UsuarioController@update', $usuario->id) }}" method="POST" enctype="multipart/form-data">
+                                    <form class="form-horizontal" action="{{ action('UsuarioController@update', $usuario->id) }}" method="POST" enctype="multipart/form-data">
                                           {{ csrf_field() }}
                                           {{ method_field('POST') }}
-                                          <div class="col-md-3 col-lg-3 " align="center">
+                                          <div class="col-md-3 col-lg-3" align="center">
                                                 <div class="col-md-12 col-lg-12">
                                                       <img alt="User Pic" src="{{URL::asset('images/users/').'/'.$usuario->foto}}" onerror="this.src = '/images/users/defaultUser.png'" class="img-circle img-responsive">
                                                 </div>
@@ -95,7 +95,7 @@
                                                                                     <option value="4" @if($usuario->posicion == 4) selected @endif>Delantero</option>
                                                                               </select>
                                                                         </div>
-                                                                        <input style="display: none" type="text" name="posicionUsuario" value=@if($usuario->posicion != null) $usuario->posicion @else "No disponible" @endif required>
+                                                                        <input style="display: none" type="text" name="posicionUsuario" value=@if($usuario->posicion != null) "$usuario->posicion" @else "No disponible" @endif required>
                                                                   </td>
                                                             </tr>
 
@@ -104,49 +104,39 @@
                                                                   <td>
                                                                         <div class="">
                                                                               <select class="form-control" name="cargo" id="cargo" required>
-                                                                                    <option value="0" @if($usuario->cargo == 0 || $usuario->cargo == null) selected @endif>Sin cargo</option>
+                                                                                    <option value="0" @if($usuario->cargo == 0 || $usuario->cargo == null) selected @endif >Sin cargo</option>
                                                                                     <option value="1" @if($usuario->cargo == 1) selected @endif>Primer capitán</option>
                                                                                     <option value="2" @if($usuario->cargo == 2) selected @endif>Segundo capitán</option>
                                                                                     <option value="3" @if($usuario->cargo == 3) selected @endif>Tercer capitán</option>
                                                                               </select>
                                                                         </div>
-                                                                        <input style="display: none" type="text" name="cargoUsuario" value=@if($usuario->cargo != null) $usuario->cargo @else "No disponible" @endif required>
+                                                                        <input style="display: none" type="text" name="cargoUsuario" value=@if($usuario->cargo != null) "$usuario->cargo" @else "No disponible" @endif required>
                                                                   </td>
                                                             </tr>
                                                             <tr id="dorsalTr">
                                                                   <td>Dorsal:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value=@if($usuario->dorsal != null) $usuario->dorsal @else "0" @endif required>
+                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value=@if($usuario->dorsal != null) "$usuario->dorsal" @else "0" @endif required>
                                                                         </div>
                                                                   </td>
                                                             </tr>
                                                       </tbody>
                                                 </table>
                                           </div>
-                                          <!--<div class="col-md-2">
-                                                <label for="">Contraseña</label>
+                                          <div class="col-md-10 col-md-offset-2">
+                                                <div class="form-group">
+                                                      <label class="col-md-2 control-label">Contraseña</label>
+                                                      <div class="col-md-5">
+                                                            <input class="form-control" type="password" name="password" id="password" placeholder="Contraseña" value="">
+                                                      </div>
+                                                      <div class="col-md-5">
+                                                            <input class="form-control" type="password" name="passwordVerify" id="passwordVerify" placeholder="Verificar contraseña" value="">
+                                                      </div>
+                                                </div>
                                           </div>
-                                          <div class="col-md-10 col-md-offset-1 row">
-                                                <div class="col-md-6 col-lg-6">
-                                                      <input class="form-control" type="password" name="password" id="password" value="">
-                                                </div>
-                                                <div class="col-md-6 col-lg-6">
-                                                      <input class="form-control" type="password" name="passwordVerify" id="passwordVerify" value="">
-                                                </div>
-                                          </div>-->
-                                          <div class="row">
-                                                <div class="col-md-8">
-                                                      <div class="col-md-6">
-                                                            <input class="form-control col-md-7" type="password" name="password" id="password" placeholder="Nueva contraseña">
-                                                      </div>
-                                                      <div class="col-md-6">
-                                                            <input class="form-control col-md-7" type="password" name="passwordVerify" placeholder="Repite contraseña">
-                                                      </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                      <input type="submit" class="btn btn-success btn-block" value="Editar usuario">
-                                                </div>
+                                          <div class="col-md-4 col-md-offset-8">
+                                                <input type="submit" class="btn btn-success btn-block" value="Editar usuario">
                                           </div>
                                     </form>
                               </div>
@@ -156,97 +146,97 @@
       </div>
 </div>
 <script type="text/javascript">
-      function eliminarOpciones(){
-            var element = document.getElementById('cargo');
-            while (element.options.length != 0) {
-                  element.remove(0);
-            }
-            var pos = document.getElementById('posicion');
-            while (pos.options.length != 0) {
-                  pos.remove(0);
-            }
-            var dorsal = document.getElementById('dorsal');
+function eliminarOpciones(){
+      var element = document.getElementById('cargo');
+      while (element.options.length != 0) {
+            element.remove(0);
       }
-
-      function opcionesJugador(){
-            eliminarOpciones();
-            var element = document.getElementById('cargo');
-            var options = ['Sin cargo','Primer capitan','Segundo capitan','Tercer capitan'];
-            for (var i = 0; i < 4; i++) {
-                  var option = document.createElement('option');
-                  option.text = options[i];
-                  option.value = i;
-                  element.add(option);
-            }
-            if(document.getElementById('posicionUsuario') != null)
-                  element.value = document.getElementById('posicionUsuario').value;
-
-            element = document.getElementById('posicion');
-            var options = ['Portero','Defensa','Medio','Delantero'];
-            for (var i = 0; i < 4; i++) {
-                  var option = document.createElement('option');
-                  option.text = options[i];
-                  option.value = i+1;
-                  element.add(option);
-            }
-            if(document.getElementById('cargoUsuario') != null)
-                  element.value = document.getElementById('cargoUsuario').value;
+      var pos = document.getElementById('posicion');
+      while (pos.options.length != 0) {
+            pos.remove(0);
       }
+      var dorsal = document.getElementById('dorsal');
+}
 
-      function opcionesEntrenador(){
-            eliminarOpciones();
-            var element = document.getElementById('cargo');
-            var options = ['Primer entrenador','Segundo entrenador'];
-            for (var i = 0; i < 2; i++) {
-                  var option = document.createElement('option');
-                  option.text = options[i];
-                  option.value = i+1;
-                  element.add(option);
-            }
-            element.value = document.getElementById('cargoUsuario').value;
-            element.disabled = false;
-            var pos = document.getElementById('posicion');
+function opcionesJugador(){
+      eliminarOpciones();
+      var element = document.getElementById('cargo');
+      var options = ['Sin cargo','Primer capitan','Segundo capitan','Tercer capitan'];
+      for (var i = 0; i < 4; i++) {
             var option = document.createElement('option');
-            option.text = "No disponible";
-            option.value = -1;
-            pos.add(option);
-      }
-
-      function opcionesDirecAdmin(){
-            eliminarOpciones();
-            var option = document.createElement('option');
-            option.text = "No disponible";
-            option.value = -1;
-
-            var element = document.getElementById('cargo');
+            option.text = options[i];
+            option.value = i;
             element.add(option);
-            var pos = document.getElementById('posicion');
-            pos.add(option);
       }
+      if(document.getElementById('posicionUsuario') != null)
+      element.value = document.getElementById('posicionUsuario').value;
 
-      function cargoFilter(){
-            var posicionTr = document.getElementById('posicionTr');
-            posicionTr.style.display = "none";
-            var cargo = document.getElementById('cargoTr');
-            cargoTr.style.display = "none";
-            var dorsalTr = document.getElementById('dorsalTr');
-            dorsalTr.style.display = "none";
-
-            var option = document.getElementById('rol').value;
-            if(option == 0){
-                  posicionTr.style.display = "block";
-                  cargoTr.style.display = "block";
-                  dorsalTr.style.display = "block";
-                  opcionesJugador();
-            }
-            else if (option == 1) {
-                  {{--opcionesEntrenador()--}};
-                  cargoTr.style.display = "block";
-            }
-            else{
-                  {{--opcionesDirecAdmin()--}};
-            }
+      element = document.getElementById('posicion');
+      var options = ['Portero','Defensa','Medio','Delantero'];
+      for (var i = 0; i < 4; i++) {
+            var option = document.createElement('option');
+            option.text = options[i];
+            option.value = i+1;
+            element.add(option);
       }
-      window.onload = cargoFilter;
+      if(document.getElementById('cargoUsuario') != null)
+      element.value = document.getElementById('cargoUsuario').value;
+}
+
+function opcionesEntrenador(){
+      eliminarOpciones();
+      var element = document.getElementById('cargo');
+      var options = ['Primer entrenador','Segundo entrenador'];
+      for (var i = 0; i < 2; i++) {
+            var option = document.createElement('option');
+            option.text = options[i];
+            option.value = i+1;
+            element.add(option);
+      }
+      element.value = document.getElementById('cargoUsuario').value;
+      element.disabled = false;
+      var pos = document.getElementById('posicion');
+      var option = document.createElement('option');
+      option.text = "No disponible";
+      option.value = -1;
+      pos.add(option);
+}
+
+function opcionesDirecAdmin(){
+      eliminarOpciones();
+      var option = document.createElement('option');
+      option.text = "No disponible";
+      option.value = -1;
+
+      var element = document.getElementById('cargo');
+      element.add(option);
+      var pos = document.getElementById('posicion');
+      pos.add(option);
+}
+
+function cargoFilter(){
+      var posicionTr = document.getElementById('posicionTr');
+      posicionTr.style.display = "none";
+      var cargo = document.getElementById('cargoTr');
+      cargoTr.style.display = "none";
+      var dorsalTr = document.getElementById('dorsalTr');
+      dorsalTr.style.display = "none";
+
+      var option = document.getElementById('rol').value;
+      if(option == 0){
+            posicionTr.style.display = "block";
+            cargoTr.style.display = "block";
+            dorsalTr.style.display = "block";
+            opcionesJugador();
+      }
+      else if (option == 1) {
+            {{--opcionesEntrenador()--}};
+            cargoTr.style.display = "block";
+      }
+      else{
+            {{--opcionesDirecAdmin()--}};
+      }
+}
+window.onload = cargoFilter;
 </script>
 @endsection
