@@ -19,42 +19,42 @@
                         <br>
                         <div class="">
                               {{ $ultimoPartido->equipoLocal->nombreEquipo }}
+                               @if(count($titulares) > 0 &&count($banquillo) > 0  )
+                                    <table class="table table-striped table-responsive" cellspacing="0" width="100%">
+                                          <thead>
+                                          <tr>
+                                                <th class="text-left" >Once Inicial</th>
+                                          </tr>
+                                                <tbody> 
+                                                @foreach($titulares as $titular)
+                                                <tr> 
+                                                @if($titular->local == "si") 
+                                                      <td class="text-left" > {!!$titular->usuario->nombre!!} </td> 
 
-                              <table class="table table-striped table-responsive" cellspacing="0" width="100%">
-                                    <thead>
-                                    <tr>
-                                          <th class="text-left" >Once Inicial</th>
-                                    </tr>
-                                          <tbody> 
-                                          @foreach($titulares as $titular)
-                                          <tr> 
-                                          @if($titular->local == "si") 
-                                                <td class="text-left" > {!!$titular->usuario->nombre!!} </td> 
-
-                                          @endif 
-                                          </tr> 
-                                          @endforeach
-                                    </tbody> 
-                              </table>
-
-                                  <table class="table"> 
-                                    <thead> 
-                                          <tr> 
-                                                <th class="text-left"> Banquillo</th> 
-                                          </tr> 
-                                    </thead> 
-                                    <tbody> 
-                                          @foreach($banquillo as $b)
-                                          <tr> 
-                                                @if($b->local == "si") 
-                                                      <td class="text-left"> {!!$b->usuario->nombre!!} </tf> 
-                                                
                                                 @endif 
-                                          </tr> 
-                                          @endforeach
-                                    </tbody> 
-                              </table>
+                                                </tr> 
+                                                @endforeach
+                                          </tbody> 
+                                    </table>
 
+                                    <table class="table"> 
+                                          <thead> 
+                                                <tr> 
+                                                      <th class="text-left"> Banquillo</th> 
+                                                </tr> 
+                                          </thead> 
+                                          <tbody> 
+                                                @foreach($banquillo as $b)
+                                                <tr> 
+                                                      @if($b->local == "si") 
+                                                            <td class="text-left"> {!!$b->usuario->nombre!!} </tf> 
+                                                      
+                                                      @endif 
+                                                </tr> 
+                                                @endforeach
+                                          </tbody> 
+                                    </table>
+                              @endif
                         </div>
                   </div>
                   <div class="col-md-6 text-right">
@@ -69,41 +69,43 @@
                         <br>
                         <div class="text-right">
                               {{ $ultimoPartido->equipoVisitante->nombreEquipo }}
-                              <table class="table table-striped table-responsive" cellspacing="0" width="100%">
-                                    <thead>
-                                    <tr>
-                                          <th class="text-right" >Once Inicial</th>
-                                    </tr>
-                                          <tbody> 
-                                          @foreach($titulares as $titular)
-                                          <tr> 
-                                          @if($titular->local == "no") 
-                                                <td class="text-right" > {!!$titular->usuario->nombre!!} </td> 
+                              @if(count($titulares) > 0 &&count($banquillo) > 0  )
+                                    <table class="table table-striped table-responsive" cellspacing="0" width="100%">
+                                          <thead>
+                                          <tr>
+                                                <th class="text-right" >Once Inicial</th>
+                                          </tr>
+                                                <tbody> 
+                                                @foreach($titulares as $titular)
+                                                <tr> 
+                                                @if($titular->local == "no") 
+                                                      <td class="text-right" > {!!$titular->usuario->nombre!!} </td> 
 
-                                          @endif 
-                                          </tr> 
-                                          @endforeach
-                                    </tbody>
-                                    
-                              </table>
-
-                                <table class="table"> 
-                                    <thead> 
-                                          <tr> 
-                                                <th class="text-right"> Banquillo</th> 
-                                          </tr> 
-                                    </thead> 
-                                    <tbody> 
-                                          @foreach($banquillo as $b)
-                                          <tr> 
-                                                @if($b->local == "no") 
-                                                      <td class="text-right"> {!!$b->usuario->nombre!!} </tf> 
-                                                
                                                 @endif 
-                                          </tr> 
-                                          @endforeach
-                                    </tbody> 
-                              </table>
+                                                </tr> 
+                                                @endforeach
+                                          </tbody>
+                                          
+                                    </table>
+
+                                    <table class="table"> 
+                                          <thead> 
+                                                <tr> 
+                                                      <th class="text-right"> Banquillo</th> 
+                                                </tr> 
+                                          </thead> 
+                                          <tbody> 
+                                                @foreach($banquillo as $b)
+                                                <tr> 
+                                                      @if($b->local == "no") 
+                                                            <td class="text-right"> {!!$b->usuario->nombre!!} </tf> 
+                                                      
+                                                      @endif 
+                                                </tr> 
+                                                @endforeach
+                                          </tbody> 
+                                    </table>
+                              @endif
                           
 
                         </div>
@@ -114,6 +116,15 @@
                         <div class="text-center">
                               No hay datos disponibles
                         </div>
+                  @else
+                        <div class="col-md-9 cta-contents">
+					<h1 class="cta-title">Cronica</h1>
+					<div class="cta-desc">
+							<PRE>{{ $ultimoPartido->cronica }}</PRE>
+
+
+					</div>
+				</div>
                   @endif
             </div>
       </div>
