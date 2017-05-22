@@ -5,35 +5,29 @@
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
             <h2>Equipos</h2>
-            {{ $lista->links() }}
+            <div class="hidden-xs">{{ $lista->links() }}</div>
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>
                         <tr>
-                                <th>CIF</th>
-                                <th>Nombre</th>
-                                <th>Presupuesto</th>
-                                <th>Estadio</th>
-                                <th>Capacidad</th>
-                                <th>Patrocinador</th>
+                              <th>Escudo</th>
+                              <th>Nombre</th>
+                              <th>Estadio</th>
+                              <th>Capacidad</th>
                         </tr>
                   </thead>
                   <tbody>
-                   @foreach($lista as $team)
-                    <tr>
-                        <td>{!!$team->cif!!}</td>
-                        <td><a href="{{ action('EquipoController@getEquipo',$team->id) }}">{!!$team->nombreEquipo!!}</a></td>
-                        @if ($team->cif == 'A27417476')
-                              <td>{!!$team->presupuesto!!}</td>
-                        @else
-                              <td></td>
-                        @endif
-                        <td>{!!$team->estadio->nombre!!}</td>
-                        <td>{!!$team->estadio->capacidad!!}</td>
-                        <td>{!!$team->patrocinador->nombre!!}</td>
-                    </tr>
+                  @foreach($lista as $team)
+                        <tr onclick="window.location.href = '{{ action('EquipoController@getEquipo',$team->id)}}';"
+                              onmouseover="this.className='btn-link';" onmouseout="this.className='';">
+                              <td width="70px"><img src="{{URL::asset($team->logo)}}" alt="Escudo" width=100%></td>
+                              <td>{!!$team->nombreEquipo!!}</td>
+                              <td>{!!$team->estadio->nombre!!}</td>
+                              <td>{!!$team->estadio->capacidad!!}</td>
+                        </tr>
                     @endforeach
                   </tbody>
             </table>
+            {{ $lista->links() }}
        </div>
  </div>
  @endsection>

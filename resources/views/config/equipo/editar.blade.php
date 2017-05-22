@@ -6,6 +6,7 @@
 	  @include('config/configuracion')
 	  <div class="col-md-10 col-md-offset-1">
 			<h2>Todos los equipos</h2>
+			<!--Tamaño actual: <p class="visible-lg">lg</p><p class="visible-sm">sm</p><p class="visible-md">md</p><p class="visible-xs">xs</p>-->
 			@if(count($lista) == 0)
                   <div class="alert alert-info">No existen equipos.</div>
             @else
@@ -14,28 +15,31 @@
 					<table class="table table-striped table-responsive" cellspacing="0" width="100%">
 							<thead>
 								<tr>
-										<th>CIF</th>
+										<th class="hidden-xs">CIF</th>
+										<th>Escudo</th>
 										<th>Nombre</th>
-										<th>Presupuesto</th>
+										<th class="visible-lg">Presupuesto</th>
 										<th>Estadio</th>
 										<th>Capacidad</th>
-										<th>Patrocinador</th>
+										<th class="hidden-xs">Patrocinador</th>
 										<th class="text-center">Acciones</th>
 								</tr>
 							</thead>
 							<tbody>
 							@foreach($lista as $team)
-								<tr>
-										<td>{!!$team->cif!!}</td>
-										<td><a href="{{ action('EquipoController@getEquipo',$team->id) }}">{!!$team->nombreEquipo!!}</a></td>
-										@if ($team->cif == 'A27417476')
-											<td>{!!$team->presupuesto!!}</td>
+								<tr onclick="window.location.href = '{{ action('EquipoController@getEquipo',$team->id)}}';"
+									onmouseover="this.className='btn-link';" onmouseout="this.className='';">
+										<td class="hidden-xs">{!!$team->cif!!}</td>
+										<td width="70px"><img src="{{URL::asset($team->logo)}}" alt="Escudo" width=100%></td>
+										<td>{!!$team->nombreEquipo!!}</td>
+										@if ($team->cif == 'A27417476' || $team->presupuesto != 0)
+											<td class="visible-lg">{!!$team->presupuesto!!}</td>
 										@else
-											<td></td>
+											<td class="visible-lg">Desconocido</td>
 										@endif
 										<td>{!!$team->estadio->nombre!!}</td>
 										<td>{!!$team->estadio->capacidad!!}</td>
-										<td>{!!$team->patrocinador->nombre!!}</td>
+										<td class="hidden-xs">{!!$team->patrocinador->nombre!!}</td>
 										<td>
 											<div class="btn-group ">
 													<a href="{{ action('EquipoController@modificarEquipo', $team->id) }}" 
