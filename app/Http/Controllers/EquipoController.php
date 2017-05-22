@@ -21,10 +21,12 @@ class EquipoController extends Controller
             $ultVisitante = $UA->partidosVisitante()->where('fecha','<',Carbon::now())->get();
             $proxLocal = $UA->partidosLocal()->where('fecha','>',Carbon::now())->get();
             $proxVisitante = $UA->partidosVisitante()->where('fecha','>',Carbon::now())->get();
+            $ultimosPartidos = $ultLocal->merge($ultVisitante)->sortByDesc('fecha');
             return view('home',[
                   'equipos' => Equipo::get(),
                   'estadios' => Estadio::get(),
-                  'ultPartidos' => $ultLocal->merge($ultVisitante)->sortByDesc('fecha')->take(5),
+                  'ultimoPartido' => $ultimosPartidos->first()->with('participar')->get(),
+                  'ultPartidos' => $ultimosPartidos->take(5),
                   'proxPartidos' => $proxLocal->merge($proxVisitante)->sortBy('fecha')->take(5)
             ]);
       }
