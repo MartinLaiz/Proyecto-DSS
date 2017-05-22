@@ -36,7 +36,7 @@
                               </form>
                         </li>
                         @else
-                        <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
+                        <li><a href="{{ route('login') }}">Entrar</a></li>
                         <li><a href="{{ route('register') }}">Registrarse</a></li>
                         @endif
                         <li class="divider" role="separator"></li>

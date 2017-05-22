@@ -51,6 +51,7 @@ Route::group(['prefix' => 'equipo'], function(){
 Route::group(['prefix' => 'partido'], function(){
       Route::get('/', 'PartidoController@getPartidos');                //Muestra todos los partidos
       Route::post('/','PartidoController@getPartidos');                //Filtro partidos
+      Route::get('/{id}','PartidoController@getPartido');
 });
 
 
@@ -87,8 +88,8 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('/editar/partidos','PartidoController@editarPartidos');
             Route::get('/crear/partido','PartidoController@formularioInsertar');
             Route::put('/crear/partido','PartidoController@crearPartido');
-            Route::post('/modidificar/partido/{id}','PartidoController@modificarPartido');
-            Route::get('/modidificar/partido/{id}','PartidoController@formularioModificar');
+            Route::post('/modificar/partido/{id}','PartidoController@modificarPartido');
+            Route::get('/modificar/partido/{id}','PartidoController@formularioModificar');
             Route::get('/introducirJugadores/partido/{id}','PartidoController@introducirJugadores');
             Route::get('/partido/{id}','ParticiparController@verParticipar');
             Route::get('/introducir/datos/partido/{id}','ParticiparController@formularioInsertar');

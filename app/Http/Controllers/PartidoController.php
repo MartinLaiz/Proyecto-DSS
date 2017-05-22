@@ -18,6 +18,35 @@ use App\Competicion;
 
 class PartidoController extends Controller
 {
+    public function getPartido($idPartido){
+        //recojo los datos del partido
+        $partido = Partido::with('equipoLocal','equipoVisitante')
+        ->where('id','=',$idPartido)->first();
+        
+        $cantidad = Participar::where('partido_id','=',$idPartido)->count();
+
+
+        $participarTitular = Participar::with('usuario')
+        ->where('partido_id','=',$idPartido)
+        ->where('asistencia','=',1)->get();
+
+
+         $participarBanquillo = Participar::with('usuario')
+        ->where('partido_id','=',$idPartido)
+        ->where('asistencia','=',2)->get();
+
+        
+        if($cantidad != null){
+             return view ('config/partido/perfilPartido',[ 'partido' => $partido
+             ,'cantidad' => $cantidad,'titulares' => $participarTitular,
+             'banquillo'  =>  $participarBanquillo]);
+        }else{
+            return view ('config/partido/perfilPartido',[ 'partido' => $partido
+            ,'cantidad' => $cantidad]);
+        }
+    }
+
+
     public function getPartidos(Request $request){
 
         //Manejo de variables
