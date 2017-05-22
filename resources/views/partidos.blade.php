@@ -82,7 +82,7 @@
             </div>
 
             @if($partidos->count() > 0)
-            <table class="table table-striped table-responsive" cellspacing="0" width="100%">
+            <table class="table table-striped table-responsive table-hover" cellspacing="0" width="100%">
                   <thead>
                         <tr>
                               <th class="text-center">Estadio</th>
@@ -100,7 +100,7 @@
 
                   <tbody>
                    @foreach($partidos as $partido)
-                    <tr>
+                    <tr onclick="window.location.href = '{{ action('ParticiparController@verParticipar', $partido->id)}}';">
                         <td class="text-center">{!!$partido->estadio->nombre!!}</td>
                         <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoLocal->logo)}}" alt="Escudo" width=100%></td>
                         <td>{!!$partido->equipoLocal->nombreEquipo!!}</td>
