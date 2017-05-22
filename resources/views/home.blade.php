@@ -9,19 +9,21 @@
             <div class="well row">
                   <div class="col-md-6">
                         <div class="">
-                              <img src="" alt="Logo equipo local" width="50px">
+                              <img src="{{ $ultimoPartido->equipoLocal->logo }}" alt="Logo equipo local" width="50px">
                         </div>
                         <br>
                         <div class="">
-                              {{ dd($ultimoPartido) }}
+                              {{ $ultimoPartido->equipoLocal->nombreEquipo }}
+                              
                         </div>
                   </div>
                   <div class="col-md-6 text-right">
                         <div class="">
-                              <img src="" alt="Logo equipo visitante" width="50px">
+                              <img src="{{ $ultimoPartido->equipoVisitante->logo }}" alt="Logo equipo visitante" width="50px">
                         </div>
                         <br>
                         <div class="">
+                              {{ $ultimoPartido->equipoVisitante->nombreEquipo }}
 
                         </div>
                   </div>
