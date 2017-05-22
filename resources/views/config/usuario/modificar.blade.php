@@ -221,12 +221,15 @@ function cargoFilter(){
       cargoTr.style.display = "none";
       var dorsalTr = document.getElementById('dorsalTr');
       dorsalTr.style.display = "none";
+      var dorsal = document.getElementById('dorsal');
+      dorsal.required = false;
 
       var option = document.getElementById('rol').value;
       if(option == 0){
             posicionTr.style.display = "block";
             cargoTr.style.display = "block";
             dorsalTr.style.display = "block";
+            dorsal.required = true;
             opcionesJugador();
       }
       else if (option == 1) {
