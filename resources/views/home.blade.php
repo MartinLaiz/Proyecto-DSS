@@ -21,26 +21,37 @@
             <h3>Último partido</h3>
             <div class="well row">
                   <div class="row">
-                        <div class="col-xs-3">
-                              <img src="{{ $ultimoPartido->equipoLocal->logo }}" alt="Logo equipo local" width="50px">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">{{--Local--}}
+                              <div class="row">
+                                    <img src="{{ $ultimoPartido->equipoLocal->logo }}" alt="Logo equipo local" width="50px">
+                              </div>
+                              <div class="row">
+                                    {{ $ultimoPartido->equipoLocal->nombreEquipo }}
+                              </div>
                         </div>
-                        <div class="col-xs-2 text-right">
-                              <h3>{{ $ultimoPartido->golesLocal }}</h3>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">{{--Goles--}}
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <h3>{{ $ultimoPartido->golesLocal }}</h3>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <h3>-</h3>
+                              </div>
+                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <h3>{{ $ultimoPartido->golesVisitante }}</h3>
+                              </div>
                         </div>
-                        <div class="col-xs-1 text-center">
-                              <h3>-</h3>
-                        </div>
-                        <div class="col-xs-2">
-                              <h3>{{ $ultimoPartido->golesVisitante }}</h3>
-                        </div>
-                        <div class="col-xs-3">
-                              <img src="{{ $ultimoPartido->equipoVisitante->logo }}" alt="Logo equipo local" width="50px">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">{{--Visitante--}}
+                              <div class="row">
+                                    <img src="{{ $ultimoPartido->equipoVisitante->logo }}" alt="Logo equipo visitante" width="50px">
+                              </div>
+                              <div class="row">
+                                    {{ $ultimoPartido->equipoVisitante->nombreEquipo }}
+                              </div>
                         </div>
                   </div>
                   <br>
-                  <div class="col-md-6"><!-- Equipo Local -->
-                        <div class="">
-                              {{ $ultimoPartido->equipoLocal->nombreEquipo }}
+                  <div class="row text-center"><!-- Equipo Local -->
+                        <div class="col-xs-6">
                               @if(count($titulares) > 0 &&count($banquillo) > 0  )
                               <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                                     <thead>
@@ -79,10 +90,7 @@
                               </table>
                               @endif
                         </div>
-                  </div>
-                  <div class="col-md-6 text-right"> <!-- Equipo Visitante -->
-                        <div class="text-right">
-                              {{ $ultimoPartido->equipoVisitante->nombreEquipo }}
+                        <div class="col-xs-6 text-right"> <!-- Equipo Visitante -->
                               @if(count($titulares) > 0 &&count($banquillo) > 0  )
                               <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                                     <thead>
