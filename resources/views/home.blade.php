@@ -4,7 +4,17 @@
 
 <div class="contenedor row">
       @include('cabecera',array('section'=>'inicio'))
+         @if (count($errors) > 0)
+            <ul>
+                  @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">
+                              <a href="#" class="alert-link">{{ $error }}</a>
+                        </div>
+                  @endforeach
+            </ul>
+            @endif
       <div class="col-lg-offset-1 col-lg-5 col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+          
             <h3>Último partido</h3>
            <div class="well row">
                   <div class="col-md-6">

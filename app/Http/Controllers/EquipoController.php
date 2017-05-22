@@ -15,7 +15,7 @@ use Validator;
 
 class EquipoController extends Controller
 {
-      public function getHome(){
+      public function getHome(Request $request){
 
             $UA = Equipo::where('nombreEquipo','like','%UA%')->first();
             $ultLocal = $UA->partidosLocal()->where('fecha','<',Carbon::now())->get();
@@ -25,29 +25,34 @@ class EquipoController extends Controller
             $ultimosPartidos = $ultLocal->merge($ultVisitante)->sortByDesc('fecha');
             //obtengo el ultimo partido
             $ultimoPartido = $ultimosPartidos->first();
+            //si no hay partidos que salte el error
+            if($ultimoPartido == null){
+                  $validator = Validator::make($request->all(), [
+                  'title' => '2',
+                  'body' => '2',
+                  ]);
+                  $validator->getMessageBag()->add('unique','Error, No hay partidos.');
+                  Redirect::to('/')->withErrors($validator)->withInput();
+            }else{
+                  $participarTitular = Participar::with('usuario')
+                  ->where('partido_id','=', $ultimoPartido->id)
+                  ->where('asistencia','=',1)->get();
+                  
+                  $participarBanquillo = Participar::with('usuario')
+                  ->where('partido_id','=',$ultimoPartido->id)
+                  ->where('asistencia','=',2)->get();
 
 
-            $participarTitular = Participar::with('usuario')
-            ->where('partido_id','=', $ultimoPartido->id)
-            ->where('asistencia','=',1)->get();
-
-
-
-
-            $participarBanquillo = Participar::with('usuario')
-            ->where('partido_id','=',$ultimoPartido->id)
-            ->where('asistencia','=',2)->get();
-
-
-            return view('home',[
-                  'equipos' => Equipo::get(),
-                  'estadios' => Estadio::get(),
-                  'ultimoPartido' =>  $ultimoPartido,
-                  'titulares' => $participarTitular,
-                  'banquillo' => $participarBanquillo,
-                  'ultPartidos' => $ultimosPartidos->take(5),
-                  'proxPartidos' => $proxLocal->merge($proxVisitante)->sortBy('fecha')->take(5)
-            ]);
+                  return view('home',[
+                        'equipos' => Equipo::get(),
+                        'estadios' => Estadio::get(),
+                        'ultimoPartido' =>  $ultimoPartido,
+                        'titulares' => $participarTitular,
+                        'banquillo' => $participarBanquillo,
+                        'ultPartidos' => $ultimosPartidos->take(5),
+                        'proxPartidos' => $proxLocal->merge($proxVisitante)->sortBy('fecha')->take(5)
+                  ]);
+            }
       }
 
       public function configuracion(){
