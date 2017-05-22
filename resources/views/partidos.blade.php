@@ -85,7 +85,7 @@
             <div class="row">
                  
             </div>
-            <table class="table table-striped table-responsive" cellspacing="0" width="100%">
+            <table class="table table-striped table-responsive table-hover" cellspacing="0" width="100%">
                   <thead>
                         <tr>
                               <th class="visible-lg">Logo</th>
@@ -106,7 +106,7 @@
 
                   <tbody>
                    @foreach($partidos as $partido)
-                    <tr>
+                    <tr onclick="window.location.href = '{{ action('ParticiparController@verParticipar', $partido->id)}}';">
                         <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoLocal->logo)}}" alt="Logo" width=100%></td>
                         <td>{!!$partido->equipoLocal->nombreEquipo!!}</td>
                         <td class="hidden-xs">{!!$partido->golesLocal!!}</td>

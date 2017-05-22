@@ -89,8 +89,8 @@
                         </tr>
 
                   <tbody>
-                   @foreach($partidos as $partido)
-                    <tr>
+                  @foreach($partidos as $partido)
+                  <tr onclick="window.location.href = '{{ action('ParticiparController@verParticipar', $partido->id)}}';">
                         <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoLocal->logo)}}" alt="Logo" width=100%></td>
                         <td>{!!$partido->equipoLocal->nombreEquipo!!}</td>
                         <td class="hidden-xs">{!!$partido->golesLocal!!}</td>
@@ -101,9 +101,9 @@
                         <td>{!!$partido->estadio->nombre!!}</td>
                         <td class="hidden-xs">{!!$partido->competicion->nombre!!}</td>
                         <td class="hidden-xs">{!!$partido->temporada->nombre!!}</td>
-                    </tr>
-                    @endforeach
-                  </tbody>
+                  </tr>
+                  @endforeach
+               </tbody>
             </table>
             {{$partidos->appends(['equipo1' => $equipo1, 'equipo2' => $equipo2,'temporada' => $temporada,'competicion' => $competicion,'results'=>$results])->links()}}
             @else
