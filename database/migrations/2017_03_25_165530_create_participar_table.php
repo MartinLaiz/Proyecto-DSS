@@ -16,11 +16,11 @@ class CreateParticiparTable extends Migration
         Schema::create('participar', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('partido_id');
-            $table->integer('usuario_id');
+            $table->integer('usuario_id')->nullable();
             $table->string('local');
             $table->integer('asistencia');
             $table->unique(['partido_id','usuario_id']);
-            $table->foreign('partido_id')->references('id')->on('partido')->onDelete('set null');
+            $table->foreign('partido_id')->references('id')->on('partido')->onDelete('cascade');
             $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('set null');
 
             $table->timestamps();
