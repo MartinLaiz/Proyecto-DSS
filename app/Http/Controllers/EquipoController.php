@@ -32,12 +32,20 @@ class EquipoController extends Controller
                   'body' => '2',
                   ]);
                   $validator->getMessageBag()->add('unique','Error, No hay partidos.');
-                  Redirect::to('/')->withErrors($validator)->withInput();
+                  return view('home',[
+                        'equipos' => null,
+                        'estadios' => null,
+                        'ultimoPartido' =>  null,
+                        'titulares' => null,
+                        'banquillo' => null,
+                        'ultPartidos' => null,
+                        'proxPartidos' => null
+                  ])->withErrors($validator->getMessageBag());
             }else{
                   $participarTitular = Participar::with('usuario')
                   ->where('partido_id','=', $ultimoPartido->id)
                   ->where('asistencia','=',1)->get();
-                  
+
                   $participarBanquillo = Participar::with('usuario')
                   ->where('partido_id','=',$ultimoPartido->id)
                   ->where('asistencia','=',2)->get();
