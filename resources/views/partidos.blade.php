@@ -78,45 +78,38 @@
                   </select>
                   @endif
             </div>
-           
+
             </div>
-            
+
             @if($partidos->count() > 0)
-            <div class="row">
-                 
-            </div>
             <table class="table table-striped table-responsive table-hover" cellspacing="0" width="100%">
                   <thead>
                         <tr>
-                              <th class="visible-lg">Logo</th>
-                              <th class="hidden-xs">Equipo Local</th>
-                              <th class="hidden-xs">Goles Local</th>
-                              <th class="visible-xs">Local</th>
-                              <th class="visible-xs">Resultado</th>
-                              <th class="visible-xs">Visitante</th>
-                              <th class="hidden-xs">Goles Visitante</th>
-                              <th class="visible-lg">Logo</th>
-                              <th class="hidden-xs">Equipo Visitante</th>
-                              <th>Estadio</th>
-                              <th class="hidden-xs">Competición</th>
-                              <th class="hidden-xs">Temporada</th>
-                               
-                       
+                              <th class="text-center">Estadio</th>
+                              <th class="visible-lg">Esc</th>
+                              <th class="text-center">Local</th>
+                              <th class="text-center">Resultado</th>
+                              <th class="text-center">Visitante</th>
+                              <th class="visible-lg">Esc</th>
+                              <th>Fecha</th>
+                              <th class="text-center hidden-xs">Temporada</th>
+                              <th class="text-center hidden-xs">Competición</th>
+
+
                         </tr>
 
                   <tbody>
                    @foreach($partidos as $partido)
                     <tr onclick="window.location.href = '{{ action('ParticiparController@verParticipar', $partido->id)}}';">
-                        <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoLocal->logo)}}" alt="Logo" width=100%></td>
+                        <td class="text-center">{!!$partido->estadio->nombre!!}</td>
+                        <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoLocal->logo)}}" alt="Escudo" width=100%></td>
                         <td>{!!$partido->equipoLocal->nombreEquipo!!}</td>
-                        <td class="hidden-xs">{!!$partido->golesLocal!!}</td>
-                        <td class="hidden-xs">{!!$partido->golesVisitante!!}</td>
-                        <td class="visible-xs">{!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
-                        <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoVisitante->logo)}}" alt="Logo" width=100%></td>
-                        <td>{!!$partido->equipoVisitante->nombreEquipo!!}</td>
-                        <td>{!!$partido->estadio->nombre!!}</td>
-                        <td class="hidden-xs">{!!$partido->competicion->nombre!!}</td>
+                        <td class="text-center">{!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
+                        <td class="text-right">{!!$partido->equipoVisitante->nombreEquipo!!}</td>
+                        <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoVisitante->logo)}}" alt="Escudo" width=100%></td>
+                        <td>{{strftime('%d/%b',strtotime($partido->fecha)) }}</td>
                         <td class="hidden-xs">{!!$partido->temporada->nombre!!}</td>
+                        <td class="hidden-xs">{!!$partido->competicion->nombre!!}</td>
                     </tr>
                     @endforeach
                   </tbody>
@@ -138,7 +131,7 @@
                   </strong>
                   @endif
                   <br>
-                  
+
             </div>
             @endif
        </div>
@@ -149,7 +142,7 @@
             var equipo2 = document.getElementById('equipo2');
             var temp    = document.getElementById('temporada');
             var comp    = document.getElementById('competicion');
-            
+
             if(equipo1.value == 'Todos'){
                   equipo1.className = "form-control";
                   equipo2.disabled = true;

@@ -54,7 +54,7 @@ class PartidoController extends Controller
                     ])
                 ->orWhere([
                     ['equipoVisitante_id','=',$equipo1]
-                    ]); 
+                    ]);
         }
         //PARTE DE TEMPORADA
         if($temporada != 'Todas'){
@@ -64,10 +64,10 @@ class PartidoController extends Controller
         if($competicion != 'Todas'){
             $partidos = $partidos->where('competicion_id','=',$competicion);
         }
-        
-        
+
+
         return view($partidoVista, [
-                'partidos' => $partidos->paginate($results),
+                'partidos' => $partidos->orderBy('competicion_id')->orderBy('fecha')->paginate($results),
                 'equipos'  => Equipo::get(),
                 'equipo1'  => $equipo1,
                 'equipo2'  => $equipo2,
@@ -117,7 +117,7 @@ class PartidoController extends Controller
                     ])
                 ->orWhere([
                     ['equipoVisitante_id','=',$equipo1]
-                    ]); 
+                    ]);
         }
         //PARTE DE TEMPORADA
         if($temporada != 'Todas'){
@@ -127,8 +127,8 @@ class PartidoController extends Controller
         if($competicion != 'Todas'){
             $partidos = $partidos->where('competicion_id','=',$competicion);
         }
-        
-        
+
+
         return view($partidoVista, [
                 'partidos' => $partidos->paginate($results),
                 'equipos'  => Equipo::get(),
@@ -175,7 +175,7 @@ class PartidoController extends Controller
 
     public function crearPartido(Request $request){
         $partido = new Partido();
- 
+
 
         $partido->equipoLocal_id = $request->equipoLocal;
         $partido->equipoVisitante_id = $request->equipoVisitante;
@@ -199,7 +199,7 @@ class PartidoController extends Controller
     public function modificarPartido(Request $request,$id){
         $partido = Partido::find($id);
 
-        //miro si se ha modificado algun equipo 
+        //miro si se ha modificado algun equipo
         //para borrar los datos de modificarPartido
 
         if( $partido->equipoLocal_id ==  $request->equipoLocal
@@ -208,7 +208,7 @@ class PartidoController extends Controller
         }else{
             $igual = false;
         }
-        
+
         $partido->equipoLocal_id = $request->equipoLocal;
         $partido->equipoVisitante_id = $request->equipoVisitante;
         $partido->temporada_id = $request->temporada_id;
@@ -230,12 +230,12 @@ class PartidoController extends Controller
 
 
     public function formularioModificar($id){
-        
+
         $equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
         $temporadas = Temporada::with('partido')->get();
-        
+
         $competiciones = Competicion::with('partido')->get();
-        
+
         return view ('config/partido/modificarPartido',[ 'competiciones' => $competiciones,
         'equipos' => $equipos,'temporadas' => $temporadas, 'idmodificar' => $id]);
     }
@@ -266,7 +266,7 @@ class PartidoController extends Controller
                 $valor= $partido->id;
                 $valor=trim($valor);
                 return Redirect::to("/config/partido/" . $valor);
-                
+
             }
             //excecipon en la bbdd
             catch(\Illuminate\Database\QueryException $e){

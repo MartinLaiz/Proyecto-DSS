@@ -62,9 +62,7 @@
                   </form>
             </div>
 
-            <div class="hidden-xs">
-                  {{ $usuarios->appends(['equipo' => $equipo,'rol' => $rol,'cargo' => $cargo,'posicion' => $posicion])->links() }}
-            </div>
+            {{ $usuarios->appends(['equipo' => $equipo,'rol' => $rol,'cargo' => $cargo,'posicion' => $posicion])->links() }}
             @if(count($usuarios) > 0)
             <div class="row" id="jugadores">
                   @foreach($usuarios as $usuario)
