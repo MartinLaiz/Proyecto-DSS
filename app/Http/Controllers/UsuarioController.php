@@ -39,6 +39,7 @@ class UsuarioController extends Controller
                   }
             }
             else {
+                  $usuarios = Usuario::with('equipo')->where('rol','=',$rol);
                   $equipo = 'Todos';
                   $cargo = -1;
                   $posicion = 'Todas';
