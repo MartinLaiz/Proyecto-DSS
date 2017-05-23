@@ -15,6 +15,9 @@ use App\Participar;
 use Carbon\Carbon;
 use Validator;
 
+use Intervention\Image\ImageManagerStatic as Image;
+
+
 class EquipoController extends Controller
 {
       public function getHome(Request $request){
@@ -28,22 +31,7 @@ class EquipoController extends Controller
             //obtengo el ultimo partido
             $ultimoPartido = $ultimosPartidos->first();
             //si no hay partidos que salte el error
-            if($ultimoPartido == null){
-                  $validator = Validator::make($request->all(), [
-                  'title' => '2',
-                  'body' => '2',
-                  ]);
-                  $validator->getMessageBag()->add('unique','Error, No hay partidos.');
-                  return view('home',[
-                        'equipos' => null,
-                        'estadios' => null,
-                        'ultimoPartido' =>  null,
-                        'titulares' => null,
-                        'banquillo' => null,
-                        'ultPartidos' => null,
-                        'proxPartidos' => null
-                  ])->withErrors($validator->getMessageBag());
-            }else{
+            if($ultimoPartido != null){
                   $participarTitular = Participar::with('usuario')
                   ->where('partido_id','=', $ultimoPartido->id)
                   ->where('asistencia','=',1)->get();
@@ -51,18 +39,23 @@ class EquipoController extends Controller
                   $participarBanquillo = Participar::with('usuario')
                   ->where('partido_id','=',$ultimoPartido->id)
                   ->where('asistencia','=',2)->get();
-
-
-                  return view('home',[
-                        'equipos' => Equipo::get(),
-                        'estadios' => Estadio::get(),
-                        'ultimoPartido' =>  $ultimoPartido,
-                        'titulares' => $participarTitular,
-                        'banquillo' => $participarBanquillo,
-                        'ultPartidos' => $ultimosPartidos->take(5),
-                        'proxPartidos' => $proxLocal->merge($proxVisitante)->sortBy('fecha')->take(5)
-                  ]);
             }
+            else {
+                  $participarTitular = null;
+                  $participarBanquillo = null;
+            }
+
+
+            return view('home',[
+                  'equipos' => Equipo::get(),
+                  'estadios' => Estadio::get(),
+                  'ultimoPartido' =>  $ultimoPartido,
+                  'titulares' => $participarTitular,
+                  'banquillo' => $participarBanquillo,
+                  'ultPartidos' => $ultimosPartidos->take(5),
+                  'proxPartidos' => $proxLocal->merge($proxVisitante)->sortBy('fecha')->take(5)
+            ]);
+
       }
 
       public function configuracion(){
@@ -128,13 +121,36 @@ class EquipoController extends Controller
             $equipo->nombreEquipo = $request->nombreEquipo;
             $equipo->presupuesto = $request->presupuesto;
 
-            $estadio = Estadio::find($equipo->estadio);
+            $estadio = Estadio::find($equipo->estadio_);
             $estadio->nombre = $request->nombre;
             $estadio->capacidad = $request->capacidad;
 
+            if($request->foto != null ){
+                  try{
+                        Image::make($request->file('foto')->getRealPath())->fit(150)->encode('png')->save('images/escudos/'.$equipo->cif.'.png');
+                        $equipo->logo = $equipo->cif . '.png';
+                  }catch(\Intervention\Image\Exception\NotReadableException $e){
+                        $validator->getMessageBag()->add('foto','Foto demasiado grande');
+                  }
+            }
 
-            return $this->captarErrores($estadio,$equipo,$request);
+            try{
+                  //le pongo el valor aqui para poder hacer la condicion en el if
+                  $estadio->save();
+                  $equipo->estadio_id = Estadio::where('nombre','=', $estadio->nombre)->first()->id;
+                  $equipo->save();
+                  //creo partidos con el nuevo equipo
 
+                  return Redirect::to('/partido');
+            }
+            catch(\Illuminate\Database\QueryException $e){
+                  $validator = Validator::make($request->all(), [
+                        'title' => '2',
+                        'body' => '2',
+                  ]);
+                  $validator->getMessageBag()->add('unique','Error, el CIF introducido ya existe.');
+                  return back()->withErrors($validator)->withInput();
+            }
       }
 
       public function captarErrores($estadio,$equipo,$request){
@@ -171,6 +187,8 @@ class EquipoController extends Controller
             }
             foreach($equipo->usuarios as $usuario){
                   $user = Usuario::find($usuario->id);
+                  $user->dorsal = 0;
+                  $user->salario = 0;
                   $user->equipo_id = $equipoLibre->id;
                   $user->save();
             }

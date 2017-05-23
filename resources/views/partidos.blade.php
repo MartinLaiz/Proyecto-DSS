@@ -103,11 +103,11 @@
                     <tr onclick="window.location.href = '{{ action('PartidoController@getPartido', $partido->id)}}';"
                         onmouseover="this.className='btn-link';" onmouseout="this.className='';">
                         <td class="text-center">{!!$partido->estadio->nombre!!}</td>
-                        <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoLocal->logo)}}" alt="Escudo" width=100%></td>
+                        <td class="visible-lg" width="70px"><img src="/images/escudos/{{$partido->equipoLocal->logo}}" alt="Escudo" width=100%></td>
                         <td>{!!$partido->equipoLocal->nombreEquipo!!}</td>
                         <td class="text-center">{!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
                         <td class="text-right">{!!$partido->equipoVisitante->nombreEquipo!!}</td>
-                        <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoVisitante->logo)}}" alt="Escudo" width=100%></td>
+                        <td class="visible-lg" width="70px"><img src="/images/escudos/{{$partido->equipoLocal->logo}}" alt="Escudo" width=100%></td>
                         <td>{{strftime('%d/%b',strtotime($partido->fecha)) }}</td>
                         <td class="hidden-xs">{!!$partido->temporada->nombre!!}</td>
                         <td class="hidden-xs">{!!$partido->competicion->nombre!!}</td>

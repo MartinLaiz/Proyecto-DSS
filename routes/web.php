@@ -104,16 +104,11 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/editar/competicion','CompeticionController@editar');
             Route::get('/eliminar/competicion/{id}','CompeticionController@eliminarCompeticion');
             Route::post('/modificar/competicion/{id}','CompeticionController@editarCompeticion');
-            
+
             //Temporada
             Route::put('/introducir/temporada','TemporadaController@crearTemporada');
             Route::get('/editar/temporada','TemporadaController@editar');
             Route::get('/eliminar/temporada/{id}','TemporadaController@eliminarTemporada');
             Route::post('/modificar/temporada/{id}','TemporadaController@modificarTemporda');
-      });
-
-
-      Route::group(['prefix' => 'admin'], function(){
-
       });
 });

@@ -38,7 +38,7 @@ $(document).ready(function(){
                         </ul>
                   </li>
                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon glyphicon-th-list"></span> Partidos <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-time"></span> Partidos <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
                               <li><a href="{{action('PartidoController@formularioInsertar')}}">Crear</a> </li>
                               <li><a href="{{action('PartidoController@editarPartidos')}}">Modificar</a></li>
@@ -52,7 +52,7 @@ $(document).ready(function(){
                         </ul>
                   </li>
                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th"></span> Competiciones <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon  glyphicon-th-list"></span> Competiciones <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
                               <li><a href="#consumergoods" data-toggle="modal">Crear</a></li>
                               <li><a href="{{action('CompeticionController@editar')}}">Modificar</a></li>
@@ -60,7 +60,7 @@ $(document).ready(function(){
                   </li>
                   </li>
                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th"></span> Temporada <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-calendar"></span> Temporada <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
                               <li><a href="#creartemporada" data-toggle="modal">Crear</a></li>
                               <li><a href="{{action('TemporadaController@editar')}}">Modificar</a></li>

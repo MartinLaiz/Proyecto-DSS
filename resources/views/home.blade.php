@@ -10,14 +10,19 @@
             <ul>
                   @foreach ($errors->all() as $error)
                   <div class="alert alert-danger">
-                        <a href="#" class="alert-link">{{ $error }}</a>
+                        <strong>{{ $error }}</strong>
                   </div>
                   @endforeach
             </ul>
       </div>
       @else
       <div class="col-lg-offset-1 col-lg-5 col-md-5 col-md-offset-1">
-
+            @if ($ultimoPartido == null)
+            <br>
+            <div class="alert alert-danger">
+                  <strong> No hay datos del último partido </strong>
+            </div>
+            @else
             <h3>Último partido</h3>
             <div class="well row">
                   <div class="row">
@@ -146,11 +151,13 @@
                   </div>
                   @endif
             </div>
+            @endif
       </div>
 
 
 
       <div class="col-lg-5 col-md-4 col-xs-10 col-xs-offset-1 col-lg-offset-0">
+            @if(count($ultPartidos)>0)
             <div>
                   <h3>Últimos partidos</h3>
                   <ul class="list-group">
@@ -172,6 +179,12 @@
                         @endforeach
                   </ul>
             </div>
+            @else
+            <div class="alert alert-danger">
+                  <strong> No hay datos del último partido </strong>
+            </div>
+            @endif
+            @if(count($proxPartidos)>0)
             <div>
                   <h3>Próximos partidos</h3>
                   <ul class="list-group">
@@ -193,6 +206,11 @@
                         @endforeach
                   </ul>
             </div>
+            @else
+            <div class="alert alert-danger">
+                  <strong> No hay datos de próximos partidos </strong>
+            </div>
+            @endif
       </div>
       @endif
 </div>
