@@ -49,7 +49,7 @@ class UsuarioController extends Controller
             }
 
             return view('usuarios',[
-                  'usuarios' => $usuarios->paginate(18),
+                  'usuarios' => $usuarios->orderBy('equipo_id')->orderBy('dorsal')->paginate(18),
                   'equipo' => $equipo,
                   'rol' => $rol,
                   'cargo' => $cargo,
