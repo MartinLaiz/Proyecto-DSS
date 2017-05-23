@@ -23,7 +23,7 @@
                   <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">{{--Local--}}
                               <div class="row">
-                                    <img src="{{ $ultimoPartido->equipoLocal->logo }}" alt="Logo equipo local" width="50px">
+                                    <img src="/images/escudos/{{ $ultimoPartido->equipoLocal->logo }}" alt="Logo equipo local" width="50px">
                               </div>
                               <div class="row">
                                     {{ $ultimoPartido->equipoLocal->nombreEquipo }}
@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">{{--Visitante--}}
                               <div class="row">
-                                    <img src="{{ $ultimoPartido->equipoVisitante->logo }}" alt="Logo equipo visitante" width="50px">
+                                    <img src="/images/escudos/{{ $ultimoPartido->equipoVisitante->logo }}" alt="Logo equipo visitante" width="50px">
                               </div>
                               <div class="row">
                                     {{ $ultimoPartido->equipoVisitante->nombreEquipo }}
