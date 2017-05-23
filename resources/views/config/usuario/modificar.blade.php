@@ -98,22 +98,11 @@
                                                                         </div>
                                                                   </td>
                                                             </tr>
-                                                            @endif
-                                                            @if(Auth::user()->rol>1)
-                                                            <tr>
-                                                                  <td>Salario:</td>
-                                                                  <td>
-                                                                        <div class="">
-                                                                              <input class="form-control" type="number" name="salario" id="salario" min="0" value="{{ $usuario->salario }}" required>
-                                                                        </div>
-                                                                  </td>
-                                                            </tr>
-
                                                             <tr>
                                                                   <td>Rol:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <select class="form-control" name="rol" id="rol" onchange="cargoFilter()" required>
+                                                                              <select class="form-control" name="rol" id="rol" onchange="cargoFilter()" required @if(Auth::user()->rol <=1) disabled @endif>
                                                                                     <option value="0" @if($usuario->rol == 0) selected @endif>Jugador</option>
                                                                                     <option value="1" @if($usuario->rol == 1) selected @endif>Entrenador</option>
                                                                                     <option value="2" @if($usuario->rol == 2) selected @endif>Director</option>
@@ -124,10 +113,19 @@
                                                             </tr>
 
                                                             <tr>
+                                                                  <td>Salario:</td>
+                                                                  <td>
+                                                                        <div class="">
+                                                                              <input class="form-control" type="number" name="salario" id="salario" min="0" value="{{ $usuario->salario }}" required @if(Auth::user()->rol <=1) disabled @endif>
+                                                                        </div>
+                                                                  </td>
+                                                            </tr>
+
+                                                            <tr>
                                                                   <td>Equipo:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <select class="form-control" name="equipo_id" id="equipo_id" required>
+                                                                              <select class="form-control" name="equipo_id" id="equipo_id" required @if(Auth::user()->rol <=1) disabled @endif>
                                                                                     @foreach($equipos as $equipo)
                                                                                     <option value="{{ $equipo->id }}" @if($usuario->equipo_id == $equipo->id) selected @endif>{{ $equipo->nombreEquipo }}</option>
                                                                                     @endforeach

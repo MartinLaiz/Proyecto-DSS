@@ -121,7 +121,7 @@ class EquipoController extends Controller
             $equipo->nombreEquipo = $request->nombreEquipo;
             $equipo->presupuesto = $request->presupuesto;
 
-            $estadio = Estadio::find($equipo->estadio_);
+            $estadio = Estadio::find($equipo->estadio_id);
             $estadio->nombre = $request->nombre;
             $estadio->capacidad = $request->capacidad;
 

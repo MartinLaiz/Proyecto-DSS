@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Participar;
 use App\Partido;
 use App\Usuario;
+use App\Temporada;
 
 
 class ParticiparTableSeeder extends Seeder
@@ -18,8 +19,8 @@ class ParticiparTableSeeder extends Seeder
       {
 
             DB::table('participar')->delete();
-            $temporada = Temporada::where('nombre','=','16/17')->firts()
-            $partidos = Partido::where('temporada_id','=',$temporada->id)->get()
+            $temporada = Temporada::where('nombre','=','16/17')->first();
+            $partidos = Partido::where('temporada_id','=',$temporada->id)->get();
 
             // Añadimos un estadio para la UA
 

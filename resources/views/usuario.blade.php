@@ -100,13 +100,15 @@
                               </div>
                               <div class="row">
                                     @if(Auth::check())
-                                    @if(Auth::user()->id == $usuario->id or Auth::user()->rol>1)
+                                    @if(Auth::user()->id == $usuario->id or Auth::user()->rol>=1)
                                     <div class="col-md-3 col-md-offset-5 col-lg-3 col-lg-offset-5">
                                           <a href="{{ action('UsuarioController@getFormUpdate', ['id' => $usuario->id]) }}" class="btn btn-success btn-block">Editar</a>
                                     </div>
+                                    @if(Auth::user()->rol>1)
                                     <div class="col-md-3 col-lg-3">
                                           <a href="{{ action('UsuarioController@delete', ['id' => $usuario->id]) }}" class="btn btn-danger btn-block">Eliminar</a>
                                     </div>
+                                    @endif
                                     @endif
                                     @endif
                               </div>
