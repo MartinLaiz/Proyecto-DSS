@@ -25,7 +25,7 @@
                   </div>
                   <div class="panel-body">
                         <div class="row">
-                              <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=  "{{ asset($equipo->logo)}}" class="img-rounded img-responsive">
+                              <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=  "/images/escudos/{{$equipo->logo}}" class="img-rounded img-responsive">
                               </div>
 
                               <div class=" col-md-9 col-lg-9 ">
