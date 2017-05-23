@@ -38,10 +38,10 @@ $(document).ready(function(){
             @endforeach
             </ul>
       @endif
-        <form class="form-horizontal"  action="{{action('PartidoController@modificarParticipar',[$idmodificar])}}" method="post">
+        <form class="form-horizontal"  action="{{action('PartidoController@modificarPartido',[$idmodificar])}}" method="post">
                   {{ csrf_field() }}
                   {{ method_field('POST') }}
-                
+
             {{-- Nombre de equipos --}}
             <div class="row form-group">
                   <div class="col-md-4">
@@ -64,7 +64,7 @@ $(document).ready(function(){
                         </select>
                   </div>
 
-            </div> 
+            </div>
              {{-- Goles y Fechas --}}
             <div class="row form-group">
                   <div class="col-md-2">
@@ -103,13 +103,13 @@ $(document).ready(function(){
                   </div>
 
             </div>
-            
+
             <div class="row form-group">
                   <div class="col-md-2">
                         <button class="btn btn-success btn-success" type="submit">Siguiente</button>
                   </div>
             </div>
-        </form> 
+        </form>
       </div>
 </div>
 @endsection

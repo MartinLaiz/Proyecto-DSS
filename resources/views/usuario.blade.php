@@ -2,6 +2,8 @@
 @section('title', $usuario->nombre.' '.$usuario->apellidos)
 @section('content')
 @include('cabecera',array('section'=>'plantilla'))
+
+
 <div class="contenedor row">
       <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 toppad" >
@@ -21,7 +23,7 @@
                                                 <button type="button" class="btn btn-block" name="button" onclick="window.history.back()"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button>
                                           </div>
                                     </div>
-                                    <div class=" col-md-9 col-lg-9 ">
+                                    <div class="col-md-9 col-lg-9">
                                           <table class="table table-user-information">
                                                 <tbody>
                                                       <tr>
@@ -95,10 +97,15 @@
                                                 </tbody>
                                           </table>
                                     </div>
+                              </div>
+                              <div class="row">
                                     @if(Auth::check())
                                     @if(Auth::user()->id == $usuario->id or Auth::user()->rol>1)
-                                    <div class="col-md-3 col-md-offset-6 col-lg-3 col-lg-offset 6">
+                                    <div class="col-md-3 col-md-offset-5 col-lg-3 col-lg-offset-5">
                                           <a href="{{ action('UsuarioController@getFormUpdate', ['id' => $usuario->id]) }}" class="btn btn-success btn-block">Editar</a>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                          <a href="{{ action('UsuarioController@delete', ['id' => $usuario->id]) }}" class="btn btn-danger btn-block">Eliminar</a>
                                     </div>
                                     @endif
                                     @endif
@@ -110,7 +117,7 @@
                         </div>
                         <div class="panel-body">
                               <div class="row">
-                                    @if($usuario->equipo->id > 1)
+                                    @if( $usuario->equipo!=null and $usuario->equipo->id > 1)
                                     <div class=" col-md-9 col-lg-9 ">
                                           <table class="table table-user-information">
                                                 <tbody>
@@ -134,7 +141,7 @@
                                     </div>
                                     @else
                                     <div class="text-center">
-                                           Ninguno
+                                          <h3>Ningun equipo</h3>
                                     </div>
                                     @endif
                               </div>

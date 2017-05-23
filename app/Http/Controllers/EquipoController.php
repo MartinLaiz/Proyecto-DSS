@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use \Illuminate\Support\MessageBag;
 use App\Equipo;
 use App\Partido;
 use App\Estadio;
 use App\Patrocinador;
+use App\Usuario;
 use App\Participar;
 use Carbon\Carbon;
 use Validator;
@@ -160,9 +162,21 @@ class EquipoController extends Controller
 
       public function eliminar($id){
             $equipo = Equipo::find($id);
+            $equipoLibre = Equipo::where('nombreEquipo','=','Libre')->first();
+            $equipoUA = Equipo::where('nombreEquipo','like','%UA%')->first();
+            if($equipo->id == $equipoLibre->id || $equipo->id == $equipoUA->id){
+                  $messages = new MessageBag();
+                  $messages->add('error','No se puede eliminar ese equipo.');
+                  return back()->withErrors($messages)->withInput();
+            }
+            foreach($equipo->usuarios as $usuario){
+                  $user = Usuario::find($usuario->id);
+                  $user->equipo_id = $equipoLibre->id;
+                  $user->save();
+            }
             $estadio = $equipo->estadio()->first();
             $estadio->delete();
             $equipo->delete();
-            return back();
+            return Redirect::action('EquipoController@getEquipos');
       }
 }

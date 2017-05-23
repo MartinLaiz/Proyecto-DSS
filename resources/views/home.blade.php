@@ -16,7 +16,7 @@
             </ul>
       </div>
       @else
-      <div class="col-lg-offset-1 col-lg-5 col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+      <div class="col-lg-offset-1 col-lg-5 col-md-5 col-md-offset-1">
 
             <h3>Último partido</h3>
             <div class="well row">
@@ -30,14 +30,14 @@
                               </div>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">{{--Goles--}}
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                    <h3>{{ $ultimoPartido->golesLocal }}</h3>
+                              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <h4>{{ $ultimoPartido->golesLocal }}</h4>
                               </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                    <h3>-</h3>
+                              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <h4>-</h4>
                               </div>
-                              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                    <h3>{{ $ultimoPartido->golesVisitante }}</h3>
+                              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <h4>{{ $ultimoPartido->golesVisitante }}</h4>
                               </div>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">{{--Visitante--}}
@@ -53,7 +53,7 @@
                   <div class="row text-center"><!-- Equipo Local -->
                         <div class="col-xs-6">
                               @if(count($titulares) > 0 &&count($banquillo) > 0  )
-                              <table class="table table-striped table-responsive" cellspacing="0" width="100%">
+                              <table class="table table-responsive" cellspacing="0" width="100%">
                                     <thead>
                                           <tr>
                                                 <th class="text-left" >Once Inicial</th>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="col-xs-6 text-right"> <!-- Equipo Visitante -->
                               @if(count($titulares) > 0 &&count($banquillo) > 0  )
-                              <table class="table table-striped table-responsive" cellspacing="0" width="100%">
+                              <table class="table table-responsive" cellspacing="0" width="100%">
                                     <thead>
                                           <tr>
                                                 <th class="text-right" >Once Inicial</th>

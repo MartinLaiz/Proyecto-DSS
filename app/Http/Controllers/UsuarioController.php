@@ -67,7 +67,8 @@ class UsuarioController extends Controller
 
       public function getFormUpdate($id){
             return view('config.usuario.modificar', [
-                  'usuario' => Usuario::find($id)
+                  'usuario' => Usuario::find($id),
+                  'equipos' => Equipo::get()
             ]);
       }
 
@@ -168,7 +169,12 @@ class UsuarioController extends Controller
                   $validator->getMessageBag()->add('password','Las contraseñas deben de ser iguales');
             }
             if($request->foto != null ){
-                  $usuario->foto = $request->foto;
+                  try{
+                        Image::make($request->file('foto')->getRealPath())->fit(150)->encode('png')->save('images/users/'.$usuario->dni.'.png');
+                        $usuario->foto = $usuario->dni . '.png';
+                  }catch(\Intervention\Image\Exception\NotReadableException $e){
+                        $validator->getMessageBag()->add('foto','Foto demasiado grande');
+                  }
             }
             if($validator->getMessageBag()->count() <= 0){
                   try {
@@ -195,7 +201,7 @@ class UsuarioController extends Controller
             $usuario->apellidos = $request->apellidos;
             $usuario->fNac = $request->fNac;
             $usuario->salario = $request->salario;
-            if($request->equipo != null) $usuario->equipo_id = $request->equipo;
+            if($request->equipo != null) $usuario->equipo_id = $request->equipo_id;
             $usuario->rol = $request->rol;
 
             if($usuario->rol == 0){ //Jugador
@@ -253,8 +259,8 @@ class UsuarioController extends Controller
                   $usuario = Usuario::findOrFail($id);
                   $usuario->delete();
             } catch (Illuminate\Database\Eloquent\ModelNotFoundException $excepcion){
-
+                  return Redirect::back()->withErrors($excepcion->message);
             }
-            return Redirect::back();
+            return Redirect::action('EquipoController@getHome');
       }
 }

@@ -70,6 +70,8 @@ class RegisterController extends Controller
                   'nombre' => $data['nombre'],
                   'apellidos' => $data['apellidos'],
                   'fNac' => strtotime($data['fNac']),
+                  'salario' => 0,
+                  'rol' => 0,
                   'equipo_id' => Equipo::where('nombreEquipo','=','Libre')->first()->id,
                   'password' => bcrypt($data['password']),
             ]);

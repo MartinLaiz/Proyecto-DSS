@@ -6,6 +6,18 @@
 
 <div class="contenedor row">
       <br>
+      @if (count($errors) > 0)
+      <br>
+      <div class="col-md-6 col-md-offset-3">
+            <ul>
+                  @foreach ($errors->all() as $error)
+                  <div class="alert alert-danger">
+                        <a href="#" class="alert-link">{{ $error }}</a>
+                  </div>
+                  @endforeach
+            </ul>
+      </div>
+      @endif
       <div class="col-md-10 col-md-offset-1" >
             <div class="panel panel-info">
                   <div class="panel-heading">
@@ -13,7 +25,7 @@
                   </div>
                   <div class="panel-body">
                         <div class="row">
-                              <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=  "{{ asset ($equipo->logo)}}" class="img-circle img-responsive">
+                              <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=  "{{ asset($equipo->logo)}}" class="img-rounded img-responsive">
                               </div>
 
                               <div class=" col-md-9 col-lg-9 ">
@@ -42,16 +54,18 @@
                                                 </tr>
                                           </tbody>
                                     </table>
-                                    <a href="#" class="btn btn-primary">Añadir Jugador</a>
                               </div>
                         </div>
                   </div>
                   <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                        <span class="pull-right">
-                              <a href="" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                              <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        </span>
+                        @if(Auth::check())
+                        @if(Auth::user()->rol>1)
+                        <a href="{{ action('EquipoController@modificarEquipo', $equipo->id) }}" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                        @endif
+                        @if(Auth::user()->rol==3)
+                        <a href="{{ action('EquipoController@eliminar', $equipo->id) }}" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        @endif
+                        @endif
                   </div>
             </div>
 
@@ -92,7 +106,7 @@
                               <h5>{{ $entrenador->apellidos }}</h5>
                         </a>
                         <h6><strong>{{ $equipo->nombreEquipo }}</strong></h6>
-                        <h5>{{ date('d/m/Y',strtotime($director->fNac)) }}  (<strong>{{ \Carbon\Carbon::now()->diffInYears($entrenador->fNac) }}</strong>)</h5>
+                        <h5>{{ date('d/m/Y',strtotime($entrenador->fNac)) }}  (<strong>{{ \Carbon\Carbon::now()->diffInYears($entrenador->fNac) }}</strong>)</h5>
                         <h5>
                               @if($entrenador->cargo == 1)
                               Primer entrenador

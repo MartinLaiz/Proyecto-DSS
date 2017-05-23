@@ -59,30 +59,7 @@
                                                                   <td>Fecha de nacimiento:</td>
                                                                   <td><input class="form-control" type="date" name="fNac" id="fNac" value="{{ date('Y-m-d',strtotime($usuario->fNac)) }}" required></td>
                                                             </tr>
-
-                                                            <tr>
-                                                                  <td>Salario:</td>
-                                                                  <td>
-                                                                        <div class="">
-                                                                              <input class="form-control" type="number" name="salario" id="salario" min="0" value="{{ $usuario->salario }}" required>
-                                                                        </div>
-                                                                  </td>
-                                                            </tr>
-
-                                                            <tr>
-                                                                  <td>Rol:</td>
-                                                                  <td>
-                                                                        <div class="">
-                                                                              <select class="form-control" name="rol" id="rol" onchange="cargoFilter()" required>
-                                                                                    <option value="0" @if($usuario->rol == 0) selected @endif>Jugador</option>
-                                                                                    <option value="1" @if($usuario->rol == 1) selected @endif>Entrenador</option>
-                                                                                    <option value="2" @if($usuario->rol == 2) selected @endif>Director</option>
-                                                                                    <option value="3" @if($usuario->rol == 3) selected @endif>Administrador</option>
-                                                                              </select>
-                                                                        </div>
-                                                                  </td>
-                                                            </tr>
-
+                                                            @if(Auth::user()->rol>0)
                                                             <tr id="posicionTr">
                                                                   <td> Posición:</td>
                                                                   <td>
@@ -117,10 +94,48 @@
                                                                   <td>Dorsal:</td>
                                                                   <td>
                                                                         <div class="">
-                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value="{{ $usuario->dorsal }}" required>
+                                                                              <input class="form-control" type="number" name="dorsal" id="dorsal" min="0" value="{{ $usuario->dorsal }}">
                                                                         </div>
                                                                   </td>
                                                             </tr>
+                                                            @endif
+                                                            @if(Auth::user()->rol>1)
+                                                            <tr>
+                                                                  <td>Salario:</td>
+                                                                  <td>
+                                                                        <div class="">
+                                                                              <input class="form-control" type="number" name="salario" id="salario" min="0" value="{{ $usuario->salario }}" required>
+                                                                        </div>
+                                                                  </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                  <td>Rol:</td>
+                                                                  <td>
+                                                                        <div class="">
+                                                                              <select class="form-control" name="rol" id="rol" onchange="cargoFilter()" required>
+                                                                                    <option value="0" @if($usuario->rol == 0) selected @endif>Jugador</option>
+                                                                                    <option value="1" @if($usuario->rol == 1) selected @endif>Entrenador</option>
+                                                                                    <option value="2" @if($usuario->rol == 2) selected @endif>Director</option>
+                                                                                    <option value="3" @if($usuario->rol == 3) selected @endif>Administrador</option>
+                                                                              </select>
+                                                                        </div>
+                                                                  </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                  <td>Equipo:</td>
+                                                                  <td>
+                                                                        <div class="">
+                                                                              <select class="form-control" name="equipo_id" id="equipo_id" required>
+                                                                                    @foreach($equipos as $equipo)
+                                                                                    <option value="{{ $equipo->id }}" @if($usuario->equipo_id == $equipo->id) selected @endif>{{ $equipo->nombreEquipo }}</option>
+                                                                                    @endforeach
+                                                                              </select>
+                                                                        </div>
+                                                                  </td>
+                                                            </tr>
+                                                            @endif
                                                       </tbody>
                                                 </table>
                                           </div>

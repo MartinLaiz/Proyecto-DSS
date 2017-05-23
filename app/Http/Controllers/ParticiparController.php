@@ -36,9 +36,9 @@ class ParticiparController extends Controller
         }
 
         //si se cumple, se mete los datos, si no salta error
-        if($contadorTitularLocal == 11 && $contadorBanquilloLocal== 7 
+        if($contadorTitularLocal == 11 && $contadorBanquilloLocal== 7
         && $contadorTitularVisitante == 11 && $contadorBanquilloVisitante ==7){
-            
+
             foreach($request->request as $r){
                 $participar = new Participar();
                 //separo los string
@@ -115,7 +115,7 @@ class ParticiparController extends Controller
         //recojo los datos del partido
         $partido = Partido::with('equipoLocal','equipoVisitante')
         ->where('id','=',$idPartido)->first();
-        
+
         $cantidad = Participar::where('partido_id','=',$idPartido)->count();
 
 
@@ -128,7 +128,7 @@ class ParticiparController extends Controller
         ->where('partido_id','=',$idPartido)
         ->where('asistencia','=',2)->get();
 
-        
+
         if($cantidad != null){
              return view ('config/partido/perfilPartido',[ 'partido' => $partido
              ,'cantidad' => $cantidad,'titulares' => $participarTitular,
@@ -156,7 +156,7 @@ class ParticiparController extends Controller
             //obtengo los jugadores locales
             $locales = Usuario::where('equipo_id','=',$partido->equipoLocal_id)
             ->orderBy('posicion')->get();
-        
+
             //obtengo los jugadores visitantes
             $visitantes = Usuario::where('equipo_id','=',$partido->equipoVisitante_id)
             ->orderBy('posicion')->get();
@@ -219,19 +219,19 @@ class ParticiparController extends Controller
 
 
         //si se cumple, se mete los datos, si no salta error
-        if($contadorTitularLocal == 11 && $contadorBanquilloLocal== 7 
+        if($contadorTitularLocal == 11 && $contadorBanquilloLocal== 7
         && $contadorTitularVisitante == 11 && $contadorBanquilloVisitante ==7){
-            
+
             foreach($request->request as $r){
                 //separo los string
                 $checked = explode(" ", $r);
-  
+
                 //si es titular
                 if($checked[0] == "titularLocal"){
-  
+
                     $participar = Participar::where('partido_id','=',$idPartido)
                     ->where('usuario_id','=',$checked[1])->first();
-    
+
 
                     $participar->partido_id = $idPartido;
                     $participar->usuario_id = $checked[1];
