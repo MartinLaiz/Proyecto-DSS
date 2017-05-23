@@ -93,12 +93,12 @@
                    @foreach($partidos as $partido)
                     <tr>
                    
-                        <td class="visible-lg" width="70px">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"><img src="{{URL::asset($partido->equipoLocal->logo)}}" alt="Logo" width=100%></td>
+                        <td class="visible-lg" width="70px">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"><img src="/images/escudos/{{$partido->equipoLocal->logo}}" alt="Logo" width=100%></td>
                         <td>  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"> {!!$partido->equipoLocal->nombreEquipo!!}</td>
                         <td class="hidden-xs">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->golesLocal!!}</td>
                         <td class="hidden-xs">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->golesVisitante!!}</td>
                         <td class="visible-xs">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"> {!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
-                        <td class="visible-lg" width="70px"><img src="{{URL::asset($partido->equipoVisitante->logo)}}" alt="Logo" width=100%>  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"></td>
+                        <td class="visible-lg" width="70px"><img src="/images/escudos/{{$partido->equipoVisitante->logo}}" alt="Logo" width=100%>  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"></td>
                         <td>  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->equipoVisitante->nombreEquipo!!}</td>
                         <td> <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"> {!!$partido->estadio->nombre!!}</td>
                         <td class="hidden-xs">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->competicion->nombre!!}</td>

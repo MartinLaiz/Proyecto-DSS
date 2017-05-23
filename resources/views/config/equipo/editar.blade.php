@@ -39,7 +39,7 @@
 					<tr onclick="window.location.href = '{{ action('EquipoController@getEquipo',$team->id)}}';"
 						onmouseover="this.className='btn-link';" onmouseout="this.className='';">
 						<td class="hidden-xs">{!!$team->cif!!}</td>
-						<td width="70px"><img src="{{URL::asset($team->logo)}}" alt="Escudo" width=100%></td>
+						<td width="70px"><img src="/images/escudos/{{$team->logo}}" alt="Escudo" width=100%></td>
 						<td>{!!$team->nombreEquipo!!}</td>
 						@if ($team->cif == 'A27417476' || $team->presupuesto != 0)
 						<td class="visible-lg">{!!$team->presupuesto!!}</td>

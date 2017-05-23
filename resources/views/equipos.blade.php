@@ -19,7 +19,7 @@
                   @foreach($lista as $team)
                         <tr onclick="window.location.href = '{{ action('EquipoController@getEquipo',$team->id)}}';"
                               onmouseover="this.className='btn-link';" onmouseout="this.className='';">
-                              <td width="70px"><img src="{{URL::asset($team->logo)}}" alt="Escudo" width=100%></td>
+                              <td width="70px"><img src="/images/escudos/{{$team->logo}}" alt="Escudo" width=100%></td>
                               <td>{!!$team->nombreEquipo!!}</td>
                               <td>{!!$team->estadio->nombre!!}</td>
                               <td>{!!$team->estadio->capacidad!!}</td>

@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">{{--LogoLocal--}}
-				<img data-src="holder.js/10x10" alt="10x10" style="width: 60px; height: 60px;" data-holder-rendered="true" src=  "{{ asset ($partido->equipoLocal->logo)}}" class="img-circle img-responsive">
+				<img data-src="holder.js/10x10" alt="10x10" style="width: 60px; height: 60px;" data-holder-rendered="true" src=  "/images/escudos/{{$partido->equipoLocal->logo}}" class="img-circle img-responsive">
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center vcenter">{{--NombreLocal--}}
 				<br>
@@ -47,7 +47,7 @@
 				<strong>{!!$partido->equipoVisitante->nombreEquipo!!}</strong>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">{{--LogoVisitante--}}
-				<img data-src="holder.js/10x10" alt="10x10" style="width: 50px; height: 50px;" data-holder-rendered="true" src=  "{{ asset ($partido->equipoVisitante->logo)}}" class="img-circle img-responsive">
+				<img data-src="holder.js/10x10" alt="10x10" style="width: 50px; height: 50px;" data-holder-rendered="true" src=  "/images/escudos/{{$partido->equipoVisitante->logo}}" class="img-circle img-responsive">
 			</div>
 		</div>
 
