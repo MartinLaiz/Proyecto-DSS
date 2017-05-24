@@ -6,8 +6,16 @@
 <div class="contenedor row">
       @include('config/configuracion')
       <div class="col-md-6 col-md-offset-3">
-            
-            @if( $competiciones->count() == 0)
+            @if (count($errors) > 0)
+                  <ul>
+                  @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">
+                              <a href="#" class="alert-link">{{ $error }}</a>
+                        </div>
+                  @endforeach
+                  </ul>
+
+            @elseif( count($competiciones) == 0)
                   <div class="alert alert-info">
                         <a href="" class="alert-link">No existen competiciones.</a>
                   </div>
@@ -34,7 +42,7 @@
                         @endforeach
                         </tbody>
                   </table>
-            @endif
+
        </div>
  </div>
 @endsection
@@ -42,7 +50,7 @@
 
 
 
-@if( $competiciones->count() >= 1)
+
       <div class="modal fade" id="editarCompeticion" data-target="#editarCompeticion">
             <div class="modal-dialog">
             

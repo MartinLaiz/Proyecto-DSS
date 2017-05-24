@@ -7,8 +7,19 @@
       @include('config/configuracion')
       <div class="col-md-6 col-md-offset-3">
             <h2>Temporadas</h2>
-            @if(count($temporadas) == 0)
-            <div class="alert alert-info">No existen temporadas.</div>
+
+            {{-- Muestra errores --}}
+            @if (count($errors) > 0)
+                  <ul>
+                  @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">
+                              <a href="#" class="alert-link">{{ $error }}</a>
+                        </div>
+                  @endforeach
+                  </ul>
+
+            @elseif(count($temporadas) == 0)
+                  <div class="alert alert-info">No existen temporadas.</div>
             @else
             <table class="table table-striped table-responsive" cellspacing="0" width="100%">
                   <thead>

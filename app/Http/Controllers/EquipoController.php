@@ -31,18 +31,24 @@ class EquipoController extends Controller
             //obtengo el ultimo partido
             $ultimoPartido = $ultimosPartidos->first();
             //si no hay partidos que salte el error
-<<<<<<< Updated upstream
-            if($ultimoPartido != null){
-=======
+
             if($ultimoPartido == null){
                   $validator = Validator::make($request->all(), [
                   'title' => '2',
                   'body' => '2',
                   ]);
                   $validator->getMessageBag()->add('unique','Error, No hay partidos.');
-                  return Redirect::to('/')->withErrors($validator)->withInput();
+                  return view('home',[ 
+                        'equipos' => null, 
+                        'estadios' => null, 
+                        'ultimoPartido' =>  null, 
+                        'titulares' => null, 
+                        'banquillo' => null, 
+                        'ultPartidos' => null, 
+                        'proxPartidos' => null 
+                  ])->withErrors($validator->getMessageBag()); 
             }else{
->>>>>>> Stashed changes
+
                   $participarTitular = Participar::with('usuario')
                   ->where('partido_id','=', $ultimoPartido->id)
                   ->where('asistencia','=',1)->get();
@@ -50,22 +56,17 @@ class EquipoController extends Controller
                   $participarBanquillo = Participar::with('usuario')
                   ->where('partido_id','=',$ultimoPartido->id)
                   ->where('asistencia','=',2)->get();
+            
+                  return view('home',[
+                        'equipos' => Equipo::get(),
+                        'estadios' => Estadio::get(),
+                        'ultimoPartido' =>  $ultimoPartido,
+                        'titulares' => $participarTitular,
+                        'banquillo' => $participarBanquillo,
+                        'ultPartidos' => $ultimosPartidos->take(5),
+                        'proxPartidos' => $proxLocal->merge($proxVisitante)->sortBy('fecha')->take(5)
+                  ]);
             }
-            else {
-                  $participarTitular = null;
-                  $participarBanquillo = null;
-            }
-
-
-            return view('home',[
-                  'equipos' => Equipo::get(),
-                  'estadios' => Estadio::get(),
-                  'ultimoPartido' =>  $ultimoPartido,
-                  'titulares' => $participarTitular,
-                  'banquillo' => $participarBanquillo,
-                  'ultPartidos' => $ultimosPartidos->take(5),
-                  'proxPartidos' => $proxLocal->merge($proxVisitante)->sortBy('fecha')->take(5)
-            ]);
 
       }
 

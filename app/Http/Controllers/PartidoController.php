@@ -192,34 +192,69 @@ class PartidoController extends Controller
     }
 
 
-    public function formularioInsertar(){
+    public function formularioInsertar(Request $request){
 
         $equipos = Equipo::where('nombreEquipo','<>','Libre')->get();
         $temporadas = Temporada::with('partido')->get();
         $competiciones = Competicion::with('partido')->get();
+        $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+        ]);
 
-        return view ('config/partido/crearPartido',[ 'competiciones' => $competiciones,
-        'equipos' => $equipos,'temporadas' => $temporadas]);
+
+        if(count($temporadas) == 0){
+            
+            $validator->getMessageBag()->add('unique','No se puede crear partidos ,ya que, no existen temporadas.');
+
+           return view ('config/partido/crearPartido',[ 'competiciones' => null,
+            'equipos' => null,'temporadas' => null])->withErrors($validator->getMessageBag());
+
+        }else if(count($competiciones) == 0){
+                $validator->getMessageBag()->add('unique','No se puede crear partidos ,ya que, no existen competiciones.');
+                return view ('config/partido/crearPartido',[ 'competiciones' => $competiciones,
+                'equipos' => $equipos,'temporadas' =>$temporadas])->withErrors($validator->getMessageBag());
+
+        }else{
+            return view ('config/partido/crearPartido',[ 'competiciones' => $competiciones,
+            'equipos' => $equipos,'temporadas' => $temporadas]);
+        }
     }
 
     public function crearPartido(Request $request){
-        $partido = new Partido();
 
 
-        $partido->equipoLocal_id = $request->equipoLocal;
-        $partido->equipoVisitante_id = $request->equipoVisitante;
-        $partido->temporada_id = $request->temporada_id;
-        $partido->competicion_id = $request->competicion_id;
-        $partido->golesLocal = $request->golesLocal;
-        $partido->golesVisitante = $request->golesVisitante;
-        $partido->fecha = $request->fecha;
-        $partido->cronica = null;
+        //busco la temporada
 
-        $equipo = Equipo::find($request->equipoLocal);
+        $temporada = Temporada::find($request->temporada_id);
+        
+        if($request->fecha >= $temporada->inicio && $request->fecha <= $temporada->fin){
 
-        $partido->estadio_id = $equipo->estadio_id;
+            $partido = new Partido();
+            $partido->equipoLocal_id = $request->equipoLocal;
+            $partido->equipoVisitante_id = $request->equipoVisitante;
+            $partido->temporada_id = $request->temporada_id;
+            $partido->competicion_id = $request->competicion_id;
+            $partido->golesLocal = $request->golesLocal;
+            $partido->golesVisitante = $request->golesVisitante;
+            $partido->fecha = $request->fecha;
+            $partido->cronica = null;
 
-        return $this->verErrores($partido,$request,true);
+            $equipo = Equipo::find($request->equipoLocal);
+
+            $partido->estadio_id = $equipo->estadio_id;
+
+            return $this->verErrores($partido,$request,true);
+        }else{
+            $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+            ]);
+            $validator->getMessageBag()->add('unique','Error, la fecha introducida tiene que estar entre la temporada indicada.
+            La temporada ' . $temporada->nombre . ' empieza en ' . $temporada->inicio . ' y termina en ' . $temporada->fin);
+            return back()->withErrors($validator)->withInput();
+
+        }
 
 
     }

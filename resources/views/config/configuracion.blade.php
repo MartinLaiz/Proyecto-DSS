@@ -132,37 +132,3 @@ $(document).ready(function(){
       </div>
 </div>
 
-
-
-{{-- Temporada --}}
-<div class="modal fade" id="creartemporada" data-target="#creartemporada">
-      <div class="modal-dialog">
-
-            <div class="modal-content">
-
-                  <div class="modal-header">
-
-                        <button class="close" data-dismiss="modal">&times;</button>
-                  </div>
-
-                  <div class="modal-body">
-                        <h2> Crear Temporada </h2>
-                         <form action="{{action('TemporadaController@crearTemporada')}}" method="POST">
-                        {{ csrf_field() }}
-                        {{ method_field('PUT') }}
-                              <div class="row form-group">
-                                    <div class="col-md-6">
-                                          <input class="form-control" onfocus="(this.type='date')" id="fecha" name="inicio" placeholder="Inicio de la temporada" type="text" required/>
-                                    </div>
-                                    <div class="col-md-6">
-                                          <input class="form-control" onfocus="(this.type='date')" id="fecha" name="fin" placeholder="Fin de la temporada" type="text" required/>
-                                    </div>
-                              </div>
-                        </div>
-                        <div class="modal-footer">
-                              <button class="btn btn-success btn-success" type="submit">Aceptar</button>
-                        </div>
-                  </form>
-            </div>
-      </div>
-</div>

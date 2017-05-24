@@ -18,10 +18,18 @@ class CompeticionController extends Controller
 
     public function crearCompeticion(Request $request){
         $competicion = new Competicion();
+        try{
+            $competicion->nombre = $request->nombre;
+            $competicion->save();
 
-        $competicion->nombre = $request->nombre;
-        $competicion->save();
-
+        }catch(\Illuminate\Database\QueryException $e){
+            $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+            ]);
+            $validator->getMessageBag()->add('unique','Error, existe ya una competicion con el mismo nombre');
+            return view('config/editarCompeticion',['competiciones' => null])->withErrors($validator->getMessageBag());
+        }
         return back();
         
     }
@@ -41,11 +49,20 @@ class CompeticionController extends Controller
     }
 
     public function editarCompeticion($id,Request $request){
-        $competicion = Competicion::find($id);
-        $competicion->nombre = $request->nombre;
-        $competicion->save();
+         try{
+            $competicion = Competicion::find($id);
+            $competicion->nombre = $request->nombre;
+            $competicion->save();
 
-        return back();
+            return back();
+        }catch(\Illuminate\Database\QueryException $e){
+            $validator = Validator::make($request->all(), [
+            'title' => '2',
+            'body' => '2',
+            ]);
+            $validator->getMessageBag()->add('unique','Error, existe ya una competicion con el mismo nombre');
+            return back()->withErrors($validator)->withInput();
+        }
         
     }
 
@@ -53,7 +70,7 @@ class CompeticionController extends Controller
         //consigo todos los equipo
         $competiciones = Competicion::all();
         
-        return view('config/competicion/editarCompeticion',['competiciones' => $competiciones]);
+        return view('config/editarCompeticion',['competiciones' => $competiciones]);
     }
 
 
