@@ -38,6 +38,7 @@ $(document).ready(function(){
                   @endforeach
                   </ul>
             @endif
+
           <form action="{{action('PartidoController@crearPartido')}}" method="POST">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}  
@@ -107,11 +108,6 @@ $(document).ready(function(){
             <div class="row form-group">
                   <div class="col-md-1">
                         <button class="btn btn-success btn-success" type="submit">Aceptar</button>
-                  </div>
-
-                   <div class="col-md-2">
-                        
-                        <input class="btn btn-success btn-success"  value="Introducir Jugadores" type="submit" name="introducir" id="introducir" required >
                   </div>
             </div>
         </form> 
