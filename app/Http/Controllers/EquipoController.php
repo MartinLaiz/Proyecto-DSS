@@ -31,7 +31,18 @@ class EquipoController extends Controller
             //obtengo el ultimo partido
             $ultimoPartido = $ultimosPartidos->first();
             //si no hay partidos que salte el error
+<<<<<<< Updated upstream
             if($ultimoPartido != null){
+=======
+            if($ultimoPartido == null){
+                  $validator = Validator::make($request->all(), [
+                  'title' => '2',
+                  'body' => '2',
+                  ]);
+                  $validator->getMessageBag()->add('unique','Error, No hay partidos.');
+                  return Redirect::to('/')->withErrors($validator)->withInput();
+            }else{
+>>>>>>> Stashed changes
                   $participarTitular = Participar::with('usuario')
                   ->where('partido_id','=', $ultimoPartido->id)
                   ->where('asistencia','=',1)->get();
