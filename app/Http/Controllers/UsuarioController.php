@@ -191,66 +191,71 @@ class UsuarioController extends Controller
       }
 
       public function update(Request $request, $id){
-            //Control de errores
-            $errors = false;
-            $validator = Validator::make($request->all(),[]);
-            //Campos comunes
-            $usuario = Usuario::find($id);
-            $usuario->dni = $request->dni;
-            $usuario->nombre = $request->nombre;
-            $usuario->apellidos = $request->apellidos;
-            $usuario->fNac = $request->fNac;
-            $usuario->salario = $request->salario;
-            if($request->equipo != null) $usuario->equipo_id = $request->equipo_id;
-            $usuario->rol = $request->rol;
 
-            if($usuario->rol == 0){ //Jugador
-                  if(Usuario::where('equipo_id','=',$request->equipo)->where('dorsal','=',$request->dorsal)->where('id','<>',$id)->first() != null){
-                        $validator->getMessageBag()->add('dorsal','Existe jugador en el mismo equipo con ese dorsal');
+            try{
+                  //Campos comunes
+                  $usuario = Usuario::find($id);
+                  $usuario->dni = $request->dni;
+                  $usuario->nombre = $request->nombre;
+                  $usuario->apellidos = $request->apellidos;
+                  $usuario->fNac = $request->fNac;
+                  $usuario->salario = $request->salario;
+                  if($request->equipo != null) $usuario->equipo_id = $request->equipo_id;
+                  $usuario->rol = $request->rol;
+
+                  if($request->cargo != 0 && Usuario::where('equipo_id','=',$request->equipo)->where('cargo','=',$request->cargo)->where('id','<>',$id)->first() != null){
+                        throw new \Exception('Ya hay un usuario con ese cargo en ese mismo equipo');
                   }
-                  else{
+
+                  if($usuario->rol == 0){ //Jugador
+                        //Dorsal
+                        if(Usuario::where('equipo_id','=',$request->equipo)->where('dorsal','=',$request->dorsal)->where('id','<>',$id)->first() != null){
+                              throw new \Exception('Ya hay un jugador en ese equipo con el mismo dorsal');
+                        }
                         $usuario->dorsal = $request->dorsal;
-                  }
-
-                  if($request->cargo != 0 && Usuario::where('equipo_id','=',$request->equipo)->where('cargo','=',$request->cargo)->where('id','<>',$id)->first() != null){
-                        $validator->getMessageBag()->add('cargo','Existe jugador en el mismo equipo con ese cargo');
-                  }
-                  else{
                         $usuario->cargo = $request->cargo;
+                        $usuario->posicion = $request->posicion;
+
                   }
-                  $usuario->posicion = $request->posicion;
-            }
-            elseif ($usuario->rol == 1) { //Entrenador
-                  if($request->cargo != 0 && Usuario::where('equipo_id','=',$request->equipo)->where('cargo','=',$request->cargo)->where('id','<>',$id)->first() != null){
-
-                        $validator->getMessageBag()->add('cargo','Existe entrenador en el mismo equipo con ese cargo');
+                  elseif ($usuario->rol == 1) { //Entrenador
+                        $usuario->dorsal = null;
                   }
-                  else{
-                        $usuario->cargo = $request->cargo;
+                  elseif ($usuario->rol == 2){ //Director
+                        $usuario->dorsal = null;
+
                   }
-            }
-            if($request->password != null ){
-                  $usuario->password = bcrypt($request->password);
-            }
-            if($request->foto != null ){
-                  try{
-                        Image::make($request->file('foto')->getRealPath())->fit(150)->encode('png')->save('images/users/'.$usuario->dni.'.png');
-                        $usuario->foto = $usuario->dni . '.png';
-                  }catch(\Intervention\Image\Exception\NotReadableException $e){
-                        $validator->getMessageBag()->add('foto','Foto demasiado grande');
+                  else{ //Administrador
+                        $usuario->dorsal = null;
                   }
+
+                  if($request->password != null){
+                        if($reqest->password != $reqest->passwordVerify){
+                              throw new \Exception('Las contraseñas no coinciden');
+                        }
+                        $usuario->password = bcrypt($request->password);
+                  }
+
+                  if($request->foto != null ){
+                        try{
+                              Image::make($request->file('foto')->getRealPath())->fit(150)->encode('png')->save('images/users/'.$usuario->dni.'.png');
+                              $usuario->foto = $usuario->dni . '.png';
+                        }catch(\Intervention\Image\Exception\NotReadableException $e){
+                              throw new \Exception('Foto demasiado grande');
+                        }
+                  }
+
+                  try {
+                        $usuario->save();
+                  } catch (\Illuminate\Database\QueryException $e) {
+                        throw new \Exception('dni','Existe usuario con ese dni');
+                  }
+
+                  return redirect()->action('UsuarioController@getUsuario',[ 'id' => $id ]);
             }
-            try {
-                  $usuario->save();
-            } catch (\Illuminate\Database\QueryException $e) {
-                  $validator->getMessageBag()->add('dni','Existe usuario con ese dni');
+            catch(\Exception $ex){
+                  return Redirect::back()->withErrors($ex->getMessage())->withInput($request->except('password'));
             }
 
-
-            if($validator->getMessageBag()->count()>0) return Redirect::back()->withErrors($validator);
-
-
-            return redirect()->action('UsuarioController@getUsuario',[ 'id' => $id ]);//Probablemente ésto cambiará
       }
 
       public function delete($id){

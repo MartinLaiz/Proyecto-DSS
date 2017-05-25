@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use \Illuminate\Support\MessageBag;
+use Illuminate\Support\MessageBag;
 use App\Equipo;
 use App\Partido;
 use App\Estadio;
@@ -21,33 +21,26 @@ use Intervention\Image\ImageManagerStatic as Image;
 class EquipoController extends Controller
 {
       public function getHome(Request $request){
-
+            $messages = new MessageBag();
             $UA = Equipo::where('nombreEquipo','like','%UA%')->first();
-            $ultLocal = $UA->partidosLocal()->where('fecha','<',Carbon::now())->get();
-            $ultVisitante = $UA->partidosVisitante()->where('fecha','<',Carbon::now())->get();
-            $proxLocal = $UA->partidosLocal()->where('fecha','>',Carbon::now())->get();
-            $proxVisitante = $UA->partidosVisitante()->where('fecha','>',Carbon::now())->get();
-            $ultimosPartidos = $ultLocal->merge($ultVisitante)->sortByDesc('fecha');
-            //obtengo el ultimo partido
-            $ultimoPartido = $ultimosPartidos->first();
-            //si no hay partidos que salte el error
+            if($UA == null){
+                  $messages->add('UA','No hay equipo de la UA');
+            }
+            else{
+                  $ultLocal = $UA->partidosLocal()->where('fecha','<',Carbon::now())->get();
+                  $ultVisitante = $UA->partidosVisitante()->where('fecha','<',Carbon::now())->get();
+                  $proxLocal = $UA->partidosLocal()->where('fecha','>',Carbon::now())->get();
+                  $proxVisitante = $UA->partidosVisitante()->where('fecha','>',Carbon::now())->get();
+                  $ultimosPartidos = $ultLocal->merge($ultVisitante)->sortByDesc('fecha');
+                  //obtengo el ultimo partido
+                  $ultimoPartido = $ultimosPartidos->first();
+                  //si no hay partidos que salte el error
+                  if($ultimoPartido == null){
+                        $messages->add('unique','Error, No hay partidos.');
+                  }
+            }
 
-            if($ultimoPartido == null){
-                  $validator = Validator::make($request->all(), [
-                  'title' => '2',
-                  'body' => '2',
-                  ]);
-                  $validator->getMessageBag()->add('unique','Error, No hay partidos.');
-                  return view('home',[ 
-                        'equipos' => null, 
-                        'estadios' => null, 
-                        'ultimoPartido' =>  null, 
-                        'titulares' => null, 
-                        'banquillo' => null, 
-                        'ultPartidos' => null, 
-                        'proxPartidos' => null 
-                  ])->withErrors($validator->getMessageBag()); 
-            }else{
+            if($messages->isEmpty()){
 
                   $participarTitular = Participar::with('usuario')
                   ->where('partido_id','=', $ultimoPartido->id)
@@ -56,7 +49,7 @@ class EquipoController extends Controller
                   $participarBanquillo = Participar::with('usuario')
                   ->where('partido_id','=',$ultimoPartido->id)
                   ->where('asistencia','=',2)->get();
-            
+
                   return view('home',[
                         'equipos' => Equipo::get(),
                         'estadios' => Estadio::get(),
@@ -67,6 +60,15 @@ class EquipoController extends Controller
                         'proxPartidos' => $proxLocal->merge($proxVisitante)->sortBy('fecha')->take(5)
                   ]);
             }
+            return view('home',[
+                  'equipos' => null,
+                  'estadios' => null,
+                  'ultimoPartido' =>  null,
+                  'titulares' => null,
+                  'banquillo' => null,
+                  'ultPartidos' => null,
+                  'proxPartidos' => null
+            ])->withErrors($messages);
 
       }
 

@@ -43,6 +43,10 @@
                                                 <table class="table table-user-information">
                                                       <tbody>
                                                             <tr>
+                                                                  <th>Datos del usuario</th>
+                                                                  <th></th>
+                                                            </tr>
+                                                            <tr>
                                                                   <td>DNI:</td>
                                                                   <td><input class="form-control" type="text" name="dni" id="dni" value="{!! $usuario->dni !!}" required></td>
                                                             </tr>
@@ -60,19 +64,22 @@
                                                                   <td><input class="form-control" type="date" name="fNac" id="fNac" value="{{ date('Y-m-d',strtotime($usuario->fNac)) }}" required></td>
                                                             </tr>
                                                             @if(Auth::user()->rol>0)
+                                                            <tr>
+                                                                  <th>Trabajo en el equipo</th>
+                                                                  <th></th>
+                                                            </tr>
                                                             <tr id="posicionTr">
                                                                   <td> Posición:</td>
                                                                   <td>
                                                                         <div class="">
                                                                               <select class="form-control" name="posicion" id="posicion" required>
-                                                                                    <option value="0" @if($usuario->posicion == 0 || $usuario->posicion == null) selected @endif>No asignado</option>
+                                                                                    <option value="0" @if($usuario->posicion == 0) selected @endif>No asignado</option>
                                                                                     <option value="1" @if($usuario->posicion == 1) selected @endif>Portero</option>
                                                                                     <option value="2" @if($usuario->posicion == 2) selected @endif>Defensa</option>
                                                                                     <option value="3" @if($usuario->posicion == 3) selected @endif>Medio</option>
                                                                                     <option value="4" @if($usuario->posicion == 4) selected @endif>Delantero</option>
                                                                               </select>
                                                                         </div>
-                                                                        <input style="display: none" type="text" name="posicionUsuario" value=@if($usuario->posicion != null) "$usuario->posicion" @else "No disponible" @endif required>
                                                                   </td>
                                                             </tr>
 
@@ -87,7 +94,6 @@
                                                                                     <option value="3" @if($usuario->cargo == 3) selected @endif>Tercer capitán</option>
                                                                               </select>
                                                                         </div>
-                                                                        <input style="display: none" type="text" name="cargoUsuario" value=@if($usuario->cargo != null) "$usuario->cargo" @else "No disponible" @endif required>
                                                                   </td>
                                                             </tr>
                                                             <tr id="dorsalTr">
@@ -173,41 +179,40 @@ function eliminarOpciones(){
 
 function opcionesJugador(){
       eliminarOpciones();
-      var element = document.getElementById('cargo');
+      var cargo = document.getElementById('cargo');
       var options = ['Sin cargo','Primer capitan','Segundo capitan','Tercer capitan'];
       for (var i = 0; i < 4; i++) {
             var option = document.createElement('option');
             option.text = options[i];
             option.value = i;
-            element.add(option);
+            cargo.add(option);
       }
-      if(document.getElementById('posicionUsuario') != null)
-      element.value = document.getElementById('posicionUsuario').value;
+      cargo.value = {{ $usuario->cargo }};
 
-      element = document.getElementById('posicion');
+      posicion = document.getElementById('posicion');
       var options = ['Portero','Defensa','Medio','Delantero'];
       for (var i = 0; i < 4; i++) {
             var option = document.createElement('option');
             option.text = options[i];
             option.value = i+1;
-            element.add(option);
+            posicion.add(option);
       }
-      if(document.getElementById('cargoUsuario') != null)
-      element.value = document.getElementById('cargoUsuario').value;
+      posicion.value = {{ $usuario->posicion }};
 }
 
 function opcionesEntrenador(){
       eliminarOpciones();
-      var element = document.getElementById('cargo');
+      var cargo = document.getElementById('cargo');
       var options = ['Primer entrenador','Segundo entrenador'];
       for (var i = 0; i < 2; i++) {
             var option = document.createElement('option');
             option.text = options[i];
             option.value = i+1;
-            element.add(option);
+            cargo.add(option);
       }
-      element.value = document.getElementById('cargoUsuario').value;
-      element.disabled = false;
+      cargo.value = {{ $usuario->cargo }};
+      cargo.disabled = false;
+
       var pos = document.getElementById('posicion');
       var option = document.createElement('option');
       option.text = "No disponible";
@@ -230,27 +235,26 @@ function opcionesDirecAdmin(){
 function cargoFilter(){
       var posicionTr = document.getElementById('posicionTr');
       posicionTr.style.display = "none";
-      var cargo = document.getElementById('cargoTr');
-      cargoTr.style.display = "none";
+      var cargoTr = document.getElementById('cargoTr');
+      cargoTr.style.display = "";
       var dorsalTr = document.getElementById('dorsalTr');
       dorsalTr.style.display = "none";
       var dorsal = document.getElementById('dorsal');
       dorsal.required = false;
 
-      var option = document.getElementById('rol').value;
-      if(option == 0){
-            posicionTr.style.display = "block";
-            cargoTr.style.display = "block";
-            dorsalTr.style.display = "block";
+      var rol = document.getElementById('rol').value;
+      if(rol == 0){
+            posicionTr.style.display = "";
+            dorsalTr.style.display = "";
             dorsal.required = true;
             opcionesJugador();
       }
-      else if (option == 1) {
-            {{--opcionesEntrenador()--}};
-            cargoTr.style.display = "block";
+      else if (rol == 1) {
+            opcionesEntrenador();
       }
       else{
-            {{--opcionesDirecAdmin()--}};
+            opcionesDirecAdmin();
+            cargoTr.style.display = "none";
       }
 }
 window.onload = cargoFilter;

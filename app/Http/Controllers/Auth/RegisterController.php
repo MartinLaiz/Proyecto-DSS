@@ -65,6 +65,10 @@ class RegisterController extends Controller
       */
       protected function create(array $data)
       {
+            $equipo = Equipo::where('nombreEquipo','=','Libre')->first();
+            if($equipo != null){
+                  $equipo = $equipo->id;
+            }
             return Usuario::create([
                   'dni' => $data['dni'],
                   'nombre' => $data['nombre'],
@@ -72,7 +76,7 @@ class RegisterController extends Controller
                   'fNac' => strtotime($data['fNac']),
                   'salario' => 0,
                   'rol' => 0,
-                  'equipo_id' => Equipo::where('nombreEquipo','=','Libre')->first()->id,
+                  'equipo_id' => $equipo,
                   'password' => bcrypt($data['password']),
             ]);
       }

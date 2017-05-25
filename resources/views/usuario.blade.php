@@ -43,6 +43,20 @@
                                                             <td>Fecha de nacimiento:</td>
                                                             <td>   {{ date('d/m/Y',strtotime($usuario->fNac)) }} <strong>({{ \Carbon\Carbon::now()->diffInYears($usuario->fNac) }})</strong></td>
                                                       </tr>
+                                                      <tr>
+                                                            <td>Rol:</td>
+                                                            <td>
+                                                            @if($usuario->rol == 0)
+                                                            Jugador
+                                                            @elseif($usuario->rol == 1)
+                                                            Entrenador
+                                                            @elseif($usuario->rol == 2)
+                                                            Director
+                                                            @elseif($usuario->rol == 3)
+                                                            Administrador
+                                                            @endif
+                                                      </td>
+                                                      </tr>
                                                       @if($usuario->rol == 0)
                                                       <tr>
                                                             <td> Posición:</td>

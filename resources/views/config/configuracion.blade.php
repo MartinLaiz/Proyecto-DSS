@@ -1,22 +1,3 @@
-<!--  jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-<link rel="stylesheet" href="css/datepicker.css"/>
-<script>
-$(document).ready(function(){
-      var date_input=$('input[name="date"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-            format: 'yyyy/mm/dd',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-      };
-      date_input.datepicker(options);
-})
-</script>
-
 
 <nav class="navbar navbar-default sidebar" role="navigation" >
       <div class="container-fluid">
@@ -51,6 +32,7 @@ $(document).ready(function(){
                               <li><a href="{{action('EquipoController@editar')}}">Modificar</a></li>
                         </ul>
                   </li>
+                  @if(Auth::check() and Auth::user()->rol > 2)
                   <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon  glyphicon-th-list"></span> Competiciones <span class="caret"></span></a>
                         <ul class="dropdown-menu forAnimate" role="menu">
@@ -66,6 +48,7 @@ $(document).ready(function(){
                               <li><a href="{{action('TemporadaController@editar')}}">Modificar</a></li>
                         </ul>
                   </li>
+                  @endif
             </ul>
       </div>
 </nav>
@@ -131,4 +114,3 @@ $(document).ready(function(){
             </div>
       </div>
 </div>
-
