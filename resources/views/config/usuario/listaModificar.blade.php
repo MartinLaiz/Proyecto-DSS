@@ -3,6 +3,7 @@
 @section('content')
 @include('cabecera',array('section'=>'plantilla'))
 <div class="contenedor row">
+      @include('config/configuracion')
       <div class="col-md-10 col-md-offset-1">
             <br><br>
             <div class="row">

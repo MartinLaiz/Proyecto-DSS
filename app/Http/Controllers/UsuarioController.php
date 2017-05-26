@@ -209,6 +209,10 @@ class UsuarioController extends Controller
 
                   if($usuario->rol == 0){ //Jugador
                         //Dorsal
+                        if($request->dorsal == null){
+                              throw new \Exception('Un jugador debe tener un dorsal');
+                        }
+
                         if(Usuario::where('equipo_id','=',$request->equipo)->where('dorsal','=',$request->dorsal)->where('id','<>',$id)->first() != null){
                               throw new \Exception('Ya hay un jugador en ese equipo con el mismo dorsal');
                         }

@@ -5,7 +5,7 @@
 <div class="contenedor row">
       <div class="col-md-10 col-md-offset-1">
             <div class="row">
-                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12 navbar-form"><h2>Partidos <a href="#filtros" class="btn btn-info" data-toggle="collapse">Filtrar</a></h2></div>
+                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12 navbar-form"><h2>Usuarios <a href="#filtros" class="btn btn-info" data-toggle="collapse">Filtrar</a></h2></div>
             </div>
 
             <div class="row collapse" id="filtros">

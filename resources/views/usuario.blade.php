@@ -5,6 +5,30 @@
 
 
 <div class="contenedor row">
+@if(Auth::check() && Auth::user()->rol == 3)
+<!-- Modal -->
+  <div class="modal fade" id="modalConfirmacion" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">¿Estás seguro?</h4>
+        </div>
+        <div class="modal-body">
+          <p>Estás a punto de borrar <strong>tu usuario.</strong></p>
+          <p>Eso cerrará tu sesión. <strong>Para siempre.</strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ya no quiero</button>
+          <a action="{{ action('UsuarioController@delete', ['id' => $usuario->id]) }}" class="btn btn-danger">Sé lo que hago</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+@endif
       <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 toppad" >
                   <br>
@@ -120,7 +144,8 @@
                                     </div>
                                     @if(Auth::user()->rol>1)
                                     <div class="col-md-3 col-lg-3">
-                                          <a href="{{ action('UsuarioController@delete', ['id' => $usuario->id]) }}" class="btn btn-danger btn-block">Eliminar</a>
+                                          <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalConfirmacion">Eliminar</a>
+                                          
                                     </div>
                                     @endif
                                     @endif

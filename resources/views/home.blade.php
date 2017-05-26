@@ -142,7 +142,7 @@
                   </div>
                   @else
                   <div class="col-md-9 cta-contents">
-                        <h1 class="cta-title">Cronica</h1>
+                        <h1 class="cta-title">Crónica</h1>
                         <div class="cta-desc">
                               <PRE>{{ $ultimoPartido->cronica }}</PRE>
 

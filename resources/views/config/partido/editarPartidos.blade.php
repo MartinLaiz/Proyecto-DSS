@@ -91,18 +91,19 @@
                   <tbody>                              
 
                    @foreach($partidos as $partido)
-                    <tr>
+                    <tr onclick="window.location.href = '{{ action('ParticiparController@verParticipar', $partido->id)}}';"
+						onmouseover="this.className='btn-link';" onmouseout="this.className='';">
                    
-                        <td class="visible-lg" width="70px">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"><img src="/images/escudos/{{$partido->equipoLocal->logo}}" alt="Logo" width=100%></td>
-                        <td>  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"> {!!$partido->equipoLocal->nombreEquipo!!}</td>
-                        <td class="hidden-xs">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->golesLocal!!}</td>
-                        <td class="hidden-xs">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->golesVisitante!!}</td>
-                        <td class="visible-xs">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"> {!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
-                        <td class="visible-lg" width="70px"><img src="/images/escudos/{{$partido->equipoVisitante->logo}}" alt="Logo" width=100%>  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"></td>
-                        <td>  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->equipoVisitante->nombreEquipo!!}</td>
-                        <td> <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}"> {!!$partido->estadio->nombre!!}</td>
-                        <td class="hidden-xs">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->competicion->nombre!!}</td>
-                        <td class="hidden-xs">  <a  href="{{ action('ParticiparController@verParticipar', $partido->id)}}">{!!$partido->temporada->nombre!!}</td>
+                        <td class="visible-lg" width="70px">  <img src="/images/escudos/{{$partido->equipoLocal->logo}}" alt="Logo" width=100%></td>
+                        <td>   {!!$partido->equipoLocal->nombreEquipo!!}</td>
+                        <td class="hidden-xs">  {!!$partido->golesLocal!!}</td>
+                        <td class="hidden-xs">  {!!$partido->golesVisitante!!}</td>
+                        <td class="visible-xs">   {!!$partido->golesLocal!!} - {!!$partido->golesVisitante!!}</td>
+                        <td class="visible-lg" width="70px"><img src="/images/escudos/{{$partido->equipoVisitante->logo}}" alt="Logo" width=100%>  </td>
+                        <td>  {!!$partido->equipoVisitante->nombreEquipo!!}</td>
+                        <td>  {!!$partido->estadio->nombre!!}</td>
+                        <td class="hidden-xs">  {!!$partido->competicion->nombre!!}</td>
+                        <td class="hidden-xs">  {!!$partido->temporada->nombre!!}</td>
                     </a>    
                     </tr>
                     @endforeach
