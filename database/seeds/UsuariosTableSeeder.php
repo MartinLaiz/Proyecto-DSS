@@ -37,6 +37,7 @@ class UsuariosTableSeeder extends Seeder
                   'cargo' => null,
                   'posicion' => null,
                   'dorsal' => null,
+                  'foto' => '00000000A.png',
                   'fNac' => date($formato,0),
                   'password' => bcrypt('password')
             ]);
@@ -65,6 +66,7 @@ class UsuariosTableSeeder extends Seeder
                               'cargo' => null,
                               'posicion' => null,
                               'dorsal' => null,
+                              'foto' => $dni.'.png',
                               'password' => bcrypt('password'),
                               'equipo_id' => $equipo->id
                         ]);
@@ -87,6 +89,7 @@ class UsuariosTableSeeder extends Seeder
                               'cargo' => $PrimerEntrenador,
                               'posicion' => null,
                               'dorsal' => null,
+                              'foto' => $dni.'.png',
                               'password' => bcrypt('password')
                         ]);
                         $user->save();
@@ -108,6 +111,7 @@ class UsuariosTableSeeder extends Seeder
                               'cargo' => $SegundoEntrenador,
                               'posicion' => null,
                               'dorsal' => null,
+                              'foto' => $dni.'.png',
                               'password' => bcrypt('password')
                         ]);
                         $user->save();
@@ -133,6 +137,7 @@ class UsuariosTableSeeder extends Seeder
                               'cargo' => $PrimerCapitan,
                               'posicion' => $posiciones[$posicion],
                               'dorsal' => 1+$i++,
+                              'foto' => $dni.'.png',
                               'password' => bcrypt('password')
                         ]);
                         $user->save();
@@ -157,6 +162,7 @@ class UsuariosTableSeeder extends Seeder
                               'cargo' => $SegundoCapitan,
                               'posicion' => $posiciones[$posicion],
                               'dorsal' => 1+$i++,
+                              'foto' => $dni.'.png',
                               'password' => bcrypt('password')
                         ]);
                         $user->save();
@@ -181,6 +187,7 @@ class UsuariosTableSeeder extends Seeder
                               'cargo' => $TercerCapitan,
                               'posicion' => $posiciones[$posicion],
                               'dorsal' => 1+$i++,
+                              'foto' => $dni.'.png',
                               'password' => bcrypt('password')
                         ]);
                         $user->save();
@@ -206,6 +213,7 @@ class UsuariosTableSeeder extends Seeder
                                     'cargo' => $SinCargo,
                                     'posicion' => $posiciones[$posicion],
                                     'dorsal' => $i+1,
+                                    'foto' => $dni.'.png',
                                     'password' => bcrypt('password')
                               ]);
                               $user->save();

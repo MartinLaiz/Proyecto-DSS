@@ -121,6 +121,9 @@ class EquipoController extends Controller
       }
 
       public function modificarEquipo($id){
+            if($id == Equipo::where('nombreEquipo','=','Libre')->first()->id){
+                  return Redirect::back()->withErrors('No se puede editar ese equipo');
+            }
             $equipo = Equipo::find($id);
             return view('config.equipo.modificar',[
                   'equipo' => $equipo,
@@ -146,6 +149,9 @@ class EquipoController extends Controller
                   }catch(\Intervention\Image\Exception\NotReadableException $e){
                         $validator->getMessageBag()->add('foto','Foto demasiado grande');
                   }
+            }
+            else{
+                  $equipo->foto = $equipo->cif . '.png';
             }
 
             try{
