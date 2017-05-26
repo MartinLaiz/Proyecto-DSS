@@ -12,7 +12,7 @@
                         <div class="form-group">
                               <label class="col-md-3 control-label">DNI</label>
                               <div class="col-md-9">
-                                    <input id="dni" type="text" class="form-control" name="dni" value="{{ old('dni') }}" placeholder="DNI" required>
+                                    <input id="dni" type="text" class="form-control" name="dni" value="{{ old('dni') }}" placeholder="DNI" pattern="[0-9]{8}[A-Z]" required>
                               </div>
                         </div>
                         <div class="form-group">
