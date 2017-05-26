@@ -144,7 +144,11 @@
                                     </div>
                                     @if(Auth::user()->rol>1)
                                     <div class="col-md-3 col-lg-3">
+                                          @if(Auth::user()->id == $usuario->id)
                                           <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalConfirmacion">Eliminar</a>
+                                          @else 
+                                          <a action="{{ action('UsuarioController@delete', ['id' => $usuario->id]) }}" class="btn btn-danger">Eliminar</a>
+                                          @endif
                                           
                                     </div>
                                     @endif
