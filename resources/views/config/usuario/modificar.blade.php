@@ -82,7 +82,6 @@
                                                                         </div>
                                                                   </td>
                                                             </tr>
-
                                                             <tr id="cargoTr">
                                                                   <td>Cargo:</td>
                                                                   <td>
@@ -165,6 +164,7 @@
       </div>
 </div>
 <script type="text/javascript">
+
 function eliminarOpciones(){
       var element = document.getElementById('cargo');
       while (element.options.length != 0) {
@@ -175,6 +175,7 @@ function eliminarOpciones(){
             pos.remove(0);
       }
       var dorsal = document.getElementById('dorsal');
+      dorsal.value = null;
 }
 
 function opcionesJugador(){
@@ -187,7 +188,7 @@ function opcionesJugador(){
             option.value = i;
             cargo.add(option);
       }
-      cargo.value = {{ $usuario->cargo }};
+      cargo.value = @if(isset($usuario->cargo)){{ $usuario->cargo }} @else 0 @endif;
 
       posicion = document.getElementById('posicion');
       var options = ['Portero','Defensa','Medio','Delantero'];
@@ -197,7 +198,10 @@ function opcionesJugador(){
             option.value = i+1;
             posicion.add(option);
       }
-      posicion.value = {{ $usuario->posicion }};
+      posicion.value = @if(isset($usuario->posicion)){{ $usuario->posicion }} @else 1 @endif;
+
+      var dorsal = document.getElementById('dorsal');
+      dorsal.value = @if(isset($usuario->dorsal)){{ $usuario->dorsal }} @else 1 @endif;
 }
 
 function opcionesEntrenador(){
@@ -210,13 +214,13 @@ function opcionesEntrenador(){
             option.value = i+1;
             cargo.add(option);
       }
-      cargo.value = {{ $usuario->cargo }};
+      cargo.value = @if($usuario->cargo != 0){{ $usuario->cargo }} @else 1 @endif;
       cargo.disabled = false;
 
       var pos = document.getElementById('posicion');
       var option = document.createElement('option');
       option.text = "No disponible";
-      option.value = -1;
+      option.value = null;
       pos.add(option);
 }
 
@@ -234,27 +238,41 @@ function opcionesDirecAdmin(){
 
 function cargoFilter(){
       var posicionTr = document.getElementById('posicionTr');
-      posicionTr.style.display = "none";
+      var posicion = document.getElementById('posicion');
+
       var cargoTr = document.getElementById('cargoTr');
-      cargoTr.style.display = "";
+      var cargo = document.getElementById('cargo');
+
       var dorsalTr = document.getElementById('dorsalTr');
-      dorsalTr.style.display = "none";
       var dorsal = document.getElementById('dorsal');
-      dorsal.required = false;
 
       var rol = document.getElementById('rol').value;
       if(rol == 0){
             posicionTr.style.display = "";
+            posicion.disabled = false;
+            cargoTr.style.display = "";
+            cargo.disabled = false;
             dorsalTr.style.display = "";
-            dorsal.required = true;
+            dorsal.disabled = false;
             opcionesJugador();
       }
       else if (rol == 1) {
+            posicionTr.style.display = "none";
+            posicion.disabled = true;
+            cargoTr.style.display = "";
+            cargo.disabled = false;
+            dorsalTr.style.display = "none";
+            dorsal.disabled = true;
             opcionesEntrenador();
       }
       else{
-            opcionesDirecAdmin();
+            posicionTr.style.display = "none";
+            posicion.disabled = true;
             cargoTr.style.display = "none";
+            cargo.disabled = true;
+            dorsalTr.style.display = "none";
+            dorsal.disabled = true;
+            opcionesDirecAdmin();
       }
 }
 window.onload = cargoFilter;

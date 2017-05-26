@@ -9,7 +9,7 @@
 <!-- Modal -->
   <div class="modal fade" id="modalConfirmacion" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -25,7 +25,7 @@
           <a action="{{ action('UsuarioController@delete', ['id' => $usuario->id]) }}" class="btn btn-danger">Sé lo que hago</a>
         </div>
       </div>
-      
+
     </div>
   </div>
 @endif
@@ -106,7 +106,7 @@
                                                                   Primer capitán
                                                                   @elseif($usuario->cargo == '2')
                                                                   Segundo capitán
-                                                                  @elseif($usuario->posicion == '3')
+                                                                  @elseif($usuario->cargo == '3')
                                                                   Tercer capitán
                                                                   @else
                                                                   Sin cargo
@@ -146,10 +146,10 @@
                                     <div class="col-md-3 col-lg-3">
                                           @if(Auth::user()->id == $usuario->id)
                                           <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalConfirmacion">Eliminar</a>
-                                          @else 
+                                          @else
                                           <a action="{{ action('UsuarioController@delete', ['id' => $usuario->id]) }}" class="btn btn-danger">Eliminar</a>
                                           @endif
-                                          
+
                                     </div>
                                     @endif
                                     @endif

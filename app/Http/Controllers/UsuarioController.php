@@ -195,19 +195,19 @@ class UsuarioController extends Controller
             try{
                   //Campos comunes
                   $usuario = Usuario::find($id);
-                  $usuario->dni = $request->dni;
-                  $usuario->nombre = $request->nombre;
-                  $usuario->apellidos = $request->apellidos;
-                  $usuario->fNac = $request->fNac;
-                  $usuario->salario = $request->salario;
-                  if($request->equipo != null) $usuario->equipo_id = $request->equipo_id;
-                  else $usuario->equipo_id = 1;
-                  $usuario->rol = $request->rol;
+                  if($request->dni != null) $usuario->dni = $request->dni;
+                  if($request->nombre != null) $usuario->nombre = $request->nombre;
+                  if($request->apellidos != null) $usuario->apellidos = $request->apellidos;
+                  if($request->fNac != null) $usuario->fNac = $request->fNac;
+                  if($request->salario != null) $usuario->salario = $request->salario;
+                  if($request->equipo_id != null) $usuario->equipo_id = $request->equipo_id;
+                  if($request->rol != null) $usuario->rol = $request->rol;
+                  if($request->cargo != null) $usuario->cargo = $request->cargo;
 
-                  if($request->cargo != 0 && Usuario::where('equipo_id','=',$request->equipo)->where('cargo','=',$request->cargo)->where('id','<>',$id)->first() != null){
+                  //dd($usuario);
+                  if($usuario->cargo != 0 && Usuario::where('equipo_id','=',$usuario->equipo_id)->where('cargo','=',$usuario->cargo)->where('rol','=',$usuario->rol)->where('id','<>',$id)->first() != null){
                         throw new \Exception('Ya hay un usuario con ese cargo en ese mismo equipo');
                   }
-
                   if($usuario->rol == 0){ //Jugador
                         //Dorsal
                         if($request->dorsal == null && $usuario->dorsal != null){
@@ -224,6 +224,7 @@ class UsuarioController extends Controller
                   }
                   elseif ($usuario->rol == 1) { //Entrenador
                         $usuario->dorsal = null;
+                        $usuario->posicion = null;
                   }
                   elseif ($usuario->rol == 2){ //Director
                         $usuario->dorsal = null;
