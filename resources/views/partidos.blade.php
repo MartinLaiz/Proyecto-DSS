@@ -124,6 +124,9 @@
                      No hay partidos así, prueba con otro filtro.
                      <br>
                      Sino siempre puedes <a href="javascript:restablecerFiltro()">restablecer el filtro</a>.
+                  @elseif($equipo1 == 1)
+                     Los jugadores libres no pueden disputar partidos.
+                     <br>Si te has equivocado, prueba otra cosa o <a href="javascript:restablecerFiltro()">restablece el filtro</a>.
                   @else
                      Un equipo nunca jugará contra sí mismo, y lo sabes.
                      <br>

@@ -201,6 +201,7 @@ class UsuarioController extends Controller
                   $usuario->fNac = $request->fNac;
                   $usuario->salario = $request->salario;
                   if($request->equipo != null) $usuario->equipo_id = $request->equipo_id;
+                  else $usuario->equipo_id = 1;
                   $usuario->rol = $request->rol;
 
                   if($request->cargo != 0 && Usuario::where('equipo_id','=',$request->equipo)->where('cargo','=',$request->cargo)->where('id','<>',$id)->first() != null){
@@ -209,11 +210,11 @@ class UsuarioController extends Controller
 
                   if($usuario->rol == 0){ //Jugador
                         //Dorsal
-                        if($request->dorsal == null){
+                        if($request->dorsal == null && $usuario->dorsal != null){
                               throw new \Exception('Un jugador debe tener un dorsal');
                         }
 
-                        if(Usuario::where('equipo_id','=',$request->equipo)->where('dorsal','=',$request->dorsal)->where('id','<>',$id)->first() != null){
+                        if(Usuario::where('equipo_id','=',$request->equipo)->where('dorsal','=',$request->dorsal)->where('id','<>',$id)->first() != null && $request->dorsal != null){
                               throw new \Exception('Ya hay un jugador en ese equipo con el mismo dorsal');
                         }
                         $usuario->dorsal = $request->dorsal;
